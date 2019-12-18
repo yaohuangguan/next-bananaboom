@@ -3,14 +3,13 @@ import React from "react";
 import { useRouter, withRouter } from "next/router";
 import Playground from "component-playground";
 import Head from 'next/head'
-import BLOG from "../BLOG_DATA";
+import _fetch from 'isomorphic-unfetch'
 const blog = ({ content }) => {
   const router = useRouter();
-
   return (
     <Layout>
     <Head>
-      <title>{content.name} || By Sam Yao</title>
+      <title>{content.name ? content.name : `Waiting for fetch...`} || By Sam Yao</title>
     </Head>
       <div className="container">
         <a
@@ -25,13 +24,13 @@ const blog = ({ content }) => {
         </a>
         <section className="my-5 px-4 article">
           <h2 className="h1-responsive font-weight-bold text-center my-5">
-            {content.name}
+            {content.name ? content.name : `Waiting for fetch...`}
           </h2>
 
-          <p>{content.content}</p>
-          <Playground codeText={content.code} scope={{ React: React }} />
+          <p>{content.content || `Something went wrong...`}</p>
+          <Playground codeText={content.code ? content.code : `Something went wrong...`} scope={{ React: React }} />
           {content.code2 ? (
-            <Playground codeText={content.code2} scope={{ React: React }} />
+            <Playground  codeText={content.code2} scope={{ React: React }} />
           ) : `Take what you need man.`}
         </section>
       </div>
@@ -39,9 +38,11 @@ const blog = ({ content }) => {
   );
 };
 
-blog.getInitialProps = router => {
+blog.getInitialProps = async router => {
+  const response = await _fetch("http://localhost:5000/api/posts");
+  const posts = await response.json();
   return {
-    content: BLOG.find(blog => blog.id == router.query.id)
+    content: posts.find(post => post._id == router.query.id)
   };
 };
 

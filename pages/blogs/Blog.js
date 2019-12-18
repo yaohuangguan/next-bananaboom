@@ -1,11 +1,12 @@
 /* eslint-disable react/style-prop-object */
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import React, { Component } from "react";
+import React from "react";
 import Layout from "../../components/Layout/Layout";
 import { useRouter } from "next/router";
 import BlogList from "../../components/Blog/BlogList";
 import "./Blog.scss";
 import BLOG_DATA from "./BLOG_DATA";
+import _fetch from "isomorphic-unfetch";
 import Canvas from "../../components/Jumbo/Canvas";
 import Head from "next/head";
 import Lightbox from "../../components/Blog/Lightbox/Lightbox";
@@ -15,12 +16,12 @@ const Blog = props => {
   let blogList = [].concat(blogs);
 
   const router = useRouter();
-
+ 
   return (
     <Layout>
       <Head>
         <meta charSet="utf-8" />
-        <title>前端文章</title>
+        <title>Blog Posts</title>
         <meta property="og:title" content="Sam的博客" />
       </Head>
       <Canvas>
@@ -70,9 +71,11 @@ const Blog = props => {
     </Layout>
   );
 };
-Blog.getInitialProps = () => {
+Blog.getInitialProps = async () => {
+  const response = await _fetch("http://localhost:5000/api/posts");
+  const posts = await response.json();
   return {
-    blogs: BLOG_DATA
+    blogs: posts
   };
 };
 

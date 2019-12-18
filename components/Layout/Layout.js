@@ -25,10 +25,19 @@ const Layout = ({ children }) => {
     <ErrorBoundary>
       <Head />
       <BrowserTest></BrowserTest>
+      <noscript>
+      <div className="javascript-detect text-center">
+        <p>检测到你没有使用JavaScript，为了正常使用本站请启用JavaScript</p>
+        <p>No JavaScript detected, please enable it and refresh the site for a better experience.</p>
+      </div>
+      </noscript>
       {loading ? getLoading() : children}
     </ErrorBoundary>
   );
 };
+
+
+
 function getLoading() {
   return (
     <div

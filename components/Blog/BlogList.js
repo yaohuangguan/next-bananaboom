@@ -4,8 +4,8 @@ const BlogList = props => {
   const { blogs } = props;
   return (
     <div>
-      {blogs.map(({ id, ...other }) => (
-        <BlogListItem key={id} {...other} id={id} />
+      {blogs.map(({ _id, ...other }) => (
+        <BlogListItem key={_id} {...other} _id={_id} />
       ))}
     </div>
   );

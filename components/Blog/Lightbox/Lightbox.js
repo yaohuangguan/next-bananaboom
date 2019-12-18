@@ -15,9 +15,9 @@ const Lightbox = () => {
       setPictures(data);
     }
     getPictures()
-    
+
   }, []);
-  console.log("pictures", pictures);
+
   return (
     <div className="grid px-4">
       <h4 className="text-center">Some Inspirations..</h4>

@@ -1,5 +1,5 @@
 import React from "react";
-import utils from './Utils'
+import {randomColor,randomIntFromRange,distance} from './Utils'
 class Canvas extends React.Component {
   componentDidMount(){
     const canvas = document.querySelector("canvas");
@@ -92,8 +92,8 @@ class Canvas extends React.Component {
       constructor(x, y, radius, color) {
         super(x, y, color);
         this.velocity = {
-          x: utils.randomIntFromRange(-5, 5),
-          y: utils.randomIntFromRange(-15, 15)
+          x: randomIntFromRange(-5, 5),
+          y: randomIntFromRange(-15, 15)
         };
         this.radius = radius;
         this.friction = 0.5;
@@ -139,7 +139,7 @@ class Canvas extends React.Component {
         this.radius = radius;
         this.color = color;
         this.velocity = {
-          x: utils.randomIntFromRange(-30, 30),
+          x: randomIntFromRange(-30, 30),
           y: 3
         };
       }
@@ -226,7 +226,7 @@ class Canvas extends React.Component {
         const radius = 12;
         const x = Math.max(radius, Math.random() * canvas.width - radius);
         starList.push(new Star(x, -100, radius, "#e3eaef"));
-        respawnRate = utils.randomIntFromRange(75, 200);
+        respawnRate = randomIntFromRange(75, 200);
         meteorList.push(new Meteor(Math.random() * canvas.width, 0, 5, "white"));
       }
     }
