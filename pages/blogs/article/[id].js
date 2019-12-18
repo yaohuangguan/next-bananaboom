@@ -2,12 +2,16 @@ import Layout from "../../../components/Layout/Layout";
 import React from "react";
 import { useRouter, withRouter } from "next/router";
 import Playground from "component-playground";
+import Head from 'next/head'
 import BLOG from "../BLOG_DATA";
 const blog = ({ content }) => {
   const router = useRouter();
 
   return (
     <Layout>
+    <Head>
+      <title>{content.name} || By Sam Yao</title>
+    </Head>
       <div className="container">
         <a
           title="Go Back"
@@ -28,7 +32,7 @@ const blog = ({ content }) => {
           <Playground codeText={content.code} scope={{ React: React }} />
           {content.code2 ? (
             <Playground codeText={content.code2} scope={{ React: React }} />
-          ) : null}
+          ) : `Take what you need man.`}
         </section>
       </div>
     </Layout>

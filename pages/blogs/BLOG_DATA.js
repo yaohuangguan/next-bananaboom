@@ -107,12 +107,12 @@ const BLOG = [
   },
   {
     id: 2,
-    name: "如何使用Concurrently依赖来同时运行前端和后端框架?",
-    info: "先安装依赖 npm install -g concurrently",
+    name: "如何使用同时运行前端和后端框架?",
+    info: "使用concurrently或者npm-run-all",
     author: "Sam Yao",
     createdDate: "2019/08/20",
     button: "Read more",
-    content: `如何使用Concurrently依赖来同时运行前端和后端框架?先安装依赖 npm install -g concurrently
+    content: `如何同时运行前端和后端框架?先安装依赖 npm install -g concurrently
     
     前端的目录要在Express文件夹中,
           在express根文件夹里的package.json文件里编辑script.也可以使用npm-run-all 来执行多个script`,
@@ -121,6 +121,12 @@ const BLOG = [
             "server":"nodemon server",
             "client":"npm run serve --prefix client",
             "dev":"concurrently \"npm run server\" \"npm run client\""
+          } `,
+          code2:`"scripts": {
+            "start": "npm-run-all --parallel dev server client",
+            "dev": "webpack --config webpack.server.js --watch",
+            "server": "nodemon --watch build --exec \"node build/bundle.js\"",
+            "client": "webpack --config webpack.client.js --watch"
           },`
   },
 
@@ -132,7 +138,7 @@ const BLOG = [
     author: "Sam Yao",
     createdDate: "2019/10/08",
     button: "Read more",
-    content: `http.js这个文件用来处理fetch请求，app.js设置初始的参数
+    content: `
     关于fetch比较重要的是，fetch返回一个promise，fetch（） API
     仅在遇到"网络错误"时拒绝承诺，尽管这通常意味着权限问题或类似问题。基本上，fetch（）
     将拒绝承诺，如果用户脱机，或发生一些不太可能的网络错误，如 DNS
@@ -143,17 +149,13 @@ const BLOG = [
     好消息是，fetch提供了一个简单的 OK 标志，指示 HTTP
     响应的状态代码是否处于成功范围内。例如，以下代码日志"错误：内部服务器错误（…）", 我们可以用fetch返回给我们的response里的ok属性，如果有错误就是true，那么有错误就throw这个错误，没有就返回reponse.json();，如果不用json的话fetch会返回response对象，我们并没法使用，如果打开proto属性看会看到json方法这样就可以获得具体的数据。
     然后接着使用.then获取上一步的.json()然后resolve，我们就可以从app.js中使用.then获取到resolved的数据`,
-    code: `fetch("http://httpstat.us/500")
-    .then(function(response) {
-        if (!response.ok) {
-            throw Error(response.statusText);
+    code: `fetch("https://api.github.com/users")
+    .then(res => {
+        if (res.ok) {
+          return res.json();
         }
-        return response;
-    }).then(function(response) {
-        console.log("ok");
-    }).catch(function(error) {
-        console.log(error);
-    });`
+        return new Error(res.statusText);
+    }).then(res => console.log(res)).catch(console.log);`
   },
   {
     id: 4,
@@ -169,12 +171,12 @@ const BLOG = [
           来达到路由导向前进后退等.
           但是如果是functional的组件，我们怎么使用props？我们可以使用withRouter这个React
           router提供给我们的工具,
-          他让我们可以获取history中的方法从而达到的我们的目的`,
+          他让我们可以获取history中的方法从而达到的我们的目的.这个方法有一个问题，就是如果使用Safari浏览器，这段代码不能实现功能，这时候我们需要在onClick里传入event参数，然后阻止click的默认行为，然后在使用browserHistory`,
     code: `import { withRouter } from "react-router-dom";
           const Blog3 = ({ history }) => {
             return (
              
-                <a href='#' onClick={() => history.go(-1)} title='Go Back'>)}
+                <a href='#' onClick={(e) => {e.preventDefault();history.go(-1)}} title='Go Back'>)}
           
                 export default withRouter(Blog3)`
   },

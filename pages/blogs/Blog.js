@@ -20,7 +20,7 @@ const Blog = props => {
     <Layout>
       <Head>
         <meta charSet="utf-8" />
-        <title>Blog</title>
+        <title>前端文章</title>
         <meta property="og:title" content="Sam的博客" />
       </Head>
       <Canvas>

@@ -3,12 +3,16 @@ import Link from "next/link";
 import china from "../../public/china.png";
 import ResumeList from "./ResumeList/ResumeList";
 import Layout from "../../components/Layout/Layout";
+import Head from 'next/head'
 import RESUME_DATA from "./RESUME_DATA";
 import shuffle from "../../components/Utils/Shuffle";
 const Resume = ({ resume, resumeItem }) => {
 
   return (
     <Layout>
+    <Head>
+      <title>Application Board</title>
+    </Head>
       <div className="container">
         <div className="float-right pt-2">
           <Link href="/resume/chinese">

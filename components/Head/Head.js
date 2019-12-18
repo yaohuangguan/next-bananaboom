@@ -3,7 +3,7 @@ import Head from "next/head";
 const HeadConfig = () => (
   <Head>
     <meta charSet="utf-8" />
-    <title>Sam's Blog</title>
+    <title>Moviegoer</title>
     <link rel="icon" href="/lemon.png" />
     <meta name="viewport" content="initial-scale=1.0, width=device-width" />
     <meta name="theme-color" content="normal" />
@@ -14,8 +14,31 @@ const HeadConfig = () => (
 Node.js, Express.js, GraphQL, Docker, Postman, PostgreSQL, MongoDB, Redis, Knowing how
 HTTP, TCP/IP, DNS and Web Server work...."
     />
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/codemirror/5.0.0/codemirror.min.css"/>
-<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/codemirror/5.0.0/theme/monokai.min.css"/>
+    <script
+      type="text/javascript"
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"
+      async
+    ></script>
+
+    <script
+      type="text/javascript"
+      src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"
+      async
+    ></script>
+
+    <script
+      type="text/javascript"
+      src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.10/js/mdb.min.js"
+      async
+    ></script>
+    <link
+      rel="stylesheet"
+      href="//cdnjs.cloudflare.com/ajax/libs/codemirror/5.0.0/codemirror.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="//cdnjs.cloudflare.com/ajax/libs/codemirror/5.0.0/theme/monokai.min.css"
+    />
     <link
       href="https://fonts.googleapis.com/css?family=Poppins:400,800&display=swap"
       rel="stylesheet"
@@ -34,23 +57,6 @@ HTTP, TCP/IP, DNS and Web Server work...."
       rel="stylesheet"
       href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
     />
-      <script
-      type="text/javascript"
-      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"
-      async
-    ></script>
-
-    <script
-      type="text/javascript"
-      src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"
-      async
-    ></script>
-
-    <script
-      type="text/javascript"
-      src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.10/js/mdb.min.js"
-      async
-    ></script>
   </Head>
 );
 

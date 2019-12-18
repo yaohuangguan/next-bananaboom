@@ -20,7 +20,7 @@ const BlogListItem = props => {
           <span className="font-weight-bold">{author}</span>, {createdDate}
         </p>
         <Link href={`/blogs/article/[id]`} as={`/blogs/article/${id}`}>
-          <a className="btn aqua-gradient gradient">{button}</a>
+          <a className="btn purple-gradient gradient">{button}</a>
         </Link>
       </div>
       <hr />

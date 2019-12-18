@@ -2,6 +2,7 @@ import React from "react";
 import Link from "next/link";
 import Layout from '../../components/Layout/Layout'
 import uk from '../../public/uk.png';
+import Head from 'next/head'
 import ResumeList from "./ResumeList/ResumeList";
 import RESUME_DATA from './RESUME_DATA'
 import shuffle  from '../../components/Utils/Shuffle'
@@ -10,6 +11,9 @@ const Resume = ({resume,resumeItem}) => {
   
     return (
       <Layout>
+       <Head>
+      <title>介绍和程序列表</title>
+    </Head>
         <div className="container">
           <div className="float-right pt-2">
             <Link href="/resume/english">
