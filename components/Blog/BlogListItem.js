@@ -1,5 +1,6 @@
 import Link from "next/link";
 import "./BlogListItem.scss";
+import { useEffect } from "react";
 import { randomColor } from "../Jumbo/Utils";
 const BlogListItem = ({
   name,
@@ -12,6 +13,29 @@ const BlogListItem = ({
   _id,
   image
 }) => {
+  const handleHeart = async () => {
+    const heart = document.getElementById(`${_id}`);
+    heart.classList.toggle("is_animating");
+    heart.classList.toggle("liked");
+    const response = await fetch(
+      `http://localhost:5000/api/posts/like/${_id}`,
+      {
+        method: "post"
+      }
+    );
+    const data = await response.json();
+    console.log(data);
+    // heart.addEventListener("animationend", () => {
+    //   heart.classList.toggle("is_animating");
+    // });
+    // heart.forEach(each => {
+    //   each.classList.toggle('is_animating');
+    //   each.classList.toggle('liked')
+    //   each.addEventListener("animationend", () => {
+    //     each.classList.toggle("is_animating");
+    //   });
+    // });
+  };
   return (
     <div className="row">
       <div className="py-5 px-3">
@@ -22,6 +46,8 @@ const BlogListItem = ({
           {tags.map((tag, index) => (
             <a
               className={`chip lighten-2 ${randomColor([
+                `yellow`,
+                `green`,
                 `purple`,
                 `teal`,
                 `blue`,
@@ -43,13 +69,15 @@ const BlogListItem = ({
             ))
           : null}
 
-        <p>
+        <span>
           created by:
-          <span className="font-weight-bold">{author}</span>, {createdDate}
-        </p>
-        <p>
-          {likes} <i className="fas fa-thumbs-up fa-lg"></i>
-        </p>
+          <span>{author}</span>, {createdDate}
+        </span>
+        <div>
+          <div className="heart" onClick={handleHeart} id={_id}>
+            <span>{likes} </span>
+          </div>
+        </div>
         <Link href={`/blogs/article/[id]`} as={`/blogs/article/${_id}`}>
           <a className="btn purple-gradient gradient">Read more</a>
         </Link>

@@ -1,4 +1,4 @@
-import * as React from "react";
+import {useState,useEffect} from "react";
 import Layout from '../components/Layout/Layout'
 import Header from '../components/Header/Header'
 import Jumbo from '../components/Jumbo/Jumbo'
@@ -8,15 +8,17 @@ import Footer from '../components/Footer/Footer'
 import Animation from "../components/Utils/Animation";
 import uk from "../public/uk.png";
 
-class Chinese extends React.Component {
-  state = {
-    webUrl: ""
-  };
-  componentDidMount() {
-    this.setState({ webUrl: window.location.hostname });
+const Chinese = () => {
+  const [webUrl, setwebUrl] = useState('')
+  useEffect(() => {
+    const abortController = new AbortController()
     Animation();
-  }
-  render() {
+    setwebUrl(window.location.hostname)
+    return () => {
+      abortController.abort()
+    };
+  }, [])
+
     return (
       <Layout>
         <Header
@@ -44,7 +46,7 @@ class Chinese extends React.Component {
             info={
               " 你的信息不会以任何目的被泄露给任何人，任何组织及第三方，甚至机器人。"
             }
-            copyright={`All rights reserved ©2019  ${this.state.webUrl ||
+            copyright={`All rights reserved ©2019  ${webUrl ||
               "www.yaobaiyang.com"}`}
             web_version={"网站版本：3.4; 基于Next.js框架React版本:16.10.2;"}
             log={"点击查看网站更新记录"}
@@ -56,7 +58,7 @@ class Chinese extends React.Component {
         />
       </Layout>
     );
-  }
+  
 }
 
 export default Chinese;

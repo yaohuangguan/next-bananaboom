@@ -1,5 +1,23 @@
 {
   "presets": [
     "next/babel"
+  ],
+  "plugins": [
+    [
+      "styled-components",
+      {
+        "ssr": true,
+        "displayName": true,
+        "preprocess": false
+      }
+    ]
   ]
+  // "plugins": [
+  //   ["prismjs", {
+  //       "languages": ["javascript", "css", "markup","python"],
+  //       "plugins": ["line-numbers"],
+  //       "theme": "twilight",
+  //       "css": true
+  //   }]
+  // ]
 }

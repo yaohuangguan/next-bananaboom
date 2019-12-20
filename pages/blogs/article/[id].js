@@ -1,16 +1,24 @@
 import Layout from "../../../components/Layout/Layout";
-import React from "react";
 import { useRouter, withRouter } from "next/router";
-import Playground from "component-playground";
-import Head from 'next/head'
-import _fetch from 'isomorphic-unfetch'
+import Head from "next/head";
+import _fetch from "isomorphic-unfetch";
+import "../../../components/Utils/prism";
+import prism from "../../../styles/prism.css";
+import styled from "styled-components";
+// const Coding = styled.pre`
+//   ${prism}
+// `;
+
+// function getName(name){
+//   return <Coding>{name}</Coding>
+// }
 const blog = ({ content }) => {
   const router = useRouter();
   return (
     <Layout>
-    <Head>
-      <title>{content.name ? content.name : `Waiting for fetch...`} || By Sam Yao</title>
-    </Head>
+      <Head>
+        <title>{content.name || `Waiting for fetch...`} || By Sam Yao</title>
+      </Head>
       <div className="container">
         <a
           title="Go Back"
@@ -20,18 +28,24 @@ const blog = ({ content }) => {
           }}
           className="btn btn-outline-info btn-rounded waves-effect"
         >
-          Go back
+        Go Back
         </a>
         <section className="my-5 px-4 article">
           <h2 className="h1-responsive font-weight-bold text-center my-5">
-            {content.name ? content.name : `Waiting for fetch...`}
+            { content.name || `Waiting for fetch...`}
           </h2>
-
           <p>{content.content || `Something went wrong...`}</p>
-          <Playground codeText={content.code ? content.code : `Something went wrong...`} scope={{ React: React }} />
+          <pre>
+            <code className="language-javascript">{content.code}</code>
+          </pre>
           {content.code2 ? (
-            <Playground  codeText={content.code2} scope={{ React: React }} />
-          ) : `Take what you need man.`}
+            <div>
+              {"Method 2"}
+              <pre>
+                <code className="language-javascript">{content.code2} </code>{" "}
+              </pre>
+            </div>
+          ) : null}
         </section>
       </div>
     </Layout>

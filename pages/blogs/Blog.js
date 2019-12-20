@@ -1,20 +1,19 @@
 /* eslint-disable react/style-prop-object */
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React from "react";
-import Layout from "../../components/Layout/Layout";
+import dynamic from "next/dynamic";
+
+const Layout = dynamic(()=>import("../../components/Layout/Layout"),{
+  ssr:false
+})
 import { useRouter } from "next/router";
 import BlogList from "../../components/Blog/BlogList";
 import "./Blog.scss";
-import BLOG_DATA from "./BLOG_DATA";
 import _fetch from "isomorphic-unfetch";
 import Canvas from "../../components/Jumbo/Canvas";
 import Head from "next/head";
-import Lightbox from "../../components/Blog/Lightbox/Lightbox";
 const Blog = props => {
   const { blogs } = props;
-
-  let blogList = [].concat(blogs);
-
   const router = useRouter();
  
   return (
@@ -24,9 +23,9 @@ const Blog = props => {
         <title>Blog Posts</title>
         <meta property="og:title" content="Sam的博客" />
       </Head>
-      <Canvas>
-        <div className="100vw" style={{ position: "absolute" }}>
-          <div className="text-white text-center py-5 px-5">
+
+        <div className="100vw blog" >
+          <div className="text-white text-center  rgba-stylish-light py-5 px-5">
             <div className="py-5">
               <a
                 className="btn btn-outline-white btn-rounded waves-effect"
@@ -49,13 +48,9 @@ const Blog = props => {
             </div>
           </div>
         </div>
-      </Canvas>
 
-      <div className="container">
-        <a className="badge badge-default" onClick={() => blogs.reverse()}>
-          按日期顺序
-        </a>
-      </div>
+
+      
       {blogs ? (
         <div className="container">
           <BlogList blogs={blogs} />
@@ -65,9 +60,7 @@ const Blog = props => {
       )}
       <hr className="my-5" />
 
-      <div className="container">
-        <Lightbox />
-      </div>
+     
     </Layout>
   );
 };

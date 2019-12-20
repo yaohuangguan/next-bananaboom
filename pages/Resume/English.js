@@ -4,9 +4,9 @@ import china from "../../public/china.png";
 import ResumeList from "./ResumeList/ResumeList";
 import Layout from "../../components/Layout/Layout";
 import Head from 'next/head'
-import RESUME_DATA from "./RESUME_DATA";
+import _fetch from 'isomorphic-unfetch'
 import shuffle from "../../components/Utils/Shuffle";
-const Resume = ({ resume, resumeItem }) => {
+const Resume = ({ resumeItem }) => {
 
   return (
     <Layout>
@@ -74,7 +74,7 @@ const Resume = ({ resume, resumeItem }) => {
 
         <br />
         <h5>Projects</h5>
-        {resume.id === 2 ? (
+        {resumeItem ? (
           <ResumeList items={resumeItem} />
         ) : (
           "Error occured, please refresh"
@@ -115,12 +115,13 @@ const Resume = ({ resume, resumeItem }) => {
     </Layout>
   );
 };
-Resume.getInitialProps = () => {
-  const shuffled = shuffle(RESUME_DATA[1].items)
+Resume.getInitialProps = async () => {
+  const response = await _fetch('http://localhost:5000/api/posts/resume')
+  const data = await response.json()
+  const shuffled = shuffle(data)
   return {
-    resume: RESUME_DATA[1],
-    resumeItem: shuffled
-  };
+    resumeItem:shuffled
+  }
 };
 
 export default Resume;

@@ -1,27 +1,21 @@
-import React from "react";
+import {useState,useEffect} from "react";
+import dynamic from 'next/dynamic'
 import Link from "next/link";
-import HamburgerMenu from "./Hamburger/Hamburger";
+const HamburgerMenu = dynamic(()=>import('./Hamburger/Hamburger'),{
+  ssr:false
+})
 import "./Header.scss";
-class Header extends React.Component {
-  componentDidMount() {
-    window.addEventListener("scroll", this.changeHeader, true);
-  }
-  componentWillUnmount() {
-    window.removeEventListener("scroll", this.changeHeader, true);
-  }
-  flipFlag = () => {
-    console.log("flaped");
-    const flag = document.querySelector(".flag");
-    flag.classList.add("animated", "rotateIn");
-    flag.addEventListener("animationend", () =>
-      flag.classList.remove("animated", "rotateIn")
-    );
-  };
-  toggle = () => {
-    const navToggle = document.querySelector(".toggle");
-    navToggle.classList.toggle("nav-open");
-  };
-  changeHeader = () => {
+const Header = ({
+  vueTube,
+  clothing,
+  blogName,
+  resumeName,
+  flag,
+  resumeRoute,
+  homeRoute,
+  changeLanguageRoute
+}) => {
+  const changeHeader = () => {
     let header = document.querySelector(".header");
     if (window.scrollY > 100 && !header.className.includes("solid")) {
       header.classList.add("solid");
@@ -31,17 +25,22 @@ class Header extends React.Component {
       header.classList.remove("purple-gradient");
     }
   };
-  render() {
-    const {
-      vueTube,
-      clothing,
-      blogName,
-      resumeName,
-      flag,
-      resumeRoute,
-      homeRoute,
-      changeLanguageRoute
-    } = this.props;
+  useEffect(() => {
+    window.addEventListener("scroll", changeHeader, true);
+    return () => {
+      window.removeEventListener("scroll", changeHeader, true);
+    };
+  }, [changeHeader])
+  
+  const flipFlag = () => {
+    console.log("flaped");
+    const flag = document.querySelector(".flag");
+    flag.classList.add("animated", "rotateIn");
+    flag.addEventListener("animationend", () =>
+      flag.classList.remove("animated", "rotateIn")
+    );
+  };
+
     return (
       <div className="nav">
         <div className="header">
@@ -81,14 +80,14 @@ class Header extends React.Component {
                   src={flag}
                   alt="china-flag"
                   className="flag"
-                  onMouseOver={this.flipFlag}
+                  onMouseOver={flipFlag}
                   title={"This is to credit the author by Flaticon, thank you"}
                 />
               </a>
             </Link>
           </div>
         </div>
-        <div className="hamburger px-4 py-3" onClick={this.toggle}>
+        <div className="hamburger px-4 py-3">
           <HamburgerMenu
             vueTube={vueTube}
             clothing={clothing}
@@ -97,12 +96,12 @@ class Header extends React.Component {
             changeLanguageRoute={changeLanguageRoute}
             resumeRoute={resumeRoute}
             flag={flag}
-            flipFlag={this.flipFlag}
+            flipFlag={flipFlag}
           />
         </div>
       </div>
     );
-  }
+
 }
 
 export default Header;

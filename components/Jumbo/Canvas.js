@@ -210,7 +210,7 @@ class Canvas extends React.Component {
       c.fillRect(0, canvas.height - groundHeight, canvas.width, groundHeight);
       starList.forEach((star, index) => {
         star.update();
-        if (star.radius === 0) {
+        if (star.radius <= 0) {
           starList.splice(index, 1);
         }
       });

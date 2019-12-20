@@ -1,85 +1,74 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./Footer.scss";
 import SocialFooter from "./SocialFooter";
-class Footer extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-      closed: false
-    };
-    this.handleClose = this.handleClose.bind(this);
-    this.openModal = this.openModal.bind(this);
-  }
+const Footer = ({ welcome, date }) => {
+  const [closed, setClosed] = useState(false);
 
-  componentDidMount() {
-    this.setOpen = setTimeout(this.openModal, 3000);
-    this.timeId = setTimeout(() => {
-      if (!this.closed) {
-        console.log("Modal Closing");
-        this.handleClose();
+  useEffect(() => {
+    const explain = document.getElementById("explain");
+    let setOpen;
+    if (!closed) {
+      setOpen = setTimeout(openModal, 3000);
+    }
+
+    const timeId = setTimeout(() => {
+      if (!closed) {
+        handleClose();
       }
     }, 20000);
-  }
-
-  componentWillUnmount() {
-    console.log("The page is unmounted");
-    clearTimeout(this.setOpen);
-    clearTimeout(this.timeId);
-    if (this.explain) {
-      this.explain.removeEventListener("animationend", {});
-    }
-  }
+    return () => {
+      clearTimeout(setOpen);
+      clearTimeout(timeId);
+      if (explain) {
+        explain.removeEventListener("animationend", {});
+      }
+    };
+  }, []);
 
   //使用method
-  handleClose() {
-    this.explain = document.getElementById("explain");
+  const handleClose = () => {
     const close = document.getElementById("close");
     close.style.display = "none";
-    this.explain.style.display = "none";
-    this.closed = true;
-  }
-  openModal() {
-    this.explain = document.getElementById("explain");
+    explain.style.display = "none";
+    setClosed(true);
+  };
+  const openModal = () => {
     const close = document.getElementById("close");
-    this.explain.style.display = "block";
+    explain.style.display = "block";
     close.style.display = "block";
-    this.explain.classList.add("animated", "fadeIn");
-    this.explain.addEventListener("animationend", () =>
-      this.explain.classList.remove("animated", "fadeIn")
+    explain.classList.add("animated", "fadeIn");
+    explain.addEventListener("animationend", () =>
+      explain.classList.remove("animated", "fadeIn")
     );
-    console.log("Modal Opening");
-  }
+  };
 
-  render() {
-    const {welcome,date} = this.props;
-    return (
-      <div className="mx-auto purple-gradient fixed-bottom" id="footer">
-        <span
-          className="float-right text-white px-1 font-weight-bold"
-          style={{border:'1px solid white'}}
-          id="close"
-          onClick={this.handleClose}
-        >
-        X    
+  return (
+    <div className="mx-auto purple-gradient fixed-bottom" id="footer">
+      <span
+        className="float-right text-white px-1 font-weight-bold"
+        style={{ border: "1px solid white" }}
+        id="close"
+        onClick={handleClose}
+      >
+        X
+      </span>
+      <div className="text-center">
+        <span className="text-white" onClick={openModal}>
+          {date}
         </span>
-        <div className="text-center">
-          <span className="text-white" onClick={this.openModal}>
-            {date}
-          </span>
-        </div>
-
-        <div className="container text-center" id="explain">
-          <p className="text-white">
-            {welcome}
-            <span role="img" aria-label="">
-              🚀
-            </span>
-          </p>
-          <SocialFooter />
-        </div>
       </div>
-    );
-  }
-}
+
+      <div className="container text-center" id="explain">
+        <p className="text-white">
+          {welcome}
+          <span role="img" aria-label="">
+            🚀
+          </span>
+        </p>
+        <SocialFooter />
+      </div>
+    </div>
+  );
+};
 
 export default Footer;

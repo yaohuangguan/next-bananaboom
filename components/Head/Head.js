@@ -31,14 +31,7 @@ HTTP, TCP/IP, DNS and Web Server work...."
       src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.10/js/mdb.min.js"
       async
     ></script>
-    <link
-      rel="stylesheet"
-      href="//cdnjs.cloudflare.com/ajax/libs/codemirror/5.0.0/codemirror.min.css"
-    />
-    <link
-      rel="stylesheet"
-      href="//cdnjs.cloudflare.com/ajax/libs/codemirror/5.0.0/theme/monokai.min.css"
-    />
+    
     <link
       href="https://fonts.googleapis.com/css?family=Poppins:400,800&display=swap"
       rel="stylesheet"
