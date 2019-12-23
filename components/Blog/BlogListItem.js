@@ -1,7 +1,7 @@
 import Link from "next/link";
 import "./BlogListItem.scss";
 import { useEffect, useState } from "react";
-import { randomColor } from "../Jumbo/Utils";
+import { randomColor } from "../Utils/Utils";
 const colors = [`blue`, `orange`, `cyan`, `indigo`, `green`];
 function setIfLiked() {
   if (window.localStorage.getItem("ifLiked") == undefined) {

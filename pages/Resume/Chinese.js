@@ -8,6 +8,13 @@ import ResumeList from "./ResumeList/ResumeList";
 import shuffle from "../../components/Utils/Shuffle";
 import {getChineseContent} from '../../components/Contents/Resume/Content'
 const Resume = ({ resumeItem,errors }) => {
+  const flipFlag = () => {
+    const flag = document.querySelector(".flag");
+    flag.classList.add("animated", "rotateIn");
+    flag.addEventListener("animationend", () =>
+      flag.classList.remove("animated", "rotateIn")
+    );
+  };
   return (
     <Layout>
       <Head>
@@ -21,6 +28,7 @@ const Resume = ({ resumeItem,errors }) => {
                 src={uk}
                 alt="usa-flag"
                 className="flag"
+                onMouseOver={flipFlag}
                 title="This is to credit the author by Flaticon, thank you"
               />
               English

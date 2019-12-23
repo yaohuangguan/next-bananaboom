@@ -8,7 +8,13 @@ import _fetch from 'isomorphic-unfetch'
 import shuffle from "../../components/Utils/Shuffle";
 import {getEnglishContent} from '../../components/Contents/Resume/Content'
 const Resume = ({ resumeItem,errors }) => {
-
+  const flipFlag = () => {
+    const flag = document.querySelector(".flag");
+    flag.classList.add("animated", "rotateIn");
+    flag.addEventListener("animationend", () =>
+      flag.classList.remove("animated", "rotateIn")
+    );
+  };
   return (
     <Layout>
     <Head>
@@ -21,6 +27,7 @@ const Resume = ({ resumeItem,errors }) => {
               <img
                 src={china}
                 alt="china-flag"
+                onMouseOver={flipFlag}
                 className="flag"
                 title="This is to credit the author by Flaticon, thank you"
               />

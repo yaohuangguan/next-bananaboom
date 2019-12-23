@@ -84,12 +84,6 @@ export default class MyDocument extends Document {
             href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.10/css/mdb.min.css"
             rel="stylesheet"
           />
-
-          <link
-            rel="stylesheet"
-            href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
-          />
-         
         </Head>
         <body style={{ margin: 0, backgroundColor: "#f7f7f7" }}>
           <Main />

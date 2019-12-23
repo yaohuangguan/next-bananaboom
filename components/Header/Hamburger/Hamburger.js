@@ -65,16 +65,8 @@ class Hamburger extends React.Component {
               </li>
               <li className="nav-item">
                 <Link href={changeLanguageRoute}>
-                  <a className="nav-link">
-                    <img
-                      src={flag}
-                      alt="flag"
-                      className="flag"
-                      onMouseOver={flipFlag}
-                      title={
-                        "This is to credit the author by Flaticon, thank you"
-                      }
-                    />
+                  <a className="nav-link text-white font-weight-bold">
+                  {changeLanguageRoute == '/' ? '🇬🇧English' : '🇨🇳中文'}
                   </a>
                 </Link>
               </li>

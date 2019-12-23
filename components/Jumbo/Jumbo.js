@@ -42,7 +42,7 @@ const Jumbo = ({ name, welcome, info, button, backgroundPicture }) => {
             <div className="py-5 mt-5 jumbo">
               <h3 className="text-white name">
 
-                <i className="fas fa-camera-retro"></i>
+              &#128247;
                 {name}
               </h3>
               <h2 className="card-title h2 my-4 py-2 jumbo neon-style-5">{welcome}</h2>
@@ -51,7 +51,7 @@ const Jumbo = ({ name, welcome, info, button, backgroundPicture }) => {
 
               
                 <a className="btn-hover color-3 btn jumbo wave-effects" href='#content'>
-                  <i className="fas fa-space-shuttle left"></i> {button}
+                &#9992; {button}
                 </a>
 
             </div>

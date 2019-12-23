@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./Footer.scss";
-import SocialFooter from "./SocialFooter";
+
 const Footer = ({ welcome, date }) => {
   const [closed, setClosed] = useState(false);
 
@@ -65,7 +65,7 @@ const Footer = ({ welcome, date }) => {
             🚀
           </span>
         </p>
-        <SocialFooter />
+
       </div>
     </div>
   );

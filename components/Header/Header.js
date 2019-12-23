@@ -46,9 +46,7 @@ const Header = ({
       <div className="header">
         <Link href={homeRoute}>
           <a id="logo" className="px-3">
-            <h5 className="white-lighter">
-              <i className="far fa-lemon fa-lg"></i>
-            </h5>
+          <img src="https://img.icons8.com/ultraviolet/32/000000/ninja-turtle.png" />
           </a>
         </Link>
         <div className="options">
@@ -72,8 +70,8 @@ const Header = ({
           </Link>
           <Link href={changeLanguageRoute}>
             <a className="option">
-              <img src={flag} onMouseOver={flipFlag} className="flag" alt="" />
-              <span className='btn-hover color-5'>{changeLanguageRoute == '/' ? 'English' : '中文'}</span>
+              <span className='btn-hover color-5'>
+              {changeLanguageRoute == '/' ? '🇬🇧English' : '🇨🇳中文'}</span>
             </a>
           </Link>
         </div>

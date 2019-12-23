@@ -3,7 +3,7 @@ import {
   randomColor,
   randomIntFromRange,
   distance
-} from "../components/Jumbo/Utils";
+} from "../components/Utils/Utils";
 import Link from 'next/link'
 class Canvas extends React.Component {
   componentDidMount() {

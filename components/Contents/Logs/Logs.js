@@ -4,7 +4,7 @@ const Logs = props => {
   return (
     <div>
       <p className="text-muted">
-        {props.version}<i className="fab fa-react fa-lg"></i>
+        {props.version}<img src="https://img.icons8.com/ios/20/000000/react-native.png"/>
         <a
           href=""
           data-toggle="modal"

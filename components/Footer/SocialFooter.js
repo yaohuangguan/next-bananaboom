@@ -7,38 +7,43 @@ const SocialFooter = () => {
       <ul className="list-unstyled list-inline text-center text-white">
         <li className="list-inline-item">
           <a
-            className="btn-floating btn-fb mx-1 text-white"
+            className="btn-floating"
+            href="https://www.weibo.com/u/5350193792"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <img src="https://img.icons8.com/color/32/000000/weibo.png" />
+          </a>
+        </li>
+        <li className="list-inline-item">
+          <a
+            className="btn-floating btn-fb mx-1"
             href="https://www.facebook.com/sam.yao.10"
             target="_blank"
             rel="noopener noreferrer"
           >
-            <i className="fab fa-facebook-f"> </i>
+            <img src="https://img.icons8.com/office/32/000000/facebook-new.png" />
           </a>
         </li>
 
         <li className="list-inline-item">
           <a
-            className="btn-floating btn-gplus mx-1 text-white"
+            className="btn-floating btn-gplus mx-1"
             href="https://www.instagram.com/moviegoer24/?hl=en"
             target="_blank"
             rel="noopener noreferrer"
           >
-            <i className="fab fa-instagram"> </i>
+            <img src="https://img.icons8.com/nolan/32/000000/instagram-new.png" />
           </a>
         </li>
         <li className="list-inline-item">
           <a
-            className="btn-floating btn-li mx-1 text-white"
+            className="btn-floating btn-li mx-1"
             href="https://www.linkedin.com/in/baiyang-sam-y-54828a140/"
             target="_blank"
             rel="noopener noreferrer"
           >
-            <i className="fab fa-linkedin-in"> </i>
-          </a>
-        </li>
-        <li className="list-inline-item">
-          <a className="btn-floating btn-dribbble mx-1 text-white">
-            <i className="fab fa-dribbble"> </i>
+            <img src="https://img.icons8.com/cute-clipart/32/000000/linkedin.png" />
           </a>
         </li>
       </ul>

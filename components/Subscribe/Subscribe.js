@@ -1,5 +1,6 @@
 /* eslint-disable no-useless-escape */
 import {useState,useEffect} from "react";
+import SocialFooter from '../Footer/SocialFooter'
 import "./Subscribe.scss";
 import Logs from "../Contents/Logs/Logs";
 const mailApi = `https://qq.us20.list-manage.com/subscribe/post?u=192d7d7d1dcff6b2519629804&amp;id=4b2f990265`
@@ -94,6 +95,7 @@ const Subscribe = ({ title, info, copyright, web_version, log }) =>  {
               check={log}
             ></Logs>
           </div>
+          <SocialFooter></SocialFooter>
           <br />
           <br />
           <br />
