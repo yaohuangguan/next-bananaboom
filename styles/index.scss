@@ -6,26 +6,9 @@ body {
   color: #555555;
   margin: 0;
   padding: 0;
-  background-color: #f7f7f7;
   min-height: 100%;
-  height: 100vh;
-}
-html {
-  height: 100vh; /* set viewport constraint */
-  min-height: 100%; /* enforce height */
-  font-family: "Poppins", sans-serif;
-  font-display:swap;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  color: #555555;
-  margin: 0;
-  padding: 0;
-  background-color: #f7f7f7;
-  min-height: 100%;
-  height: 100vh;
 }
 * {
-  
   box-sizing: border-box;
   &::-moz-selection {
     background-color: palevioletred;
@@ -45,28 +28,7 @@ html {
   background-clip: text;
   -webkit-text-fill-color: transparent;
 }
-.prettyprint {
-  background-color: lightgrey;
-  font-size: 1.2em;
-}
+
 .article {
   font-size: 1.2em;
-}
-.color-g {
-  color: rgba(61, 204, 89, 1);
-}
-
-.orange {
-  background-color: #eb782e;
-}
-.green {
-  color: #2eca6a;
-}
-.text-primary {
-  color: rgb(50, 130, 250);
-}
-
-.btn-primary {
-  background-color: rgb(50, 130, 250);
-  border-color: rgb(50, 130, 250);
 }

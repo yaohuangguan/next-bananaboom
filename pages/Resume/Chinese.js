@@ -6,7 +6,8 @@ import Head from "next/head";
 import _fetch from "isomorphic-unfetch";
 import ResumeList from "./ResumeList/ResumeList";
 import shuffle from "../../components/Utils/Shuffle";
-const Resume = ({ resumeItem }) => {
+import {getChineseContent} from '../../components/Contents/Resume/Content'
+const Resume = ({ resumeItem,errors }) => {
   return (
     <Layout>
       <Head>
@@ -15,7 +16,7 @@ const Resume = ({ resumeItem }) => {
       <div className="container">
         <div className="float-right pt-2">
           <Link href="/resume/english">
-            <a>
+            <a className='btn-hover color-5'>
               <img
                 src={uk}
                 alt="usa-flag"
@@ -31,35 +32,14 @@ const Resume = ({ resumeItem }) => {
         <br />
         <br />
         <Link href="/chinese">
-          <a className="btn btn-outline-info btn-rounded waves-effect">返回</a>
+          <a className="btn draw-border-blue waves-effect">返回</a>
         </Link>
         <h3 className="text-center">Sam</h3>
-
-        <p>迈阿密大学</p>
-        <p>交互研究 GPA:3.7</p>
-        <p>主要研究方向: Web理论和技术研究</p>
-        <p>相关课程: Web应用编程, Web交互编程, HCI理论和可用性</p>
-        <br />
-
-        <h5>前端开发工程师 at BeeHex </h5>
-        <p>
-          BeeHex 是一家 NASA 的子公司，利用食品行业最先进的 3D
-          打印和机器人系统，使食品制备和个性化现代化。
-        </p>
-        <p>
-          在4人团队中工作，职责主要集中在创建用户友好的Vue.js应用，前端性能优化，跨域测试防御攻击，安全支付，供客户可以在线购买我们的机器打印的饼干/蛋糕
-        </p>
-        <p>
-          所负责项目与美国大型超市Target和沃尔玛合作，并且计划向美国全国开展业务
-        </p>
-        <p>负责使用AWS EC2云服务器并成功搭建了Nginx服务器来运行App</p>
-        <p>
-          公司核心项目附属于美国航天局NASA，并与美国陆军合作来为军人和宇航员制定营养计划
-        </p>
+        {getChineseContent()}
 
         <br />
         <h5 id="project">项目</h5>
-        {resumeItem ? <ResumeList items={resumeItem} /> : "出现了错误"}
+        {resumeItem ? <ResumeList items={resumeItem} /> : (errors)}
 
         <p>More in Github...</p>
         <br />
@@ -90,16 +70,19 @@ const Resume = ({ resumeItem }) => {
 };
 
 Resume.getInitialProps = async ({ req }) => {
+  let data
+  let shuffled
+  let errors
+ try {
   const response = await _fetch("http://localhost:5000/api/posts/resume");
-  const data = await response.json();
-  const shuffled = shuffle(data);
-  if (req) {
-    console.log("server");
-  } else {
-    console.log("client");
-  }
+  data = await response.json();
+  shuffled = shuffle(data);
+ } catch (error) {
+   errors = `Something wrong with the server or check your network connect and try again later.`
+ }
   return {
-    resumeItem: shuffled
+    resumeItem: shuffled,
+    errors:errors
   };
 };
 

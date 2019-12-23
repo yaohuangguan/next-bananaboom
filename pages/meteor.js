@@ -1,14 +1,26 @@
 import React from "react";
-import {randomColor,randomIntFromRange,distance} from './Utils'
+import {
+  randomColor,
+  randomIntFromRange,
+  distance
+} from "../components/Jumbo/Utils";
+import Link from 'next/link'
 class Canvas extends React.Component {
-  componentDidMount(){
+  componentDidMount() {
     const canvas = document.querySelector("canvas");
+    canvas.style.zIndex = 0
     const c = canvas.getContext("2d");
-    const w = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
-    const h = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
-    canvas.width = w
-    canvas.height = h
-  
+    const w = Math.max(
+      document.documentElement.clientWidth,
+      window.innerWidth || 0
+    );
+    const h = Math.max(
+      document.documentElement.clientHeight,
+      window.innerHeight || 0
+    );
+    canvas.width = w;
+    canvas.height = h;
+
     // Implementation
     const backgroundGradient = c.createLinearGradient(0, 0, 0, canvas.height);
     backgroundGradient.addColorStop(0, "#171e26");
@@ -21,14 +33,20 @@ class Canvas extends React.Component {
     let respawnRate = 75;
     let groundHeight = 100;
     window.addEventListener("resize", () => {
-      const w = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
-      const h = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
-      canvas.width = w
-      canvas.height = h
-  
+      const w = Math.max(
+        document.documentElement.clientWidth,
+        window.innerWidth || 0
+      );
+      const h = Math.max(
+        document.documentElement.clientHeight,
+        window.innerHeight || 0
+      );
+      canvas.width = w;
+      canvas.height = h;
+
       init();
     });
-  
+
     // Objects
     class Star {
       constructor(x, y, radius, color) {
@@ -51,7 +69,7 @@ class Canvas extends React.Component {
           miniStarList.push(new Ministar(this.x, this.y, this.miniStarRadius));
         }
       }
-  
+
       draw() {
         c.save();
         c.beginPath();
@@ -63,7 +81,7 @@ class Canvas extends React.Component {
         c.closePath();
         c.restore();
       }
-  
+
       update() {
         this.draw();
         if (
@@ -86,7 +104,7 @@ class Canvas extends React.Component {
         this.y += this.velocity.y;
       }
     }
-  
+
     //MINI STAR
     class Ministar extends Star {
       constructor(x, y, radius, color) {
@@ -112,7 +130,7 @@ class Canvas extends React.Component {
         c.closePath();
         c.restore();
       }
-  
+
       update() {
         this.draw();
         if (
@@ -131,7 +149,7 @@ class Canvas extends React.Component {
         this.radius -= 0.0;
       }
     }
-  
+
     class Meteor {
       constructor(x, y, radius, color) {
         this.x = x;
@@ -162,7 +180,7 @@ class Canvas extends React.Component {
         this.y += this.velocity.y;
       }
     }
-  
+
     function createMountain(mountainAmount, height, color) {
       for (let i = 0; i < mountainAmount; i++) {
         const mountainWidth = canvas.width / mountainAmount;
@@ -176,7 +194,7 @@ class Canvas extends React.Component {
         c.closePath();
       }
     }
-  
+
     function init() {
       backgroundStarList = [];
       starList = [];
@@ -189,7 +207,7 @@ class Canvas extends React.Component {
         backgroundStarList.push(new Star(x, y, radius, "white"));
       }
     }
-  
+
     // Animation Loop
     function animate() {
       requestAnimationFrame(animate);
@@ -198,11 +216,11 @@ class Canvas extends React.Component {
       meteorList.forEach(meteor => {
         meteor.update();
       });
-  
+
       backgroundStarList.forEach(backgroundStar => {
         backgroundStar.draw();
       });
-  
+
       createMountain(1, canvas.height - 300, "#384551");
       createMountain(2, canvas.height - 400, "#2b3843");
       createMountain(3, canvas.height - 490, "#26333e");
@@ -220,32 +238,36 @@ class Canvas extends React.Component {
           miniStarList.splice(index, 1);
         }
       });
-  
+
       timer++;
       if (timer % respawnRate === 0) {
         const radius = 12;
         const x = Math.max(radius, Math.random() * canvas.width - radius);
         starList.push(new Star(x, -100, radius, "#e3eaef"));
         respawnRate = randomIntFromRange(75, 200);
-        meteorList.push(new Meteor(Math.random() * canvas.width, 0, 5, "white"));
+        meteorList.push(
+          new Meteor(Math.random() * canvas.width, 0, 5, "white")
+        );
       }
     }
-  
+
     init();
     animate();
-  
   }
-  render(){
+  render() {
     return (
       <div>
-       {this.props.children}
-        <canvas>
-        </canvas>
+        <Link href='/blogs/blog' replace>
+          <a
+            className="btn btn-outline-white btn-rounded waves-effect" style={{position:'absolute',zIndex:5}}
+          >
+            Go back
+          </a>
+        </Link>
+        <canvas></canvas>
       </div>
     );
   }
- 
-  
-};
+}
 
-export default Canvas;
+export default Canvas

@@ -2,18 +2,14 @@ import Layout from "../../../components/Layout/Layout";
 import { useRouter, withRouter } from "next/router";
 import Head from "next/head";
 import _fetch from "isomorphic-unfetch";
-import "../../../components/Utils/prism";
-import prism from "../../../styles/prism.css";
-import styled from "styled-components";
-// const Coding = styled.pre`
-//   ${prism}
-// `;
-
-// function getName(name){
-//   return <Coding>{name}</Coding>
-// }
+import { useEffect } from "react";
+require("../../../components/Utils/prism");
+require("../../../styles/prism.css");
 const blog = ({ content }) => {
   const router = useRouter();
+  useEffect(() => {
+    console.log("hi");
+  }, []);
   return (
     <Layout>
       <Head>
@@ -24,17 +20,18 @@ const blog = ({ content }) => {
           title="Go Back"
           onClick={e => {
             e.preventDefault();
-            router.back();
+            router.replace('/blogs/blog');
           }}
-          className="btn btn-outline-info btn-rounded waves-effect"
+          className="btn draw-border-blue waves-effect"
         >
-        Go Back
+          <span className="text-dark">Go Back</span>
         </a>
         <section className="my-5 px-4 article">
           <h2 className="h1-responsive font-weight-bold text-center my-5">
-            { content.name || `Waiting for fetch...`}
+            {content.name || `Waiting for fetch...`}
           </h2>
           <p>{content.content || `Something went wrong...`}</p>
+
           <pre>
             <code className="language-javascript">{content.code}</code>
           </pre>

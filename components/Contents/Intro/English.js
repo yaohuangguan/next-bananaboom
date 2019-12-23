@@ -10,13 +10,9 @@ class Text extends React.Component {
     const { projects } = this.state;
     return (
       <>
-        <br />
-        <br />
-        <br />
-        <br />
-
-        <div className="row">
-          <div className="col-md-6" id="content">
+       
+        <div className="mt-3 row" id="content" >
+          <div className='col-md-6'>
             <h3 className="linkTag">Always on the road</h3>
             <p>Hi, I am Sam.</p>
             <br />

@@ -483,3 +483,14 @@
 //     abortController.abort();
 //   };
 // }, []);
+
+// db.posts.insert({
+//   name: "花了一上午时间写了一个Canvas的动画",
+//       info:
+//         "HTML5的canvas标签和JavaScript，使用的是es6 class写法。流星从空中坠落，到地面破碎会有\"粒子\"的效果，背景还有流星划过夜空",
+//       author: "Sam Yao",
+//       likes: 10,
+//       tags: ["Canvas", "Animation"],
+//       button: "See it in action",
+//       url:'/meteor'
+// })

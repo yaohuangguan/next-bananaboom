@@ -11,4 +11,42 @@
   background-repeat: no-repeat;
   background-position: center;
   background-attachment: scroll;
+  font-family: Audiowide;
+  
+}
+.shrinked{
+  height: 70px;
+  display: flex;
+  transition: 0.2s;
+  overflow: hidden;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 3;
+  &:before{
+    content: "";
+    background: rgba(#eb782e, 0);
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    transition: background 400ms;
+}
+&.fixme{
+    &:before{
+        background: rgba(#2e86eb, 0.8);
+    }
+}
+}
+.shrinkedHeader{
+  display: none;
+}
+.emptyHeight{
+visibility: hidden;
 }

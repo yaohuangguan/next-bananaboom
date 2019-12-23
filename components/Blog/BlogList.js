@@ -1,5 +1,8 @@
 import React from "react";
-import BlogListItem from "./BlogListItem";
+import dynamic from "next/dynamic";
+const BlogListItem = dynamic(() => import("../Blog/BlogListItem"), {
+  ssr: false
+});
 const BlogList = props => {
   const { blogs } = props;
   return (

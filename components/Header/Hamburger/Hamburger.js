@@ -8,7 +8,7 @@ class Hamburger extends React.Component {
   };
   render() {
     const {
-      vueTube,
+      login,
       clothing,
       blogName,
       resumeName,
@@ -43,16 +43,7 @@ class Hamburger extends React.Component {
                   </a>
                 </Link>
               </li>
-              <li className="nav-item">
-                <a
-                  className="nav-link text-white font-weight-bold"
-                  href="https://elated-knuth-62d3bf.netlify.com/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  {vueTube}
-                </a>
-              </li>
+             
               <li className="nav-item">
                 <a
                   className="nav-link text-white font-weight-bold"
@@ -62,6 +53,15 @@ class Hamburger extends React.Component {
                 >
                   {clothing}
                 </a>
+              </li>
+              <li className="nav-item">
+              <Link href='/login'>
+              <a
+                className="nav-link text-white font-weight-bold"
+              >
+                {login}
+              </a>
+            </Link>
               </li>
               <li className="nav-item">
                 <Link href={changeLanguageRoute}>

@@ -6,7 +6,8 @@ import Layout from "../../components/Layout/Layout";
 import Head from 'next/head'
 import _fetch from 'isomorphic-unfetch'
 import shuffle from "../../components/Utils/Shuffle";
-const Resume = ({ resumeItem }) => {
+import {getEnglishContent} from '../../components/Contents/Resume/Content'
+const Resume = ({ resumeItem,errors }) => {
 
   return (
     <Layout>
@@ -16,7 +17,7 @@ const Resume = ({ resumeItem }) => {
       <div className="container">
         <div className="float-right pt-2">
           <Link href="/resume/chinese">
-            <a>
+            <a className='btn-hover color-5'>
               <img
                 src={china}
                 alt="china-flag"
@@ -32,52 +33,17 @@ const Resume = ({ resumeItem }) => {
         <br />
         <br />
         <Link href="/">
-          <a className="btn btn-outline-info btn-rounded waves-effect">Back</a>
+          <a className="btn draw-border-blue waves-effect">Back</a>
         </Link>
         <h3 className="text-center">Sam</h3>
-
-        <h5>Education:</h5>
-        <p>Miami University</p>
-        <p>Bachelor of Art in Interactive Media Studies (STEM Major) GPA:3.7</p>
-        <p>Major Concentration: Website Technology</p>
-        <p>
-          Relevant Courses: Web Application Programming, Web Interaction
-          Programming, HCI theory and usability
-        </p>
-        <br />
-
-        <h5>Software Engineer at BeeHex </h5>
-        <p>
-          BeeHex is a NASA spin-off company modernizing food preparation and
-          personalization with the most advanced 3D printing and robotics system
-          in the food industry.
-        </p>
-        <p>
-          Worked in a team of 4, my duty mainly focused on creating more user
-          friendly and interactive Vue.js app, front end performance optimizing
-          and CORS testing and preventing website attacks. Providing customers
-          to purchase our machine printed cookie/cake online.
-        </p>
-        <p>
-          Responsible for using AWS EC2 computing cloud and successfully
-          creating the Nginx web server to run the application.
-        </p>
-        <p>
-          This website project will be cooperating with Target and Walmart and
-          our service will be nationwide in the future
-        </p>
-        <p>
-          Company’s core project is NASA spin off project and we are working
-          with US Army to create the personalized nutrition plans for the
-          astronaut and soldiers.
-        </p>
-
+        {getEnglishContent()}
+        
         <br />
         <h5>Projects</h5>
         {resumeItem ? (
           <ResumeList items={resumeItem} />
         ) : (
-          "Error occured, please refresh"
+          errors
         )}
 
         <p>More in Github...</p>
@@ -116,12 +82,20 @@ const Resume = ({ resumeItem }) => {
   );
 };
 Resume.getInitialProps = async () => {
-  const response = await _fetch('http://localhost:5000/api/posts/resume')
-  const data = await response.json()
-  const shuffled = shuffle(data)
+  let data
+  let shuffled
+  let errors
+ try {
+  const response = await _fetch("http://localhost:5000/api/posts/resume");
+  data = await response.json();
+  shuffled = shuffle(data);
+ } catch (error) {
+   errors = `Something wrong with the server or check your network connect and try again later.`
+ }
   return {
-    resumeItem:shuffled
-  }
+    resumeItem: shuffled,
+    errors:errors
+  };
 };
 
 export default Resume;

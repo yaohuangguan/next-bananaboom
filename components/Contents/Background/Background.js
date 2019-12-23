@@ -4,13 +4,15 @@ const Background = () => {
     <div className="col-md-6">
       <div className="view overlay zoom">
         <img
-          src="https://i.ibb.co/WK79MB2/self.jpg"
+          src={'https://i.ibb.co/WK79MB2/self.jpg'}
           alt="me"
           width="100%"
           height="100%"
           className="rounded float-right z-depth-3 zoom"
           id="me"
         />
+         
+        
         <div
           className="mask flex-center waves-effect waves-light"
           title={"这是我"}
@@ -23,5 +25,6 @@ const Background = () => {
     </div>
   );
 };
+
 
 export default Background;

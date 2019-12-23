@@ -1,22 +1,35 @@
-import Document, { Html, Main, NextScript } from "next/document";
-import Head from '../components/Head/Head'
+import Document, { Html, Head, Main, NextScript } from "next/document";
 // Import styled components ServerStyleSheet
 import { ServerStyleSheet } from "styled-components";
-
+process.env.DEV_ENV = "development";
+console.log(process.env.DEV_ENV);
+import index from "../styles/index.scss";
+import animation from "../styles/animation.scss";
+import buttons from "../styles/buttons.scss";
+import text from "../styles/text.scss";
+// import '../Utils/prism'
+// import '../../styles/prism.css'
+if (
+  index == undefined ||
+  animation == undefined ||
+  buttons == undefined ||
+  text == undefined
+) {
+  window.location.reload()
+}
 export default class MyDocument extends Document {
   static async getInitialProps(ctx) {
-    const sheet = new ServerStyleSheet()
+    const sheet = new ServerStyleSheet();
     // 劫持原本的renderPage函数并重写
-    const originalRenderPage = ctx.renderPage
-
+    const originalRenderPage = ctx.renderPage;
     try {
       ctx.renderPage = () =>
         originalRenderPage({
           // 根App组件
-          enhanceApp: App => props => sheet.collectStyles(<App {...props} />),
-        })
+          enhanceApp: App => props => sheet.collectStyles(<App {...props} />)
+        });
       // 如果重写了getInitialProps 就要把这段逻辑重新实现
-      const initialProps = await Document.getInitialProps(ctx)
+      const initialProps = await Document.getInitialProps(ctx);
       return {
         ...initialProps,
         styles: (
@@ -24,18 +37,61 @@ export default class MyDocument extends Document {
             {initialProps.styles}
             {sheet.getStyleElement()}
           </>
-        ),
-      }
+        )
+      };
     } finally {
-      sheet.seal()
+      sheet.seal();
     }
   }
 
   render() {
     return (
       <Html>
-        <Head/>
-        <body>
+        <Head>
+          <script
+            type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"
+            async
+          ></script>
+
+          <script
+            type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"
+            async
+          ></script>
+
+          <script
+            type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.10/js/mdb.min.js"
+            async
+          ></script>
+
+          <link
+            href="https://fonts.googleapis.com/css?family=Poppins:400,800&display=swap"
+            rel="stylesheet"
+          />
+          <link
+            href="https://fonts.googleapis.com/css?family=Audiowide&display=swap"
+            rel="stylesheet"
+          />
+
+          <link
+            href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css"
+            rel="stylesheet"
+          />
+
+          <link
+            href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.10/css/mdb.min.css"
+            rel="stylesheet"
+          />
+
+          <link
+            rel="stylesheet"
+            href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
+          />
+         
+        </Head>
+        <body style={{ margin: 0, backgroundColor: "#f7f7f7" }}>
           <Main />
           <NextScript />
         </body>

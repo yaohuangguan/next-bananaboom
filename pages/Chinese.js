@@ -24,7 +24,7 @@ const Chinese = () => {
         <Header
           flag={uk}
           clothing={"服装购物"}
-          vueTube={"VueTube"}
+          login={"登录"}
           blogName={"博客"}
           resumeName={"介绍"}
           language={"English"}

@@ -10,19 +10,16 @@ class Text extends React.Component {
     const { projects } = this.state;
     return (
       <>
-        <br />
-        <br />
-        <br />
-        <br />
-
-        <div className="row">
-          <div className="col-md-6" id="content">
+        <div id="content" className='row'>
+          <div className='col-md-6'>
             <h3 className="linkTag">永远在路上</h3>
 
             <p>嗨，我是Sam</p>
             <br />
 
-            <p>我是一名全端开发工程师和设计师，开源社区贡献者在BeeHex 3D食品打印</p>
+            <p>
+              我是一名全端开发工程师和设计师，开源社区贡献者在BeeHex 3D食品打印
+            </p>
 
             <p>
               你也可以在 GitHub 上找到我的一些项目和在 CSDN 上找到我发布的博客

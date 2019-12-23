@@ -4,11 +4,7 @@ const ResumeList = ({ items }) => {
   return (
     <div className="row">
       {items.map(({ _id, ...other }) => (
-        <ResumeListItem
-          key={_id}
-          _id={_id}
-          {...other}
-        />
+        <ResumeListItem key={_id} _id={_id} {...other} />
       ))}
     </div>
   );
