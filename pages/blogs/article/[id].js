@@ -29,7 +29,7 @@ const blog = ({ content }) => {
           <h2 className="h1-responsive font-weight-bold text-center my-5">
             {content.name || `Waiting for fetch...`}
           </h2>
-          <p>{content.content || `Something went wrong...`}</p>
+          <p style={{lineHeight:'40px'}}>{content.content || `Something went wrong...`}</p>
 
           <pre>
             <code className="language-javascript">{content.code}</code>

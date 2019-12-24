@@ -20,6 +20,7 @@ const Chinese = ({ result, errors }) => {
     };
   }, []);
   const {
+    _id,
     jumbo_name,
     jumbo_name_cn,
     jumbo_welcome,
@@ -39,7 +40,8 @@ const Chinese = ({ result, errors }) => {
     footer_date,
     footer_date_cn,
     footer_welcome,
-    footer_welcome_cn
+    footer_welcome_cn,
+    likes
   } = result[0];
   return (
     <Layout>
@@ -53,17 +55,17 @@ const Chinese = ({ result, errors }) => {
         changeLanguageRoute={"/"}
       />
       <Jumbo
-        name={jumbo_name_cn}
-        welcome={jumbo_welcome_cn}
-        info={jumbo_info_cn}
-        button={jumbo_button_cn}
+        name={jumbo_name_cn || 'Sam博客！'}
+        welcome={jumbo_welcome_cn||'努力工作 尽情欢乐' }
+        info={jumbo_info_cn ? '' : errors}
+        button={jumbo_button_cn || '探索'}
         backgroundPicture={false}
       />
       <div className="container">
         <ChineseIntro
-          title={intro_title_cn}
-          subtitle={intro_subtitle_cn}
-          intro={intro_intro_cn ? intro_intro_cn : errors}
+          title={intro_title_cn || '永远在路上'}
+          subtitle={intro_subtitle_cn || '嗨,我是Sam'}
+          intro={intro_intro_cn ||`我是Web开发工程师和设计师，开源社区贡献者. 你也可以在 GitHub 上找到我的一些项目和在 CSDN 上找到我发布的博客, 我一直在维护该网站，并改善其性能和用户体验。如果你有改善此网站的好主意，可以是任何方面，比如UI,UX，性能优化，数据库设计，技术栈以及浏览时的Bug等，欢迎到网站的底部留下评论！`}
         ></ChineseIntro>
 
         <Subscribe
@@ -73,12 +75,13 @@ const Chinese = ({ result, errors }) => {
           }
           copyright={` All rights reserved ©2019  ${webUrl ||
             "www.yaobaiyang.com"} `}
-          web_version={subscribe_web_version_cn}
+          web_version={subscribe_web_version_cn || '请更新页面'}
           log={" Click here to see logs of updates"}
         />
-        {/* <Likes></Likes> */}
+        {likes ? ( <Likes likes={likes} _id={_id}></Likes>) : null}
+       
       </div>
-      <Footer date={footer_date_cn} welcome={footer_welcome_cn}></Footer>
+      <Footer date={footer_date_cn || '感谢访问！'} welcome={footer_welcome_cn||'欢迎来到我的网站！'}></Footer>
     </Layout>
   );
 };
@@ -89,7 +92,8 @@ Chinese.getInitialProps = async () => {
     const response = await _fetch("http://localhost:5000/api/homepage");
     result = await response.json();
   } catch (error) {
-    errors = `抱歉, 404. 这是一个错误. 请检查网络连接是否正常并尝试刷新页面`;
+    result ='Error'
+    errors = `抱歉, 404. 这是一个错误. 现在的页面并不完整，为了保证最新的内容，请检查网络连接是否正常并尝试刷新页面`;
   }
 
   return {

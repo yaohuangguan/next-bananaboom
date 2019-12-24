@@ -106,9 +106,7 @@ const Subscribe = ({ title, info, copyright, web_version, log }) =>  {
             ></Logs>
           </div>
           <SocialFooter></SocialFooter>
-          <br />
-          <br />
-          <br />
+
         </div>
       </>
     );

@@ -12,7 +12,6 @@ import BrowserTest from "../components/Utils/BrowserTest";
 import Likes from "../components/Likes/Likes";
 const dev = process.env.DEV_ENV;
 const English = ({ result, errors }) => {
-
   const [webUrl, SetWebUrl] = useState("");
   useEffect(() => {
     const abortController = new AbortController();
@@ -26,6 +25,7 @@ const English = ({ result, errors }) => {
     };
   }, []);
   const {
+    _id,
     jumbo_name,
     jumbo_name_cn,
     jumbo_welcome,
@@ -45,7 +45,8 @@ const English = ({ result, errors }) => {
     footer_date,
     footer_date_cn,
     footer_welcome,
-    footer_welcome_cn
+    footer_welcome_cn,
+    likes
   } = result[0];
 
   return (
@@ -61,17 +62,21 @@ const English = ({ result, errors }) => {
         changeLanguageRoute={"/chinese"}
       />
       <Jumbo
-        name={jumbo_name}
-        welcome={jumbo_welcome}
-        info={jumbo_info}
-        button={jumbo_button}
+        name={jumbo_name || "Sam's blog"}
+        welcome={jumbo_welcome || "Always on the road"}
+        info={jumbo_info ? "" : errors}
+        button={jumbo_button || "Explore"}
         backgroundPicture={true}
       />
       <div className="container">
         <EnglishIntro
-          title={intro_title}
-          subtitle={intro_subtitle}
-          intro={intro_intro ? intro_intro : errors}
+          title={intro_title ? intro_title : "Always on the road"}
+          subtitle={intro_subtitle ? intro_subtitle : "Hi, I am Sam."}
+          intro={
+            intro_intro
+              ? intro_intro
+              : `I am a Full stack developer and designer, open source software contributor at BeeHex 3D food printing. You can also find some of my projects and posts on GitHub and CSDN. This website is being consistently maintained by me and improving its performance and user experience. If you have any good ideas of improving this site, Such as UI&UX, performance ideas, database design or technical tools related, maybe reporting bugs,etc... please go to the bottom of this site and leave a comment!`
+          }
         ></EnglishIntro>
 
         <Subscribe
@@ -81,14 +86,18 @@ const English = ({ result, errors }) => {
           }
           copyright={` All rights reserved ©2019  ${webUrl ||
             "www.yaobaiyang.com"} `}
-          web_version={subscribe_web_version}
+          web_version={
+            subscribe_web_version
+              ? subscribe_web_version
+              : "Web version: last version"
+          }
           log={" Click here to see logs of updates"}
         />
-        {/* <Likes></Likes> */}
+        {likes ? <Likes likes={likes} _id={_id}></Likes> : null}
       </div>
       <Footer
-        date={footer_date}
-        welcome={footer_welcome}
+        date={footer_date ? footer_date : "Thanks for visiting!"}
+        welcome={footer_welcome ? footer_welcome : "Welcome to my website!"}
       ></Footer>
     </Layout>
   );
@@ -100,7 +109,8 @@ English.getInitialProps = async () => {
     const response = await _fetch("http://localhost:5000/api/homepage");
     result = await response.json();
   } catch (error) {
-    errors = `Sorry, 404. This is an error. Please check your network or refresh the page.`;
+    result ='Error'
+    errors = `Sorry, 404. This is an error. The page now is incomplete, in order to have the latest contents, please check your network or refresh the page.`;
   }
 
   return {

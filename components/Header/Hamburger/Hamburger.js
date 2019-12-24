@@ -2,7 +2,6 @@
 import Link from "next/link";
 import React, { useState } from "react";
 import Signup from '../../Auth/Signup'
-import "./Hamburger.scss";
 const Hamburger = ({
   login,
   blogName,
