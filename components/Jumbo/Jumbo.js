@@ -5,7 +5,7 @@ import styled from "styled-components";
 
 
 const Jumbo = ({ name, welcome, info, button, backgroundPicture }) => {
-
+  console.log(name)
   const [mobile, setmobile] = useState(null)
   const checkMobile = () => {
     console.log(navigator.userAgent);
@@ -46,7 +46,7 @@ const Jumbo = ({ name, welcome, info, button, backgroundPicture }) => {
                 {name}
               </h3>
               <h2 className="card-title h2 my-4 py-2 jumbo neon-style-5">{welcome}</h2>
-              <p className="mb-4 pb-2 px-md-5 mx-md-5">{info}</p>
+              <h4 className="mb-4 pb-2 px-md-5 mx-md-5">{info}</h4>
 
 
               

@@ -10,12 +10,9 @@ export const getBeeHexImg = () => {
       let zoomLevel = 1;
       const images = [
         {
-          thumb:
-            "https://i.ibb.co/P5PjXwf/IMG-2938.jpg",
-          hires:
-            "https://i.ibb.co/P5PjXwf/IMG-2938.jpg"
-        },
-        
+          thumb: "https://i.ibb.co/P5PjXwf/IMG-2938.jpg",
+          hires: "https://i.ibb.co/P5PjXwf/IMG-2938.jpg"
+        }
       ];
       image.getElementsByTagName("a")[0].setAttribute("href", images[0].hires);
       image.getElementsByTagName("img")[0].setAttribute("src", images[0].thumb);
@@ -30,8 +27,8 @@ export const getBeeHexImg = () => {
       const enterImage = function(e) {
         zoom.classList.add("show", "loading");
         clearTimeout(clearSrc);
-        zoom.style.display='block'
-        zoomImage.style.display = 'block'
+        zoom.style.display = "block";
+        zoomImage.style.display = "block";
         let posX,
           posY,
           touch = false;
@@ -46,9 +43,9 @@ export const getBeeHexImg = () => {
         }
 
         touch
-          ? (zoom.style.top = `${posY - zoom.offsetHeight/2}px`)
-          : (zoom.style.top = `${posY - zoom.offsetHeight/2 }px`);
-        zoom.style.left = `${posX - zoom.offsetWidth/2}px`;
+          ? (zoom.style.top = `${posY - zoom.offsetHeight / 2}px`)
+          : (zoom.style.top = `${posY - zoom.offsetHeight / 2}px`);
+        zoom.style.left = `${posX - zoom.offsetWidth / 2}px`;
 
         let originalImage = this.getElementsByTagName("a")[0].getAttribute(
           "href"
@@ -68,7 +65,7 @@ export const getBeeHexImg = () => {
         // remove scaling to prevent non-transition
         zoom.style.transform = null;
         zoomLevel = 1;
-        zoomImage.style.display = 'none'
+        zoomImage.style.display = "none";
         zoom.classList.remove("show");
         clearSrc = setTimeout(() => {
           zoomImage.setAttribute("src", "");
@@ -76,7 +73,7 @@ export const getBeeHexImg = () => {
       };
 
       const move = function(e) {
-        e.preventDefault();
+        // e.preventDefault();
 
         let posX,
           posY,
@@ -94,42 +91,60 @@ export const getBeeHexImg = () => {
         // move the zoom a little bit up on mobile (because of your fat fingers :<)
         touch
           ? (zoom.style.top = `${posY - zoom.offsetHeight}px`)
-          : (zoom.style.top = `${posY - zoom.offsetHeight*2}px`);
+          : (zoom.style.top = `${posY - zoom.offsetHeight * 2}px`);
         zoom.style.left = `${posX - zoom.offsetWidth}px`;
 
         let percX = (posX - this.offsetLeft) / this.offsetWidth,
           percY = (posY - this.offsetTop) / this.offsetHeight;
 
         let zoomLeft = -percX * zoomImage.offsetWidth + zoom.offsetWidth,
-          zoomTop = -percY * zoomImage.offsetHeight + zoom.offsetHeight*3 ;
+          zoomTop = -percY * zoomImage.offsetHeight + zoom.offsetHeight * 3;
 
         zoomImage.style.left = `${zoomLeft}px`;
         zoomImage.style.top = `${zoomTop}px`;
       };
 
-      image.addEventListener("mouseover", enterImage);
-      image.addEventListener("touchstart", enterImage);
-
-      image.addEventListener("mouseout", leaveImage);
-      image.addEventListener("touchend", leaveImage);
-
-      image.addEventListener("mousemove", move);
-      image.addEventListener("touchmove", move);
-
-      image.addEventListener("wheel", e => {
-        e.preventDefault();
-        e.deltaY > 0 ? zoomLevel-- : zoomLevel++;
-
-        if (zoomLevel < 1) zoomLevel = 1;
-        if (zoomLevel > 5) zoomLevel = 5;
-
-        zoom.style.transform = `scale(${zoomLevel})`;
+      image.addEventListener("mouseover", enterImage, {
+        passive: true
       });
+      image.addEventListener("touchstart", enterImage, {
+        passive: true
+      });
+
+      image.addEventListener("mouseout", leaveImage, {
+        passive: true
+      });
+      image.addEventListener("touchend", leaveImage, {
+        passive: true
+      });
+
+      image.addEventListener("mousemove", move, {
+        passive: true
+      });
+      image.addEventListener("touchmove", move, {
+        passive: true
+      });
+
+      image.addEventListener(
+        "wheel",
+        e => {
+          // e.preventDefault();
+          e.deltaY > 0 ? zoomLevel-- : zoomLevel++;
+
+          if (zoomLevel < 1) zoomLevel = 1;
+          if (zoomLevel > 5) zoomLevel = 5;
+
+          zoom.style.transform = `scale(${zoomLevel})`;
+        },
+        {
+          passive: true
+        }
+      );
     };
     hoverImg();
   }, []);
   return (
-    <div className='image-wrap'>
+    <div className="image-wrap">
       <div className="image">
         <a href="" target="_blank">
           <img src="" alt="" />

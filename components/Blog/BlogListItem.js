@@ -34,8 +34,8 @@ const BlogListItem = ({
       method: "put"
     });
     const newLikes = await fetch(`http://localhost:5000/api/posts/like/${_id}`);
-    const likes = await newLikes.json();
-    setCount(likes.likes);
+    const likesData = await newLikes.json();
+    setCount(likesData.likes);
   };
   const addLike = async () => {
     const heart = document.getElementById(`${_id}`);
@@ -47,8 +47,8 @@ const BlogListItem = ({
       method: "post"
     });
     const newLikes = await fetch(`http://localhost:5000/api/posts/like/${_id}`);
-    const likes = await newLikes.json();
-    setCount(likes.likes);
+    const likesData = await newLikes.json();
+    setCount(likesData.likes);
   };
 
   return (

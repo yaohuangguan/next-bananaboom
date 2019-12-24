@@ -1,28 +1,21 @@
-import React from "react";
+import {useState} from "react";
 import ProjectList from "../Projects/ProjectList";
 import Background from "../Background/Background";
-import PROJECT from "../Projects/PROJECT";
-class Text extends React.Component {
-  state = {
-    projects: PROJECT
-  };
-  render() {
-    const { projects } = this.state;
+import PROJECT from '../Projects/PROJECT'
+const EnglishIntro = ({title,subtitle,intro}) => {
+  const [projects, setprojects] = useState(PROJECT)
+  
+
     return (
       <>
        
-        <div className="mt-3 row" id="content" >
+        <div className="row" id="content" >
           <div className='col-md-6'>
-            <h3 className="linkTag">Always on the road</h3>
-            <p>Hi, I am Sam.</p>
-            <br />
+            <h3 className="linkTag">{title}</h3>
+            <p>{subtitle}</p>
 
-            <p>
-              I am a Full stack developer and designer, open source software
-              contributor at BeeHex 3D food printing
-            </p>
-            <p>
-              You can also find some of my projects and posts on GitHub and CSDN
+            <p style={{lineHeight:'35px'}}>
+              {intro}
             </p>
            
             <br />
@@ -39,8 +32,8 @@ class Text extends React.Component {
             <p className="font-weight-bold">Say Hi</p>
             <p>
               Email:
-              <a href="mailto:sam@beehex.com" className="text-secondary">
-                sam@beehex.com
+              <a href="mailto:moviegoer24@gmail.com" className="text-secondary">
+                moviegoer24@gmail.com
               </a>
             </p>
             <p>
@@ -73,7 +66,6 @@ class Text extends React.Component {
         </div>
       </>
     );
-  }
-}
+            }
 
-export default Text;
+export default EnglishIntro;

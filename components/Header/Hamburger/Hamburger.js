@@ -1,29 +1,23 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import Link from "next/link";
 import React, { useState } from "react";
+import Signup from '../../Auth/Signup'
 import "./Hamburger.scss";
-class Hamburger extends React.Component {
-  state = {
-    open: true
-  };
-  render() {
-    const {
-      login,
-      clothing,
-      blogName,
-      resumeName,
-      resumeRoute,
-      changeLanguageRoute,
-      flag,
-      flipFlag
-    } = this.props;
+const Hamburger = ({
+  login,
+  blogName,
+  resumeName,
+  resumeRoute,
+  changeLanguageRoute,
+}) => {
+  const [open, setopen] = useState(true)
     return (
       <div>
         <div className="toggle px-3 py-3">
           <span className="hamburgers"></span>
         </div>
 
-        {this.state.open ? (
+        {open ? (
           <div
             className="fat-menu purple-gradient px-4"
             style={{ transition: "all 0.3s ease-in" }}
@@ -43,25 +37,15 @@ class Hamburger extends React.Component {
                   </a>
                 </Link>
               </li>
-             
+
               <li className="nav-item">
-                <a
-                  className="nav-link text-white font-weight-bold"
-                  href="https://nervous-bohr-eff732.netlify.com/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  {clothing}
-                </a>
-              </li>
-              <li className="nav-item">
-              <Link href='/login'>
+
               <a
                 className="nav-link text-white font-weight-bold"
               >
-                {login}
+               <Signup login={login}></Signup>
               </a>
-            </Link>
+
               </li>
               <li className="nav-item">
                 <Link href={changeLanguageRoute}>
@@ -76,6 +60,6 @@ class Hamburger extends React.Component {
       </div>
     );
   }
-}
+
 
 export default Hamburger;

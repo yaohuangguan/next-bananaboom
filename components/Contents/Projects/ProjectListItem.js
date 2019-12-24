@@ -1,4 +1,4 @@
-
+import {useRouter}from 'next/router'
 import "./Project.scss";
 const Project = props => {
   // const hoverChange = () => {
@@ -13,6 +13,7 @@ const Project = props => {
   //     element.classList.remove("purple-gradient");
   //   });
   // };
+  const router = useRouter()
   const { link, image, name, info, width, height } = props;
   return (
     <div

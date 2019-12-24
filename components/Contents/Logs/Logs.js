@@ -1,23 +1,22 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-
-const Logs = props => {
+import "../../Auth/login.scss";
+const Logs = ({ version, check }) => {
   return (
     <div>
       <p className="text-muted">
-        {props.version}<img src="https://img.icons8.com/ios/20/000000/react-native.png"/>
+        {version}
+        <img src="https://img.icons8.com/ios/20/000000/react-native.png" />
         <a
-          href=""
           data-toggle="modal"
           data-target="#modalSocial"
-          className="text-secondary"
+          className="text-secondary button"
         >
-          {props.check}
+          {check}
         </a>
       </p>
 
       <div
         className="modal fade"
-        id="modalSocial"
         tabIndex="-1"
         role="dialog"
         aria-labelledby="myModalLabel"
@@ -123,7 +122,9 @@ const Logs = props => {
                 <h3>Version 3.4</h3>
                 <p>Published at: 2019/11/26</p>
                 <p>
-                 Added a hamburger menu in order to show the better experience on mobile. Added SSL encryption and uploaded build file on aws Cloudfront with ACM and S3. 
+                  Added a hamburger menu in order to show the better experience
+                  on mobile. Added SSL encryption and uploaded build file on aws
+                  Cloudfront with ACM and S3.
                 </p>
               </div>
 

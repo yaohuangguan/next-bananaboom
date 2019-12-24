@@ -3,13 +3,12 @@ import { useRouter, withRouter } from "next/router";
 import Head from "next/head";
 import _fetch from "isomorphic-unfetch";
 import { useEffect } from "react";
-require("../../../components/Utils/prism");
-require("../../../styles/prism.css");
+
 const blog = ({ content }) => {
   const router = useRouter();
   useEffect(() => {
-    console.log("hi");
-  }, []);
+    require("../../../components/Utils/prism");
+  },[]);
   return (
     <Layout>
       <Head>
@@ -20,7 +19,7 @@ const blog = ({ content }) => {
           title="Go Back"
           onClick={e => {
             e.preventDefault();
-            router.replace('/blogs/blog');
+            router.replace("/blogs/blog");
           }}
           className="btn draw-border-blue waves-effect"
         >

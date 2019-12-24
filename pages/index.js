@@ -1,17 +1,18 @@
 import { useState, useEffect } from "react";
+import _fetch from "isomorphic-unfetch";
 import Layout from "../components/Layout/Layout";
 import Header from "../components/Header/Header";
 import Jumbo from "../components/Jumbo/Jumbo";
-import Content from "../components/Contents/Intro/English";
+import EnglishIntro from "../components/Contents/Intro/English";
 import Subscribe from "../components/Subscribe/Subscribe";
 import Footer from "../components/Footer/Footer";
 import Animation from "../components/Utils/Animation";
-import china from "../public/china.png";
 import consolelog from "../components/Utils/Console.log";
 import BrowserTest from "../components/Utils/BrowserTest";
-import styled from "styled-components";
+import Likes from "../components/Likes/Likes";
 const dev = process.env.DEV_ENV;
-const English = () => {
+const English = ({ result, errors }) => {
+
   const [webUrl, SetWebUrl] = useState("");
   useEffect(() => {
     const abortController = new AbortController();
@@ -24,13 +25,33 @@ const English = () => {
       abortController.abort();
     };
   }, []);
+  const {
+    jumbo_name,
+    jumbo_name_cn,
+    jumbo_welcome,
+    jumbo_welcome_cn,
+    jumbo_info,
+    jumbo_info_cn,
+    jumbo_button,
+    jumbo_button_cn,
+    intro_title,
+    intro_title_cn,
+    intro_subtitle,
+    intro_subtitle_cn,
+    intro_intro,
+    intro_intro_cn,
+    subscribe_web_version,
+    subscribe_web_version_cn,
+    footer_date,
+    footer_date_cn,
+    footer_welcome,
+    footer_welcome_cn
+  } = result[0];
 
   return (
     <Layout>
       <BrowserTest></BrowserTest>
       <Header
-        flag={china}
-        clothing={"Shopping Clothes"}
         login={"Login"}
         blogName={"Blog"}
         resumeName={"Resume"}
@@ -40,14 +61,18 @@ const English = () => {
         changeLanguageRoute={"/chinese"}
       />
       <Jumbo
-        name={"Sam's Blog!!"}
-        welcome={"Always on the road"}
-        info={""}
-        button={"Explore"}
+        name={jumbo_name}
+        welcome={jumbo_welcome}
+        info={jumbo_info}
+        button={jumbo_button}
         backgroundPicture={true}
       />
       <div className="container">
-        <Content></Content>
+        <EnglishIntro
+          title={intro_title}
+          subtitle={intro_subtitle}
+          intro={intro_intro ? intro_intro : errors}
+        ></EnglishIntro>
 
         <Subscribe
           title={"Show some interests? Follow my blog here!"}
@@ -56,16 +81,32 @@ const English = () => {
           }
           copyright={` All rights reserved ©2019  ${webUrl ||
             "www.yaobaiyang.com"} `}
-          web_version={" Website version: 3.4; Built on Next.js React v16.10.2"}
+          web_version={subscribe_web_version}
           log={" Click here to see logs of updates"}
         />
+        {/* <Likes></Likes> */}
       </div>
       <Footer
-        date={"Last update: 2019/11/26  Thanks for coming!"}
-        welcome={"Welcome to my website!  have fun!🚀"}
+        date={footer_date}
+        welcome={footer_welcome}
       ></Footer>
     </Layout>
   );
+};
+English.getInitialProps = async () => {
+  let result;
+  let errors;
+  try {
+    const response = await _fetch("http://localhost:5000/api/homepage");
+    result = await response.json();
+  } catch (error) {
+    errors = `Sorry, 404. This is an error. Please check your network or refresh the page.`;
+  }
+
+  return {
+    result,
+    errors
+  };
 };
 
 export default English;

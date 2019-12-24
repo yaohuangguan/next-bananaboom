@@ -5,9 +5,10 @@ import Layout from "../../components/Layout/Layout";
 import { useRouter } from "next/router";
 import Link from 'next/link'
 import BlogList from "../../components/Blog/BlogList";
-require('./Blog.scss')
 import _fetch from "isomorphic-unfetch";
 import Head from "next/head";
+require('./Blog.scss')
+
 const Blog = ({ blogs, errors }) => {
   useEffect(() => {
     const heroShrinker = () => {
@@ -91,6 +92,8 @@ const Blog = ({ blogs, errors }) => {
 };
 
 Blog.getInitialProps = async () => {
+  require('./Blog.scss')
+
   let posts;
   let errors;
   try {
