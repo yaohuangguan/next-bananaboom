@@ -6,8 +6,8 @@ import Head from "next/head";
 import _fetch from "isomorphic-unfetch";
 import ResumeList from "./ResumeList/ResumeList";
 import shuffle from "../../components/Utils/Shuffle";
-import {getChineseContent} from '../../components/Contents/Resume/Content'
-const Resume = ({ resumeItem,errors }) => {
+import { getChineseContent } from "../../components/Contents/Resume/Content";
+const Resume = ({ resumeItem, errors }) => {
   const flipFlag = () => {
     const flag = document.querySelector(".flag");
     flag.classList.add("animated", "rotateIn");
@@ -23,7 +23,7 @@ const Resume = ({ resumeItem,errors }) => {
       <div className="container">
         <div className="float-right pt-2">
           <Link href="/resume/english">
-            <a className='btn-hover color-5'>
+            <a className="btn-hover color-5">
               <img
                 src={uk}
                 alt="usa-flag"
@@ -47,7 +47,7 @@ const Resume = ({ resumeItem,errors }) => {
 
         <br />
         <h5 id="project">项目</h5>
-        {resumeItem ? <ResumeList items={resumeItem} /> : (errors)}
+        {resumeItem ? <ResumeList items={resumeItem} /> : errors}
 
         <p>More in Github...</p>
         <br />
@@ -77,20 +77,20 @@ const Resume = ({ resumeItem,errors }) => {
   );
 };
 
-Resume.getInitialProps = async ({ req }) => {
-  let data
-  let shuffled
-  let errors
- try {
-  const response = await _fetch("http://localhost:5000/api/posts/resume");
-  data = await response.json();
-  shuffled = shuffle(data);
- } catch (error) {
-   errors = `Something wrong with the server or check your network connect and try again later.`
- }
+Resume.getInitialProps = async () => {
+  let data;
+  let shuffled;
+  let errors;
+  try {
+    const response = await _fetch("http://localhost:3000/api/resumes");
+    data = await response.json();
+    shuffled = shuffle(data);
+  } catch (error) {
+    errors = `Something wrong with the server or check your network connect and try again later.`;
+  }
   return {
     resumeItem: shuffled,
-    errors:errors
+    errors: errors
   };
 };
 

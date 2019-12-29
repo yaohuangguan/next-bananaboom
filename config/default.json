@@ -1,0 +1,3 @@
+{
+  "mongoURI": "mongodb+srv://samyao:samyao@bananaboom-ommcz.mongodb.net/blogs?retryWrites=true&w=majority"
+}

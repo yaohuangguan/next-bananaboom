@@ -1,18 +1,20 @@
 import Layout from "../../../components/Layout/Layout";
-import { useRouter, withRouter } from "next/router";
+import { useRouter, withRouter} from "next/router";
 import Head from "next/head";
 import _fetch from "isomorphic-unfetch";
 import { useEffect } from "react";
+import Editor from "../../../components/Blog/Comments/Comments";
 
-const blog = ({ content }) => {
+const blog = ({ posts, currentUser }) => {
   const router = useRouter();
   useEffect(() => {
     require("../../../components/Utils/prism");
-  },[]);
+  }, []);
+  const { name, content, code, code2, comments, _id } = posts;
   return (
     <Layout>
       <Head>
-        <title>{content.name || `Waiting for fetch...`} || By Sam Yao</title>
+        <title>{name || `Waiting for fetch...`} || By Sam Yao</title>
       </Head>
       <div className="container">
         <a
@@ -21,38 +23,49 @@ const blog = ({ content }) => {
             e.preventDefault();
             router.replace("/blogs/blog");
           }}
-          className="btn draw-border-blue waves-effect"
+          className="btn draw-border-blue"
         >
           <span className="text-dark">Go Back</span>
         </a>
         <section className="my-5 px-4 article">
           <h2 className="h1-responsive font-weight-bold text-center my-5">
-            {content.name || `Waiting for fetch...`}
+            {name || `Waiting for fetch...`}
           </h2>
-          <p style={{lineHeight:'40px'}}>{content.content || `Something went wrong...`}</p>
+          <p style={{ lineHeight: "40px" }}>
+            {content || `Something went wrong...`}
+          </p>
 
-          <pre>
-            <code className="language-javascript">{content.code}</code>
-          </pre>
-          {content.code2 ? (
+          {code ? (
+            <pre>
+              <code className="language-javascript">{code}</code>
+            </pre>
+          ) : null}
+          {code2 ? (
             <div>
               {"Method 2"}
               <pre>
-                <code className="language-javascript">{content.code2} </code>{" "}
+                <code className="language-javascript">{code2} </code>
               </pre>
             </div>
           ) : null}
         </section>
+        <Editor
+          comments={comments}
+          _id={_id}
+          currentUser={currentUser}
+        ></Editor>
       </div>
     </Layout>
   );
 };
 
 blog.getInitialProps = async router => {
-  const response = await _fetch("http://localhost:5000/api/posts");
-  const posts = await response.json();
+  const response = await _fetch(
+    `http://localhost:3000/api/posts/${router.query.id}`
+  );
+  const content = await response.json();
   return {
-    content: posts.find(post => post._id == router.query.id)
+    posts: content[0]
   };
 };
 

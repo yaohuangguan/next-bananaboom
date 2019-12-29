@@ -1,10 +1,12 @@
 import { useState, useEffect } from "react";
 import dynamic from "next/dynamic";
 import Link from "next/link";
-import Switch from "./Switch";
-const Signup = dynamic(()=>import('../Auth/Signup'),{
-  ssr:false
-})
+import Dropdown from './DropDown/DropDown'
+import firebase from "../../firebase/firebase";
+import '../Header/Hamburger/Hamburger.scss'
+const Signup = dynamic(() => import("../Auth/Signup"), {
+  ssr: false
+});
 const HamburgerMenu = dynamic(() => import("./Hamburger/Hamburger"), {
   ssr: false
 });
@@ -14,7 +16,8 @@ const Header = ({
   resumeName,
   resumeRoute,
   homeRoute,
-  changeLanguageRoute
+  changeLanguageRoute,
+  currentUser
 }) => {
   useEffect(() => {
     const headerChange = () => {
@@ -25,16 +28,16 @@ const Header = ({
         let a = scrollY;
         let b = navbar.clientHeight;
         currentScrollTop = a;
-        if(a == 0){
-          navbar.classList.remove('purple-gradient')
-          navbar.classList.remove('solid')
+        if (a == 0) {
+          navbar.classList.remove("purple-gradient");
+          navbar.classList.remove("solid");
         }
         if (c < currentScrollTop && a > b + b) {
           navbar.classList.add("scrollUp");
         } else if (c > currentScrollTop && !(a <= b)) {
           navbar.classList.remove("scrollUp");
-          navbar.classList.add('solid')
-          navbar.classList.add('purple-gradient')
+          navbar.classList.add("solid");
+          navbar.classList.add("purple-gradient");
         }
         c = currentScrollTop;
       });
@@ -47,33 +50,47 @@ const Header = ({
       <div className="header">
         <Link href={homeRoute}>
           <a id="logo" className="px-3">
-            <img src="https://img.icons8.com/ultraviolet/32/000000/ninja-turtle.png" />
+            <img src="https://img.icons8.com/ultraviolet/32/000000/ninja-turtle.png" alt='sitelogo' />
           </a>
         </Link>
         <div className="options">
           <Link href="/blogs/blog">
-            <a className="option">{blogName}</a>
+            <div className="option">
+              <a>{blogName}</a>
+            </div>
           </Link>
           <Link href={resumeRoute}>
-            <a className="option">{resumeName}</a>
+            <div className="option">
+              <a>{resumeName}</a>
+            </div>
           </Link>
-
-          <a className="option text-success">
-            <Signup login={login}></Signup>
-          </a>
+          {currentUser ? (
+            <div className="option">
+             <Dropdown currentUser={currentUser}></Dropdown>
+            </div>
+          ) : (
+            <div className="option">
+              <a className="text-success">
+                <Signup login={login}></Signup>
+              </a>
+            </div>
+          )}
 
           <Link href={changeLanguageRoute}>
-            <a className="option">
-              <span className="btn-hover color-5">
-                {changeLanguageRoute == "/" ? "🇬🇧English" : "🇨🇳中文"}
-              </span>
-            </a>
+            <div className="option">
+              <a>
+                <span className="btn-hover color-5">
+                  {changeLanguageRoute == "/" ? "🇬🇧English" : "🇨🇳中文"}
+                </span>
+              </a>
+            </div>
           </Link>
         </div>
       </div>
-      <div className="hamburger px-4 py-3">
+      <div className="hamburger dropdown-mobile px-3 py-3">
         <HamburgerMenu
           login={login}
+          currentUser={currentUser}
           blogName={blogName}
           resumeName={resumeName}
           changeLanguageRoute={changeLanguageRoute}

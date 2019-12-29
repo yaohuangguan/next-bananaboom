@@ -1,6 +1,17 @@
-import {useRouter}from 'next/router'
+import { useRouter } from "next/router";
 import "./Project.scss";
-const Project = props => {
+import "../../Utils/LazyLoad";
+const Project = ({
+  _id,
+  link,
+  image,
+  name,
+  _name,
+  info,
+  _info,
+  width,
+  height
+}) => {
   // const hoverChange = () => {
   //   const div = document.querySelectorAll(".hover");
   //   div.forEach(element => {
@@ -13,8 +24,8 @@ const Project = props => {
   //     element.classList.remove("purple-gradient");
   //   });
   // };
-  const router = useRouter()
-  const { link, image, name, info, width, height } = props;
+  const router = useRouter();
+
   return (
     <div
       className="col align-center hover"
@@ -28,11 +39,20 @@ const Project = props => {
           rel="noopener noreferrer"
           title="会打开外部链接 this will open external link"
         >
-          <img src={image} alt={name} width={width} height={height} />
-          <p className="linkTag">{name}</p>
+          <img
+            src={image}
+            data-sizes="auto"
+            className="lazyload"
+            alt={router.pathname == "/chinese" ? name : _name}
+            width={width}
+            height={height}
+          />
+          <p className="linkTag">
+            {router.pathname == "/chinese" ? name : _name}
+          </p>
         </a>
       </div>
-      <p>{info}</p>
+      <p>{router.pathname == "/chinese" ? info : _info}</p>
     </div>
   );
 };

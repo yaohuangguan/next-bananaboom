@@ -1,14 +1,10 @@
 import {useState} from "react";
 import ProjectList from "../Projects/ProjectList";
 import Background from "../Background/Background";
-import PROJECT from '../Projects/PROJECT'
-const EnglishIntro = ({title,subtitle,intro}) => {
-  const [projects, setprojects] = useState(PROJECT)
-  
+const EnglishIntro = ({title,subtitle,intro, projects}) => {
 
     return (
       <>
-       
         <div className="row" id="content" >
           <div className='col-md-6'>
             <h3 className="linkTag">{title}</h3>
@@ -21,8 +17,8 @@ const EnglishIntro = ({title,subtitle,intro}) => {
             <br />
             <br />
             <p className="font-weight-bold">Currently Involved Projects</p>
-            {projects[1].id === 2 ? (
-              <ProjectList items={projects[1].items} />
+            {projects ? (
+              <ProjectList items={projects} />
             ) : (
               "Error:Something went wrong while rendering contents. Please try again!"
             )}
@@ -32,7 +28,7 @@ const EnglishIntro = ({title,subtitle,intro}) => {
             <p className="font-weight-bold">Say Hi</p>
             <p>
               Email:
-              <a href="mailto:moviegoer24@gmail.com" className="text-secondary">
+              <a href="mailto:moviegoer24@gmail.com" className="text-info">
                 moviegoer24@gmail.com
               </a>
             </p>
@@ -42,7 +38,7 @@ const EnglishIntro = ({title,subtitle,intro}) => {
                 href="https://blog.csdn.net/samKnowsCoding"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-secondary"
+                className="text-info"
               >
                 samKnowsCoding
               </a>
@@ -50,7 +46,7 @@ const EnglishIntro = ({title,subtitle,intro}) => {
             <p>
               Medium:
               <a
-                className="text-secondary"
+                className="text-info"
                 href="https://medium.com/@yaob"
                 target="_blank"
                 rel="noopener noreferrer"

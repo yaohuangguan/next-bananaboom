@@ -1,15 +1,18 @@
 /* eslint-disable react/style-prop-object */
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 import Layout from "../../components/Layout/Layout";
 import { useRouter } from "next/router";
-import Link from 'next/link'
 import BlogList from "../../components/Blog/BlogList";
 import _fetch from "isomorphic-unfetch";
 import Head from "next/head";
-require('./Blog.scss')
+import SearchBox from "../../components/SearchBox/SearchBox";
+require("./Blog.scss");
 
 const Blog = ({ blogs, errors }) => {
+  const [searchField, setsearchField] = useState("");
+  const [filteredBlog, setfilteredBlog] = useState([]);
+  const handleChange = e => setsearchField(e.target.value);
   useEffect(() => {
     const heroShrinker = () => {
       let header = document.querySelector(".shrinkedHeader");
@@ -35,6 +38,12 @@ const Blog = ({ blogs, errors }) => {
     };
     heroShrinker();
   }, []);
+  useEffect(() => {
+    const result = blogs.filter(blog =>
+      blog.name.toLowerCase().includes(searchField.toLowerCase())
+    );
+    setfilteredBlog(result);
+  }, [searchField]);
   const router = useRouter();
   return (
     <Layout>
@@ -48,11 +57,11 @@ const Blog = ({ blogs, errors }) => {
           className="btn draw-border-white waves-effect"
           onClick={e => {
             e.preventDefault();
-            router.back()
-          }} >
+            router.back();
+          }}
+        >
           Go back
         </a>
-        
       </div>
       <div className="blog">
         <div className="text-white text-center rgba-stylish-light  px-5">
@@ -61,13 +70,15 @@ const Blog = ({ blogs, errors }) => {
               className="btn draw-border-white waves-effect"
               onClick={e => {
                 e.preventDefault();
-                router.back()
+                router.back();
               }}
             >
               Go back
             </a>
             <br />
-            <h4 className="card-title my-4 py-2" style={{fontSize:'2.7rem'}}>Blogs</h4>
+            <h4 className="card-title my-4 py-2" style={{ fontSize: "2.7rem" }}>
+              Blogs
+            </h4>
             <p className="mb-4 pb-2 px-md-5 mx-md-5">
               以下内容皆是个人见解，并不一定具有权威性。很多是我从事前端开发后通过个人学习和感触得来，不希望代表权威性，但希望能给读者带来启发。
               <br />
@@ -81,23 +92,27 @@ const Blog = ({ blogs, errors }) => {
 
       {blogs ? (
         <div className="container">
-          <BlogList blogs={blogs} />
+          <SearchBox
+            searchField={searchField}
+            handleChange={handleChange}
+          ></SearchBox>
+        {filteredBlog.length == 0 ? 'No result match': null}
+
+          <BlogList blogs={filteredBlog} />
         </div>
       ) : (
         <p>{errors}</p>
       )}
-      <hr className="my-5" />
     </Layout>
   );
 };
 
 Blog.getInitialProps = async () => {
-  require('./Blog.scss')
-
-  let posts;
-  let errors;
+  require("./Blog.scss");
+  let posts
+  let errors
   try {
-    const response = await _fetch("http://localhost:5000/api/posts");
+    const response = await _fetch("http://localhost:3000/api/posts");
     posts = await response.json();
   } catch (error) {
     errors = `Sorry, network issue happened, please check your internet or come back later! Thank you. \n

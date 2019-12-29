@@ -10,20 +10,16 @@ import Animation from "../components/Utils/Animation";
 import consolelog from "../components/Utils/Console.log";
 import BrowserTest from "../components/Utils/BrowserTest";
 import Likes from "../components/Likes/Likes";
-const dev = process.env.DEV_ENV;
-const English = ({ result, errors }) => {
+const dev = process.env.ENV;
+const English = ({ result, errors, logs, projects, currentUser}) => {
   const [webUrl, SetWebUrl] = useState("");
   useEffect(() => {
-    const abortController = new AbortController();
     Animation();
     if (dev == "production") {
       consolelog();
     }
     SetWebUrl(window.location.hostname);
-    return () => {
-      abortController.abort();
-    };
-  }, []);
+  }, [dev]);
   const {
     _id,
     jumbo_name,
@@ -56,10 +52,10 @@ const English = ({ result, errors }) => {
         login={"Login"}
         blogName={"Blog"}
         resumeName={"Resume"}
-        language={"中文"}
         resumeRoute={"/resume/english"}
         homeRoute={"/"}
         changeLanguageRoute={"/chinese"}
+        currentUser={currentUser ? currentUser : null}
       />
       <Jumbo
         name={jumbo_name || "Sam's blog"}
@@ -77,6 +73,7 @@ const English = ({ result, errors }) => {
               ? intro_intro
               : `I am a Full stack developer and designer, open source software contributor at BeeHex 3D food printing. You can also find some of my projects and posts on GitHub and CSDN. This website is being consistently maintained by me and improving its performance and user experience. If you have any good ideas of improving this site, Such as UI&UX, performance ideas, database design or technical tools related, maybe reporting bugs,etc... please go to the bottom of this site and leave a comment!`
           }
+          projects={projects}
         ></EnglishIntro>
 
         <Subscribe
@@ -92,6 +89,7 @@ const English = ({ result, errors }) => {
               : "Web version: last version"
           }
           log={" Click here to see logs of updates"}
+          logs_content={logs}
         />
         {likes ? <Likes likes={likes} _id={_id}></Likes> : null}
       </div>
@@ -104,18 +102,25 @@ const English = ({ result, errors }) => {
 };
 English.getInitialProps = async () => {
   let result;
+  let logs;
+  let projects;
   let errors;
   try {
-    const response = await _fetch("http://localhost:5000/api/homepage");
+    const response = await _fetch("http://localhost:3000/api/homepage");
+    const logsRes = await _fetch("http://localhost:3000/api/homepage/logs");
+    const projectRes = await _fetch('http://localhost:3000/api/projects')
+    logs = await logsRes.json()
     result = await response.json();
+    projects = await projectRes.json()
   } catch (error) {
     result ='Error'
     errors = `Sorry, 404. This is an error. The page now is incomplete, in order to have the latest contents, please check your network or refresh the page.`;
   }
-
   return {
     result,
-    errors
+    errors,
+    logs,
+    projects
   };
 };
 

@@ -88,6 +88,10 @@ $green-color: #2eca6a;
         color: $green-color;
       }
       .option {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
         padding: 20px;
         font-size: 1em;
         font-weight: 600;

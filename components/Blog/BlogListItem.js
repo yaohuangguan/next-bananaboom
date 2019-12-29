@@ -30,10 +30,10 @@ const BlogListItem = ({
     heart.classList.toggle("is_animating");
     heart.classList.toggle("liked");
     handleLike(!ifLiked);
-    await fetch(`http://localhost:5000/api/posts/likes/${_id}`, {
+    await fetch(`http://localhost:3000/api/posts/likes/${_id}`, {
       method: "put"
     });
-    const newLikes = await fetch(`http://localhost:5000/api/posts/likes/${_id}`);
+    const newLikes = await fetch(`http://localhost:3000/api/posts/likes/${_id}`);
     const likesData = await newLikes.json();
     setCount(likesData.likes);
   };
@@ -43,10 +43,10 @@ const BlogListItem = ({
     heart.classList.toggle("liked");
     handleLike(!ifLiked);
     localStorage.setItem("ifLiked", true);
-    await fetch(`http://localhost:5000/api/posts/likes/${_id}`, {
+    await fetch(`http://localhost:3000/api/posts/likes/${_id}`, {
       method: "post"
     });
-    const newLikes = await fetch(`http://localhost:5000/api/posts/likes/${_id}`);
+    const newLikes = await fetch(`http://localhost:3000/api/posts/likes/${_id}`);
     const likesData = await newLikes.json();
     setCount(likesData.likes);
   };

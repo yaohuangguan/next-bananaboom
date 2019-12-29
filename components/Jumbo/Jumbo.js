@@ -5,10 +5,8 @@ import styled from "styled-components";
 
 
 const Jumbo = ({ name, welcome, info, button, backgroundPicture }) => {
-  console.log(name)
   const [mobile, setmobile] = useState(null)
   const checkMobile = () => {
-    console.log(navigator.userAgent);
     if (
       /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
         navigator.userAgent
@@ -21,11 +19,8 @@ const Jumbo = ({ name, welcome, info, button, backgroundPicture }) => {
     }
   };
     useEffect(() => {
-      const abortController = new AbortController()
       checkMobile();
-      return () => {
-        abortController.abort()
-      };
+     
     }, [checkMobile])
 
     return (
@@ -37,20 +32,20 @@ const Jumbo = ({ name, welcome, info, button, backgroundPicture }) => {
         >
           <div
             className="text-white text-center rgba-stylish-light py-5 px-4"
-            style={{ minHeight: "100vh" }}
+            style={{ minHeight: "100vh",display:'flex',flexDirection:'column',alignItems:'center',justifyContent:'center' }}
           >
-            <div className="py-5 mt-5 jumbo">
+            <div className="jumbo">
               <h3 className="text-white name">
 
               &#128247;
                 {name}
               </h3>
-              <h2 className="card-title h2 my-4 py-2 jumbo neon-style-5">{welcome}</h2>
-              <h4 className="mb-4 pb-2 px-md-5 mx-md-5">{info}</h4>
+              <h2 className="card-title h2 my-3 py-5 jumbo neon-style-5">{welcome}</h2>
+              <h4 className="mb-4 pb-2 py-5 mt-5">{info}</h4>
 
 
               
-                <a className="btn-hover color-3 btn jumbo wave-effects" href='#content'>
+                <a className="btn-hover color-3 btn jumbowave-effects" href='#content'>
                 &#9992; {button}
                 </a>
 

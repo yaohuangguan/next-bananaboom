@@ -1,4 +1,3 @@
-import React from "react";
 import ResumeListItem from "./ResumeListItem";
 const ResumeList = ({ items }) => {
   return (

@@ -12,7 +12,7 @@ const SocialFooter = () => {
             target="_blank"
             rel="noopener noreferrer"
           >
-            <img src="https://img.icons8.com/color/32/000000/weibo.png" />
+            <img src="https://img.icons8.com/color/32/000000/weibo.png"  alt='weibo' />
           </a>
         </li>
         <li className="list-inline-item">
@@ -22,7 +22,7 @@ const SocialFooter = () => {
             target="_blank"
             rel="noopener noreferrer"
           >
-            <img src="https://img.icons8.com/office/32/000000/facebook-new.png" />
+            <img src="https://img.icons8.com/office/32/000000/facebook-new.png" alt='facebook' />
           </a>
         </li>
 
@@ -33,7 +33,7 @@ const SocialFooter = () => {
             target="_blank"
             rel="noopener noreferrer"
           >
-            <img src="https://img.icons8.com/nolan/32/000000/instagram-new.png" />
+            <img src="https://img.icons8.com/nolan/32/000000/instagram-new.png" alt='ins' />
           </a>
         </li>
         <li className="list-inline-item">
@@ -43,7 +43,7 @@ const SocialFooter = () => {
             target="_blank"
             rel="noopener noreferrer"
           >
-            <img src="https://img.icons8.com/cute-clipart/32/000000/linkedin.png" />
+            <img src="https://img.icons8.com/cute-clipart/32/000000/linkedin.png" alt='linkedin'/>
           </a>
         </li>
       </ul>

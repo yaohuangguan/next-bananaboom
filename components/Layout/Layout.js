@@ -28,9 +28,7 @@ const Layout = ({ children }) => {
     Router.events.on("routeChangeStart", routeStart);
     Router.events.on("routeChangeComplete", url => {
       console.log("App is changed to: ", url);
-      const urlReloadList = [
-        `/blogs/article/${Router.query.id}`
-      ];
+      const urlReloadList = [`/blogs/article/${Router.query.id}`];
       const ifReload = urlReloadList.some(each => {
         return each == url;
       });
@@ -66,19 +64,31 @@ const Layout = ({ children }) => {
 };
 Layout.getInitialProps = () => {
   return (
+    //main scss
     require("../../styles/index.scss"),
     require("../../styles/animation.scss"),
     require("../../styles/buttons.scss"),
     require("../../styles/text.scss"),
+    //layout
     require("./Layout.scss"),
+    //Header
     require("../Header/Header.scss"),
-    require('../Header/Hamburger/Hamburger.scss'),
-    require('../../pages/blogs/Blog.scss'),
-    require('../Jumbo/Jumbo.scss'),
-    require('../Contents/Background/Background.scss'),
-    require('../Auth/login.scss'),
-    require('../Utils/prism.js'),
-    require('../../styles/prism.css')
+    require("../Header/Hamburger/Hamburger.scss"),
+    require("../Header/DropDown/DropDown.scss"),
+    //Blog
+    require("../../pages/blogs/Blog.scss"),
+    require("../Blog/BlogListItem.scss"),
+    //Jumbo
+    require("../Jumbo/Jumbo.scss"),
+    //Background
+    require("../Contents/Background/Background.scss"),
+    //Login
+    require("../Auth/login.scss"),
+    //Syntax highlighter
+    require("../Utils/prism.js"),
+    require("../../styles/prism.css"),
+    //Logs
+    require("../Contents/Logs/Logs.scss")
   );
 };
 

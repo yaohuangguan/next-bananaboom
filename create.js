@@ -494,9 +494,3 @@
 //       button: "See it in action",
 //       url:'/meteor'
 // })
-
-db.homepages.insert([
-  {
-    
-  }
-])

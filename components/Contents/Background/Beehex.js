@@ -16,6 +16,7 @@ export const getBeeHexImg = () => {
       ];
       image.getElementsByTagName("a")[0].setAttribute("href", images[0].hires);
       image.getElementsByTagName("img")[0].setAttribute("src", images[0].thumb);
+      image.getElementsByTagName("img")[0].setAttribute("alt", 'BeeHex Team');
 
       const preloadImage = url => {
         let img = new Image();

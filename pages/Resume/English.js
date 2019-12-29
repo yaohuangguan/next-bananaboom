@@ -1,13 +1,13 @@
 import React from "react";
 import Link from "next/link";
-import china from "../../public/china.png";
+import china from '../../public/china.png'
 import ResumeList from "./ResumeList/ResumeList";
 import Layout from "../../components/Layout/Layout";
-import Head from 'next/head'
-import _fetch from 'isomorphic-unfetch'
+import Head from "next/head";
+import _fetch from "isomorphic-unfetch";
 import shuffle from "../../components/Utils/Shuffle";
-import {getEnglishContent} from '../../components/Contents/Resume/Content'
-const Resume = ({ resumeItem,errors }) => {
+import { getEnglishContent } from "../../components/Contents/Resume/Content";
+const Resume = ({ resumeItem, errors }) => {
   const flipFlag = () => {
     const flag = document.querySelector(".flag");
     flag.classList.add("animated", "rotateIn");
@@ -17,13 +17,13 @@ const Resume = ({ resumeItem,errors }) => {
   };
   return (
     <Layout>
-    <Head>
-      <title>Application Board</title>
-    </Head>
+      <Head>
+        <title>Application Board</title>
+      </Head>
       <div className="container">
         <div className="float-right pt-2">
           <Link href="/resume/chinese">
-            <a className='btn-hover color-5'>
+            <a className="btn-hover color-5">
               <img
                 src={china}
                 alt="china-flag"
@@ -44,14 +44,10 @@ const Resume = ({ resumeItem,errors }) => {
         </Link>
         <h3 className="text-center">Sam</h3>
         {getEnglishContent()}
-        
+
         <br />
         <h5>Projects</h5>
-        {resumeItem ? (
-          <ResumeList items={resumeItem} />
-        ) : (
-          errors
-        )}
+        {resumeItem ? <ResumeList items={resumeItem} /> : errors}
 
         <p>More in Github...</p>
         <br />
@@ -89,19 +85,19 @@ const Resume = ({ resumeItem,errors }) => {
   );
 };
 Resume.getInitialProps = async () => {
-  let data
-  let shuffled
-  let errors
- try {
-  const response = await _fetch("http://localhost:5000/api/posts/resume");
-  data = await response.json();
-  shuffled = shuffle(data);
- } catch (error) {
-   errors = `Something wrong with the server or check your network connect and try again later.`
- }
+  let data;
+  let shuffled;
+  let errors;
+  try {
+    const response = await _fetch("http://localhost:3000/api/resumes");
+    data = await response.json();
+    shuffled = shuffle(data);
+  } catch (error) {
+    errors = `Something wrong with the server or check your network connect and try again later.`;
+  }
   return {
     resumeItem: shuffled,
-    errors:errors
+    errors: errors
   };
 };
 

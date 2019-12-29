@@ -9,15 +9,12 @@ import Footer from "../components/Footer/Footer";
 import Animation from "../components/Utils/Animation";
 import Likes from "../components/Likes/Likes";
 
-const Chinese = ({ result, errors }) => {
+const Chinese = ({ result, errors,logs,projects, currentUser }) => {
   const [webUrl, setwebUrl] = useState("");
   useEffect(() => {
-    const abortController = new AbortController();
     Animation();
     setwebUrl(window.location.hostname);
-    return () => {
-      abortController.abort();
-    };
+   
   }, []);
   const {
     _id,
@@ -49,10 +46,10 @@ const Chinese = ({ result, errors }) => {
         login={"登录"}
         blogName={"博客"}
         resumeName={"介绍"}
-        language={"English"}
         resumeRoute={"/resume/chinese"}
         homeRoute={"/chinese"}
         changeLanguageRoute={"/"}
+        currentUser={currentUser ? currentUser : null}
       />
       <Jumbo
         name={jumbo_name_cn || 'Sam博客！'}
@@ -66,17 +63,19 @@ const Chinese = ({ result, errors }) => {
           title={intro_title_cn || '永远在路上'}
           subtitle={intro_subtitle_cn || '嗨,我是Sam'}
           intro={intro_intro_cn ||`我是Web开发工程师和设计师，开源社区贡献者. 你也可以在 GitHub 上找到我的一些项目和在 CSDN 上找到我发布的博客, 我一直在维护该网站，并改善其性能和用户体验。如果你有改善此网站的好主意，可以是任何方面，比如UI,UX，性能优化，数据库设计，技术栈以及浏览时的Bug等，欢迎到网站的底部留下评论！`}
+          projects={projects}
         ></ChineseIntro>
 
         <Subscribe
-          title={"Show some interests? Follow my blog here!"}
+          title={"对本博客感兴趣？输入邮箱加入推送"}
           info={
-            " Your information will NEVER be disclosed to anyone, any organization, even robots for any purposes. Learn more here for privacy."
+            "你的邮箱不会被以任何方式向第三方透露，若想了解你的邮箱如何安全地保存，请点击这里"
           }
           copyright={` All rights reserved ©2019  ${webUrl ||
             "www.yaobaiyang.com"} `}
           web_version={subscribe_web_version_cn || '请更新页面'}
-          log={" Click here to see logs of updates"}
+          log={"查看网站版本更新日志"}
+          logs_content={logs}
         />
         {likes ? ( <Likes likes={likes} _id={_id}></Likes>) : null}
        
@@ -87,10 +86,17 @@ const Chinese = ({ result, errors }) => {
 };
 Chinese.getInitialProps = async () => {
   let result;
+  let logs;
+  let projects
   let errors;
   try {
-    const response = await _fetch("http://localhost:5000/api/homepage");
+    const response = await _fetch("http://localhost:3000/api/homepage");
+    const logsRes = await fetch("http://localhost:3000/api/homepage/logs");
+    const projectRes = await _fetch('http://localhost:3000/api/projects')
+    logs = await logsRes.json()
     result = await response.json();
+    projects = await projectRes.json()
+
   } catch (error) {
     result ='Error'
     errors = `抱歉, 404. 这是一个错误. 现在的页面并不完整，为了保证最新的内容，请检查网络连接是否正常并尝试刷新页面`;
@@ -98,7 +104,9 @@ Chinese.getInitialProps = async () => {
 
   return {
     result,
-    errors
+    errors,
+    logs,
+    projects
   };
 };
 export default Chinese;

@@ -9,10 +9,10 @@ const Likes = ({likes,_id}) => {
     heart.classList.toggle("is_animating");
     heart.classList.toggle("liked");
     handleLike(!ifLiked);
-    await fetch(`http://localhost:5000/api/homepage/likes/${_id}`, {
+    await fetch(`http://localhost:3000/api/homepage/likes/${_id}`, {
       method: "put"
     });
-    const newLikes = await fetch(`http://localhost:5000/api/homepage/likes`);
+    const newLikes = await fetch(`http://localhost:3000/api/homepage/likes`);
     const likesData = await newLikes.json();
     setCount(likesData[0].likes);
   };
@@ -21,10 +21,10 @@ const Likes = ({likes,_id}) => {
     heart.classList.toggle("is_animating");
     heart.classList.toggle("liked");
     handleLike(!ifLiked);
-    await fetch(`http://localhost:5000/api/homepage/likes/${_id}`, {
+    await fetch(`http://localhost:3000/api/homepage/likes/${_id}`, {
       method: "post"
     });
-    const newLikes = await fetch(`http://localhost:5000/api/homepage/likes`);
+    const newLikes = await fetch(`http://localhost:3000/api/homepage/likes`);
     const likesData = await newLikes.json();
 
     setCount(likesData[0].likes);

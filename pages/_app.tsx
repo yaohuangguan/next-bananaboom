@@ -1,9 +1,7 @@
 import React from "react";
 import App from "next/app";
-import { ThemeProvider } from "styled-components";
-const theme = {
-  primary: "green"
-};
+import firebase from "../firebase/firebase";
+
 class MyApp extends App {
   // Only uncomment this method if you have blocking data requirements for
   // every single page in your application. This disables the ability to
@@ -16,14 +14,27 @@ class MyApp extends App {
   //
   //   return { ...appProps }
   // }
+  state = {
+    currentUser: ""
+  };
+  unsubscribeFromAuth = null;
+  componentDidMount() {
+    this.unsubscribeFromAuth = firebase.auth.onAuthStateChanged(user => {
+      this.setState(state => {
+        return {
+          currentUser: user
+        };
+      });
+      console.log("currentuser", user);
+    });
+  }
 
+  componentWillUnmount() {
+    this.unsubscribeFromAuth();
+  }
   render() {
     const { Component, pageProps } = this.props;
-    return (
-      <ThemeProvider theme={theme}>
-        <Component {...pageProps}></Component>
-      </ThemeProvider>
-    );
+    return <Component {...this.state} {...pageProps}></Component>;
   }
 }
 

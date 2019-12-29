@@ -41,7 +41,7 @@ const ResumeListItem = ({ _id, title, _title, info, _info, url, degree }) => {
   
           <div className="card-body white">
             <h4 className="text-uppercase font-weight-bold">Details</h4>
-            <p className="text-muted" align="justify">
+            <p className="text-muted">
               {router.pathname == '/resume/chinese' ? info : _info}
             </p>
           </div>

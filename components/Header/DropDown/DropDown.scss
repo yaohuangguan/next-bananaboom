@@ -1,0 +1,30 @@
+.dropdown {
+  img {
+    border-radius: 50px;
+  }
+  &:hover {
+    .dropdown-submenu {
+      display: block;
+    }
+  }
+  .dropdown-submenu {
+    font-weight: 300;
+    text-transform: none;
+    right: 10px;
+    display: none;
+    position: absolute;
+    width: 150px;
+    background-color: #fff;
+    .dropdown-list{
+      padding: 0;
+    }
+    &-item {
+      a{
+        color: #333333;
+      }
+      &:hover {
+        background: rgba(#000, 0.9);
+      }
+    }
+  }
+}

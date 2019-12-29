@@ -1,9 +1,9 @@
 import { useState } from "react";
 import ProjectList from "../Projects/ProjectList";
 import Background from "../Background/Background";
-import PROJECT from "../Projects/PROJECT";
-const Text = ({ title, subtitle, intro }) => {
-  const [projects, setprojects] = useState(PROJECT);
+
+const Text = ({ title, subtitle, intro, projects }) => {
+
   return (
     <>
       <div id="content" className="row">
@@ -17,8 +17,8 @@ const Text = ({ title, subtitle, intro }) => {
           <br />
           <br />
           <p className="font-weight-bold">目前开发中项目</p>
-          {projects[0].id === 1 ? (
-            <ProjectList items={projects[0].items} />
+          {projects ? (
+            <ProjectList items={projects} />
           ) : (
             "错误:可能是渲染出现了错误，请重试"
           )}
@@ -28,7 +28,7 @@ const Text = ({ title, subtitle, intro }) => {
           <p className="font-weight-bold">打招呼</p>
           <p>
             邮箱：
-            <a href="mailto:moviegoer24@gmail.com" className="text-secondary">
+            <a href="mailto:moviegoer24@gmail.com" className="text-info">
               moviegoer24@gmail.com
             </a>
           </p>
@@ -36,7 +36,7 @@ const Text = ({ title, subtitle, intro }) => {
           <p>
             CSDN博客:
             <a
-              className="text-secondary"
+              className="text-info"
               href="https://blog.csdn.net/samKnowsCoding"
               target="_blank"
               rel="noopener noreferrer"
@@ -47,7 +47,7 @@ const Text = ({ title, subtitle, intro }) => {
           <p>
             Medium博客:
             <a
-              className="text-secondary"
+              className="text-info"
               href="https://medium.com/@yaob"
               target="_blank"
               rel="noopener noreferrer"
