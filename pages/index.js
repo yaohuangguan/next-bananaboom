@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
-import _fetch from "isomorphic-unfetch";
+import api from "../components/Utils/Api";
+import _fetch from 'isomorphic-unfetch'
 import Layout from "../components/Layout/Layout";
 import Header from "../components/Header/Header";
 import Jumbo from "../components/Jumbo/Jumbo";
@@ -11,7 +12,8 @@ import consolelog from "../components/Utils/Console.log";
 import BrowserTest from "../components/Utils/BrowserTest";
 import Likes from "../components/Likes/Likes";
 const dev = process.env.ENV;
-const English = ({ result, errors, logs, projects, currentUser}) => {
+const English = ({ result, errors, logs, projects, currentUser }) => {
+  console.log(currentUser)
   const [webUrl, SetWebUrl] = useState("");
   useEffect(() => {
     Animation();
@@ -106,14 +108,12 @@ English.getInitialProps = async () => {
   let projects;
   let errors;
   try {
-    const response = await _fetch("http://localhost:3000/api/homepage");
-    const logsRes = await _fetch("http://localhost:3000/api/homepage/logs");
-    const projectRes = await _fetch('http://localhost:3000/api/projects')
-    logs = await logsRes.json()
-    result = await response.json();
-    projects = await projectRes.json()
+    result = await (await _fetch("http://localhost:3000/api/homepage")).json();
+    logs = await (await _fetch("http://localhost:3000/api/homepage/logs")).json();
+    projects = await (await _fetch("http://localhost:3000/api/projects")).json();
   } catch (error) {
-    result ='Error'
+    console.log(error)
+    result = "Error";
     errors = `Sorry, 404. This is an error. The page now is incomplete, in order to have the latest contents, please check your network or refresh the page.`;
   }
   return {

@@ -1,14 +1,13 @@
-import mongoose from 'mongoose'
+const mongoose = require('mongoose')
 
 const UserSchema = mongoose.Schema({
   googleId: {
     type: String,
-    required: true
   },
   user:{
     type: mongoose.Schema.Types.ObjectId,
   },
-  name: {
+  displayName: {
     type: String,
     required: true
   },
@@ -25,7 +24,11 @@ const UserSchema = mongoose.Schema({
     type: Date,
     required: true,
     default: Date.now
+  },
+  photoURL:{
+    type:String,
+    default:'https://cdn3.iconfinder.com/data/icons/vector-icons-6/96/256-512.png'
   }
 });
 
-export default mongoose.models.users|| mongoose.model("users", UserSchema);
+module.exports = mongoose.models.users|| mongoose.model("users", UserSchema);

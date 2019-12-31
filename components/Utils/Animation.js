@@ -9,15 +9,15 @@ const Animation = () => {
     logo.classList.remove("animated", "jackInTheBox");
     logo.classList.remove("animated", "fadeInDown");
   });
-  const jumbo = Array.from(document.querySelectorAll(".jumbo"));
-  jumbo.forEach(
-    el => (
-      el.classList.add("animated", "zoomIn"),
-      el.addEventListener("animationend", () => {
-        el.classList.remove("animated", "zoomIn");
-      })
-    )
-  );
+  // const jumbo = Array.from(document.querySelectorAll(".jumbo"));
+  // jumbo.forEach(
+  //   el => (
+  //     el.classList.add("animated", "zoomIn"),
+  //     el.addEventListener("animationend", () => {
+  //       el.classList.remove("animated", "zoomIn");
+  //     })
+  //   )
+  // );
   // jumbo.classList.add("animated", "fadeInDownBig");
   // jumbo.addEventListener("animationend", () => {
   //   jumbo.classList.remove("animated", "fadeInDownBig");

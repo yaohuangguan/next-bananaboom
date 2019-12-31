@@ -9,12 +9,11 @@ const comment = async (req, res) => {
           comments: 1
         }
       );
-      res.json(response);
+      res.status(200).json(response);
     } catch (error) {
       res.status(404).json({ message: "Not found the comments" });
     }
-  }
-  if (req.method === "POST") {
+  } else if (req.method === "POST") {
     const { user, comment, photoUrl } = req.body;
     if (!user)
       return res.status(400).json({ message: "please login to post comments" });
@@ -37,7 +36,7 @@ const comment = async (req, res) => {
           }
         }
       );
-      res.json(response);
+      res.status(201).json(response);
     } catch (error) {
       res.status(400).json({ message: "Error when creating comments" });
     }

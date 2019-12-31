@@ -1,3 +1,4 @@
 {
-  "mongoURI": "mongodb+srv://samyao:samyao@bananaboom-ommcz.mongodb.net/blogs?retryWrites=true&w=majority"
+  "mongoURI": "mongodb+srv://samyao:samyao@bananaboom-ommcz.mongodb.net/blogs?retryWrites=true&w=majority",
+  "SECRET_JWT": "qwoindqiowndnvon131923818948SDQIWDNQIWUNQIUNDIQUW1239123vnsiniundnqwidun1uibiu1bgpmo1i31b9r123b1ubr19fub19fb91bd1982bs2198bf918fb198bf981bf1983"
 }

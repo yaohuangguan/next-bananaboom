@@ -3,18 +3,37 @@ import CommentList from "./CommentList";
 
 const MyEditor = ({ currentUser, comments, _id }) => {
   const [commentInputField, setinputField] = useState("");
+  const [commentsCount, setcommentsCount] = useState(comments.length);
   const [errors, seterrors] = useState("");
   const [commentsList, setcommentsList] = useState(comments);
   const handleCommentChange = e => setinputField(e.target.value);
+  useEffect(() => {
+    const abort = new AbortController();
+    const signal = abort.signal;
+    const getNewComments = async () => {
+      const response = await fetch(
+        `http://localhost:3000/api/comments/${_id}`,
+        { signal: signal }
+      ); 
+      let getComments = await response.json();
+      setcommentsList(getComments[0].comments);
+      setcommentsCount(getComments[0].comments.length);
+    };
+    getNewComments();
+    return () => {
+      abort.abort();
+    };
+  },[]);
   const clearCommentField = () => {
     const textarea = document.querySelector(".textarea");
     textarea.value = "";
     setinputField("");
   };
   const getNewComments = async () => {
-    const response = await fetch(`http://localhost:5000/api/comments/${_id}`);
+    const response = await fetch(`http://localhost:3000/api/comments/${_id}`);
     let getComments = await response.json();
     setcommentsList(getComments[0].comments);
+    setcommentsCount(getComments[0].comments.length);
   };
   const submitComment = async () => {
     if (!currentUser) {
@@ -31,7 +50,6 @@ const MyEditor = ({ currentUser, comments, _id }) => {
         `http://localhost:5000/api/comments/${_id}`,
         {
           method: "POST",
-          mode: "cors",
           headers: {
             "Content-Type": "application/json"
           },
@@ -43,9 +61,9 @@ const MyEditor = ({ currentUser, comments, _id }) => {
         }
       );
       const result = await response.json();
-
+      console.log(result)
       getNewComments();
-      seterrors('');
+      seterrors("");
       clearCommentField();
     } catch (error) {
       seterrors(error);
@@ -56,7 +74,7 @@ const MyEditor = ({ currentUser, comments, _id }) => {
   return (
     <div className="chat-room">
       <div className="comment-title mb-4">
-        <h6 className="font-weight-bold">评论({comments.length})</h6>
+        <h6 className="font-weight-bold">评论({commentsCount})</h6>
       </div>
       {commentsList.length == 0 ? "快来做第一个评论的人吧!" : null}
       <div className="px-2">

@@ -33,6 +33,7 @@ app
     server.options("*", cors());
     server.use(cors());
     server.use(express.json());
+   
     server.all("*", (req, res) => {
       return handle(req, res);
     });

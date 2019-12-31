@@ -85,6 +85,12 @@ body {
     padding: 50px;
     display: flex;
     position: relative;
+    .password-show{
+      justify-self: flex-end;
+      position: absolute;
+      left: 90%;
+      top:20%
+    }
     h2 {
       font-size: 25px;
       line-height: 25px;

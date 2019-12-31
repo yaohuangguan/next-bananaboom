@@ -1,7 +1,7 @@
 import React from "react";
 import App from "next/app";
 import firebase from "../firebase/firebase";
-
+import api from "../components/Utils/Api";
 class MyApp extends App {
   // Only uncomment this method if you have blocking data requirements for
   // every single page in your application. This disables the ability to
@@ -14,19 +14,37 @@ class MyApp extends App {
   //
   //   return { ...appProps }
   // }
+
   state = {
-    currentUser: ""
+    currentUser: "",
+    token: ""
   };
+
   unsubscribeFromAuth = null;
+
   componentDidMount() {
     this.unsubscribeFromAuth = firebase.auth.onAuthStateChanged(user => {
-      this.setState(state => {
-        return {
-          currentUser: user
-        };
-      });
-      console.log("currentuser", user);
+      if(user){
+        this.setState(state => {
+          return {
+            currentUser: user
+          };
+        });
+      }
+     return console.log("currentuser from google auth", user);
     });
+
+    this.setState({ token: window.localStorage.getItem("token") || "" }, () =>
+      console.log(this.state.token)
+    );
+
+    this.setState(
+      {
+        currentUser:
+          JSON.parse(window.localStorage.getItem("currentUser")) || ""
+      },
+      () => console.log(this.state.currentUser)
+    );
   }
 
   componentWillUnmount() {
@@ -34,6 +52,7 @@ class MyApp extends App {
   }
   render() {
     const { Component, pageProps } = this.props;
+
     return <Component {...this.state} {...pageProps}></Component>;
   }
 }

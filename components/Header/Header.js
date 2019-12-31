@@ -1,12 +1,14 @@
 import { useState, useEffect } from "react";
 import dynamic from "next/dynamic";
 import Link from "next/link";
-import Dropdown from './DropDown/DropDown'
 import firebase from "../../firebase/firebase";
 import '../Header/Hamburger/Hamburger.scss'
 const Signup = dynamic(() => import("../Auth/Signup"), {
   ssr: false
 });
+const Dropdown = dynamic(()=>import('./DropDown/DropDown'),{
+  ssr:false
+})
 const HamburgerMenu = dynamic(() => import("./Hamburger/Hamburger"), {
   ssr: false
 });

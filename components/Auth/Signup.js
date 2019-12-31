@@ -1,25 +1,101 @@
 import { useEffect, useState } from "react";
 import router from "next/router";
-import Login from "./Login";
 import firebase from "../../firebase/firebase";
+import api from "../Utils/Api";
+import dynamic from "next/dynamic";
+const Login = dynamic(() => import("./Login"), {
+  ssr: false
+});
 const Signup = ({ login }) => {
+  const [email, setemail] = useState("");
+  const [password, setpassword] = useState("");
+  const [displayName, setdisplayName] = useState("");
+  const [passwordConf, setpasswordConf] = useState("");
+  const [errors, seterrors] = useState([]);
+  const [token, settoken] = useState(localStorage.getItem("token"));
+  const [user, setuser] = useState(
+    JSON.parse(localStorage.getItem("currentUser")) || []
+  );
+  useEffect(() => {
+    console.log(token,user)
+    return () => {};
+  }, [token, user]);
   const openSignup = e => {
     const modalContainer = document.querySelector("#signup-container");
     modalContainer.removeAttribute("class");
     modalContainer.classList.add("popup");
-
   };
   const closeSignup = () => {
     document.getElementById("signup-container").classList.add("out");
-
+  };
+  const passwordReveal = e => {
+    let x = document.querySelectorAll(".password");
+    x.forEach(each => {
+      if (each.type === "password") {
+        each.type = "text";
+      } else {
+        each.type = "password";
+      }
+    });
+  };
+  const clearInput = () => {
+    setemail("");
+    setpassword("");
+    setdisplayName("");
+    seterrors([]);
+    setpasswordConf("");
+  };
+  const handleDisplayName = e => {
+    setdisplayName(e.target.value);
+  };
+  const handleEmail = e => {
+    setemail(e.target.value);
+  };
+  const handlePasswordConf = e => {
+    setpasswordConf(e.target.value);
+  };
+  const handlePassword = e => {
+    setpassword(e.target.value);
   };
   const openLogin = e => {
     closeSignup();
     const modalContainer = document.querySelector("#login-container");
     modalContainer.removeAttribute("class");
     modalContainer.classList.add("popup");
-
-  }
+  };
+  const handleUserSubmit = async e => {
+    e.preventDefault();
+    if (!displayName || !email || !password || !passwordConf)
+      return seterrors("Fill all the requirements");
+    try {
+      const response = await api.post("/api/users", {
+        displayName,
+        email,
+        password,
+        passwordConf
+      });
+      settoken(response.data.token);
+      setuser(response.data.user);
+      window.localStorage.setItem("token", response.data.token);
+      window.localStorage.setItem(
+        "currentUser",
+        JSON.stringify(response.data.user)
+      );
+      router.reload()
+      console.log(response);
+      clearInput();
+      closeSignup();
+    } catch (error) {
+      console.log(error.response);
+      if (error.response.data.message) {
+        seterrors(error.response.data.message);
+      }
+      if (error.response.data.errors) {
+        const errors = error.response.data.errors.map(each => `  ${each.msg}`);
+        seterrors(errors);
+      }
+    }
+  };
 
   return (
     <div>
@@ -34,7 +110,6 @@ const Signup = ({ login }) => {
               justifyContent: "center",
               alignItems: "center"
             }}
-            action="#!"
           >
             <div
               onClick={closeSignup}
@@ -43,34 +118,60 @@ const Signup = ({ login }) => {
             >
               <span style={{ fontSize: "30px" }}>&#10005;</span>
             </div>
-            <p className="h4 mb-4">
+            <p className="h4">
               {router.pathname == "/" ? "Sign up" : "注册新用户"}
             </p>
-
+            {errors ? <div className="text-danger">{errors}</div> : null}
             <input
               type="text"
-              className="form-control form-control-lg form-control-a text-center  mb-4"
+              className="form-control form-control-lg form-control-a text-center mb-3"
               autoComplete="username"
+              value={displayName}
+              onChange={handleDisplayName}
               placeholder={router.pathname == "/" ? "Username" : "用户名"}
             />
 
             <input
               type="email"
-              className="form-control form-control-lg form-control-a text-center mb-4"
+              className="form-control form-control-lg form-control-a text-center mb-3"
               autoComplete="email"
+              value={email}
+              onChange={handleEmail}
               placeholder={router.pathname == "/" ? "email" : "邮箱地址"}
             />
 
+            <div style={{ position: "relative", width:'100%' }}>
+              <input
+                type="password"
+                className="form-control form-control-lg form-control-a text-center mb-3 password"
+                autoComplete="current-password"
+                value={password}
+                onChange={handlePassword}
+                placeholder={router.pathname == "/" ? "password" : "密码"}
+              />
+              <div onClick={passwordReveal} className="password-show">
+                <img
+                  src="https://img.icons8.com/wired/25/000000/show-password.png"
+                  alt="icon"
+                />{" "}
+              </div>
+            </div>
+
             <input
               type="password"
-              className="form-control form-control-lg form-control-a text-center"
+              className="form-control form-control-lg form-control-a text-center password"
               autoComplete="current-password"
-              placeholder={router.pathname == "/" ? "password" : "密码"}
+              value={passwordConf}
+              onChange={handlePasswordConf}
+              placeholder={
+                router.pathname == "/" ? "password confirmation" : "确认密码"
+              }
             />
 
             <button
               className="btn draw-border-white my-4 btn-block"
               type="submit"
+              onClick={handleUserSubmit}
             >
               {router.pathname == "/" ? "Sign up" : "确定"}
             </button>
@@ -85,13 +186,13 @@ const Signup = ({ login }) => {
                 <img
                   src="https://img.icons8.com/color/30/000000/google-logo.png"
                   className="px-1"
-                  alt='googlelogin'
+                  alt="googlelogin"
                 />
               </div>
               <img
                 src="https://img.icons8.com/color/30/000000/weixing.png"
                 className="px-1"
-                alt='weixinsignin'
+                alt="weixinsignin"
               />
             </div>
             <br />

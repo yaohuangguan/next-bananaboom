@@ -1,7 +1,13 @@
 import React from "react";
-import firebase from '../../../firebase/firebase'
-import './DropDown.scss'
+import router from "next/router";
+import firebase from "../../../firebase/firebase";
+import "./DropDown.scss";
 const DropDown = ({ currentUser }) => {
+  const logout = () => {
+    window.localStorage.removeItem("token");
+    window.localStorage.removeItem("currentUser");
+    router.reload();
+  };
   return (
     <>
       <div className="dropdown">
@@ -17,9 +23,21 @@ const DropDown = ({ currentUser }) => {
             <li className="dropdown-item text-info">
               <a>Dashboard</a>
             </li>
-            <li className="dropdown-item text-info" onClick={()=>firebase.auth.signOut()}>
-              <a>Logout</a>
-            </li>
+            {currentUser._id ? (
+              <li className="dropdown-item text-info" onClick={logout}>
+                <a>Log out</a>{" "}
+              </li>
+            ) : (
+              <li
+                className="dropdown-item text-info"
+                onClick={() => {
+                  firebase.auth.signOut();
+                  router.reload();
+                }}
+              >
+                <a>Logout</a>
+              </li>
+            )}
           </ul>
         </div>
       </div>
