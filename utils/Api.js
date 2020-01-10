@@ -1,7 +1,10 @@
 import axios from "axios";
-
+const baseURL =
+  process.env.NODE_ENV === "production"
+    ? "https://nextbananaboom.herokuapp.com"
+    : "http://localhost:5000";
 let api = axios.create({
-  baseURL: "http://localhost:5000",
+  baseURL: baseURL,
   headers: {
     Accept: "application/json",
     "Content-Type": "application/json"

@@ -1,14 +1,10 @@
 import Link from "next/link";
 import "./BlogListItem.scss";
+import api from '../../utils/Api'
 import { useEffect, useState } from "react";
-import { randomColor } from "../Utils/Utils";
+import { randomColor } from '../../utils/Utils'
 const colors = [`blue`, `orange`, `cyan`, `indigo`, `green`];
-function setIfLiked() {
-  if (window.localStorage.getItem("ifLiked") == undefined) {
-    window.localStorage.setItem("ifLiked", false);
-  }
-}
-setIfLiked();
+
 const BlogListItem = ({
   name,
   info,
@@ -30,11 +26,9 @@ const BlogListItem = ({
     heart.classList.toggle("is_animating");
     heart.classList.toggle("liked");
     handleLike(!ifLiked);
-    await fetch(`http://localhost:3000/api/posts/likes/${_id}`, {
-      method: "put"
-    });
-    const newLikes = await fetch(`http://localhost:3000/api/posts/likes/${_id}`);
-    const likesData = await newLikes.json();
+    const response = await api.put(`/api/posts/likes/${_id}`);
+    const newLikes = await api.get(`/api/posts/likes/${_id}`);
+    const likesData = await newLikes.data
     setCount(likesData.likes);
   };
   const addLike = async () => {
@@ -43,11 +37,9 @@ const BlogListItem = ({
     heart.classList.toggle("liked");
     handleLike(!ifLiked);
     localStorage.setItem("ifLiked", true);
-    await fetch(`http://localhost:3000/api/posts/likes/${_id}`, {
-      method: "post"
-    });
-    const newLikes = await fetch(`http://localhost:3000/api/posts/likes/${_id}`);
-    const likesData = await newLikes.json();
+    const response = await api.post(`/api/posts/likes/${_id}`);
+    const newLikes = await api.get(`/api/posts/likes/${_id}`);
+    const likesData = await newLikes.data
     setCount(likesData.likes);
   };
 

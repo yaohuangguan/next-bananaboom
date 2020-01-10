@@ -152,7 +152,7 @@ export const getBeeHexImg = () => {
         </a>
       </div>
 
-      <div className="zoomMagnify">
+      <div className="zoomMagnify z-depth-5">
         <img className="zoom-image" src="" alt="" />
       </div>
     </div>

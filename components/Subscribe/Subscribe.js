@@ -1,7 +1,7 @@
 /* eslint-disable no-useless-escape */
 import { useState, useEffect } from "react";
 import SocialFooter from "../Footer/SocialFooter";
-import { getLoading } from "../Utils/Utils";
+import { getLoading } from "../../utils/Utils";
 import "./Subscribe.scss";
 import Logs from "../Contents/Logs/Logs";
 const mailApi = `https://qq.us20.list-manage.com/subscribe/post?u=192d7d7d1dcff6b2519629804&amp;id=4b2f990265`;

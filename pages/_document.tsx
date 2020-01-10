@@ -1,7 +1,5 @@
 import Document, { Html, Head, Main, NextScript } from "next/document";
 import { ServerStyleSheet } from "styled-components";
-process.env.ENV = "production";
-console.log(process.env.ENV);
 export default class MyDocument extends Document {
 
   static async getInitialProps(ctx) {

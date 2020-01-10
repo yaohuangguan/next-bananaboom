@@ -1,14 +1,13 @@
 import { useState, useEffect } from "react";
-import _fetch from "isomorphic-unfetch";
+import api from '../utils/Api'
 import Layout from "../components/Layout/Layout";
 import Header from "../components/Header/Header";
 import Jumbo from "../components/Jumbo/Jumbo";
 import ChineseIntro from "../components/Contents/Intro/Chinese";
 import Subscribe from "../components/Subscribe/Subscribe";
 import Footer from "../components/Footer/Footer";
-import Animation from "../components/Utils/Animation";
+import Animation from "../utils/Animation";
 import Likes from "../components/Likes/Likes";
-
 const Chinese = ({ result, errors,logs,projects, currentUser }) => {
   const [webUrl, setwebUrl] = useState("");
   useEffect(() => {
@@ -90,12 +89,12 @@ Chinese.getInitialProps = async () => {
   let projects
   let errors;
   try {
-    const response = await _fetch("http://localhost:3000/api/homepage");
-    const logsRes = await fetch("http://localhost:3000/api/homepage/logs");
-    const projectRes = await _fetch('http://localhost:3000/api/projects')
-    logs = await logsRes.json()
-    result = await response.json();
-    projects = await projectRes.json()
+    const responseResult = await api.get("/api/homepage");
+    const responseLogs = await api.get("/api/homepage/logs");
+    const responseProjects = await api.get("/api/homepage/projects");
+    result = await responseResult.data;
+    logs = await responseLogs.data;
+    projects = await responseProjects.data;
 
   } catch (error) {
     result ='Error'

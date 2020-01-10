@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import router from "next/router";
 import firebase from "../../firebase/firebase";
-import api from "../Utils/Api";
+import api from '../../utils/Api'
 import dynamic from "next/dynamic";
 const Login = dynamic(() => import("./Login"), {
   ssr: false
@@ -16,10 +16,7 @@ const Signup = ({ login }) => {
   const [user, setuser] = useState(
     JSON.parse(localStorage.getItem("currentUser")) || []
   );
-  useEffect(() => {
-    console.log(token,user)
-    return () => {};
-  }, [token, user]);
+
   const openSignup = e => {
     const modalContainer = document.querySelector("#signup-container");
     modalContainer.removeAttribute("class");

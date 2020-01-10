@@ -1,6 +1,6 @@
 import { useRouter } from "next/router";
 import "./Project.scss";
-import "../../Utils/LazyLoad";
+import "../../../utils/LazyLoad";
 const Project = ({
   _id,
   link,

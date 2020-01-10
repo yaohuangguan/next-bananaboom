@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import api from '../../utils/Api'
 import "../Blog/BlogListItem.scss";
 const Likes = ({likes,_id}) => {
   const [likeCount, setCount] = useState(likes);
@@ -9,11 +10,9 @@ const Likes = ({likes,_id}) => {
     heart.classList.toggle("is_animating");
     heart.classList.toggle("liked");
     handleLike(!ifLiked);
-    await fetch(`http://localhost:3000/api/homepage/likes/${_id}`, {
-      method: "put"
-    });
-    const newLikes = await fetch(`http://localhost:3000/api/homepage/likes`);
-    const likesData = await newLikes.json();
+    const response = await api.put(`/api/homepage/likes/${_id}`);
+    const newLikes = await api.get(`/api/homepage/likes`);
+    const likesData = await newLikes.data
     setCount(likesData[0].likes);
   };
   const addLike = async () => {
@@ -21,11 +20,9 @@ const Likes = ({likes,_id}) => {
     heart.classList.toggle("is_animating");
     heart.classList.toggle("liked");
     handleLike(!ifLiked);
-    await fetch(`http://localhost:3000/api/homepage/likes/${_id}`, {
-      method: "post"
-    });
-    const newLikes = await fetch(`http://localhost:3000/api/homepage/likes`);
-    const likesData = await newLikes.json();
+    const response = await api.post(`/api/homepage/likes/${_id}`);
+    const newLikes = await api.get(`/api/homepage/likes`);
+    const likesData = await newLikes.data
 
     setCount(likesData[0].likes);
   };

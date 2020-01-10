@@ -9,9 +9,9 @@ export const getChineseContent = () => {
       <br />
 
       <h5>前端开发工程师 at BeeHex </h5>
-      <div className="row">
-        <div className="col-md-6">{getBeeHexImg()}</div>
-        <div className="col-md-4">
+      <div className='d-flex row'>
+        <div className="col-lg-8">{getBeeHexImg()}</div>
+        <div className="col-md-12">
           <p>
             BeeHex 是一家 NASA 的子公司，利用食品行业最先进的 3D
             打印和机器人系统，使食品制备和个性化现代化。
@@ -48,10 +48,10 @@ export const getEnglishContent = () => {
       <br />
 
       <h5>Software Engineer at BeeHex </h5>
-      <div className="row">
-        <div className="col-md-6">{getBeeHexImg()}</div>
+      <div className="d-flex row">
+        <div className="col-lg-8">{getBeeHexImg()}</div>
 
-        <div className="col-md-4">
+        <div className="col-md-12">
           <p>
             BeeHex is a NASA spin-off company modernizing food preparation and
             personalization with the most advanced 3D printing and robotics
@@ -68,8 +68,7 @@ export const getEnglishContent = () => {
             Responsible for using AWS EC2 computing cloud and successfully
             creating the Nginx web server to run the application.
           </p>
-        </div>
-        <p>
+          <p>
           This website project will be cooperating with Target and Walmart and
           our service will be nationwide in the future
         </p>
@@ -78,6 +77,8 @@ export const getEnglishContent = () => {
           with US Army to create the personalized nutrition plans for the
           astronaut and soldiers.
         </p>
+        </div>
+        
       </div>
     </div>
   );

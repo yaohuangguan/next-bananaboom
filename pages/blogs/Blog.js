@@ -4,11 +4,9 @@ import { useState, useEffect } from "react";
 import Layout from "../../components/Layout/Layout";
 import { useRouter } from "next/router";
 import BlogList from "../../components/Blog/BlogList";
-import _fetch from "isomorphic-unfetch";
+import api from '../../utils/Api'
 import Head from "next/head";
 import SearchBox from "../../components/SearchBox/SearchBox";
-require("./Blog.scss");
-
 const Blog = ({ blogs, errors }) => {
   const [searchField, setsearchField] = useState("");
   const [filteredBlog, setfilteredBlog] = useState([]);
@@ -108,12 +106,11 @@ const Blog = ({ blogs, errors }) => {
 };
 
 Blog.getInitialProps = async () => {
-  require("./Blog.scss");
   let posts
   let errors
   try {
-    const response = await _fetch("http://localhost:3000/api/posts");
-    posts = await response.json();
+    const response = await api.get("/api/posts");
+    posts = await response.data
   } catch (error) {
     errors = `Sorry, network issue happened, please check your internet or come back later! Thank you. \n
     `;

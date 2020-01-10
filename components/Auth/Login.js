@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import router from "next/router";
 import firebase from "../../firebase/firebase";
-import api from "../Utils/Api";
+import api from '../../utils/Api'
+
 const Login = () => {
   const [email, setemail] = useState("");
   const [password, setpassword] = useState("");
@@ -10,10 +11,7 @@ const Login = () => {
   const [user, setuser] = useState(
     JSON.parse(localStorage.getItem("currentUser")) || []
   );
-  useEffect(() => {
 
-    return () => {};
-  }, [token, user]);
   const closeLogin = () => {
     document.getElementById("login-container").classList.add("out");
   };

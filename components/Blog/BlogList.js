@@ -7,7 +7,7 @@ const BlogList = props => {
   const { blogs } = props;
   return (
     <div>
-      {blogs.map(({ _id, ...other }) => (
+      {blogs && blogs.map(({ _id, ...other }) => (
         <BlogListItem key={_id} {...other} _id={_id} />
       ))}
     </div>

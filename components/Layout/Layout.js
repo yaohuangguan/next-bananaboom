@@ -3,9 +3,7 @@ import Head from "../Head/Head";
 import Router from "next/router";
 import { useEffect, useState } from "react";
 import ErrorBoundary from "../NotFound/ErrorBoundary";
-import { getLoading } from "../Utils/Utils";
-// import '../Utils/prism'
-// import '../../styles/prism.css'
+import { getLoading } from '../../utils/Utils';
 
 const fillColor = `#eb782e`;
 
@@ -85,10 +83,11 @@ Layout.getInitialProps = () => {
     //Login
     require("../Auth/login.scss"),
     //Syntax highlighter
-    require("../Utils/prism.js"),
     require("../../styles/prism.css"),
     //Logs
-    require("../Contents/Logs/Logs.scss")
+    require("../Contents/Logs/Logs.scss"),
+    //Subscribe
+    require('../Subscribe/Subscribe.scss')
   );
 };
 

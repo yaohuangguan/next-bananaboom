@@ -16,4 +16,4 @@ const nextConfig = withCSS(
     }
   })
 );
-module.exports = { target: "serverless", ...nextConfig };
+module.exports = {...nextConfig };

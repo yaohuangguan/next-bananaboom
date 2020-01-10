@@ -1,16 +1,16 @@
 import Layout from "../../../components/Layout/Layout";
-import { useRouter, withRouter} from "next/router";
+import { useRouter, withRouter } from "next/router";
 import Head from "next/head";
-import _fetch from "isomorphic-unfetch";
+import api from "../../../utils/Api";
 import { useEffect } from "react";
-import Editor from "../../../components/Blog/Comments/Comments";
+import Comment from "../../../components/Blog/Comments/Comments";
 
-const blog = ({ posts, currentUser }) => {
+const blog = ({ posts, comments, currentUser }) => {
   const router = useRouter();
   useEffect(() => {
-    require("../../../components/Utils/prism");
+    require("../../../utils/prism");
   }, []);
-  const { name, content, code, code2, comments, _id } = posts;
+  const { name, content, code, code2, _id } = posts;
   return (
     <Layout>
       <Head>
@@ -49,23 +49,24 @@ const blog = ({ posts, currentUser }) => {
             </div>
           ) : null}
         </section>
-        <Editor
+        <Comment
           comments={comments}
           _id={_id}
           currentUser={currentUser}
-        ></Editor>
+        ></Comment>
       </div>
     </Layout>
   );
 };
 
 blog.getInitialProps = async router => {
-  const response = await _fetch(
-    `http://localhost:3000/api/posts/${router.query.id}`
-  );
-  const content = await response.json();
+  const response = await api.get(`/api/posts/${router.query.id}`);
+  const comments = await api.get(`/api/comments/${router.query.id}`);
+  const content = await response.data;
+  const commentsResponse = await comments.data;
   return {
-    posts: content[0]
+    posts: content[0],
+    comments: commentsResponse
   };
 };
 

@@ -4,8 +4,9 @@ import china from '../../public/china.png'
 import ResumeList from "./ResumeList/ResumeList";
 import Layout from "../../components/Layout/Layout";
 import Head from "next/head";
-import _fetch from "isomorphic-unfetch";
-import shuffle from "../../components/Utils/Shuffle";
+import api from '../../utils/Api'
+
+import shuffle from "../../utils/Shuffle";
 import { getEnglishContent } from "../../components/Contents/Resume/Content";
 const Resume = ({ resumeItem, errors }) => {
   const flipFlag = () => {
@@ -89,8 +90,8 @@ Resume.getInitialProps = async () => {
   let shuffled;
   let errors;
   try {
-    const response = await _fetch("http://localhost:3000/api/resumes");
-    data = await response.json();
+    const response = await api.get("/api/resume");
+    data = await response.data
     shuffled = shuffle(data);
   } catch (error) {
     errors = `Something wrong with the server or check your network connect and try again later.`;

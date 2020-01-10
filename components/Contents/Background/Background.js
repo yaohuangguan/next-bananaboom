@@ -1,4 +1,4 @@
-import "../../Utils/LazyLoad";
+import '../../../utils/LazyLoad'
 const Background = () => {
   return (
     <div className="col-md-6">

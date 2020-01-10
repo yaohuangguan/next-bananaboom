@@ -1,5 +1,4 @@
 import "./Logs.scss";
-import _fetch from "isomorphic-unfetch";
 import LogItem from "./LogItem";
 const Logs = ({ version, check,logs }) => {
   const openLogin = e => {
@@ -49,7 +48,7 @@ const Logs = ({ version, check,logs }) => {
             </div>
 
             <div className="modal-body mb-0 text-center">
-              {logs.map(({_id, ...other}) => {
+              {logs && logs.map(({_id, ...other}) => {
                 return <LogItem key={_id} {...other}></LogItem>;
               })}
             </div>

@@ -1,27 +1,24 @@
 import { useState, useEffect } from "react";
-import api from "../components/Utils/Api";
-import _fetch from 'isomorphic-unfetch'
+import api from "../utils/Api";
 import Layout from "../components/Layout/Layout";
 import Header from "../components/Header/Header";
 import Jumbo from "../components/Jumbo/Jumbo";
 import EnglishIntro from "../components/Contents/Intro/English";
 import Subscribe from "../components/Subscribe/Subscribe";
 import Footer from "../components/Footer/Footer";
-import Animation from "../components/Utils/Animation";
-import consolelog from "../components/Utils/Console.log";
-import BrowserTest from "../components/Utils/BrowserTest";
+import Animation from '../utils/Animation'
+import consolelog from "../utils/Console.log";
+import BrowserTest from "../utils/BrowserTest";
 import Likes from "../components/Likes/Likes";
-const dev = process.env.ENV;
 const English = ({ result, errors, logs, projects, currentUser }) => {
-  console.log(currentUser)
   const [webUrl, SetWebUrl] = useState("");
   useEffect(() => {
     Animation();
-    if (dev == "production") {
+    if (process.env.NODE_ENV === "production") {
       consolelog();
     }
     SetWebUrl(window.location.hostname);
-  }, [dev]);
+  }, []);
   const {
     _id,
     jumbo_name,
@@ -108,11 +105,14 @@ English.getInitialProps = async () => {
   let projects;
   let errors;
   try {
-    result = await (await _fetch("http://localhost:3000/api/homepage")).json();
-    logs = await (await _fetch("http://localhost:3000/api/homepage/logs")).json();
-    projects = await (await _fetch("http://localhost:3000/api/projects")).json();
+    const responseResult = await api.get("/api/homepage");
+    const responseLogs = await api.get("/api/homepage/logs");
+    const responseProjects = await api.get("/api/homepage/projects");
+    result = await responseResult.data;
+    logs = await responseLogs.data;
+    projects = await responseProjects.data;
   } catch (error) {
-    console.log(error)
+    console.log(error);
     result = "Error";
     errors = `Sorry, 404. This is an error. The page now is incomplete, in order to have the latest contents, please check your network or refresh the page.`;
   }

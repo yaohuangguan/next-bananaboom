@@ -1,39 +1,38 @@
 import React, { useState, useEffect } from "react";
 import CommentList from "./CommentList";
-
-const MyEditor = ({ currentUser, comments, _id }) => {
+import api from "../../../utils/Api";
+const Comment = ({ currentUser, comments, _id }) => {
   const [commentInputField, setinputField] = useState("");
   const [commentsCount, setcommentsCount] = useState(comments.length);
   const [errors, seterrors] = useState("");
   const [commentsList, setcommentsList] = useState(comments);
   const handleCommentChange = e => setinputField(e.target.value);
   useEffect(() => {
-    const abort = new AbortController();
-    const signal = abort.signal;
+    const abort = new AbortController()
+    const signal = abort.signal
     const getNewComments = async () => {
-      const response = await fetch(
-        `http://localhost:3000/api/comments/${_id}`,
-        { signal: signal }
-      ); 
-      let getComments = await response.json();
-      setcommentsList(getComments[0].comments);
-      setcommentsCount(getComments[0].comments.length);
+      const response = await api.get(`/api/comments/${_id}`, {
+        signal:signal
+      });
+      let getComments = await response.data;
+      setcommentsList(getComments);
+      setcommentsCount(getComments.length);
     };
     getNewComments();
     return () => {
-      abort.abort();
+      abort.abort()
     };
-  },[]);
+  }, []);
   const clearCommentField = () => {
     const textarea = document.querySelector(".textarea");
     textarea.value = "";
     setinputField("");
   };
   const getNewComments = async () => {
-    const response = await fetch(`http://localhost:3000/api/comments/${_id}`);
-    let getComments = await response.json();
-    setcommentsList(getComments[0].comments);
-    setcommentsCount(getComments[0].comments.length);
+    const response = await api.get(`/api/comments/${_id}`);
+    let getComments = await response.data;
+    setcommentsList(getComments);
+    setcommentsCount(getComments.length);
   };
   const submitComment = async () => {
     if (!currentUser) {
@@ -46,22 +45,17 @@ const MyEditor = ({ currentUser, comments, _id }) => {
     }
     const { displayName, photoURL } = currentUser;
     try {
-      const response = await fetch(
-        `http://localhost:5000/api/comments/${_id}`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json"
-          },
-          body: JSON.stringify({
-            user: displayName,
-            photoUrl: photoURL,
-            comment: commentInputField
-          })
-        }
-      );
-      const result = await response.json();
-      console.log(result)
+      const response = await api({
+        method: "post",
+        url: `/api/comments/${_id}`,
+        data: JSON.stringify({
+          user: displayName,
+          photoUrl: photoURL,
+          comment: commentInputField
+        })
+      });
+      const result = await response.data
+      console.log(result);
       getNewComments();
       seterrors("");
       clearCommentField();
@@ -70,6 +64,21 @@ const MyEditor = ({ currentUser, comments, _id }) => {
       clearCommentField();
     }
   };
+
+  // const addReply = async (id) =>{
+  //   try {
+  //     const response = await api({
+  //       method:'post',
+  //       url:`/api/comments/reply/${id}`,
+  //       data:
+  //     })
+  //   } catch (error) {
+      
+  //   }
+  // }
+  // const collectReply = (replyValue) =>{
+
+  // }
 
   return (
     <div className="chat-room">
@@ -123,4 +132,4 @@ const MyEditor = ({ currentUser, comments, _id }) => {
   );
 };
 
-export default MyEditor;
+export default Comment;

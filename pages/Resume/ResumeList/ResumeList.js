@@ -2,9 +2,9 @@ import ResumeListItem from "./ResumeListItem";
 const ResumeList = ({ items }) => {
   return (
     <div className="row">
-      {items.map(({ _id, ...other }) => (
+      {items ? items.map(({ _id, ...other }) => (
         <ResumeListItem key={_id} _id={_id} {...other} />
-      ))}
+      )) : null}
     </div>
   );
 };
