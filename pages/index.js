@@ -3,7 +3,7 @@ import api from "../utils/Api";
 import Layout from "../components/Layout/Layout";
 import Header from "../components/Header/Header";
 import Jumbo from "../components/Jumbo/Jumbo";
-import EnglishIntro from "../components/Contents/Intro/English";
+import Intro from "../components/Contents/Intro/English";
 import Subscribe from "../components/Subscribe/Subscribe";
 import Footer from "../components/Footer/Footer";
 import Animation from '../utils/Animation'
@@ -51,7 +51,7 @@ const English = ({ result, errors, logs, projects, currentUser }) => {
         login={"Login"}
         blogName={"Blog"}
         resumeName={"Resume"}
-        resumeRoute={"/resume/english"}
+        resumeRoute={"/resume/[query]"}
         homeRoute={"/"}
         changeLanguageRoute={"/chinese"}
         currentUser={currentUser ? currentUser : null}
@@ -64,7 +64,7 @@ const English = ({ result, errors, logs, projects, currentUser }) => {
         backgroundPicture={true}
       />
       <div className="container">
-        <EnglishIntro
+        <Intro
           title={intro_title ? intro_title : "Always on the road"}
           subtitle={intro_subtitle ? intro_subtitle : "Hi, I am Sam."}
           intro={
@@ -73,7 +73,7 @@ const English = ({ result, errors, logs, projects, currentUser }) => {
               : `I am a Full stack developer and designer, open source software contributor at BeeHex 3D food printing. You can also find some of my projects and posts on GitHub and CSDN. This website is being consistently maintained by me and improving its performance and user experience. If you have any good ideas of improving this site, Such as UI&UX, performance ideas, database design or technical tools related, maybe reporting bugs,etc... please go to the bottom of this site and leave a comment!`
           }
           projects={projects}
-        ></EnglishIntro>
+        ></Intro>
 
         <Subscribe
           title={"Show some interests? Follow my blog here!"}

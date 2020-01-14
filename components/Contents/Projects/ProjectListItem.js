@@ -27,7 +27,7 @@ const Project = ({
 
   return (
     <div
-      className="col align-center hover"
+      className="col hover"
       // onMouseOver={hoverChange}
       // onMouseLeave={recover}
     >

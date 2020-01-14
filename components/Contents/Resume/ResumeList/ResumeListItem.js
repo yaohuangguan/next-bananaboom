@@ -1,5 +1,4 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import React from "react";
 import {useRouter} from 'next/router'
 
 
@@ -7,7 +6,7 @@ const ResumeListItem = ({ _id, title, _title, info, _info, url, degree }) => {
   const router = useRouter()
   return (
 
-      <div className="col-md-4 mb-4">
+      <div className="col-md-6 mb-4">
         <div className="card gradient-card">
           <div
             className="card-image"
@@ -21,9 +20,9 @@ const ResumeListItem = ({ _id, title, _title, info, _info, url, degree }) => {
               <div className="text-white d-flex h-100 mask purple-gradient-rgba">
                 <div className="first-content align-self-center p-3">
                   <h3 className="card-title" style={{ fontSize: "25px" }}>
-                {router.pathname == '/resume/chinese' ? title : _title}
+                {router.asPath == '/resume/ch-cn' ? title : _title}
                   </h3>
-                  <p className="mb-0">Click to see details 打开外部链接</p>
+                  <p className="mb-0">{router.asPath=='/resume/ch-cn' ? '提示: 会打开外部链接' : 'This will open external link'}</p>
                 </div>
               </div>
             </a>
@@ -32,7 +31,7 @@ const ResumeListItem = ({ _id, title, _title, info, _info, url, degree }) => {
           <div className="third-content ml-auto mr-4 mb-2">
             <h6 className="font-weight-bold float-right">
               {" "}
-              <span className="text-muted"></span>                    {router.pathname == '/resume/chinese' ? title : _title}
+              <span className="text-muted"></span>                    {router.asPath == '/resume/ch-cn' ? title : _title}
   
             </h6>
             <br />
@@ -42,7 +41,7 @@ const ResumeListItem = ({ _id, title, _title, info, _info, url, degree }) => {
           <div className="card-body white">
             <h4 className="text-uppercase font-weight-bold">Details</h4>
             <p className="text-muted">
-              {router.pathname == '/resume/chinese' ? info : _info}
+              {router.asPath == '/resume/ch-cn' ? info : _info}
             </p>
           </div>
         </div>

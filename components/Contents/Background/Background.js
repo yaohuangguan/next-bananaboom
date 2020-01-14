@@ -1,8 +1,8 @@
 
 const Background = () => {
   return (
-    <div className="col-md-6">
-      <div className="view overlay zoom">
+    <div className="text-center">
+      <div className="view overlay zoom w-50">
         <img
           data-src={"https://i.ibb.co/WK79MB2/self.jpg"}
           alt="me"

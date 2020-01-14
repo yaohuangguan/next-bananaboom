@@ -26,7 +26,7 @@ const blog = ({ posts, comments, currentUser, router }) => {
           title="Go Back"
           onClick={e => {
             e.preventDefault();
-            router.replace("/blogs/blog");
+            router.replace("/blogs");
           }}
           className="btn draw-border-blue"
         >

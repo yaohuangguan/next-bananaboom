@@ -1,14 +1,13 @@
-import React from "react";
-import {
-  randomColor,
-  randomIntFromRange,
-  distance
-} from '../utils/Utils'
-import Link from 'next/link'
-class Canvas extends React.Component {
-  componentDidMount() {
+import React, { useEffect } from "react";
+import { randomColor, randomIntFromRange, distance } from "../utils/Utils";
+import Link from "next/link";
+
+const Canvas = () => {
+  let step = null;
+
+  useEffect(() => {
     const canvas = document.querySelector("canvas");
-    canvas.style.zIndex = 0
+    canvas.style.zIndex = 0;
     const c = canvas.getContext("2d");
     const w = Math.max(
       document.documentElement.clientWidth,
@@ -48,6 +47,75 @@ class Canvas extends React.Component {
     });
 
     // Objects
+
+    function createMountain(mountainAmount, height, color) {
+      for (let i = 0; i < mountainAmount; i++) {
+        const mountainWidth = canvas.width / mountainAmount;
+        c.beginPath();
+        c.moveTo(i * mountainWidth, canvas.height);
+        c.lineTo(i * mountainWidth + mountainWidth + 325, canvas.height);
+        c.lineTo(i * mountainWidth + mountainWidth / 2, canvas.height - height);
+        c.lineTo(i * mountainWidth - 325, canvas.height);
+        c.fillStyle = color;
+        c.fill();
+        c.closePath();
+      }
+    }
+
+    function init() {
+      backgroundStarList = [];
+      starList = [];
+      miniStarList = [];
+      meteorList = [];
+      for (let i = 0; i < 250; i++) {
+        const x = Math.random() * canvas.width;
+        const y = Math.random() * canvas.height;
+        const radius = Math.random() * 3;
+        backgroundStarList.push(new Star(x, y, radius, "white"));
+      }
+    }
+
+    function animate() {
+      step = requestAnimationFrame(animate);
+      c.fillStyle = backgroundGradient;
+      c.fillRect(0, 0, canvas.width, canvas.height);
+      meteorList.forEach(meteor => {
+        meteor.update();
+      });
+
+      backgroundStarList.forEach(backgroundStar => {
+        backgroundStar.draw();
+      });
+
+      createMountain(1, canvas.height - 300, "#384551");
+      createMountain(2, canvas.height - 400, "#2b3843");
+      createMountain(3, canvas.height - 490, "#26333e");
+      c.fillStyle = "#182028";
+      c.fillRect(0, canvas.height - groundHeight, canvas.width, groundHeight);
+      starList.forEach((star, index) => {
+        star.update();
+        if (star.radius <= 0) {
+          starList.splice(index, 1);
+        }
+      });
+      miniStarList.forEach((mini, index) => {
+        mini.update();
+        if (mini.ttl === 0) {
+          miniStarList.splice(index, 1);
+        }
+      });
+
+      timer++;
+      if (timer % respawnRate === 0) {
+        const radius = 12;
+        const x = Math.max(radius, Math.random() * canvas.width - radius);
+        starList.push(new Star(x, -100, radius, "#e3eaef"));
+        respawnRate = randomIntFromRange(75, 200);
+        meteorList.push(
+          new Meteor(Math.random() * canvas.width, 0, 5, "white")
+        );
+      }
+    }
     class Star {
       constructor(x, y, radius, color) {
         this.x = x;
@@ -160,6 +228,7 @@ class Canvas extends React.Component {
           x: randomIntFromRange(-30, 30),
           y: 3
         };
+        this.step = null;
       }
       draw() {
         c.save();
@@ -180,94 +249,31 @@ class Canvas extends React.Component {
         this.y += this.velocity.y;
       }
     }
-
-    function createMountain(mountainAmount, height, color) {
-      for (let i = 0; i < mountainAmount; i++) {
-        const mountainWidth = canvas.width / mountainAmount;
-        c.beginPath();
-        c.moveTo(i * mountainWidth, canvas.height);
-        c.lineTo(i * mountainWidth + mountainWidth + 325, canvas.height);
-        c.lineTo(i * mountainWidth + mountainWidth / 2, canvas.height - height);
-        c.lineTo(i * mountainWidth - 325, canvas.height);
-        c.fillStyle = color;
-        c.fill();
-        c.closePath();
-      }
-    }
-
-    function init() {
-      backgroundStarList = [];
-      starList = [];
-      miniStarList = [];
-      meteorList = [];
-      for (let i = 0; i < 250; i++) {
-        const x = Math.random() * canvas.width;
-        const y = Math.random() * canvas.height;
-        const radius = Math.random() * 3;
-        backgroundStarList.push(new Star(x, y, radius, "white"));
-      }
-    }
-
-    // Animation Loop
-    function animate() {
-      requestAnimationFrame(animate);
-      c.fillStyle = backgroundGradient;
-      c.fillRect(0, 0, canvas.width, canvas.height);
-      meteorList.forEach(meteor => {
-        meteor.update();
-      });
-
-      backgroundStarList.forEach(backgroundStar => {
-        backgroundStar.draw();
-      });
-
-      createMountain(1, canvas.height - 300, "#384551");
-      createMountain(2, canvas.height - 400, "#2b3843");
-      createMountain(3, canvas.height - 490, "#26333e");
-      c.fillStyle = "#182028";
-      c.fillRect(0, canvas.height - groundHeight, canvas.width, groundHeight);
-      starList.forEach((star, index) => {
-        star.update();
-        if (star.radius <= 0) {
-          starList.splice(index, 1);
-        }
-      });
-      miniStarList.forEach((mini, index) => {
-        mini.update();
-        if (mini.ttl === 0) {
-          miniStarList.splice(index, 1);
-        }
-      });
-
-      timer++;
-      if (timer % respawnRate === 0) {
-        const radius = 12;
-        const x = Math.max(radius, Math.random() * canvas.width - radius);
-        starList.push(new Star(x, -100, radius, "#e3eaef"));
-        respawnRate = randomIntFromRange(75, 200);
-        meteorList.push(
-          new Meteor(Math.random() * canvas.width, 0, 5, "white")
-        );
-      }
-    }
-
     init();
     animate();
-  }
-  render() {
-    return (
-      <div>
-        <Link href='/blogs/blog' replace>
-          <a
-            className="btn btn-outline-white btn-rounded waves-effect" style={{position:'absolute',zIndex:5}}
-          >
-            Go back
-          </a>
-        </Link>
-        <canvas></canvas>
-      </div>
-    );
-  }
-}
 
-export default Canvas
+    return () => {
+      window.removeEventListener("resize", () => console.log("removed"));
+      cancelAnimationFrame(step);
+    };
+  }, []);
+
+  // Animation Loop
+
+  return (
+    <div>
+      <Link href='/blogs' replace>
+        <a
+          className="btn btn-outline-white btn-rounded waves-effect"
+          style={{position:'absolute'}}
+        >
+          Go back
+        </a>
+      </Link>
+
+      <canvas></canvas>
+    </div>
+  );
+};
+
+export default Canvas;

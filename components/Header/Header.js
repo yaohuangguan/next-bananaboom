@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import dynamic from "next/dynamic";
 import Link from "next/link";
+import {withRouter} from 'next/router'
 import firebase from "../../firebase/firebase";
 import '../Header/Hamburger/Hamburger.scss'
 const Signup = dynamic(() => import("../Auth/Signup"), {
@@ -19,7 +20,8 @@ const Header = ({
   resumeRoute,
   homeRoute,
   changeLanguageRoute,
-  currentUser
+  currentUser,
+  router
 }) => {
   useEffect(() => {
     const headerChange = () => {
@@ -50,18 +52,18 @@ const Header = ({
   return (
     <div className="nav">
       <div className="header">
-        <Link href={homeRoute}>
+        <Link  href={homeRoute}>
           <a id="logo" className="px-3">
             <img src="https://img.icons8.com/ultraviolet/32/000000/ninja-turtle.png" alt='sitelogo' />
           </a>
         </Link>
         <div className="options">
-          <Link href="/blogs/blog">
+          <Link  href="/blogs">
             <div className="option">
               <a>{blogName}</a>
             </div>
           </Link>
-          <Link href={resumeRoute}>
+          <Link  href={resumeRoute} as={`/resume/${router.pathname=='/' ? 'en-us' : 'ch-cn' }`}>
             <div className="option">
               <a>{resumeName}</a>
             </div>
@@ -78,7 +80,7 @@ const Header = ({
             </div>
           )}
 
-          <Link href={changeLanguageRoute}>
+          <Link  href={changeLanguageRoute}>
             <div className="option">
               <a>
                 <span className="btn-hover color-5">
@@ -103,4 +105,4 @@ const Header = ({
   );
 };
 
-export default Header;
+export default withRouter(Header);

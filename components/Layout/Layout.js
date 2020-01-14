@@ -2,8 +2,8 @@ import React from "react";
 import Router from "next/router";
 import { useEffect, useState } from "react";
 import ErrorBoundary from "../NotFound/ErrorBoundary";
-import { getLoading } from '../../utils/Utils';
-import HeadConfig from '../Head/Head'
+import { getLoading } from "../../utils/Utils";
+import HeadConfig from "../Head/Head";
 const fillColor = `#eb782e`;
 
 const Layout = ({ children }) => {
@@ -17,15 +17,9 @@ const Layout = ({ children }) => {
       console.log("App is changing to: ", url);
       setLoading(true);
     };
-    Router.events.on("routeChangeError", (err, url) => {
-      if (err.cancelled) {
-        console.log(`Route to ${url} was cancelled!`);
-      }
-    });
-    Router.events.on("routeChangeStart", routeStart);
-    Router.events.on("routeChangeComplete", url => {
+    const routeEnd = url => {
       console.log("App is changed to: ", url);
-      const urlReloadList = [`/blogs/article/${Router.query.id}`];
+      const urlReloadList = [`/blogs/article/${Router.query.id}`,'/resume/ch-cn','/resume/en-us'];
       const ifReload = urlReloadList.some(each => {
         return each == url;
       });
@@ -33,15 +27,27 @@ const Layout = ({ children }) => {
         console.log("reloaded");
         window.location.reload();
       }
-    });
+    };
+    const routeError = (err, url) => {
+      if (err.cancelled) {
+        console.log(`Route to ${url} was cancelled!`);
+      }
+    };
+    Router.events.on("routeChangeError", routeError);
+    Router.events.on("routeChangeStart", routeStart);
+    Router.events.on("routeChangeComplete", routeEnd);
     return () => {
       Router.events.off("routeChangeStart", routeStart);
-      Router.events.off("routeChangeComplete");
+      Router.events.off(
+        "routeChangeComplete",
+        Router.pathname === "/blogs/article/[id]" ? null : routeEnd
+      );
+      Router.events.off("routeChangeError", routeError);
     };
   }, []);
   return (
     <ErrorBoundary>
-    <HeadConfig></HeadConfig>
+      <HeadConfig></HeadConfig>
       <div>
         <noscript>
           <div className="javascript-detect text-center">
@@ -85,7 +91,7 @@ Layout.getInitialProps = () => {
     //Logs
     require("../Contents/Logs/Logs.scss"),
     //Subscribe
-    require('../Subscribe/Subscribe.scss')
+    require("../Subscribe/Subscribe.scss")
   );
 };
 

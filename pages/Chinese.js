@@ -3,7 +3,7 @@ import api from '../utils/Api'
 import Layout from "../components/Layout/Layout";
 import Header from "../components/Header/Header";
 import Jumbo from "../components/Jumbo/Jumbo";
-import ChineseIntro from "../components/Contents/Intro/Chinese";
+import Intro from "../components/Contents/Intro/English";
 import Subscribe from "../components/Subscribe/Subscribe";
 import Footer from "../components/Footer/Footer";
 import Animation from "../utils/Animation";
@@ -45,7 +45,7 @@ const Chinese = ({ result, errors,logs,projects, currentUser }) => {
         login={"登录"}
         blogName={"博客"}
         resumeName={"介绍"}
-        resumeRoute={"/resume/chinese"}
+        resumeRoute={"/resume/[query]"}
         homeRoute={"/chinese"}
         changeLanguageRoute={"/"}
         currentUser={currentUser ? currentUser : null}
@@ -58,12 +58,12 @@ const Chinese = ({ result, errors,logs,projects, currentUser }) => {
         backgroundPicture={false}
       />
       <div className="container">
-        <ChineseIntro
+        <Intro
           title={intro_title_cn || '永远在路上'}
           subtitle={intro_subtitle_cn || '嗨,我是Sam'}
           intro={intro_intro_cn ||`我是Web开发工程师和设计师，开源社区贡献者. 你也可以在 GitHub 上找到我的一些项目和在 CSDN 上找到我发布的博客, 我一直在维护该网站，并改善其性能和用户体验。如果你有改善此网站的好主意，可以是任何方面，比如UI,UX，性能优化，数据库设计，技术栈以及浏览时的Bug等，欢迎到网站的底部留下评论！`}
           projects={projects}
-        ></ChineseIntro>
+        ></Intro>
 
         <Subscribe
           title={"对本博客感兴趣？输入邮箱加入推送"}
