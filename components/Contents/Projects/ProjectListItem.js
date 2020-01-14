@@ -1,6 +1,5 @@
 import { useRouter } from "next/router";
 import "./Project.scss";
-import "../../../utils/LazyLoad";
 const Project = ({
   _id,
   link,
@@ -40,8 +39,7 @@ const Project = ({
           title="会打开外部链接 this will open external link"
         >
           <img
-            src={image}
-            data-sizes="auto"
+            data-src={image}
             className="lazyload"
             alt={router.pathname == "/chinese" ? name : _name}
             width={width}

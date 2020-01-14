@@ -18,6 +18,7 @@ const auth = firebase.auth();
 const provider = new firebase.auth.GoogleAuthProvider();
 provider.setCustomParameters({ prompt: "select_account" });
 const signInWithGoogle = async () => {
+  document.body.classList.toggle('modal-active')
   try {
     const response = await auth.signInWithPopup(provider);
     console.log(response)

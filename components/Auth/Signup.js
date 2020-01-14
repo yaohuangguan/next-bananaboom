@@ -21,9 +21,12 @@ const Signup = ({ login }) => {
     const modalContainer = document.querySelector("#signup-container");
     modalContainer.removeAttribute("class");
     modalContainer.classList.add("popup");
+    document.body.classList.add('modal-active')
   };
   const closeSignup = () => {
     document.getElementById("signup-container").classList.add("out");
+    document.body.classList.remove('modal-active')
+
   };
   const passwordReveal = e => {
     let x = document.querySelectorAll(".password");
@@ -59,11 +62,18 @@ const Signup = ({ login }) => {
     const modalContainer = document.querySelector("#login-container");
     modalContainer.removeAttribute("class");
     modalContainer.classList.add("popup");
+    document.body.classList.add('modal-active')
+
+
   };
   const handleUserSubmit = async e => {
     e.preventDefault();
-    if (!displayName || !email || !password || !passwordConf)
+    if (!displayName || !email || !password || !passwordConf){
+      const shakeMessage = document.querySelector('.shake-target-signup')
+      shakeMessage.classList.toggle('shake-message')
       return seterrors("Fill all the requirements");
+    }
+      
     try {
       const response = await api.post("/api/users", {
         displayName,
@@ -98,7 +108,7 @@ const Signup = ({ login }) => {
     <div>
       <Login></Login>
       <div id="signup-container">
-        <div className="modal-background text-white lazy-load">
+        <div className="modal-background text-white lazy-load shake-target-signup">
           <form
             className="text-center modal-inner px-5 form-a"
             style={{

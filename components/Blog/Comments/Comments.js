@@ -8,11 +8,11 @@ const Comment = ({ currentUser, comments, _id }) => {
   const [commentsList, setcommentsList] = useState(comments);
   const handleCommentChange = e => setinputField(e.target.value);
   useEffect(() => {
-    const abort = new AbortController()
-    const signal = abort.signal
+    const abort = new AbortController();
+    const signal = abort.signal;
     const getNewComments = async () => {
       const response = await api.get(`/api/comments/${_id}`, {
-        signal:signal
+        signal: signal
       });
       let getComments = await response.data;
       setcommentsList(getComments);
@@ -20,11 +20,11 @@ const Comment = ({ currentUser, comments, _id }) => {
     };
     getNewComments();
     return () => {
-      abort.abort()
+      abort.abort();
     };
   }, []);
   const clearCommentField = () => {
-    const textarea = document.querySelector(".textarea");
+    const textarea = document.querySelector(".md-textarea");
     textarea.value = "";
     setinputField("");
   };
@@ -36,12 +36,13 @@ const Comment = ({ currentUser, comments, _id }) => {
   };
   const submitComment = async () => {
     if (!currentUser) {
-      seterrors("Please login to comment");
-      return console.log("Please login");
+      return seterrors("Please login to comment");
     }
     if (commentInputField.trim() == "") {
-      seterrors("comment can not be empty");
-      return console.log("comment can not be empty");
+      return seterrors("comment can not be empty");
+    }
+    if (commentInputField.trim().length > 120) {
+      return seterrors("You can't post a comment more than 120 words");
     }
     const { displayName, photoURL } = currentUser;
     try {
@@ -50,11 +51,11 @@ const Comment = ({ currentUser, comments, _id }) => {
         url: `/api/comments/${_id}`,
         data: JSON.stringify({
           user: displayName,
-          photoUrl: photoURL,
+          photoURL,
           comment: commentInputField
         })
       });
-      const result = await response.data
+      const result = await response.data;
       console.log(result);
       getNewComments();
       seterrors("");
@@ -73,7 +74,7 @@ const Comment = ({ currentUser, comments, _id }) => {
   //       data:
   //     })
   //   } catch (error) {
-      
+
   //   }
   // }
   // const collectReply = (replyValue) =>{
@@ -89,26 +90,30 @@ const Comment = ({ currentUser, comments, _id }) => {
       <div className="px-2">
         <div className="chat-message w-100">
           <ul className="list-unstyled chat">
-            <CommentList comments={commentsList} article_id={_id}></CommentList>
+            <CommentList comments={commentsList} currentUser={currentUser} article_id={_id}></CommentList>
             <div className="textarea-whole">
               <h5>发布评论</h5>
+              <p className='text-muted'>需要登录后才能留言</p>
               <div className="form-group basic-textarea">
                 {errors ? (
                   <div className="errors text-danger">{errors}</div>
                 ) : null}
-                <textarea
-                  className="form-control pl-2 my-0 textarea"
-                  id="exampleFormControlTextarea2"
-                  rows="3"
-                  value={commentInputField}
-                  onChange={handleCommentChange}
-                  placeholder="说点儿什么呗"
-                ></textarea>
+                <div className="md-form m-0">
+                  <textarea
+                    className="form-control pl-2 my-0 md-textarea"
+                    rows="2"
+                    id="textarea-char-counter"
+                    length="120"
+                    value={commentInputField}
+                    onChange={handleCommentChange}
+                  ></textarea>
+                  <label htmlFor="textarea-char-counter">说点儿什么呗</label>
+                </div>
               </div>
             </div>
             <button
               type="button"
-              className="btn btn-hover color-5 waves-effect waves-light float-right"
+              className="btn btn-hover color-5 mb-3 waves-effect waves-light float-right"
               onClick={submitComment}
             >
               Send

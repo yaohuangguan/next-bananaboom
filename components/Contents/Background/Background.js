@@ -1,14 +1,14 @@
-import '../../../utils/LazyLoad'
+
 const Background = () => {
   return (
     <div className="col-md-6">
       <div className="view overlay zoom">
         <img
-          src={"https://i.ibb.co/WK79MB2/self.jpg"}
+          data-src={"https://i.ibb.co/WK79MB2/self.jpg"}
           alt="me"
           width="100%"
           height="100%"
-          className="rounded float-right zoom lazy-load"
+          className="rounded float-right zoom lazyload"
           id="me"
         />
 

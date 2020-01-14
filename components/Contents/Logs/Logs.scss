@@ -1,33 +1,33 @@
 #logs-container {
-  position:fixed;
-  height:100%;
-  width:100%;
-  top:0%;
-  left:0%;
-  @media screen and (max-width:768px) {
-    height:70%;
-    width:80%;
-    top:20%;
-  left:10%;
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  top: 0%;
+  left: 0%;
+  @media screen and (max-width: 768px) {
+    height: 70%;
+    width: 80%;
+    top: 10%;
+    left: 10%;
   }
-  transform:scale(0);
-  z-index:1;
+  transform: scale(0);
+  z-index: 1;
   overflow: scroll;
   &.popup {
-    transform:scaleY(.01) scaleX(0);
-    animation:unfoldIn 1s cubic-bezier(0.165, 0.840, 0.440, 1.000) forwards;
+    transform: scaleY(0.01) scaleX(0);
+    animation: unfoldIn 1s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
     .modal-background {
       .modal {
-        transform:scale(0);
-        animation: zoomIn .5s .8s cubic-bezier(0.165, 0.840, 0.440, 1.000) forwards;
+        transform: scale(0);
+        animation: zoomIn 0.5s 0.8s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
       }
     }
     &.out {
-      transform:scale(1);
-      animation:unfoldOut 1s .3s cubic-bezier(0.165, 0.840, 0.440, 1.000) forwards;
+      transform: scale(1);
+      animation: unfoldOut 1s 0.3s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
       .modal-background {
         .modal {
-          animation: zoomOut .5s cubic-bezier(0.165, 0.840, 0.440, 1.000) forwards;
+          animation: zoomOut 0.5s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
         }
       }
     }

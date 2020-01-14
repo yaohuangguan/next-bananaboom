@@ -35,12 +35,11 @@ const Jumbo = ({ name, welcome, info, button, backgroundPicture }) => {
             style={{ minHeight: "100vh",display:'flex',flexDirection:'column',alignItems:'center',justifyContent:'center' }}
           >
             <div className="jumbo">
-              <h3 className="text-white name">
-
+              <h3 className="text-white">
               &#128247;
                 {name}
               </h3>
-              <h2 className="card-title h2 my-3 py-5 jumbo neon-style-5">{welcome}</h2>
+              <h2 className="card-title h2 my-3 py-5 jumbo">{welcome}</h2>
               <h4 className="mb-4 pb-2 py-5 mt-5">{info}</h4>
 
 

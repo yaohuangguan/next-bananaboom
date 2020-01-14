@@ -14,12 +14,15 @@ const Login = () => {
 
   const closeLogin = () => {
     document.getElementById("login-container").classList.add("out");
+    document.body.classList.remove('modal-active')
+
   };
   const openSignup = e => {
     closeLogin();
     const modalContainer = document.querySelector("#signup-container");
     modalContainer.removeAttribute("class");
     modalContainer.classList.add("popup");
+    document.body.classList.add('modal-active')
   };
   const clearInput = () => {
     setemail("");
@@ -34,7 +37,11 @@ const Login = () => {
   };
   const handleUserSubmit = async e => {
     e.preventDefault();
-    if (!email || !password) return seterrors("Fill all the requirements");
+    if (!email || !password) {
+      const shakeMessage = document.querySelector('.shake-target')
+      shakeMessage.classList.toggle('shake-message')
+     return seterrors("Fill all the requirements");
+    }
     try {
       const response = await api.post("/api/users/signin", {
         email,
@@ -65,7 +72,7 @@ const Login = () => {
   return (
     <div>
       <div id="login-container">
-        <div className="modal-background text-white lazy-load">
+        <div className="modal-background text-white lazy-load shake-target">
           <form
             className="text-center modal-inner px-5 form-a"
             style={{

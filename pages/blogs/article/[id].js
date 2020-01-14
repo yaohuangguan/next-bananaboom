@@ -1,12 +1,17 @@
 import Layout from "../../../components/Layout/Layout";
-import { useRouter, withRouter } from "next/router";
+import { withRouter } from "next/router";
+import dynamic from "next/dynamic";
 import Head from "next/head";
+import { isInViewPort } from "../../../utils/Utils";
 import api from "../../../utils/Api";
-import { useEffect } from "react";
-import Comment from "../../../components/Blog/Comments/Comments";
+import { useEffect, useState } from "react";
+const Comment = dynamic(() =>
+  import("../../../components/Blog/Comments/Comments")
+);
 
-const blog = ({ posts, comments, currentUser }) => {
-  const router = useRouter();
+const blog = ({ posts, comments, currentUser, router }) => {
+  const [loadComment, setloadComment] = useState("");
+
   useEffect(() => {
     require("../../../utils/prism");
   }, []);
@@ -49,6 +54,7 @@ const blog = ({ posts, comments, currentUser }) => {
             </div>
           ) : null}
         </section>
+
         <Comment
           comments={comments}
           _id={_id}

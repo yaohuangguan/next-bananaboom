@@ -1,6 +1,7 @@
-import React from "react";
+
 import App from "next/app";
 import firebase from "../firebase/firebase";
+
 class MyApp extends App {
   // Only uncomment this method if you have blocking data requirements for
   // every single page in your application. This disables the ability to
@@ -33,16 +34,14 @@ class MyApp extends App {
      return console.log("currentuser from google auth", user);
     });
 
-    this.setState({ token: window.localStorage.getItem("token") || "" }, () =>
-      console.log(this.state.token)
+    this.setState({ token: window.localStorage.getItem("token") || "" }
     );
 
     this.setState(
       {
         currentUser:
           JSON.parse(window.localStorage.getItem("currentUser")) || ""
-      },
-      () => console.log(this.state.currentUser)
+      },()=>console.log(this.state.currentUser)
     );
   }
 

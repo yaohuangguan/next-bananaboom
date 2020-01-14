@@ -1,10 +1,9 @@
 import React from "react";
-import Head from "../Head/Head";
 import Router from "next/router";
 import { useEffect, useState } from "react";
 import ErrorBoundary from "../NotFound/ErrorBoundary";
 import { getLoading } from '../../utils/Utils';
-
+import HeadConfig from '../Head/Head'
 const fillColor = `#eb782e`;
 
 const Layout = ({ children }) => {
@@ -42,8 +41,7 @@ const Layout = ({ children }) => {
   }, []);
   return (
     <ErrorBoundary>
-      <Head />
-
+    <HeadConfig></HeadConfig>
       <div>
         <noscript>
           <div className="javascript-detect text-center">

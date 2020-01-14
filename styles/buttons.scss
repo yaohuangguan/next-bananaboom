@@ -83,47 +83,58 @@
   -o-transition: all 0.4s ease-in-out;
   -webkit-transition: all 0.4s ease-in-out;
   transition: all 0.4s ease-in-out;
+  &:hover {
+    color: #fff;
+    background-position: 100% 0;
+    moz-transition: all 0.4s ease-in-out;
+    -o-transition: all 0.4s ease-in-out;
+    -webkit-transition: all 0.4s ease-in-out;
+    transition: all 0.4s ease-in-out;
+  }
+  &:focus {
+    outline: none;
+  }
+  &.color-3 {
+    background-image: linear-gradient(
+      to right,
+      #6253e1,
+      rgb(174, 65, 189),
+      #a3a1ff,
+      #f24645
+    );
+    box-shadow: 0 4px 15px 0 rgba(126, 52, 161, 0.75);
+  }
+  &.color-4 {
+    background-image: linear-gradient(
+      to right,
+      #1d88ec,
+      rgb(49, 103, 219),
+      #64b9eb,
+      #437dfc
+    );
+  }
+  &.color-5 {
+    background-image: linear-gradient(
+      to right,
+      #0ba360,
+      #3cba92,
+      #30dd8a,
+      #2bb673
+    );
+    box-shadow: 0 4px 15px 0 rgba(23, 168, 108, 0.75);
+  }
+  &.color-11 {
+    background-image: linear-gradient(
+      to right,
+      #eb3941,
+      #f15e64,
+      #e14e53,
+      #e2373f
+    );
+    box-shadow: 0 5px 15px rgba(242, 97, 103, 0.4);
+  }
+  
 }
 
-.btn-hover:hover {
-  color: #fff;
-  background-position: 100% 0;
-  moz-transition: all 0.4s ease-in-out;
-  -o-transition: all 0.4s ease-in-out;
-  -webkit-transition: all 0.4s ease-in-out;
-  transition: all 0.4s ease-in-out;
-}
 
-.btn-hover:focus {
-  outline: none;
-}
-.btn-hover.color-3 {
-  background-image: linear-gradient(
-    to right,
-    #6253e1,
-    rgb(174, 65, 189),
-    #a3a1ff,
-    #f24645
-  );
-  box-shadow: 0 4px 15px 0 rgba(126, 52, 161, 0.75);
-}
-.btn-hover.color-5 {
-  background-image: linear-gradient(
-    to right,
-    #0ba360,
-    #3cba92,
-    #30dd8a,
-    #2bb673
-  );
-  box-shadow: 0 4px 15px 0 rgba(23, 168, 108, 0.75);
-}
-.btn-hover.color-11 {
-  background-image: linear-gradient(
-    to right,
-    #eb3941,
-    #f15e64,
-    #e14e53,
-    #e2373f
-  );
-  box-shadow: 0 5px 15px rgba(242, 97, 103, 0.4);
-}
+

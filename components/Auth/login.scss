@@ -14,13 +14,13 @@ body {
   top: 8%;
   left: 30%;
   transform: scale(0);
-  z-index: 1;
-  @media screen and (max-width: 768px) {
-    height: 70%;
-    width: 80%;
-    top: 20%;
-    left: 10%;
-  }
+  z-index: 5;
+  // @media screen and (max-width: 768px) {
+  //   height: 70%;
+  //   width: 80%;
+  //   top: 20%;
+  //   left: 10%;
+  // }
   &.popup {
     transform: scaleY(0.01) scaleX(0);
     animation: unfoldIn 1s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
@@ -101,6 +101,18 @@ body {
       line-height: 22px;
     }
   }
+}
+
+.shake-message{
+  animation: .5s shake alternate;
+}
+@keyframes shake {
+  0% { transform: skewX(-5deg); }
+  5% { transform: skewX(5deg); }
+  10% { transform: skewX(-5deg); }
+  15% { transform: skewX(5deg); }
+  20% { transform: skewX(0deg); }
+  100% { transform: skewX(0deg); }  
 }
 
 @keyframes unfoldIn {

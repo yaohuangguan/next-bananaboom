@@ -1,19 +1,13 @@
 import { timeSince } from "../../../utils/TimeSince";
-const CommentListItem = ({ user, comment, date, photoUrl, id, reply }) => {
-
-  const showReply = e => {
-    const reply = document.getElementById(id);
-    reply.classList.toggle("d-none");
-  };
+import Reply from "./Reply/Reply";
+const CommentListItem = ({ user, comment, date, photoURL, id, reply, currentUser }) => {
   return (
     <div>
       {comment ? (
         <div style={{ display: "flex" }}>
           <img
             src={
-              photoUrl
-                ? photoUrl
-                : "https://cdn3.iconfinder.com/data/icons/vector-icons-6/96/256-512.png"
+              photoURL
             }
             alt="avatar"
             width="50px"
@@ -24,7 +18,7 @@ const CommentListItem = ({ user, comment, date, photoUrl, id, reply }) => {
             className="mb-4 w-100"
             style={{ display: "flex", flexFlow: "column wrap" }}
           >
-            <div className="p-3 z-depth-1">
+            <div className="p-3">
               <div className="header mb-2">
                 <strong className="primary-font font-weight-bold">
                   {user}
@@ -33,30 +27,9 @@ const CommentListItem = ({ user, comment, date, photoUrl, id, reply }) => {
                 <br />
               </div>
               <p className="mb-2">{comment}</p>
-              <div style={{ display: "flex", justifyContent: "space-between" }}>
-                <a
-                  onClick={showReply}
-                  className="text-primary"
-                  style={{ alignSelf: "flex-end" }}
-                >
-                  Reply
-                </a>
-                <div>
-                  <a>
-                    <img src="https://img.icons8.com/windows/24/000000/comments.png"></img>
-                    {reply.length}
-                  </a>
-                </div>
-              </div>
-              <div className="w-100 md-form m-0 d-none reply" id={id}>
-                <input
-                  type="text"
-                  className="form-control"
-                  placeholder="Enter your public reply here..."
-                />
-              </div>
+              <Reply reply={reply} id={id} currentUser={currentUser}/>
             </div>
-            {reply.length == 0 ? "No reply" : 'has reply'}
+           
             {id}
           </div>
         </div>
