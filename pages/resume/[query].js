@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { useState, useEffect } from "react";
+import Background from '../../components/Contents/Background/Background'
 import china from "../../public/china.png";
 import uk from "../../public/uk.png";
 import ResumeList from "../../components/Contents/Resume/ResumeList/ResumeList";
@@ -78,63 +78,81 @@ const Resume = ({ resumeItem, errors, router }) => {
 
         <p>More in Github...</p>
         <br />
-        {router.asPath === "/resume/en-us" ? (
-          <div className="english-content-involvment">
-            <h5>Involvement</h5>
-            <p>Harvard Model United Nations</p>
-            <p>Delegate of Chad , Volunteer</p>
-            <p>
-              Represented Chad in the UNDP and debated the critical issue of
-              water pollution. The final result turned out to be good that we
-              mostly agreed super nations should take more responsibilities and
-              help other nations with more resources to prevent pollution
-              together.
-            </p>
-            <p>
-              Volunteered for the other conference rooms and passing the note
-              through delegates in my spare time.
-            </p>
-            <br />
-            <h5>Tools,Honors</h5>
-            <p>
-              Git, HTML, CSS, Sass, Linux, JavaScript, Vue.js, React, Bootstrap,
-              Node.js, Express.js, Postman, Python, PostgreSQL, MongoDB, Knowing
-              how HTTP, TCP/IP, DNS and Web Server work
-            </p>
-            <p>
-              Honor:
-              <a href="https://meritpages.com/samyao" target="blank">
-                Dean’s List
-              </a>{" "}
-              (Top 10% in department)
-            </p>
-          </div>
-        ) : (
-          <div className="chinese-content-involvment">
-            <h5>参与</h5>
-            <h4>
-              <b>哈佛模拟联合国</b>
-            </h4>
-            <p>乍得代表与志愿者</p>
-            <p>
-              代表乍得参加开发计划署，并辩论水污染这一关键问题。最终结果是我们大多同意大国应该承担更多的责任，帮助其他国家更多技术上的支持，共同防治水污染。
-            </p>
-            <p>为其他时间参会大厅做志愿者，传递代表交流纸条等</p>
-            <br />
-            <h5>技能，荣誉</h5>
-            <p>
-              Git, HTML, CSS, Sass, Linux, JavaScript, Vue.js, React, Bootstrap,
-              Node.js, Express.js, Python, Postman, PostgreSQL, MongoDB, Knowing
-              how HTTP, TCP/IP, DNS and Web Server work
-            </p>
-            <p>
-              <a href="https://meritpages.com/samyao" target="blank">
-                院长名单(学院前10%)
-              </a>
-            </p>
-          </div>
-        )}
-
+        <div className="row">
+          {router.asPath === "/resume/en-us" ? (
+            <div className="english-content-involvment col-md-12 m-0">
+              <h5>Involvement</h5>
+              <p>Harvard Model United Nations</p>
+              <p>Delegate of Chad , Volunteer</p>
+              <p>
+                Represented Chad in the UNDP and debated the critical issue of
+                water pollution. The final result turned out to be good that we
+                mostly agreed super nations should take more responsibilities
+                and help other nations with more resources to prevent pollution
+                together.
+              </p>
+              <p>
+                Volunteered for the other conference rooms and passing the note
+                through delegates in my spare time.
+              </p>
+              <br />
+              <h5>Tools,Honors</h5>
+              <p>
+                Git, HTML, CSS, Sass, Linux, JavaScript, Vue.js, React,
+                Bootstrap, Node.js, Express.js, Postman, Python, PostgreSQL,
+                MongoDB, Knowing how HTTP, TCP/IP, DNS and Web Server work
+              </p>
+              <p>
+                Honor:
+                <a
+                  href="https://meritpages.com/samyao"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Dean’s List
+                </a>{" "}
+                (Top 10% in department)
+              </p>
+              <h5>Interests</h5>
+              <p>
+                Read some tech books，any kind of sports，including basketball,
+                workout, swimming,etc... And room escape!
+              </p>
+              
+            </div>
+          ) : (
+            <div className="chinese-content-involvment col-md-12 m-0">
+              <h5>参与</h5>
+              <h5>哈佛模拟联合国峰会</h5>
+              <p>乍得国家代表&大会志愿者</p>
+              <p>
+                代表乍得参加开发计划署，并辩论水污染这一关键问题。最终结果是我们大多同意大国应该承担更多的责任，帮助其他国家更多技术上的支持，共同防治水污染。
+              </p>
+              <p>为其他时间参会大厅做志愿者，传递代表交流纸条等</p>
+              <br />
+              <h5>技能，荣誉</h5>
+              <p>
+                Git, HTML, CSS, Sass, Linux, JavaScript, Vue.js, React,
+                Bootstrap, Node.js, Express.js, Python, Postman, PostgreSQL,
+                MongoDB, Knowing how HTTP, TCP/IP, DNS and Web Server work
+              </p>
+              <p>
+                <a
+                  href="https://meritpages.com/samyao"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  院长名单(学院前10%)
+                </a>
+              </p>
+              <h5>爱好</h5>
+              <p>看些技术书，各项运动，篮球，健身，游泳等。密室逃脱</p>
+             
+            </div>
+          )}
+         
+        </div>
+            <Background></Background>
         <br />
       </div>
     </Layout>

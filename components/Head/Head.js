@@ -3,9 +3,16 @@ const HeadConfig = () => (
   <Head>
     <meta charSet="utf-8" />
     <title>Moviegoer</title>
-    <link rel="icon" href="/lemon.png" />
-    <link rel="manifest" href="/manifest.json"/>
+    <link rel="icon" href="/favicon.ico" />
+    <link rel="manifest" href="/manifest.json" />
     <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5" />
+    <meta name="msapplication-TileColor" content="#2d89ef" />
+    <meta name="theme-color" content="#ffffff"></meta>
     <meta name="theme-color" content="normal" />
     <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
     <meta
@@ -38,7 +45,7 @@ HTTP, TCP/IP, DNS and Web Server work...."
       href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.10/css/mdb.min.css"
       rel="stylesheet"
     />
-      <script src="/lazyload.min.js" async></script>
+    <script src="/lazyload.min.js" async></script>
   </Head>
 );
 

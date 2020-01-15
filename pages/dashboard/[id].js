@@ -1,4 +1,5 @@
 import { useRouter } from "next/router";
+import Layout from '../../components/Layout/Layout'
 import { useEffect } from "react";
 const dashboard = ({ currentUser }) => {
   const router = useRouter();
@@ -11,13 +12,15 @@ const dashboard = ({ currentUser }) => {
     return () => {};
   },[currentUser,router]);
   return (
-    <div>
-      {currentUser ? (
-        <div>{currentUser.displayName}</div>
-      ) : (
-        <h2>You must log in to see this page</h2>
-      )}
-    </div>
+    <Layout>
+      <div>
+        {currentUser ? (
+          <div>{currentUser.displayName}</div>
+        ) : (
+          <h2>You must log in to see this page</h2>
+        )}
+      </div>
+    </Layout>
   );
 };
 

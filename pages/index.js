@@ -50,7 +50,7 @@ const English = ({ result, errors, logs, projects, currentUser }) => {
       <Header
         login={"Login"}
         blogName={"Blog"}
-        resumeName={"Resume"}
+        resumeName={"About"}
         resumeRoute={"/resume/[query]"}
         homeRoute={"/"}
         changeLanguageRoute={"/chinese"}

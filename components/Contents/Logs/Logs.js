@@ -1,12 +1,12 @@
 import "./Logs.scss";
 import LogItem from "./LogItem";
 const Logs = ({ version, check,logs }) => {
-  const openLogin = e => {
+  const openLogs = e => {
     const modalContainer = document.querySelector(".logs-container");
-    modalContainer.removeAttribute("class");
+    modalContainer.classList.remove('out')
     modalContainer.classList.add("popup");
   };
-  const closeLogin = () => {
+  const closeLogs = () => {
     document.querySelector(".logs-container").classList.add("out");
   };
   return (
@@ -16,7 +16,7 @@ const Logs = ({ version, check,logs }) => {
         <img src="https://img.icons8.com/ios/20/000000/react-native.png" alt='react' />
         <a
           className="text-dark"
-          onClick={openLogin}
+          onClick={openLogs}
           style={{textDecoration:'underline'}}
         >
           {check}
@@ -24,22 +24,20 @@ const Logs = ({ version, check,logs }) => {
       </p>
 
       <div
-        className="modal fade logs-container"
-        tabIndex="-1"
-        role="dialog"
+        className="logs-container"
       >
-        <div className="modal-dialog cascading-modal" role="document">
+        <div className="modal-dialog" role="document">
           <div className="modal-content">
             <div className="modal-header purple-gradient white-text">
               <h4 className="title">
-                <i className="fas fa-users"></i> 网站更新日志 Logs of Updates
+                 网站更新日志 Logs of Updates
               </h4>
               <button
                 type="button"
                 className="close"
                 data-dismiss="modal"
                 aria-label="Close"
-                onClick={closeLogin}
+                onClick={closeLogs}
               >
                 <span aria-hidden="true">&times;</span>
               </button>

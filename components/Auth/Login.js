@@ -81,7 +81,6 @@ const Login = ({passwordReveal}) => {
               justifyContent: "center",
               alignItems: "center"
             }}
-            action="#!"
           >
             <div
               onClick={closeLogin}
