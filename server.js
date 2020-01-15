@@ -9,8 +9,7 @@ const handle = app.getRequestHandler();
 const spdy = require("spdy");
 const fs = require("fs");
 const ServiceWorker = app => (req, res) => {
-  const filePath = path.join(__dirname, "../", ".next", "service-worker.js");
-
+  const filePath = path.resolve(__dirname, "./", ".next", "service-worker.js");
   app.serveStatic(req, res, filePath);
 };
 app
@@ -18,7 +17,6 @@ app
   .then(() => {
     const server = express();
     server.use(compression());
-
     process.setMaxListeners(0);
     server.get("/service-worker.js", ServiceWorker(app));
     server.all("*", (req, res) => {

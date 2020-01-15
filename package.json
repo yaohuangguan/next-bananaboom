@@ -18,7 +18,7 @@
     "express": "^4.17.1",
     "firebase": "^7.6.1",
     "next": "canary",
-    "next-offline": "^4.0.6",
+    "next-offline": "^5.0.0",
     "node-sass": "^4.13.0",
     "prismjs": "^1.17.1",
     "react": "16.12.0",
