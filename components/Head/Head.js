@@ -4,6 +4,7 @@ const HeadConfig = () => (
     <meta charSet="utf-8" />
     <title>Moviegoer</title>
     <link rel="icon" href="/lemon.png" />
+    <link rel="manifest" href="/manifest.json"/>
     <meta name="viewport" content="initial-scale=1.0, width=device-width" />
     <meta name="theme-color" content="normal" />
     <meta httpEquiv="X-UA-Compatible" content="IE=edge" />

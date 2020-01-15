@@ -29,7 +29,7 @@ const EnglishIntro = ({title,subtitle,intro, projects}) => {
               <p className="font-weight-bold">Say Hi</p>
               <p>
                 Email:
-                <a href="mailto:moviegoer24@gmail.com" className="text-info">
+                <a href="mailto:moviegoer24@gmail.com" className="text-dark">
                   moviegoer24@gmail.com
                 </a>
               </p>
@@ -39,7 +39,7 @@ const EnglishIntro = ({title,subtitle,intro, projects}) => {
                   href="https://blog.csdn.net/samKnowsCoding"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-info"
+                  className="text-dark"
                 >
                   samKnowsCoding
                 </a>
@@ -47,7 +47,7 @@ const EnglishIntro = ({title,subtitle,intro, projects}) => {
               <p>
                 Medium:
                 <a
-                  className="text-info"
+                  className="text-dark"
                   href="https://medium.com/@yaob"
                   target="_blank"
                   rel="noopener noreferrer"

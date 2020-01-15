@@ -1,28 +1,27 @@
 import { useEffect, useState } from "react";
 import router from "next/router";
 import firebase from "../../firebase/firebase";
-import api from '../../utils/Api'
+import api from "../../utils/Api";
 
-const Login = () => {
+const Login = ({passwordReveal}) => {
   const [email, setemail] = useState("");
   const [password, setpassword] = useState("");
   const [errors, seterrors] = useState([]);
-  const [token, settoken] = useState(localStorage.getItem("token") );
+  const [token, settoken] = useState(localStorage.getItem("token"));
   const [user, setuser] = useState(
     JSON.parse(localStorage.getItem("currentUser")) || []
   );
-
   const closeLogin = () => {
-    document.getElementById("login-container").classList.add("out");
-    document.body.classList.remove('modal-active')
-
+    document.querySelector(".login-container").classList.add("out");
+    document.body.classList.remove("modal-active");
   };
   const openSignup = e => {
     closeLogin();
-    const modalContainer = document.querySelector("#signup-container");
-    modalContainer.removeAttribute("class");
+    const modalContainer = document.querySelector(".signup-container");
+    modalContainer.classList.remove('out')
+
     modalContainer.classList.add("popup");
-    document.body.classList.add('modal-active')
+    document.body.classList.add("modal-active");
   };
   const clearInput = () => {
     setemail("");
@@ -35,12 +34,13 @@ const Login = () => {
   const handlePassword = e => {
     setpassword(e.target.value);
   };
+
   const handleUserSubmit = async e => {
     e.preventDefault();
     if (!email || !password) {
-      const shakeMessage = document.querySelector('.shake-target')
-      shakeMessage.classList.toggle('shake-message')
-     return seterrors("Fill all the requirements");
+      const shakeMessage = document.querySelector(".shake-target");
+      shakeMessage.classList.toggle("shake-message");
+      return seterrors("填写完整信息(Fill all the requirements)");
     }
     try {
       const response = await api.post("/api/users/signin", {
@@ -55,7 +55,7 @@ const Login = () => {
         "currentUser",
         JSON.stringify(response.data.user)
       );
-      router.reload()
+      router.reload();
       clearInput();
       closeLogin();
     } catch (error) {
@@ -71,10 +71,10 @@ const Login = () => {
   };
   return (
     <div>
-      <div id="login-container">
+      <div className="login-container">
         <div className="modal-background text-white lazy-load shake-target">
           <form
-            className="text-center modal-inner px-5 form-a"
+            className="text-center modal-inner px-5 py-1 form-auth"
             style={{
               display: "flex",
               flexDirection: "column",
@@ -90,31 +90,42 @@ const Login = () => {
             >
               <span style={{ fontSize: "30px" }}>&#10005;</span>
             </div>
-            <p className="h4 mb-4">
+            <h4 className="mb-4">
               {router.pathname == "/" ? "Log into your account" : "用户登录"}
-            </p>
+            </h4>
             {errors ? <div className="text-danger">{errors}</div> : null}
+            <label htmlFor="login-email" className="m-0 text-light">
+              Email
+            </label>
             <input
               type="email"
+              id='login-email'
               className="form-control form-control-lg form-control-a text-center mb-4"
               autoComplete="email"
               value={email}
               onChange={handleEmail}
-              placeholder={
-                router.pathname == "/"
-                  ? "email"
-                  : "注册时的邮箱"
-              }
+              placeholder={router.pathname == "/" ? "email" : "注册时的邮箱"}
             />
-
-            <input
-              type="password"
-              className="form-control form-control-lg form-control-a text-center"
-              autoComplete="current-password"
-              value={password}
-              onChange={handlePassword}
-              placeholder={router.pathname == "/" ? "password" : "密码"}
-            />
+            <label htmlFor="login-password" className="m-0 text-light">
+              Password
+            </label>
+            <div style={{ position: "relative", width: "100%" }}>
+              <input
+                type="password"
+                id='login-password'
+                className="form-control form-control-lg form-control-a text-center password"
+                autoComplete="current-password"
+                value={password}
+                onChange={handlePassword}
+                placeholder={router.pathname == "/" ? "password" : "密码"}
+              />
+              <div onClick={passwordReveal} className="password-show">
+                <img
+                  src="https://img.icons8.com/ios-glyphs/20/000000/visible.png"
+                  alt="icon"
+                />{" "}
+              </div>
+            </div>
 
             <button
               className="btn draw-border-white my-4 btn-block"

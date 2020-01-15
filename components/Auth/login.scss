@@ -7,11 +7,11 @@ body {
   display: flex;
   justify-content: space-between;
 }
-#signup-container {
+.signup-container {
   position: fixed;
   height: 400px;
   width: 40%;
-  top: 8%;
+  top: 1%;
   left: 30%;
   transform: scale(0);
   z-index: 5;
@@ -41,7 +41,7 @@ body {
     }
   }
 }
-#login-container {
+.login-container {
   position: fixed;
   height: 400px;
   width: 40%;
@@ -82,7 +82,6 @@ body {
   background-position: center;
   .modal-inner {
     background: rgba(#333333,0.5);
-    padding: 50px;
     display: flex;
     position: relative;
     .password-show{
@@ -153,5 +152,67 @@ body {
   }
   100% {
     transform: scale(0);
+  }
+}
+
+.form-auth {
+ 
+  label {
+    position: relative;
+  }
+  select.form-control-lg:not([size]):not([multiple]) {
+    height: 3rem;
+  }
+  .form-control {
+    font-size: 1.1rem;
+    font-weight: 300;
+    border-radius: 50px;
+    display: inline-block;
+    &:focus {
+      border: 2px solid #333;
+      border-color: #333;
+      box-shadow: none;
+      outline:none;
+
+    }
+  }
+  .form-control.form-control-a {
+    height: 3rem;
+  }
+  .tooltips{
+    .tooltiptext {
+      visibility: hidden;
+      width: 250px;
+      background-color: #555;
+      color: #fff;
+      text-align: center;
+      border-radius: 6px;
+      padding: 5px 0;
+      position: absolute;
+      z-index: 1;
+      bottom: 125%;
+      left: 30%;
+      margin-left: -60px;
+      opacity: 0;
+      transition: opacity 0.3s;
+
+      &::after {
+        content: "";
+        position: absolute;
+        top: 100%;
+        left: 50%;
+        margin-left: -5px;
+        border-width: 5px;
+        border-style: solid;
+        border-color: #555 transparent transparent transparent;
+      }
+    }
+    &:hover{
+      .tooltiptext {
+        visibility: visible;
+        opacity: 1;
+      }
+    }
+  
   }
 }

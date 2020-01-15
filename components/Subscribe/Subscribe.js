@@ -50,7 +50,8 @@ const Subscribe = ({ title, info, copyright, web_version, log,logs_content }) =>
           className="validate form-a"
           noValidate
         >
-          <div className="mt-4 mb-2">{title}</div>{" "}
+          <label htmlFor="email">{title}
+
           <input
             type="email"
             name="EMAIL"
@@ -60,17 +61,8 @@ const Subscribe = ({ title, info, copyright, web_version, log,logs_content }) =>
             placeholder="请输入邮箱地址 Please enter email address"
             required
           />
-          <div
-            style={{ position: "absolute", left: "-5000px" }}
-            aria-hidden="true"
-          >
-            <input
-              type="text"
-              name="b_0140596b9a2ba4744248b81e5_42a1ca9c11"
-              className="form-control form-control-lg form-control-a"
-              tabIndex="-1"
-            />
-          </div>
+          </label>
+          
           <div className="clear">
             <button
               type="submit"
@@ -101,7 +93,7 @@ const Subscribe = ({ title, info, copyright, web_version, log,logs_content }) =>
           </p>
 
           <Logs version={web_version} check={log} logs={logs_content}></Logs>
-          <p className="text-info">{copyright}</p>
+          <p className="text-dark">{copyright}</p>
 
         </div>
         <SocialFooter></SocialFooter>

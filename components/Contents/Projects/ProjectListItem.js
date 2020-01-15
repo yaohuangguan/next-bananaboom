@@ -8,8 +8,7 @@ const Project = ({
   _name,
   info,
   _info,
-  width,
-  height
+  
 }) => {
   // const hoverChange = () => {
   //   const div = document.querySelectorAll(".hover");
@@ -27,11 +26,11 @@ const Project = ({
 
   return (
     <div
-      className="col hover"
+      className="col-md-6 hover"
       // onMouseOver={hoverChange}
       // onMouseLeave={recover}
     >
-      <div className="text-center">
+      <div className="text-center w-100">
         <a
           href={link}
           target="_blank"
@@ -42,8 +41,7 @@ const Project = ({
             data-src={image}
             className="lazyload"
             alt={router.pathname == "/chinese" ? name : _name}
-            width={width}
-            height={height}
+            width='60%'
           />
           <p className="linkTag">
             {router.pathname == "/chinese" ? name : _name}

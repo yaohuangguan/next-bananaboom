@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import router from "next/router";
 import firebase from "../../firebase/firebase";
-import api from '../../utils/Api'
+import api from "../../utils/Api";
 import dynamic from "next/dynamic";
 const Login = dynamic(() => import("./Login"), {
   ssr: false
@@ -18,15 +18,14 @@ const Signup = ({ login }) => {
   );
 
   const openSignup = e => {
-    const modalContainer = document.querySelector("#signup-container");
-    modalContainer.removeAttribute("class");
+    const modalContainer = document.querySelector(".signup-container");
+    modalContainer.classList.remove("out");
     modalContainer.classList.add("popup");
-    document.body.classList.add('modal-active')
+    document.body.classList.add("modal-active");
   };
   const closeSignup = () => {
-    document.getElementById("signup-container").classList.add("out");
-    document.body.classList.remove('modal-active')
-
+    document.querySelector(".signup-container").classList.add("out");
+    document.body.classList.remove("modal-active");
   };
   const passwordReveal = e => {
     let x = document.querySelectorAll(".password");
@@ -59,21 +58,19 @@ const Signup = ({ login }) => {
   };
   const openLogin = e => {
     closeSignup();
-    const modalContainer = document.querySelector("#login-container");
-    modalContainer.removeAttribute("class");
+    const modalContainer = document.querySelector(".login-container");
+    modalContainer.classList.remove("out");
     modalContainer.classList.add("popup");
-    document.body.classList.add('modal-active')
-
-
+    document.body.classList.add("modal-active");
   };
   const handleUserSubmit = async e => {
     e.preventDefault();
-    if (!displayName || !email || !password || !passwordConf){
-      const shakeMessage = document.querySelector('.shake-target-signup')
-      shakeMessage.classList.toggle('shake-message')
-      return seterrors("Fill all the requirements");
+    if (!displayName || !email || !password || !passwordConf) {
+      const shakeMessage = document.querySelector(".shake-target-signup");
+      shakeMessage.classList.toggle("shake-message");
+      return seterrors("填写完整信息(Fill all the requirements)");
     }
-      
+
     try {
       const response = await api.post("/api/users", {
         displayName,
@@ -88,7 +85,7 @@ const Signup = ({ login }) => {
         "currentUser",
         JSON.stringify(response.data.user)
       );
-      router.reload()
+      router.reload();
       console.log(response);
       clearInput();
       closeSignup();
@@ -106,11 +103,11 @@ const Signup = ({ login }) => {
 
   return (
     <div>
-      <Login></Login>
-      <div id="signup-container">
+      <Login passwordReveal={passwordReveal}></Login>
+      <div className="signup-container">
         <div className="modal-background text-white lazy-load shake-target-signup">
           <form
-            className="text-center modal-inner px-5 form-a"
+            className="text-center modal-inner px-5 py-1 form-auth"
             style={{
               display: "flex",
               flexDirection: "column",
@@ -125,12 +122,16 @@ const Signup = ({ login }) => {
             >
               <span style={{ fontSize: "30px" }}>&#10005;</span>
             </div>
-            <p className="h4">
+            <h4 className="mb-4">
               {router.pathname == "/" ? "Sign up" : "注册新用户"}
-            </p>
+            </h4>
             {errors ? <div className="text-danger">{errors}</div> : null}
+            <label htmlFor="signup-displayName" className="m-0 text-light">
+              displayName
+            </label>
             <input
               type="text"
+              id="signup-displayName"
               className="form-control form-control-lg form-control-a text-center mb-3"
               autoComplete="username"
               value={displayName}
@@ -138,8 +139,12 @@ const Signup = ({ login }) => {
               placeholder={router.pathname == "/" ? "Username" : "用户名"}
             />
 
+            <label htmlFor="signup-email" className="m-0 text-light">
+              Email
+            </label>
             <input
               type="email"
+              id="signup-email"
               className="form-control form-control-lg form-control-a text-center mb-3"
               autoComplete="email"
               value={email}
@@ -147,25 +152,42 @@ const Signup = ({ login }) => {
               placeholder={router.pathname == "/" ? "email" : "邮箱地址"}
             />
 
-            <div style={{ position: "relative", width:'100%' }}>
+            <label htmlFor="signup-password" className="m-0 text-light">
+              Password
+            </label>
+            <div
+              className="tooltips"
+              style={{ position: "relative", width: "100%" }}
+            >
               <input
                 type="password"
-                className="form-control form-control-lg form-control-a text-center mb-3 password"
+                id="signup-password"
+                className="form-control form-control-a text-center mb-3 password"
                 autoComplete="current-password"
                 value={password}
                 onChange={handlePassword}
                 placeholder={router.pathname == "/" ? "password" : "密码"}
               />
+
+              <span className="tooltiptext">
+                {router.pathname == "/"
+                  ? "Password should be more than 6 characters"
+                  : "密码至少需6位以上"}
+              </span>
+
               <div onClick={passwordReveal} className="password-show">
                 <img
-                  src="https://img.icons8.com/wired/25/000000/show-password.png"
+                  src="https://img.icons8.com/ios-glyphs/20/000000/visible.png"
                   alt="icon"
-                />{" "}
+                />
               </div>
             </div>
-
+            <label htmlFor="signup-passwordConf" className="m-0 text-light">
+              Confirm Password
+            </label>
             <input
               type="password"
+              id="signup-passwordConf"
               className="form-control form-control-lg form-control-a text-center password"
               autoComplete="current-password"
               value={passwordConf}

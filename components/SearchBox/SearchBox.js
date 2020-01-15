@@ -3,13 +3,16 @@ import React from "react";
 const SearchBox = ({ handleChange, searchField }) => {
   return (
     <div className="text-center">
-      <input
-        value={searchField}
-        type="search"
-        className="search px-3 py-3 my-3 text-center"
-        placeholder="Search Blogs"
-        onChange={handleChange}
-      />
+      <label htmlFor="searchBlog">
+      
+        <input
+          value={searchField}
+          type="search"
+          className="search px-3 py-3 my-3 text-center"
+          placeholder="Search Blogs"
+          onChange={handleChange}
+        />
+      </label>
       <style jsx>{`
         .search {
           box-shadow:none;

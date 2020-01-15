@@ -17,7 +17,7 @@ const ResumeListItem = ({ _id, title, _title, info, _info, url, degree }) => {
             }}
           >
             <a href={url} target="_blank" rel="noopener noreferrer">
-              <div className="text-white d-flex h-100 mask purple-gradient-rgba">
+              <div className="text-white d-flex h-100 blue-gradient-rgba">
                 <div className="first-content align-self-center p-3">
                   <h3 className="card-title" style={{ fontSize: "25px" }}>
                 {router.asPath == '/resume/ch-cn' ? title : _title}
@@ -35,7 +35,7 @@ const ResumeListItem = ({ _id, title, _title, info, _info, url, degree }) => {
   
             </h6>
             <br />
-            <a className="badge badge-secondary float-right">{degree}</a>
+            <a className="badge badge-primary float-right">{degree}</a>
           </div>
   
           <div className="card-body white">

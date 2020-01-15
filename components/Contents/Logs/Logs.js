@@ -2,12 +2,12 @@ import "./Logs.scss";
 import LogItem from "./LogItem";
 const Logs = ({ version, check,logs }) => {
   const openLogin = e => {
-    const modalContainer = document.querySelector("#logs-container");
+    const modalContainer = document.querySelector(".logs-container");
     modalContainer.removeAttribute("class");
     modalContainer.classList.add("popup");
   };
   const closeLogin = () => {
-    document.getElementById("logs-container").classList.add("out");
+    document.querySelector(".logs-container").classList.add("out");
   };
   return (
     <div>
@@ -15,18 +15,16 @@ const Logs = ({ version, check,logs }) => {
         {version}
         <img src="https://img.icons8.com/ios/20/000000/react-native.png" alt='react' />
         <a
-          data-toggle="modal"
-          data-target="#modalSocial"
-          className="text-info"
+          className="text-dark"
           onClick={openLogin}
+          style={{textDecoration:'underline'}}
         >
           {check}
         </a>
       </p>
 
       <div
-        id="logs-container"
-        className="modal fade "
+        className="modal fade logs-container"
         tabIndex="-1"
         role="dialog"
       >

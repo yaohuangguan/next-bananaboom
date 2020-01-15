@@ -37,7 +37,7 @@ const Blog = ({ blogs, errors }) => {
     heroShrinker();
   }, []);
   useEffect(() => {
-    const result = blogs.filter(blog =>
+    const result = blogs && blogs.filter(blog =>
       blog.name.toLowerCase().includes(searchField.toLowerCase())
     );
     setfilteredBlog(result);
