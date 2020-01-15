@@ -8,18 +8,19 @@ const app = next({ dev });
 const handle = app.getRequestHandler();
 const spdy = require("spdy");
 const fs = require("fs");
+const ServiceWorker = app => (req, res) => {
+  const filePath = path.join(__dirname, '.next', 'service-worker.js');
 
+  app.serveStatic(req, res, filePath);
+};
 app
   .prepare()
   .then(() => {
     const server = express();
     server.use(compression());
-    server.use(express.urlencoded({ extended: false }));
-    server.use(express.json());
+
     process.setMaxListeners(0);
-    server.get("/service-worker.js", (req, res) => {
-      res.sendFile(path.resolve(__dirname, ".next", "/service-worker.js"));
-    });
+    server.get("/service-worker.js", ServiceWorker(app));
     server.all("*", (req, res) => {
       return handle(req, res);
     });
@@ -33,3 +34,5 @@ app
     console.error(ex.stack);
     process.exit(1);
   });
+
+  

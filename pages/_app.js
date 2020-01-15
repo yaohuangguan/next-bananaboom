@@ -1,7 +1,5 @@
-
 import App from "next/app";
 import firebase from "../firebase/firebase";
-
 class MyApp extends App {
   // Only uncomment this method if you have blocking data requirements for
   // every single page in your application. This disables the ability to
@@ -23,6 +21,7 @@ class MyApp extends App {
   unsubscribeFromAuth = null;
 
   componentDidMount() {
+
     this.unsubscribeFromAuth = firebase.auth.onAuthStateChanged(user => {
       if(user){
         this.setState(state => {
