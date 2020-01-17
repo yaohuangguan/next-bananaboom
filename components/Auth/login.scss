@@ -3,9 +3,10 @@ body {
     overflow: hidden;
   }
 }
+
 .login-list {
   display: flex;
-  justify-content: space-between;
+  justify-content: center
 }
 .signup-container {
   position: fixed;
@@ -77,11 +78,11 @@ body {
 }
 
 .modal-background {
-  background-image: url("https://s3.us-east-2.amazonaws.com/www.bananaboom.space/images/aurora-borealis-1933239+(1).jpg");
+  background-image: url("https://images.unsplash.com/photo-1434873740857-1bc5653afda8?ixlib=rb-1.2.1&auto=format&fit=crop&w=935&q=80");
   background-size: cover;
   background-position: center;
   .modal-inner {
-    background: rgba(#333333,0.5);
+    background: rgba(#333333,0.3);
     display: flex;
     position: relative;
     .password-show{

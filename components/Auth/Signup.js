@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef} from "react";
 import router from "next/router";
 import firebase from "../../firebase/firebase";
 import api from "../../utils/Api";
@@ -7,6 +7,7 @@ const Login = dynamic(() => import("./Login"), {
   ssr: false
 });
 const Signup = ({ login }) => {
+  const SignupContainer = useRef(null)
   const [email, setemail] = useState("");
   const [password, setpassword] = useState("");
   const [displayName, setdisplayName] = useState("");
@@ -18,13 +19,13 @@ const Signup = ({ login }) => {
   );
 
   const openSignup = e => {
-    const modalContainer = document.querySelector(".signup-container");
-    modalContainer.classList.remove("out");
-    modalContainer.classList.add("popup");
+    
+    SignupContainer.current.classList.remove("out");
+    SignupContainer.current.classList.add("popup");
     document.body.classList.add("modal-active");
   };
   const closeSignup = () => {
-    document.querySelector(".signup-container").classList.add("out");
+    SignupContainer.current.classList.add("out");
     document.body.classList.remove("modal-active");
   };
   const passwordReveal = e => {
@@ -60,6 +61,7 @@ const Signup = ({ login }) => {
     closeSignup();
     const modalContainer = document.querySelector(".login-container");
     modalContainer.classList.remove("out");
+
     modalContainer.classList.add("popup");
     document.body.classList.add("modal-active");
   };
@@ -80,7 +82,7 @@ const Signup = ({ login }) => {
       });
       settoken(response.data.token);
       setuser(response.data.user);
-      window.localStorage.setItem("token", response.data.token);
+      window.localStorage.setItem("token", 'XSS? You do not want to do that');
       window.localStorage.setItem(
         "currentUser",
         JSON.stringify(response.data.user)
@@ -104,15 +106,15 @@ const Signup = ({ login }) => {
   return (
     <div>
       <Login passwordReveal={passwordReveal}></Login>
-      <div className="signup-container">
+      <div ref={SignupContainer} className="signup-container">
         <div className="modal-background text-white lazy-load shake-target-signup">
           <form
-            className="text-center modal-inner px-5 py-1 form-auth"
+            className="modal-inner px-5 py-1 form-auth"
             style={{
               display: "flex",
               flexDirection: "column",
               justifyContent: "center",
-              alignItems: "center"
+
             }}
           >
             <div
@@ -122,11 +124,11 @@ const Signup = ({ login }) => {
             >
               <span style={{ fontSize: "30px" }}>&#10005;</span>
             </div>
-            <h4 className="mb-4">
+            <h4 className="mb-4 text-white text-center">
               {router.pathname == "/" ? "Sign up" : "注册新用户"}
             </h4>
             {errors ? <div className="text-danger">{errors}</div> : null}
-            <label htmlFor="signup-displayName" className="m-0 text-light">
+            <label htmlFor="signup-displayName" className="m-0 text-white">
               displayName
             </label>
             <input
@@ -139,7 +141,7 @@ const Signup = ({ login }) => {
               placeholder={router.pathname == "/" ? "Username" : "用户名"}
             />
 
-            <label htmlFor="signup-email" className="m-0 text-light">
+            <label htmlFor="signup-email" className="m-0 text-white">
               Email
             </label>
             <input
@@ -152,7 +154,7 @@ const Signup = ({ login }) => {
               placeholder={router.pathname == "/" ? "email" : "邮箱地址"}
             />
 
-            <label htmlFor="signup-password" className="m-0 text-light">
+            <label htmlFor="signup-password" className="m-0 text-white">
               Password
             </label>
             <div
@@ -182,7 +184,7 @@ const Signup = ({ login }) => {
                 />
               </div>
             </div>
-            <label htmlFor="signup-passwordConf" className="m-0 text-light">
+            <label htmlFor="signup-passwordConf" className="m-0 text-white">
               Confirm Password
             </label>
             <input
@@ -205,7 +207,7 @@ const Signup = ({ login }) => {
               {router.pathname == "/" ? "Sign up" : "确定"}
             </button>
 
-            <p>
+            <p className='text-center'>
               {router.pathname == "/"
                 ? "or sign up with:"
                 : "或者使用以下方法注册:"}

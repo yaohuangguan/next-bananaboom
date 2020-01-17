@@ -1,9 +1,11 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import router from "next/router";
 import firebase from "../../firebase/firebase";
 import api from "../../utils/Api";
 
-const Login = ({passwordReveal}) => {
+const Login = ({ passwordReveal }) => {
+  const LoginContainer = useRef(null);
+
   const [email, setemail] = useState("");
   const [password, setpassword] = useState("");
   const [errors, seterrors] = useState([]);
@@ -12,13 +14,13 @@ const Login = ({passwordReveal}) => {
     JSON.parse(localStorage.getItem("currentUser")) || []
   );
   const closeLogin = () => {
-    document.querySelector(".login-container").classList.add("out");
+    LoginContainer.current.classList.add("out");
     document.body.classList.remove("modal-active");
   };
   const openSignup = e => {
     closeLogin();
     const modalContainer = document.querySelector(".signup-container");
-    modalContainer.classList.remove('out')
+    modalContainer.classList.remove("out");
 
     modalContainer.classList.add("popup");
     document.body.classList.add("modal-active");
@@ -50,7 +52,7 @@ const Login = ({passwordReveal}) => {
       settoken(response.data.token);
       setuser(response.data.user);
       console.log(response);
-      window.localStorage.setItem("token", response.data.token);
+      window.localStorage.setItem("token", 'XSS? You do not want to do that');
       window.localStorage.setItem(
         "currentUser",
         JSON.stringify(response.data.user)
@@ -71,15 +73,14 @@ const Login = ({passwordReveal}) => {
   };
   return (
     <div>
-      <div className="login-container">
+      <div ref={LoginContainer} className="login-container">
         <div className="modal-background text-white lazy-load shake-target">
           <form
-            className="text-center modal-inner px-5 py-1 form-auth"
+            className="modal-inner px-5 py-1 form-auth"
             style={{
               display: "flex",
               flexDirection: "column",
               justifyContent: "center",
-              alignItems: "center"
             }}
           >
             <div
@@ -93,25 +94,25 @@ const Login = ({passwordReveal}) => {
               {router.pathname == "/" ? "Log into your account" : "用户登录"}
             </h4>
             {errors ? <div className="text-danger">{errors}</div> : null}
-            <label htmlFor="login-email" className="m-0 text-light">
+            <label htmlFor="login-email" className="m-0 text-white">
               Email
             </label>
             <input
               type="email"
-              id='login-email'
+              id="login-email"
               className="form-control form-control-lg form-control-a text-center mb-4"
               autoComplete="email"
               value={email}
               onChange={handleEmail}
               placeholder={router.pathname == "/" ? "email" : "注册时的邮箱"}
             />
-            <label htmlFor="login-password" className="m-0 text-light">
+            <label htmlFor="login-password" className="m-0 text-white">
               Password
             </label>
             <div style={{ position: "relative", width: "100%" }}>
               <input
                 type="password"
-                id='login-password'
+                id="login-password"
                 className="form-control form-control-lg form-control-a text-center password"
                 autoComplete="current-password"
                 value={password}
@@ -134,7 +135,7 @@ const Login = ({passwordReveal}) => {
               {router.pathname == "/" ? "Login" : "确定"}
             </button>
 
-            <p>
+            <p className='text-center'>
               {router.pathname == "/"
                 ? "or log in with:"
                 : "或者使用以下方法登录:"}

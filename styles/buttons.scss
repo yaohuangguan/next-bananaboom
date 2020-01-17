@@ -66,6 +66,10 @@
 .draw-border-blue {
   @include btn-border-drawing(#2eafeb, #eb782e, 2px, bottom, right);
 }
+.draw-border-black {
+  @include btn-border-drawing(#111111, #02a74c, 2px, bottom, right);
+}
+
 
 .btn {
   text-transform: none;

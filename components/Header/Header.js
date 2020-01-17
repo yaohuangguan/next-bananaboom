@@ -53,8 +53,8 @@ const Header = ({
     <div className="nav">
       <div className="header">
         <Link  href={homeRoute}>
-          <a id="logo" className="px-3">
-            <img src="https://img.icons8.com/ultraviolet/32/000000/ninja-turtle.png" alt='sitelogo' />
+          <a id="logo" className="px-3 pt-3">
+          <img src="/static/favicon.png" width='50px' height='50px' alt="s"/>
           </a>
         </Link>
         <div className="options">

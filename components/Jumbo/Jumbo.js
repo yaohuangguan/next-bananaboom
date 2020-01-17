@@ -1,10 +1,11 @@
 import {useState,useEffect} from "react";
-import Link from "next/link";
 import "./Jumbo.scss";
-import styled from "styled-components";
 
 
-const Jumbo = ({ name, welcome, info, button, backgroundPicture }) => {
+const Jumbo = ({ name, welcome, info, button, backgroundPicture, backgroundURL }) => {
+  const style = {
+    backgroundImage:`url(${backgroundPicture?backgroundURL.english:backgroundURL.chinese})`
+  }
   const [mobile, setmobile] = useState(null)
   const checkMobile = () => {
     if (
@@ -26,9 +27,11 @@ const Jumbo = ({ name, welcome, info, button, backgroundPicture }) => {
     return (
       <div style={{fontFamily:'Audiowide'}}>
         <div
+        style={style}
           className={`${backgroundPicture === true ? "english" : "chinese"} ${
             mobile ? "mobile" : ""
           } card card-image mb-4`}
+          
         >
           <div
             className="text-white text-center rgba-stylish-light py-5 px-4"
@@ -37,6 +40,7 @@ const Jumbo = ({ name, welcome, info, button, backgroundPicture }) => {
             <div className="jumbo">
               <h3 className="text-white">
               &#128247;
+             
                 {name}
               </h3>
               <h2 className="card-title h2 my-3 py-5 jumbo">{welcome}</h2>

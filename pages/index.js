@@ -41,7 +41,8 @@ const English = ({ result, errors, logs, projects, currentUser }) => {
     footer_date_cn,
     footer_welcome,
     footer_welcome_cn,
-    likes
+    likes,
+    backgroundURL
   } = result[0];
 
   return (
@@ -62,6 +63,7 @@ const English = ({ result, errors, logs, projects, currentUser }) => {
         info={jumbo_info ? "" : errors}
         button={jumbo_button || "Explore"}
         backgroundPicture={true}
+        backgroundURL={backgroundURL}
       />
       <div className="container">
         <Intro

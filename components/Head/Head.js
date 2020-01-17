@@ -11,6 +11,7 @@ const HeadConfig = () => (
     <link rel="icon" type="image/png" sizes="16x16" href="/static/favicon-16x16.png" />
     <link rel="manifest" href="/static/site.webmanifest" />
     <link rel="mask-icon" href="/static/safari-pinned-tab.svg" color="#5bbad5" />
+    <link rel="preconnect" href="https://i.ibb.co"/>
     <meta name="msapplication-TileColor" content="#2d89ef" />
     <meta name="theme-color" content="#ffffff"></meta>
     <meta name="theme-color" content="normal" />
@@ -27,14 +28,7 @@ const HeadConfig = () => (
 Node.js, Express.js, GraphQL, Docker, Postman, PostgreSQL, MongoDB, Redis, Knowing how
 HTTP, TCP/IP, DNS and Web Server work...."
     />
-    <link
-      href="https://fonts.googleapis.com/css?family=Poppins:400,800&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      href="https://fonts.googleapis.com/css?family=Audiowide&display=swap"
-      rel="stylesheet"
-    />
+    <link href="https://fonts.googleapis.com/css?family=Audiowide|Poppins&display=swap" rel="stylesheet"></link>
 
     <link
       href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css"
