@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect,useRef } from "react";
 import "./Footer.scss";
 
 const Footer = ({ welcome, date }) => {
   const [closed, setClosed] = useState(false);
-
+  const explain = useRef(null)
   useEffect(() => {
-    const explain = document.getElementById("explain");
+    
     let setOpen;
     if (!closed) {
       setOpen = setTimeout(openModal, 3000);
@@ -19,8 +19,8 @@ const Footer = ({ welcome, date }) => {
     return () => {
       clearTimeout(setOpen);
       clearTimeout(timeId);
-      if (explain) {
-        explain.removeEventListener("animationend", {});
+      if (explain.current) {
+        explain.current.removeEventListener("animationend", {});
       }
     };
   }, []);
@@ -29,16 +29,16 @@ const Footer = ({ welcome, date }) => {
   const handleClose = () => {
     const close = document.getElementById("close");
     close.style.display = "none";
-    explain.style.display = "none";
+    explain.current.style.display = "none";
     setClosed(true);
   };
   const openModal = () => {
     const close = document.getElementById("close");
-    explain.style.display = "block";
+    explain.current.style.display = "block";
     close.style.display = "block";
-    explain.classList.add("animated", "fadeIn");
-    explain.addEventListener("animationend", () =>
-      explain.classList.remove("animated", "fadeIn")
+    explain.current.classList.add("animated", "fadeIn");
+    explain.current.addEventListener("animationend", () =>
+      explain.current.classList.remove("animated", "fadeIn")
     );
   };
 
@@ -58,7 +58,7 @@ const Footer = ({ welcome, date }) => {
         </span>
       </div>
 
-      <div className="container text-center" id="explain">
+      <div ref={explain} className="container text-center" id="explain">
         <p className="text-white">
           {welcome}
           <span role="img" aria-label="">

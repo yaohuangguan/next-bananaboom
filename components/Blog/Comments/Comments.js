@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import CommentList from "./CommentList";
 import api from "../../../utils/Api";
+import axios from "axios";
 const Comment = ({ currentUser, comments, _id }) => {
   const [commentInputField, setinputField] = useState("");
   const [commentsCount, setcommentsCount] = useState(comments.length);
@@ -8,11 +9,12 @@ const Comment = ({ currentUser, comments, _id }) => {
   const [commentsList, setcommentsList] = useState(comments);
   const handleCommentChange = e => setinputField(e.target.value);
   useEffect(() => {
-    const abort = new AbortController();
-    const signal = abort.signal;
+    const CancelToken = axios.CancelToken;
+    const source = CancelToken.source();
+
     const getNewComments = async () => {
       const response = await api.get(`/api/comments/${_id}`, {
-        signal: signal
+        cancelToken: source.token
       });
       let getComments = await response.data;
       setcommentsList(getComments);
@@ -20,7 +22,7 @@ const Comment = ({ currentUser, comments, _id }) => {
     };
     getNewComments();
     return () => {
-      abort.abort();
+      source.cancel("Operation canceled by the user.");
     };
   }, []);
   const clearCommentField = () => {
@@ -90,10 +92,14 @@ const Comment = ({ currentUser, comments, _id }) => {
       <div className="px-2">
         <div className="chat-message w-100">
           <ul className="list-unstyled chat">
-            <CommentList comments={commentsList} currentUser={currentUser} article_id={_id}></CommentList>
+            <CommentList
+              comments={commentsList}
+              currentUser={currentUser}
+              article_id={_id}
+            ></CommentList>
             <div className="textarea-whole">
               <h5>发布评论</h5>
-              <p className='text-muted'>需要登录后才能留言</p>
+              <p className="text-muted">需要登录后才能留言</p>
               <div className="form-group basic-textarea">
                 {errors ? (
                   <div className="errors text-danger">{errors}</div>
@@ -101,7 +107,7 @@ const Comment = ({ currentUser, comments, _id }) => {
                 <div className="md-form m-0">
                   <textarea
                     className="form-control pl-2 my-0 md-textarea"
-                    rows="2"
+                    rows={2}
                     id="textarea-char-counter"
                     length="120"
                     value={commentInputField}

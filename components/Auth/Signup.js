@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef} from "react";
+import { useEffect, useState, useRef } from "react";
 import router from "next/router";
 import firebase from "../../firebase/firebase";
 import api from "../../utils/Api";
@@ -7,19 +7,17 @@ const Login = dynamic(() => import("./Login"), {
   ssr: false
 });
 const Signup = ({ login }) => {
-  const SignupContainer = useRef(null)
+  const SignupContainer = useRef(null);
   const [email, setemail] = useState("");
   const [password, setpassword] = useState("");
   const [displayName, setdisplayName] = useState("");
   const [passwordConf, setpasswordConf] = useState("");
   const [errors, seterrors] = useState([]);
-  const [token, settoken] = useState(localStorage.getItem("token"));
   const [user, setuser] = useState(
     JSON.parse(localStorage.getItem("currentUser")) || []
   );
 
   const openSignup = e => {
-    
     SignupContainer.current.classList.remove("out");
     SignupContainer.current.classList.add("popup");
     document.body.classList.add("modal-active");
@@ -29,7 +27,7 @@ const Signup = ({ login }) => {
     document.body.classList.remove("modal-active");
   };
   const passwordReveal = e => {
-    let x = document.querySelectorAll(".password");
+    let x = document.querySelectorAll(".password") 
     x.forEach(each => {
       if (each.type === "password") {
         each.type = "text";
@@ -70,7 +68,7 @@ const Signup = ({ login }) => {
     if (!displayName || !email || !password || !passwordConf) {
       const shakeMessage = document.querySelector(".shake-target-signup");
       shakeMessage.classList.toggle("shake-message");
-      return seterrors("填写完整信息(Fill all the requirements)");
+      return seterrors(["填写完整信息(Fill all the requirements)"]);
     }
 
     try {
@@ -80,9 +78,8 @@ const Signup = ({ login }) => {
         password,
         passwordConf
       });
-      settoken(response.data.token);
       setuser(response.data.user);
-      window.localStorage.setItem("token", 'XSS? You do not want to do that');
+      window.localStorage.setItem("token", "XSS? You do not want to do that");
       window.localStorage.setItem(
         "currentUser",
         JSON.stringify(response.data.user)
@@ -113,13 +110,12 @@ const Signup = ({ login }) => {
             style={{
               display: "flex",
               flexDirection: "column",
-              justifyContent: "center",
-
+              justifyContent: "center"
             }}
           >
             <div
               onClick={closeSignup}
-              className="py-2 px-2 text-success"
+              className="py-2 px-2 text-white"
               style={{ alignSelf: "flex-end" }}
             >
               <span style={{ fontSize: "30px" }}>&#10005;</span>
@@ -207,7 +203,7 @@ const Signup = ({ login }) => {
               {router.pathname == "/" ? "Sign up" : "确定"}
             </button>
 
-            <p className='text-center'>
+            <p className="text-center">
               {router.pathname == "/"
                 ? "or sign up with:"
                 : "或者使用以下方法注册:"}
@@ -227,7 +223,14 @@ const Signup = ({ login }) => {
               />
             </div>
             <br />
-            <p style={{ alignSelf: "flex-end" }} onClick={openLogin}>
+            <p
+              style={{
+                alignSelf: "flex-end",
+                textDecoration: "underline",
+                cursor: "pointer"
+              }}
+              onClick={openLogin}
+            >
               {router.pathname == "/" ? "I already have account" : "我已有账户"}
             </p>
           </form>

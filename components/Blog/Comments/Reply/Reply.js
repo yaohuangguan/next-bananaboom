@@ -1,21 +1,22 @@
 import ReplyList from "./ReplyList";
 import api from "../../../../utils/Api";
+import axios from 'axios'
 import { useState, useEffect } from "react";
 const Reply = ({ reply, id, currentUser }) => {
   const [replyContent, setreplyContent] = useState("");
   const [replyList, setreplyList] = useState(reply);
   useEffect(() => {
-    let abort = new AbortController();
-    let signal = abort.signal;
+    const CancelToken = axios.CancelToken;
+    const source = CancelToken.source();
     const getNewReply = async () => {
       const newReply = await (
-        await api.get(`/api/comments/reply/${id}`, { signal })
+        await api.get(`/api/comments/reply/${id}`, { cancelToken: source.token })
       ).data[0].reply;
       setreplyList(newReply);
     };
     getNewReply();
     return () => {
-      abort.abort();
+      source.cancel('cancel')
     };
   }, []);
   const showReply = e => {

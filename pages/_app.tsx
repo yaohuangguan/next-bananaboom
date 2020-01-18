@@ -1,6 +1,17 @@
 import App from "next/app";
 import firebase from "../firebase/firebase";
-class MyApp extends App {
+import { Provider } from "react-redux";
+import withRedux from "../redux/withRedux";
+interface MyProps {
+  Component;
+  pageProps;
+  reduxStore;
+}
+interface MyState {
+  currentUser: "";
+  token: "";
+}
+class MyApp extends App<MyProps, MyState> {
   // Only uncomment this method if you have blocking data requirements for
   // every single page in your application. This disables the ability to
   // perform automatic static optimization, causing every page in your app to
@@ -13,34 +24,27 @@ class MyApp extends App {
   //   return { ...appProps }
   // }
 
-  state = {
-    currentUser: "",
-    token: ""
-  };
-
   unsubscribeFromAuth = null;
 
   componentDidMount() {
-
     this.unsubscribeFromAuth = firebase.auth.onAuthStateChanged(user => {
-      if(user){
+      if (user) {
         this.setState(state => {
           return {
             currentUser: user
           };
         });
       }
-     return console.log("currentuser from google auth", user);
+      return console.log("currentuser from google auth", user);
     });
 
-    this.setState({ token: window.localStorage.getItem("token") || "" }
-    );
+    this.setState({ token: window.localStorage.getItem("token") || "" });
 
     this.setState(
       {
         currentUser:
           JSON.parse(window.localStorage.getItem("currentUser")) || ""
-      },()=>console.log(this.state.currentUser)
+      }
     );
   }
 
@@ -48,10 +52,14 @@ class MyApp extends App {
     this.unsubscribeFromAuth();
   }
   render() {
-    const { Component, pageProps } = this.props;
+    const { Component, pageProps, reduxStore } = this.props;
 
-    return <Component {...this.state} {...pageProps}></Component>;
+    return (
+      <Provider store={reduxStore}>
+        <Component {...this.state} {...pageProps}></Component>;
+      </Provider>
+    );
   }
 }
 
-export default MyApp;
+export default withRedux(MyApp);

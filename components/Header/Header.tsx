@@ -1,15 +1,14 @@
 import { useState, useEffect } from "react";
 import dynamic from "next/dynamic";
 import Link from "next/link";
-import {withRouter} from 'next/router'
-import firebase from "../../firebase/firebase";
-import '../Header/Hamburger/Hamburger.scss'
+import { withRouter } from "next/router";
+import "../Header/Hamburger/Hamburger.scss";
 const Signup = dynamic(() => import("../Auth/Signup"), {
   ssr: false
 });
-const Dropdown = dynamic(()=>import('./DropDown/DropDown'),{
-  ssr:false
-})
+const Dropdown = dynamic(() => import("./DropDown/DropDown"), {
+  ssr: false
+});
 const HamburgerMenu = dynamic(() => import("./Hamburger/Hamburger"), {
   ssr: false
 });
@@ -52,25 +51,28 @@ const Header = ({
   return (
     <div className="nav">
       <div className="header">
-        <Link  href={homeRoute}>
-          <a id="logo" className="px-3 pt-3">
-          <img src="/static/favicon.png" width='50px' height='50px' alt="s"/>
+        <Link href={homeRoute}>
+          <a id="logo" className="px-3 p-2">
+            <img src="/static/favicon.png" width="50px" height="50px" alt="s" />
           </a>
         </Link>
         <div className="options">
-          <Link  href="/blogs">
+          <Link href="/blogs">
             <div className="option">
               <a>{blogName}</a>
             </div>
           </Link>
-          <Link  href={resumeRoute} as={`/resume/${router.pathname=='/' ? 'en-us' : 'ch-cn' }`}>
+          <Link
+            href={resumeRoute}
+            as={`/resume/${router.pathname == "/" ? "en-us" : "ch-cn"}`}
+          >
             <div className="option">
               <a>{resumeName}</a>
             </div>
           </Link>
           {currentUser ? (
             <div className="option">
-             <Dropdown currentUser={currentUser}></Dropdown>
+              <Dropdown currentUser={currentUser}></Dropdown>
             </div>
           ) : (
             <div className="option">
@@ -80,7 +82,7 @@ const Header = ({
             </div>
           )}
 
-          <Link  href={changeLanguageRoute}>
+          <Link href={changeLanguageRoute}>
             <div className="option">
               <a>
                 <span className="btn-hover color-5">

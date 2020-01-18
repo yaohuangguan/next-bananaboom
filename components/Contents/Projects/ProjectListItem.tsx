@@ -40,15 +40,15 @@ const Project = ({
           <img
             data-src={image}
             className="lazyload"
-            alt={router.pathname == "/chinese" ? name : _name}
+            alt={router.pathname == "/zh" ? name : _name}
             width='60%'
           />
           <p className="linkTag">
-            {router.pathname == "/chinese" ? name : _name}
+            {router.pathname == "/zh" ? name : _name}
           </p>
         </a>
       </div>
-      <p>{router.pathname == "/chinese" ? info : _info}</p>
+      <p>{router.pathname == "/zh" ? info : _info}</p>
     </div>
   );
 };

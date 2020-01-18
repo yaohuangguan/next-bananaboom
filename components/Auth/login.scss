@@ -6,7 +6,8 @@ body {
 
 .login-list {
   display: flex;
-  justify-content: center
+  justify-content: center;
+  cursor: pointer;
 }
 .signup-container {
   position: fixed;
@@ -78,18 +79,19 @@ body {
 }
 
 .modal-background {
-  background-image: url("https://images.unsplash.com/photo-1434873740857-1bc5653afda8?ixlib=rb-1.2.1&auto=format&fit=crop&w=935&q=80");
+  background-image: url("https://images.unsplash.com/photo-1561074043-1b204dad0418?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=975&q=80");
   background-size: cover;
   background-position: center;
   .modal-inner {
-    background: rgba(#333333,0.3);
+    background: rgba(#333333, 0.3);
+    cursor: default;
     display: flex;
     position: relative;
-    .password-show{
+    .password-show {
       justify-self: flex-end;
       position: absolute;
       left: 90%;
-      top:20%
+      top: 20%;
     }
     h2 {
       font-size: 25px;
@@ -103,16 +105,28 @@ body {
   }
 }
 
-.shake-message{
-  animation: .5s shake alternate;
+.shake-message {
+  animation: 0.5s shake alternate;
 }
 @keyframes shake {
-  0% { transform: skewX(-5deg); }
-  5% { transform: skewX(5deg); }
-  10% { transform: skewX(-5deg); }
-  15% { transform: skewX(5deg); }
-  20% { transform: skewX(0deg); }
-  100% { transform: skewX(0deg); }  
+  0% {
+    transform: skewX(-5deg);
+  }
+  5% {
+    transform: skewX(5deg);
+  }
+  10% {
+    transform: skewX(-5deg);
+  }
+  15% {
+    transform: skewX(5deg);
+  }
+  20% {
+    transform: skewX(0deg);
+  }
+  100% {
+    transform: skewX(0deg);
+  }
 }
 
 @keyframes unfoldIn {
@@ -157,7 +171,6 @@ body {
 }
 
 .form-auth {
- 
   label {
     position: relative;
   }
@@ -173,14 +186,13 @@ body {
       border: 2px solid #333;
       border-color: #333;
       box-shadow: none;
-      outline:none;
-
+      outline: none;
     }
   }
   .form-control.form-control-a {
     height: 3rem;
   }
-  .tooltips{
+  .tooltips {
     .tooltiptext {
       visibility: hidden;
       width: 250px;
@@ -208,12 +220,11 @@ body {
         border-color: #555 transparent transparent transparent;
       }
     }
-    &:hover{
+    &:hover {
       .tooltiptext {
         visibility: visible;
         opacity: 1;
       }
     }
-  
   }
 }

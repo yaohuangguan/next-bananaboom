@@ -10,12 +10,15 @@ const dashboard = ({ currentUser }) => {
     };
     checkLogin();
     return () => {};
-  },[currentUser,router]);
+  },[currentUser]);
   return (
     <Layout>
       <div>
         {currentUser ? (
-          <div>{currentUser.displayName}</div>
+          <div>
+            <div>{currentUser.displayName}</div>
+            <input type="file" name="" id=""/>
+          </div>
         ) : (
           <h2>You must log in to see this page</h2>
         )}

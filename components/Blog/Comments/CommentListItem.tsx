@@ -1,4 +1,3 @@
-import { timeSince } from "../../../utils/TimeSince";
 import Reply from "./Reply/Reply";
 const CommentListItem = ({ user, comment, date, photoURL, id, reply, currentUser }) => {
   return (

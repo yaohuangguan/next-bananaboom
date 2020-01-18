@@ -62,7 +62,7 @@ const Resume = ({ resumeItem, errors, router }) => {
         <br />
         <br />
         <br />
-        <Link href={router.asPath == "/resume/en-us" ? "/" : "/chinese"}>
+        <Link href={router.asPath == "/resume/en-us" ? "/" : "/zh"}>
           <a className="btn draw-border-blue waves-effect">
             {router.asPath == "/resume/en-us" ? "Back" : "返回"}
           </a>
@@ -115,7 +115,7 @@ const Resume = ({ resumeItem, errors, router }) => {
               </p>
               <h5>Interests</h5>
               <p>
-                Read some tech books，any kind of sports，including basketball,
+                Travelling, I've been to Canada, France, Austria, The United States, China, Japan, Korea. I always love travelling and keep exploring more new places. Creating stuff, create some new websites, planting some fresh vegetable and plants, drawing some portraits. Reading some tech books，I also love playing any kind of sports，including basketball,
                 workout, swimming,etc... And room escape!
               </p>
               
@@ -146,7 +146,8 @@ const Resume = ({ resumeItem, errors, router }) => {
                 </a>
               </p>
               <h5>爱好</h5>
-              <p>看些技术书，各项运动，篮球，健身，游泳等。密室逃脱</p>
+              <p>旅行，我去过加拿大，法国，奥地利，美国，中国，日本，韩国。我总是喜欢去旅行，不断探索更多的新地方。创造东西，创建一些新的网站，养一些新鲜植物，还有画画。读一些科技书籍，我也喜欢参加任何运动，包括篮球，
+                健身、游泳等， 以及密室逃脱！</p>
              
             </div>
           )}

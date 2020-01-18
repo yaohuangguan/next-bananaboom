@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import api from "../utils/Api";
+import {connect} from'react-redux'
 import Layout from "../components/Layout/Layout";
 import Header from "../components/Header/Header";
 import Jumbo from "../components/Jumbo/Jumbo";
@@ -54,7 +55,7 @@ const English = ({ result, errors, logs, projects, currentUser }) => {
         resumeName={"About"}
         resumeRoute={"/resume/[query]"}
         homeRoute={"/"}
-        changeLanguageRoute={"/chinese"}
+        changeLanguageRoute={"/zh"}
         currentUser={currentUser ? currentUser : null}
       />
       <Jumbo
@@ -101,11 +102,12 @@ const English = ({ result, errors, logs, projects, currentUser }) => {
     </Layout>
   );
 };
-English.getInitialProps = async () => {
+English.getInitialProps = async (req) => {
   let result;
   let logs;
   let projects;
   let errors;
+  
   try {
     const responseResult = await api.get("/api/homepage");
     const responseLogs = await api.get("/api/homepage/logs");

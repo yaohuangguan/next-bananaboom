@@ -36,7 +36,7 @@ const BlogListItem = ({
     heart.classList.toggle("is_animating");
     heart.classList.toggle("liked");
     handleLike(!ifLiked);
-    localStorage.setItem("ifLiked", true);
+
     const response = await api.post(`/api/posts/likes/${_id}`);
     const newLikes = await api.get(`/api/posts/likes/${_id}`);
     const likesData = await newLikes.data

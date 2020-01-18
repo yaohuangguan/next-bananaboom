@@ -9,7 +9,6 @@ const Login = ({ passwordReveal }) => {
   const [email, setemail] = useState("");
   const [password, setpassword] = useState("");
   const [errors, seterrors] = useState([]);
-  const [token, settoken] = useState(localStorage.getItem("token"));
   const [user, setuser] = useState(
     JSON.parse(localStorage.getItem("currentUser")) || []
   );
@@ -42,14 +41,13 @@ const Login = ({ passwordReveal }) => {
     if (!email || !password) {
       const shakeMessage = document.querySelector(".shake-target");
       shakeMessage.classList.toggle("shake-message");
-      return seterrors("填写完整信息(Fill all the requirements)");
+      return seterrors(["填写完整信息(Fill all the requirements)"]);
     }
     try {
       const response = await api.post("/api/users/signin", {
         email,
         password
       });
-      settoken(response.data.token);
       setuser(response.data.user);
       console.log(response);
       window.localStorage.setItem("token", 'XSS? You do not want to do that');
@@ -85,7 +83,7 @@ const Login = ({ passwordReveal }) => {
           >
             <div
               onClick={closeLogin}
-              className="py-2 px-2 text-success"
+              className="py-2 px-2 text-white"
               style={{ alignSelf: "flex-end" }}
             >
               <span style={{ fontSize: "30px" }}>&#10005;</span>
@@ -155,7 +153,7 @@ const Login = ({ passwordReveal }) => {
               />
             </div>
             <br />
-            <p style={{ alignSelf: "flex-end" }} onClick={openSignup}>
+            <p style={{ alignSelf: "flex-end",textDecoration:'underline',cursor:'pointer' }} onClick={openSignup}>
               {router.pathname == "/" ? "I don't have account" : "我要注册"}
             </p>
           </form>
