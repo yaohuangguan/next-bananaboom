@@ -3,9 +3,9 @@ import firebase from "../firebase/firebase";
 import { Provider } from "react-redux";
 import withRedux from "../redux/withRedux";
 interface MyProps {
-  Component;
-  pageProps;
-  reduxStore;
+  Component: any;
+  pageProps: any;
+  reduxStore: any;
 }
 interface MyState {
   currentUser: "";

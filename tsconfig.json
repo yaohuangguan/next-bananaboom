@@ -15,7 +15,8 @@
     "module": "esnext",
     "moduleResolution": "node",
     "resolveJsonModule": true,
-    "jsx": "preserve"
+    "jsx": "preserve",
+    "isolatedModules": true
   },
   "exclude": [
     "node_modules"
@@ -23,6 +24,12 @@
   "include": [
     "next-env.d.ts",
     "**/*.ts",
-    "**/*.tsx", "components/Blog/Comments/Reply/Reply.js", "components/Blog/Comments/Comments.js", "components/Subscribe/Subscribe.js", "components/NotFound/ErrorBoundary.js", "components/Auth/Login.js", "components/Auth/Signup.js"
+    "**/*.tsx",
+    "components/Blog/Comments/Reply/Reply.js",
+    "components/Blog/Comments/Comments.js",
+    "components/Subscribe/Subscribe.js",
+    "components/NotFound/ErrorBoundary.js",
+    "components/Auth/Login.js",
+    "components/Auth/Signup.js", "server.js"
   ]
 }

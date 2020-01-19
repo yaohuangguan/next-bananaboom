@@ -47,7 +47,7 @@ const Chinese = ({ result, errors,logs,projects, currentUser }) => {
         blogName={"博客"}
         resumeName={"介绍"}
         resumeRoute={"/resume/[query]"}
-        homeRoute={"/chinese"}
+        homeRoute={"/zh"}
         changeLanguageRoute={"/"}
         currentUser={currentUser ? currentUser : null}
       />

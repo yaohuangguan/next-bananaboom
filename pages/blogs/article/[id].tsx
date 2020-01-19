@@ -65,9 +65,10 @@ const blog = ({ posts, comments, currentUser, router }) => {
   );
 };
 
-blog.getInitialProps = async router => {
-  const response = await api.get(`/api/posts/${router.query.id}`);
-  const comments = await api.get(`/api/comments/${router.query.id}`);
+blog.getInitialProps = async req => {
+  console.log(req.query.id)
+  const response = await api.get(`/api/posts/${req.query.id}`);
+  const comments = await api.get(`/api/comments/${req.query.id}`);
   const content = await response.data;
   const commentsResponse = await comments.data;
   return {
