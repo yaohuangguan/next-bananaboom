@@ -43,4 +43,4 @@ const nextConfig = withOffline(
 //   }
 // };
 
-module.exports = nextConfig
+module.exports = { target: "serverless", ...nextConfig };
