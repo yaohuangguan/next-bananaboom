@@ -17,12 +17,12 @@ body {
   left: 30%;
   transform: scale(0);
   z-index: 5;
-  // @media screen and (max-width: 768px) {
-  //   height: 70%;
-  //   width: 80%;
-  //   top: 20%;
-  //   left: 10%;
-  // }
+  @media screen and (max-width: 768px) {
+    height: 70%;
+    width: 80%;
+    top: 20%;
+    left: 10%;
+  }
   &.popup {
     transform: scaleY(0.01) scaleX(0);
     animation: unfoldIn 1s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
