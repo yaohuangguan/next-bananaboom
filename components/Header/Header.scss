@@ -12,22 +12,7 @@ $green-color: #2eca6a;
   backface-visibility: hidden;
   font-family: Audiowide;
  
-  .hamburger{
-    margin-left: auto;
-    z-index: 10;
-    @media screen and (max-width: 415px) {
-      display: flex;
-    }
-    @media screen and (min-width: 415px) and (max-width: 768px) {
-      display: flex;
-    }
-    @media screen and (min-width: 992px) {
-      display: none;
-    }
-    @media screen and (min-width: 768px) and (max-width: 992px) {
-      display: none;
-    }
-  }
+  
   .header {
     all: inherit;
     &.scrollUp{
@@ -63,6 +48,7 @@ $green-color: #2eca6a;
     }
     .loginOption{
       display: flex;
+      
       .option{
         display: flex;
         flex-direction: column;
@@ -75,6 +61,22 @@ $green-color: #2eca6a;
         color: #fff;
         -webkit-transition: 0.4s;
         transition: 0.4s;
+        &.hamburger{
+          margin-left: auto;
+          z-index: 10;
+          @media screen and (max-width: 415px) {
+            display: flex;
+          }
+          @media screen and (min-width: 415px) and (max-width: 768px) {
+            display: flex;
+          }
+          @media screen and (min-width: 992px) {
+            display: none;
+          }
+          @media screen and (min-width: 768px) and (max-width: 992px) {
+            display: none;
+          }
+        }
         &:hover {
           color:$green-color
         }
