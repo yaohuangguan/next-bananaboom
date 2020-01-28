@@ -3,10 +3,6 @@ body {
     overflow: hidden;
   }
 }
-.text-white{
-  color:#fff;
-}
-
 
 .login-list {
   display: flex;
@@ -14,6 +10,7 @@ body {
   cursor: pointer;
 }
 .signup-container {
+  font-family: "Poppins", sans-serif;
   position: fixed;
   width: 40%;
   top: 1%;
@@ -48,6 +45,7 @@ body {
   }
 }
 .login-container {
+  font-family: "Poppins", sans-serif;
   position: fixed;
   width: 40%;
   top: 8%;
@@ -82,11 +80,10 @@ body {
 }
 
 .modal-background {
-  background-image: url("https://images.unsplash.com/photo-1561074043-1b204dad0418?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=975&q=80");
+  background-color: #fff;
   background-size: cover;
   background-position: center;
   .modal-inner {
-    background: rgba(#333333, 0.3);
     cursor: default;
     display: flex;
     position: relative;

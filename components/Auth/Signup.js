@@ -95,7 +95,7 @@ const Signup = ({ login }) => {
   return (
     <div>
       <div ref={SignupContainer} className="signup-container">
-        <div className="modal-background text-white lazy-load shake-target-signup">
+        <div className="modal-background text-dark lazy-load shake-target-signup card">
           <form
             className="modal-inner px-5 py-1 form-auth"
             style={{
@@ -106,16 +106,16 @@ const Signup = ({ login }) => {
           >
             <div
               onClick={closeSignup}
-              className="py-2 px-2 text-white"
+              className="py-2 px-2 text-dark"
               style={{ alignSelf: "flex-end" }}
             >
               <span style={{ fontSize: "30px" }}>&#10005;</span>
             </div>
-            <h4 className="mb-4 text-white text-center">
+            <h4 className="mb-4 text-dark text-center">
               {router.pathname == "/" ? "Sign up" : "注册新用户"}
             </h4>
             {errors ? <div className="text-danger">{errors}</div> : null}
-            <label htmlFor="signup-displayName" className="m-0 text-white">
+            <label htmlFor="signup-displayName" className="m-0 text-dark">
               displayName
             </label>
             <input
@@ -128,7 +128,7 @@ const Signup = ({ login }) => {
               placeholder={router.pathname == "/" ? "Username" : "用户名"}
             />
 
-            <label htmlFor="signup-email" className="m-0 text-white">
+            <label htmlFor="signup-email" className="m-0 text-dark">
               Email
             </label>
             <input
@@ -141,7 +141,7 @@ const Signup = ({ login }) => {
               placeholder={router.pathname == "/" ? "email" : "邮箱地址"}
             />
 
-            <label htmlFor="signup-password" className="m-0 text-white">
+            <label htmlFor="signup-password" className="m-0 text-dark">
               Password
             </label>
             <div
@@ -171,7 +171,7 @@ const Signup = ({ login }) => {
                 />
               </div>
             </div>
-            <label htmlFor="signup-passwordConf" className="m-0 text-white">
+            <label htmlFor="signup-passwordConf" className="m-0 text-dark">
               Confirm Password
             </label>
             <input
@@ -187,7 +187,7 @@ const Signup = ({ login }) => {
             />
 
             <button
-              className="btn draw-border-white my-4 btn-block"
+              className="btn btn-hover color-3 my-4 btn-block"
               type="submit"
               onClick={handleUserSubmit}
             >

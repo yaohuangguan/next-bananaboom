@@ -65,7 +65,7 @@ const Login = ({ passwordReveal }) => {
   return (
     <div>
       <div ref={LoginContainer} className="login-container">
-        <div className="modal-background text-white lazy-load shake-target">
+        <div className="modal-background text-dark lazy-load shake-target card">
           <form
             className="modal-inner px-5 py-1 form-auth"
             style={{
@@ -76,7 +76,7 @@ const Login = ({ passwordReveal }) => {
           >
             <div
               onClick={closeLogin}
-              className="py-2 px-2 text-white"
+              className="py-2 px-2 text-dark"
               style={{ alignSelf: "flex-end" }}
             >
               <span style={{ fontSize: "30px" }}>&#10005;</span>
@@ -85,7 +85,7 @@ const Login = ({ passwordReveal }) => {
               {router.pathname == "/" ? "Log into your account" : "用户登录"}
             </h4>
             {errors ? <div className="text-danger">{errors}</div> : null}
-            <label htmlFor="login-email" className="m-0 text-white">
+            <label htmlFor="login-email" className="m-0 text-dark">
               Email
             </label>
             <input
@@ -97,7 +97,7 @@ const Login = ({ passwordReveal }) => {
               onChange={handleEmail}
               placeholder={router.pathname == "/" ? "email" : "注册时的邮箱"}
             />
-            <label htmlFor="login-password" className="m-0 text-white">
+            <label htmlFor="login-password" className="m-0 text-dark">
               Password
             </label>
             <div style={{ position: "relative", width: "100%" }}>
@@ -119,7 +119,7 @@ const Login = ({ passwordReveal }) => {
             </div>
 
             <button
-              className="btn draw-border-white my-4 btn-block"
+              className="btn btn-hover color-3 my-4 btn-block"
               type="submit"
               onClick={handleUserSubmit}
             >
