@@ -95,9 +95,7 @@ const Header = ({
               </div>
             ) : (
               <div className="option">
-                <a className="text-success">
                   <Signup login={login}></Signup>
-                </a>
               </div>
             )}
             <div className="option hamburger px-3 py-3"  onClick={turnOnDropDown}>
