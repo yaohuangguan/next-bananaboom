@@ -58,7 +58,6 @@ const Layout = ({ children }) => {
             </p>
           </div>
         </noscript>
-
         {loading ? getLoading(fillColor) : children}
       </div>
     </ErrorBoundary>

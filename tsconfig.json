@@ -30,6 +30,6 @@
     "components/Subscribe/Subscribe.js",
     "components/NotFound/ErrorBoundary.js",
     "components/Auth/Login.js",
-    "components/Auth/Signup.js", "server.js"
+    "components/Auth/Signup.js", "server.js", "components/Header/Hamburger/Hamburger.js", "components/Header/Header.js"
   ]
 }

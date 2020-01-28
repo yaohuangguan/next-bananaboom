@@ -14,11 +14,7 @@ $green-color: #2eca6a;
  
   .hamburger{
     margin-left: auto;
-    height:40px;
-    position: absolute;
-    right: 2%;
-    top:10px;
-    display: flex;
+    z-index: 10;
     @media screen and (max-width: 415px) {
       display: flex;
     }
@@ -64,6 +60,25 @@ $green-color: #2eca6a;
       // @media screen and (min-width: 768px) and (max-width: 992px) {
       //   width: 85%;
       // }
+    }
+    .loginOption{
+      display: flex;
+      .option{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 20px;
+        font-size: 1em;
+        font-weight: 600;
+        cursor: pointer;
+        color: #fff;
+        -webkit-transition: 0.4s;
+        transition: 0.4s;
+        &:hover {
+          color:$green-color
+        }
+      }
     }
    
     .options {

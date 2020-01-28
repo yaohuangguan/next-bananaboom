@@ -11,17 +11,17 @@ body {
 }
 .signup-container {
   position: fixed;
-  height: 400px;
   width: 40%;
   top: 1%;
   left: 30%;
   transform: scale(0);
   z-index: 5;
   @media screen and (max-width: 768px) {
-    height: 70%;
-    width: 80%;
-    top: 20%;
-    left: 10%;
+    height: 30vh;
+    width: 70%;
+    top: 5%;
+    bottom:20%;
+    left: 15%;
   }
   &.popup {
     transform: scaleY(0.01) scaleX(0);
@@ -45,17 +45,16 @@ body {
 }
 .login-container {
   position: fixed;
-  height: 400px;
   width: 40%;
   top: 8%;
   left: 30%;
   transform: scale(0);
   z-index: 1;
   @media screen and (max-width: 768px) {
-    height: 70%;
-    width: 80%;
-    top: 20%;
-    left: 10%;
+    height: 400px;
+    width: 70%;
+    top: 5%;
+    left: 15%;
   }
   &.popup {
     transform: scaleY(0.01) scaleX(0);

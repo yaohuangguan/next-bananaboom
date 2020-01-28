@@ -13,21 +13,16 @@ const Signup = ({ login }) => {
   const [displayName, setdisplayName] = useState("");
   const [passwordConf, setpasswordConf] = useState("");
   const [errors, seterrors] = useState([]);
-  const [user, setuser] = useState(
-    JSON.parse(localStorage.getItem("currentUser")) || []
-  );
 
   const openSignup = e => {
     SignupContainer.current.classList.remove("out");
     SignupContainer.current.classList.add("popup");
-    document.body.classList.add("modal-active");
   };
   const closeSignup = () => {
     SignupContainer.current.classList.add("out");
-    document.body.classList.remove("modal-active");
   };
   const passwordReveal = e => {
-    let x = document.querySelectorAll(".password") 
+    let x = document.querySelectorAll(".password");
     x.forEach(each => {
       if (each.type === "password") {
         each.type = "text";
@@ -59,9 +54,7 @@ const Signup = ({ login }) => {
     closeSignup();
     const modalContainer = document.querySelector(".login-container");
     modalContainer.classList.remove("out");
-
     modalContainer.classList.add("popup");
-    document.body.classList.add("modal-active");
   };
   const handleUserSubmit = async e => {
     e.preventDefault();
@@ -78,11 +71,10 @@ const Signup = ({ login }) => {
         password,
         passwordConf
       });
-      setuser(response.data.user);
-      window.localStorage.setItem("token", "XSS? You do not want to do that");
+
       window.localStorage.setItem(
         "currentUser",
-        JSON.stringify(response.data.user)
+        JSON.stringify(response.data.userToSend)
       );
       router.reload();
       console.log(response);
@@ -102,7 +94,6 @@ const Signup = ({ login }) => {
 
   return (
     <div>
-      <Login passwordReveal={passwordReveal}></Login>
       <div ref={SignupContainer} className="signup-container">
         <div className="modal-background text-white lazy-load shake-target-signup">
           <form
@@ -243,6 +234,8 @@ const Signup = ({ login }) => {
           </div>
         </div>
       </div>
+      <Login passwordReveal={passwordReveal}></Login>
+
     </div>
   );
 };

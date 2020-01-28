@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import dynamic from "next/dynamic";
 import Link from "next/link";
 import { withRouter } from "next/router";
@@ -48,6 +48,12 @@ const Header = ({
     headerChange();
   });
 
+  const turnOnDropDown = ()=>{
+    let dropdown = document.querySelector('.dropdown-mobile-submenu')
+    if(dropdown.style.display !=='block'){
+      dropdown.classList.toggle('dropdown-hide')
+    }
+    }
   return (
     <div className="nav">
       <div className="header">
@@ -70,17 +76,7 @@ const Header = ({
               <a>{resumeName}</a>
             </div>
           </Link>
-          {currentUser ? (
-            <div className="option">
-              <Dropdown currentUser={currentUser}></Dropdown>
-            </div>
-          ) : (
-            <div className="option">
-              <a className="text-success">
-                <Signup login={login}></Signup>
-              </a>
-            </div>
-          )}
+          
 
           <Link href={changeLanguageRoute}>
             <div className="option">
@@ -92,8 +88,20 @@ const Header = ({
             </div>
           </Link>
         </div>
-      </div>
-      <div className="hamburger dropdown-mobile px-3 py-3">
+        <div className="loginOption">
+          {currentUser ? (
+              <div className="option">
+                <Dropdown currentUser={currentUser}></Dropdown>
+              </div>
+            ) : (
+              <div className="option">
+                <a className="text-success">
+                  <Signup login={login}></Signup>
+                </a>
+              </div>
+            )}
+            <div className="option hamburger px-3 py-3"  onClick={turnOnDropDown}>
+            <img src="https://img.icons8.com/clouds/40/000000/menu.png"/>
         <HamburgerMenu
           login={login}
           currentUser={currentUser}
@@ -103,6 +111,9 @@ const Header = ({
           resumeRoute={resumeRoute}
         />
       </div>
+        </div>
+      </div>
+      
     </div>
   );
 };

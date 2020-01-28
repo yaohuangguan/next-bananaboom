@@ -9,20 +9,15 @@ const Login = ({ passwordReveal }) => {
   const [email, setemail] = useState("");
   const [password, setpassword] = useState("");
   const [errors, seterrors] = useState([]);
-  const [user, setuser] = useState(
-    JSON.parse(localStorage.getItem("currentUser")) || []
-  );
+
   const closeLogin = () => {
     LoginContainer.current.classList.add("out");
-    document.body.classList.remove("modal-active");
   };
   const openSignup = e => {
     closeLogin();
     const modalContainer = document.querySelector(".signup-container");
     modalContainer.classList.remove("out");
-
     modalContainer.classList.add("popup");
-    document.body.classList.add("modal-active");
   };
   const clearInput = () => {
     setemail("");
@@ -48,12 +43,10 @@ const Login = ({ passwordReveal }) => {
         email,
         password
       });
-      setuser(response.data.user);
-      console.log(response);
-      window.localStorage.setItem("token", 'XSS? You do not want to do that');
+      // console.log(response.data.userToSend);
       window.localStorage.setItem(
         "currentUser",
-        JSON.stringify(response.data.user)
+        JSON.stringify(response.data.userToSend)
       );
       router.reload();
       clearInput();
@@ -78,7 +71,7 @@ const Login = ({ passwordReveal }) => {
             style={{
               display: "flex",
               flexDirection: "column",
-              justifyContent: "center",
+              justifyContent: "center"
             }}
           >
             <div
@@ -133,7 +126,7 @@ const Login = ({ passwordReveal }) => {
               {router.pathname == "/" ? "Login" : "确定"}
             </button>
 
-            <p className='text-center'>
+            <p className="text-center">
               {router.pathname == "/"
                 ? "or log in with:"
                 : "或者使用以下方法登录:"}
@@ -153,7 +146,14 @@ const Login = ({ passwordReveal }) => {
               />
             </div>
             <br />
-            <p style={{ alignSelf: "flex-end",textDecoration:'underline',cursor:'pointer' }} onClick={openSignup}>
+            <p
+              style={{
+                alignSelf: "flex-end",
+                textDecoration: "underline",
+                cursor: "pointer"
+              }}
+              onClick={openSignup}
+            >
               {router.pathname == "/" ? "I don't have account" : "我要注册"}
             </p>
           </form>

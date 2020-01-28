@@ -10,7 +10,9 @@ const HeadConfig = () => (
     <link rel="icon" type="image/png" sizes="32x32" href="/static/favicon-32x32.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="/static/favicon-16x16.png" />
     <link rel="mask-icon" href="/static/safari-pinned-tab.svg" color="#5bbad5" />
-    <link rel="preconnect" href="https://i.ibb.co"/>
+    <link rel="preconnect" href="https://i.ibb.co" crossOrigin=''/>
+    <link rel="preconnect" href="https://fonts.gstatic.com"/>
+    <link rel="preconnect" href="https://abs.twimg.com"/>
     <meta name="msapplication-TileColor" content="#2d89ef" />
     <meta name="theme-color" content="#ffffff"></meta>
     <meta name="theme-color" content="normal" />

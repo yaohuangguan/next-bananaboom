@@ -9,7 +9,6 @@ interface MyProps {
 }
 interface MyState {
   currentUser: "";
-  token: "";
 }
 class MyApp extends App<MyProps, MyState> {
   // Only uncomment this method if you have blocking data requirements for
@@ -38,14 +37,22 @@ class MyApp extends App<MyProps, MyState> {
       return console.log("currentuser from google auth", user);
     });
 
-    this.setState({ token: window.localStorage.getItem("token") || "" });
-
-    this.setState(
-      {
-        currentUser:
-          JSON.parse(window.localStorage.getItem("currentUser")) || ""
+    this.setState(state => {
+      let user = window.localStorage.getItem("currentUser") || null;
+      let userParsed: any;
+      if (user) {
+        if (Object.prototype.toString.call(user) === "[object String]") {
+          userParsed = JSON.parse(user);
+          console.log(userParsed);
+        } else {
+          let userString = JSON.stringify(user);
+          userParsed = JSON.parse(userString);
+        }
+        return {
+          currentUser: userParsed
+        };
       }
-    );
+    });
   }
 
   componentWillUnmount() {
@@ -56,7 +63,7 @@ class MyApp extends App<MyProps, MyState> {
 
     return (
       <Provider store={reduxStore}>
-        <Component {...this.state} {...pageProps}></Component>;
+        <Component {...this.state} {...pageProps}></Component>
       </Provider>
     );
   }
