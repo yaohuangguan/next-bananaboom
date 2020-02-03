@@ -2,10 +2,19 @@
 import { useState, useEffect } from "react";
 import SocialFooter from "../Footer/SocialFooter";
 import { getLoading } from "../../utils/Utils";
+import { useRouter } from "next/router";
 import "./Subscribe.scss";
 import Logs from "../Contents/Logs/Logs";
 const mailApi = `https://qq.us20.list-manage.com/subscribe/post?u=192d7d7d1dcff6b2519629804&amp;id=4b2f990265`;
-const Subscribe = ({ title, info, copyright, web_version, log,logs_content }) => {
+const Subscribe = ({
+  title,
+  info,
+  copyright,
+  web_version,
+  log,
+  logs_content
+}) => {
+  const router = useRouter();
   const [email, setemail] = useState(null);
   const [send, setsend] = useState(false);
   const [loading, setloading] = useState(false);
@@ -38,7 +47,14 @@ const Subscribe = ({ title, info, copyright, web_version, log,logs_content }) =>
     setemail(e.target.value);
     e.target.style.color = "#6a82fb";
   };
-
+  const subscribeButtonLoading = () =>{
+    return router.pathname === "/" ? "Subscribing..." : "正在关注...";
+  }
+    
+  const subscribeButton = () =>{
+    return router.pathname === "/" ? "Subscribe" : "订阅";
+  }
+    
   return (
     <>
       <div className="text-center">
@@ -50,19 +66,20 @@ const Subscribe = ({ title, info, copyright, web_version, log,logs_content }) =>
           className="validate form-a"
           noValidate
         >
-          <label htmlFor="email">{title}
+          <label htmlFor="email">
+            {title}
 
-          <input
-            type="email"
-            name="EMAIL"
-            className="form-control form-control-lg form-control-a text-center"
-            id="mce-EMAIL"
-            onChange={getEmail}
-            placeholder="请输入邮箱地址 Please enter email address"
-            required
-          />
+            <input
+              type="email"
+              name="EMAIL"
+              className="form-control form-control-lg form-control-a text-center"
+              id="mce-EMAIL"
+              onChange={getEmail}
+              placeholder="Please enter email address"
+              required
+            />
           </label>
-          
+
           <div className="clear">
             <button
               type="submit"
@@ -72,9 +89,12 @@ const Subscribe = ({ title, info, copyright, web_version, log,logs_content }) =>
               onClick={onLoading}
             >
               {loading ? (
-                <div>{getLoading("green")}Subscribing...</div>
+                <div>
+                  {getLoading("green")}
+                  {subscribeButtonLoading()}
+                </div>
               ) : (
-                "Subscribe"
+                subscribeButton()
               )}
             </button>
           </div>
@@ -94,13 +114,11 @@ const Subscribe = ({ title, info, copyright, web_version, log,logs_content }) =>
 
           <Logs version={web_version} check={log} logs={logs_content}></Logs>
           <p className="text-dark">{copyright}</p>
-
         </div>
         <SocialFooter></SocialFooter>
       </div>
     </>
   );
 };
-
 
 export default Subscribe;

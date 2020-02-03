@@ -28,7 +28,7 @@ body {
   @media screen and (min-width: 415px) and (max-width: 768px) {
     height: 30vh;
     width: 80%;
-    top: 10%;
+    top: 5%;
     bottom:20%;
     left: 10%;
   }
@@ -42,7 +42,7 @@ body {
   @media screen and (min-width: 768px) and (max-width: 992px) {
     height: 30vh;
     width: 40%;
-    top: 10%;
+    top: 5%;
     bottom:20%;
     left: 30%;
   }
@@ -74,6 +74,7 @@ body {
   left: 30%;
   transform: scale(0);
   z-index: 1;
+  
   @media screen and (max-width: 415px) {
     height: 30vh;
     width: 100%;
@@ -84,7 +85,7 @@ body {
   @media screen and (min-width: 415px) and (max-width: 768px) {
     height: 30vh;
     width: 80%;
-    top: 10%;
+    top: 5%;
     bottom:20%;
     left: 10%;
   }
@@ -98,7 +99,7 @@ body {
   @media screen and (min-width: 768px) and (max-width: 992px) {
     height: 30vh;
     width: 40%;
-    top: 10%;
+    top: 5%;
     bottom:20%;
     left: 30%;
   }

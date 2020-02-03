@@ -82,11 +82,11 @@ const Login = ({ passwordReveal }) => {
               <span style={{ fontSize: "30px" }}>&#10005;</span>
             </div>
             <h4 className="mb-4">
-              {router.pathname == "/" ? "Log into your account" : "用户登录"}
+              {router.pathname == "/" ? "Log into your account" : "登录"}
             </h4>
             {errors ? <div className="text-danger">{errors}</div> : null}
             <label htmlFor="login-email" className="m-0 text-dark">
-              Email
+            {router.pathname == "/" ? "Email" : "邮箱"}
             </label>
             <input
               type="email"
@@ -98,7 +98,7 @@ const Login = ({ passwordReveal }) => {
               placeholder={router.pathname == "/" ? "email" : "注册时的邮箱"}
             />
             <label htmlFor="login-password" className="m-0 text-dark">
-              Password
+            {router.pathname == "/" ? "Password" : "密码"}
             </label>
             <div style={{ position: "relative", width: "100%" }}>
               <input

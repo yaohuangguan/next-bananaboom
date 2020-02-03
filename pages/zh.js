@@ -66,6 +66,7 @@ const Chinese = ({ result, errors,logs,projects, currentUser }) => {
           intro={intro_intro_cn ||`我是Web开发工程师和设计师，开源社区贡献者. 你也可以在 GitHub 上找到我的一些项目和在 CSDN 上找到我发布的博客, 我一直在维护该网站，并改善其性能和用户体验。如果你有改善此网站的好主意，可以是任何方面，比如UI,UX，性能优化，数据库设计，技术栈以及浏览时的Bug等，欢迎到网站的底部留下评论！`}
           projects={projects}
         ></Intro>
+        {likes ? ( <Likes likes={likes} _id={_id}></Likes>) : null}
 
         <Subscribe
           title={"对本博客感兴趣？输入邮箱加入推送"}
@@ -78,7 +79,6 @@ const Chinese = ({ result, errors,logs,projects, currentUser }) => {
           log={"查看网站版本更新日志"}
           logs_content={logs}
         />
-        {likes ? ( <Likes likes={likes} _id={_id}></Likes>) : null}
        
       </div>
       <Footer date={footer_date_cn || '感谢访问！'} welcome={footer_welcome_cn||'欢迎来到我的网站！'}></Footer>

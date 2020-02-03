@@ -111,12 +111,12 @@ const Signup = ({ login }) => {
             >
               <span style={{ fontSize: "30px" }}>&#10005;</span>
             </div>
-            <h4 className="mb-4 text-dark text-center">
-              {router.pathname == "/" ? "Sign up" : "注册新用户"}
+            <h4 className="mb-4 text-dark">
+              {router.pathname == "/" ? "Sign up" : "注册"}
             </h4>
             {errors ? <div className="text-danger">{errors}</div> : null}
             <label htmlFor="signup-displayName" className="m-0 text-dark">
-              displayName
+             {router.pathname == "/" ? "Username" : "用户名"}
             </label>
             <input
               type="text"
@@ -129,7 +129,7 @@ const Signup = ({ login }) => {
             />
 
             <label htmlFor="signup-email" className="m-0 text-dark">
-              Email
+            {router.pathname == "/" ? "Email" : "邮箱地址"}
             </label>
             <input
               type="email"
@@ -142,7 +142,7 @@ const Signup = ({ login }) => {
             />
 
             <label htmlFor="signup-password" className="m-0 text-dark">
-              Password
+            {router.pathname == "/" ? "Password" : "密码"}
             </label>
             <div
               className="tooltips"
@@ -172,7 +172,9 @@ const Signup = ({ login }) => {
               </div>
             </div>
             <label htmlFor="signup-passwordConf" className="m-0 text-dark">
-              Confirm Password
+            {
+                router.pathname == "/" ? "Confirm Password" : "确认密码"
+              }
             </label>
             <input
               type="password"

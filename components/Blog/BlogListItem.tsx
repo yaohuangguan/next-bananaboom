@@ -1,8 +1,8 @@
 import Link from "next/link";
 import "./BlogListItem.scss";
-import api from '../../utils/Api'
+import api from "../../utils/Api";
 import { useEffect, useState } from "react";
-import { randomColor } from '../../utils/Utils'
+import { randomColor } from "../../utils/Utils";
 const colors = [`blue`, `orange`, `cyan`, `indigo`, `green`];
 
 const BlogListItem = ({
@@ -19,7 +19,6 @@ const BlogListItem = ({
 }) => {
   const [likeCount, setCount] = useState(likes);
   const [ifLiked, handleLike] = useState(false);
-  
 
   const cancelLike = async () => {
     const heart = document.getElementById(`${_id}`);
@@ -28,7 +27,7 @@ const BlogListItem = ({
     handleLike(!ifLiked);
     const response = await api.put(`/api/posts/likes/${_id}`);
     const newLikes = await api.get(`/api/posts/likes/${_id}`);
-    const likesData = await newLikes.data
+    const likesData = await newLikes.data;
     setCount(likesData.likes);
   };
   const addLike = async () => {
@@ -39,7 +38,7 @@ const BlogListItem = ({
 
     const response = await api.post(`/api/posts/likes/${_id}`);
     const newLikes = await api.get(`/api/posts/likes/${_id}`);
-    const likesData = await newLikes.data
+    const likesData = await newLikes.data;
     setCount(likesData.likes);
   };
 
@@ -82,32 +81,32 @@ const BlogListItem = ({
         <div style={{ display: "flex", justifyContent: "space-between" }}>
           {url ? (
             <Link href={`${url}`} replace>
-              <a
-                className="btn draw-border-blue"
-                style={{ height: "50px" }}
-              >
+              <a className="btn draw-border-blue" style={{ height: "50px" }}>
                 {button || "Read More"}
               </a>
             </Link>
           ) : (
-            <Link href={`/blogs/article/[id]`} as={`/blogs/article/${_id}`} replace>
-              <a
-                className="btn draw-border-blue"
-                style={{ height: "50px" }}
-              >
+            <Link
+              href={`/blogs/article/[id]`}
+              as={`/blogs/article/${_id}`}
+              replace
+            >
+              <a className="btn draw-border-blue" style={{ height: "50px" }}>
                 {button || "Read More"}
               </a>
             </Link>
           )}
 
-          <div
-            className={`heart ${ifLiked ? "liked is_animating" : ""}`}
-            onClick={ifLiked ? cancelLike : addLike}
-            id={_id}
-          >
-            <span className="font-weight-bold">
+          <div className="font-weight-bold">
+           
+            <div
+              className={`heart ${ifLiked ? "liked is_animating" : ""}`}
+              onClick={ifLiked ? cancelLike : addLike}
+              id={_id}
+            >
               <em>{likeCount}</em>{" "}
-            </span>
+            </div>
+             
           </div>
         </div>
       </div>
