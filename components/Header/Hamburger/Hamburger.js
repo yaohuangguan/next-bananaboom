@@ -46,7 +46,7 @@ const Hamburger = ({
             <li className="nav-item">
               <Link href={changeLanguageRoute}>
                 <a className="nav-link text-white font-weight-bold">
-                  {changeLanguageRoute == "/" ? "🇬🇧English" : "🇨🇳中文"}
+                  {changeLanguageRoute == "/" ? "English" : "中文"}
                 </a>
               </Link>
             </li>

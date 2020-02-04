@@ -8,6 +8,8 @@ import api from '../../utils/Api'
 import Head from "next/head";
 import SearchBox from "../../components/SearchBox/SearchBox";
 const Blog = ({ blogs, errors }) => {
+  const router = useRouter();
+
   const [searchField, setsearchField] = useState("");
   const [filteredBlog, setfilteredBlog] = useState([]);
   const handleChange = e => setsearchField(e.target.value);
@@ -42,7 +44,8 @@ const Blog = ({ blogs, errors }) => {
     );
     setfilteredBlog(result);
   }, [searchField]);
-  const router = useRouter();
+
+
   return (
     <Layout>
       <Head>
@@ -62,7 +65,7 @@ const Blog = ({ blogs, errors }) => {
         </a>
       </div>
       <div className="blog">
-        <div className="text-white text-center rgba-stylish-light  px-5">
+        <div className="text-white text-center rgba-stylish-light px-5">
           <div className="py-5">
             <a
               className="btn draw-border-white waves-effect"
@@ -94,7 +97,7 @@ const Blog = ({ blogs, errors }) => {
             searchField={searchField}
             handleChange={handleChange}
           ></SearchBox>
-        {filteredBlog.length == 0 ? 'No result match': null}
+        {filteredBlog.length == 0 ? '没有找到相关文章 No result matches': null}
 
           <BlogList blogs={filteredBlog} />
         </div>

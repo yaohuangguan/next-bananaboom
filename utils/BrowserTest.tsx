@@ -7,7 +7,7 @@ class BrowserTest extends React.Component {
       document.getElementById("browser-not-supported").innerHTML =
         "<h4>" + "您的浏览器不支持，建议使用Chrome或Firefox浏览器" + "</h4>";
     } else {
-      console.log("用户没有使用ie，挂载正常");
+      console.log("tests for ie");
     }
 
     function detectIE() {

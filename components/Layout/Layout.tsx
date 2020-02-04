@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import ErrorBoundary from "../NotFound/ErrorBoundary";
 import { getLoading } from "../../utils/Utils";
 import HeadConfig from "../Head/Head";
-const fillColor = `#eb782e`;
+const fillColor = ["#30C4EE", `#006CB7`, `#EE6352`, `#59CD90`, `#F4E04D`];
 
 const Layout = ({ children }) => {
   const [loading, setLoading] = useState(false);
@@ -19,7 +19,11 @@ const Layout = ({ children }) => {
     };
     const routeEnd = url => {
       console.log("App is changed to: ", url);
-      const urlReloadList = [`/blogs/article/${Router.query.id}`,'/resume/ch-cn','/resume/en-us'];
+      const urlReloadList = [
+        `/blogs/article/${Router.query.id}`,
+        "/resume/ch-cn",
+        "/resume/en-us"
+      ];
       const ifReload = urlReloadList.some(each => {
         return each == url;
       });
@@ -45,6 +49,7 @@ const Layout = ({ children }) => {
       Router.events.off("routeChangeError", routeError);
     };
   }, []);
+
   return (
     <ErrorBoundary>
       <HeadConfig></HeadConfig>
@@ -58,7 +63,13 @@ const Layout = ({ children }) => {
             </p>
           </div>
         </noscript>
-        {loading ? getLoading(fillColor) : children}
+        {loading ? (
+          <div className="loading-container">
+            <div className="spinner"></div>
+            <div className="spinner-center"></div>
+            <div className="loading-text">Loading...</div>
+          </div>
+        ) : children}
       </div>
     </ErrorBoundary>
   );

@@ -34,7 +34,7 @@ class MyApp extends App<MyProps, MyState> {
           };
         });
       }
-      return console.log("currentuser from google auth", user);
+      return process.env.NODE_ENV==='development' ? console.log("currentuser from google auth", user):null;
     });
 
     this.setState(state => {
@@ -43,7 +43,6 @@ class MyApp extends App<MyProps, MyState> {
       if (user) {
         if (Object.prototype.toString.call(user) === "[object String]") {
           userParsed = JSON.parse(user);
-          console.log(userParsed);
         } else {
           let userString = JSON.stringify(user);
           userParsed = JSON.parse(userString);

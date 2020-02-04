@@ -1,4 +1,3 @@
-
 import dynamic from "next/dynamic";
 const BlogListItem = dynamic(() => import("../Blog/BlogListItem"), {
   ssr: false

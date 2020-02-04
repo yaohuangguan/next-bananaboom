@@ -20,7 +20,6 @@ provider.setCustomParameters({ prompt: "select_account" });
 const signInWithGoogle = async () => {
   try {
     const response = await auth.signInWithPopup(provider);
-    console.log(response)
   } catch (error) {
     console.log(error);
   }

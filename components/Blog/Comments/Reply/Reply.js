@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 const Reply = ({ reply, id, currentUser }) => {
   const [replyContent, setreplyContent] = useState("");
   const [replyList, setreplyList] = useState(reply);
+  const [errors, seterrors] = useState('')
   useEffect(() => {
     const CancelToken = axios.CancelToken;
     const source = CancelToken.source();
@@ -25,11 +26,21 @@ const Reply = ({ reply, id, currentUser }) => {
   };
   const handleReplyChange = e => {
     setreplyContent(e.target.value);
-    console.log(e.target.value);
   };
-
+  const cleanReply = () =>{
+    let reply = document.querySelector('.reply-field')
+    reply.value = ''
+    setreplyContent('')
+  }
   const addReply = async () => {
     try {
+      if(!currentUser) return seterrors('Login to reply')
+      if (replyContent.trim() == "") {
+        return seterrors("reply can not be empty");
+      }
+      if (replyContent.trim().length > 120) {
+        return seterrors("You can't post a comment more than 120 words");
+      }
       const { displayName, photoURL } = currentUser;
       const response = await api({
         method: "post",
@@ -43,12 +54,18 @@ const Reply = ({ reply, id, currentUser }) => {
       await response.data;
       const newReply = await (await api.get(`/api/comments/reply/${id}`)).data[0].reply;
       setreplyList(newReply);
+      setreplyContent('')
     } catch (error) {
       console.log(error);
+      setreplyContent('')
+
     }
   };
   return (
     <div className="reply-section">
+     {errors ? (
+                  <div className="errors text-danger">{errors}</div>
+                ) : null}
       <div style={{ display: "flex", justifyContent: "space-between" }}>
         <a
           onClick={showReply}
@@ -67,7 +84,7 @@ const Reply = ({ reply, id, currentUser }) => {
       <div className="w-100 md-form m-0 d-none reply position-relative" id={id}>
         <input
           type="text"
-          className="form-control"
+          className="form-control reply-field"
           placeholder="Enter your public reply here..."
           onChange={handleReplyChange}
           value={replyContent}

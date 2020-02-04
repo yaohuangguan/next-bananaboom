@@ -241,10 +241,10 @@ body {
     .tooltiptext {
       visibility: hidden;
       width: 250px;
-      background-color: #555;
-      color: #fff;
+      background-color: #ffff;
+      color: black;
+      border:2px solid black;
       text-align: center;
-      border-radius: 6px;
       padding: 5px 0;
       position: absolute;
       z-index: 1;

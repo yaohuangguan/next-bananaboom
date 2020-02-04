@@ -9,6 +9,12 @@ const DropDown = ({ currentUser }) => {
     window.localStorage.removeItem("currentUser");
     router.reload();
   };
+  const getUserLogOutOnRoutes = () => {
+    return router.pathname === "/" ? "Log out" : "退出登录";
+  };
+  const getDashboardOnRoutes = () => {
+    return router.pathname === "/" ? "Dashboard" : "个人中心";
+  };
   const { uid, displayName, photoURL, _id } = currentUser;
   return (
     <>
@@ -18,21 +24,23 @@ const DropDown = ({ currentUser }) => {
         <div className="dropdown-submenu py-1">
           <ul className="dropdown-list">
             <Link href="/dashboard/[id]" as={`/dashboard/${_id ? _id : uid}`}>
-              <li className="dropdown-item text-info">Dashboard</li>
+              <li className="dropdown-item text-secondary">
+                {getDashboardOnRoutes()}
+              </li>
             </Link>
             {_id ? (
-              <li className="dropdown-item text-info" onClick={logout}>
-                <a>Log out</a>{" "}
+              <li className="dropdown-item text-secondary" onClick={logout}>
+                <a>{getUserLogOutOnRoutes()}</a>{" "}
               </li>
             ) : (
               <li
-                className="dropdown-item text-info"
+                className="dropdown-item text-secondary"
                 onClick={() => {
                   firebase.auth.signOut();
                   router.reload();
                 }}
               >
-                <a>Logout</a>
+                <a>{getUserLogOutOnRoutes()}</a>
               </li>
             )}
           </ul>

@@ -81,8 +81,8 @@ const Header = ({
           <Link href={changeLanguageRoute}>
             <div className="option">
               <a>
-                <span className="btn-hover color-5">
-                  {changeLanguageRoute == "/" ? "🇬🇧English" : "🇨🇳中文"}
+                <span className="draw-border-white p-1">
+                  {changeLanguageRoute == "/" ? "English" : "中文"}
                 </span>
               </a>
             </div>
@@ -99,7 +99,7 @@ const Header = ({
               </div>
             )}
             <div className="option hamburger px-3 py-3"  onClick={turnOnDropDown}>
-            <img src="https://img.icons8.com/clouds/40/000000/menu.png"/>
+            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAoCAYAAACM/rhtAAAABmJLR0QA/wD/AP+gvaeTAAABRklEQVRYhe2XvU7DMBCAv0PMTC1j904VDYiJvR3DxBPw80RV34CNbnkARoQQU+d2LMxMiGOIEG4VX9riWAX8TUnOlj9H9vkMiUQi8b8RX0BVc2AQyaMQkUlVYN/oNADugWkjSt90gSGwsSDAVEQegys5qCrAmS9eJ5irahbUqOTZeX63GlqCH5S/vx3CaAV30i1g4WtobZI20AkoZTETkddIYyV2C2sN9oHjSB4PIvJUFdgzOl0RZ5N0gGtfsC4P3kVI1Blw6YvXCaKqB8BFIJ9b4Jzl43PrRA2QA/MfSrl8TbTnfDOXkbVJjoCTAFLr4N0kiT/PrhQLcxF5qQpYgiPgEGi6ymgBCxG52aiXqo4bKlZXx8lUdeyLr5OoT53Xnrfh9pjLqE6wy3LWb+LYe8Oo2i3BgvK25b3QBKSIMEYikUj8Sj4Bb8FS0lQGs+AAAAAASUVORK5CYII=" />
         <HamburgerMenu
           login={login}
           currentUser={currentUser}

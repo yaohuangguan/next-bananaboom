@@ -27,7 +27,7 @@ const Subscribe = ({
     setTimeout(() => {
       document.getElementById("mce-EMAIL").value = "";
       const subscribe = document.getElementById("mc-embedded-subscribe");
-      subscribe.textContent = "Thank you!";
+      subscribe.textContent = router.pathname==='/'?'Thank you!':'感谢关注!';
     }, 5000);
   };
   useEffect(() => {
@@ -66,7 +66,7 @@ const Subscribe = ({
           className="validate form-a"
           noValidate
         >
-          <label htmlFor="email">
+          <label className='font-weight-bold' htmlFor="email">
             {title}
 
             <input
@@ -90,7 +90,7 @@ const Subscribe = ({
             >
               {loading ? (
                 <div>
-                  {getLoading("green")}
+                  {getLoading("purple")}
                   {subscribeButtonLoading()}
                 </div>
               ) : (

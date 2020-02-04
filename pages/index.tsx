@@ -77,7 +77,6 @@ const English = ({ result, errors, logs, projects, currentUser }) => {
           }
           projects={projects}
         ></Intro>
-{likes ? <Likes likes={likes} _id={_id}></Likes> : null}
         <Subscribe
           title={"Show some interests? Follow my blog here!"}
           info={
@@ -93,8 +92,10 @@ const English = ({ result, errors, logs, projects, currentUser }) => {
           log={" Click here to see logs of updates"}
           logs_content={logs}
         />
+      {likes ? <Likes likes={likes} _id={_id}></Likes> : null}
         
       </div>
+
       <Footer
         date={footer_date ? footer_date : "Thanks for visiting!"}
         welcome={footer_welcome ? footer_welcome : "Welcome to my website!"}
