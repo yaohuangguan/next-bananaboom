@@ -189,7 +189,7 @@ const Signup = ({ login }) => {
             />
 
             <button
-              className="btn btn-hover color-3 my-4 btn-block"
+              className="btn btn-hover color-3 my-4 btn-block text-white"
               type="submit"
               onClick={handleUserSubmit}
             >
@@ -231,7 +231,7 @@ const Signup = ({ login }) => {
       </div>
       <div className="loginButton">
         <div className="buttons">
-          <div className="button" onClick={openSignup}>
+          <div className="button text-white" onClick={openSignup}>
             {login}
           </div>
         </div>

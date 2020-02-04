@@ -119,7 +119,7 @@ const Login = ({ passwordReveal }) => {
             </div>
 
             <button
-              className="btn btn-hover color-3 my-4 btn-block"
+              className="btn btn-hover color-3 my-4 btn-block text-white"
               type="submit"
               onClick={handleUserSubmit}
             >
