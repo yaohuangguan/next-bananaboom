@@ -64,7 +64,7 @@ const Header = ({
         <div className="options">
           <Link href="/blogs">
             <div className="option">
-              <a>{blogName}</a>
+              <a className='text-white'>{blogName}</a>
             </div>
           </Link>
           <Link
@@ -72,14 +72,14 @@ const Header = ({
             as={`/resume/${router.pathname == "/" ? "en-us" : "ch-cn"}`}
           >
             <div className="option">
-              <a>{resumeName}</a>
+              <a className='text-white'>{resumeName}</a>
             </div>
           </Link>
           
 
           <Link href={changeLanguageRoute}>
             <div className="option">
-              <a>
+              <a className='text-white'>
                 <span className="draw-border-white p-1">
                   {changeLanguageRoute == "/" ? "English" : "中文"}
                 </span>
@@ -93,7 +93,7 @@ const Header = ({
                 <Dropdown currentUser={currentUser}></Dropdown>
               </div>
             ) : (
-              <div className="option">
+              <div className="option text-white">
                   <Signup></Signup>
               </div>
             )}

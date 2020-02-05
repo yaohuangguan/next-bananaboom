@@ -75,12 +75,12 @@ const Reply = ({ reply, id, currentUser }) => {
   };
   const getEmojiList = () => {
     return (
-      <div className="d-flex text-center">
+      <div className="d-flex text-center" style={{overflow:'scroll'}}>
         {emojiList.map((each, index) => (
           <button
             key={index}
             className="mx-2"
-            style={{ width: "50px", borderRadius: "50px" }}
+            style={{ width: "10%", borderRadius: "50px" }}
             id={`${index}`}
           >
             <span style={{ fontSize: "20px" }} onClick={appendToComment}>
@@ -109,25 +109,27 @@ const Reply = ({ reply, id, currentUser }) => {
           </a>
         </div>
       </div>
-
-      <div className="w-100 md-form m-0 d-none reply position-relative" id={id}>
+      <div className='d-none' id={id}>
         {emojiList ? getEmojiList() : null}
-
-        <input
-          type="text"
-          className="form-control reply-field"
-          placeholder="Enter your public reply here..."
-          onChange={handleReplyChange}
-          value={replyContent}
-        />
-        <button
-          type="submit"
-          className="btn-hover color-4 position-absolute"
-          style={{ top: 0, right: "1%" }}
-          onClick={addReply}
-        >
-          Reply
-        </button>
+  
+        <div className="md-form m-0 reply position-relative">
+  
+          <input
+            type="text"
+            className="form-control reply-field"
+            placeholder="Enter your public reply here..."
+            onChange={handleReplyChange}
+            value={replyContent}
+          />
+          <button
+            type="submit"
+            className="btn-hover color-4 position-absolute"
+            style={{ top: 0, right: "1%" }}
+            onClick={addReply}
+          >
+            Reply
+          </button>
+        </div>
       </div>
       {replyList.length === 0 ? null : (
         <ReplyList reply={replyList} showReply={showReply}></ReplyList>

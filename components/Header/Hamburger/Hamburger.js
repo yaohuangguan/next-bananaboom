@@ -1,15 +1,6 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import Link from "next/link";
-import React, { useState } from "react";
-import dynamic from "next/dynamic";
 import { withRouter } from "next/router";
-
-const Signup = dynamic(() => import("../../Auth/Signup"), {
-  ssr: false
-});
-const Dropdown = dynamic(() => import("../DropDown/DropDown"), {
-  ssr: false
-});
 const Hamburger = ({
   blogName,
   resumeName,

@@ -238,13 +238,8 @@ const Signup = ({ linkColor }) => {
         </div>
       </div>
       <div className="loginButton">
-        <div className="buttons">
-          <div
-            className={`button ${linkColor || "text-white"}`}
-            onClick={openSignup}
-          >
-            {getLoginTextOnRoutes()}
-          </div>
+        <div className={`${linkColor || "text-white"}`} onClick={openSignup}>
+         {getLoginTextOnRoutes()}
         </div>
       </div>
       <Login passwordReveal={passwordReveal}></Login>

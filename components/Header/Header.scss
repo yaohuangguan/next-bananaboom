@@ -58,9 +58,6 @@ $green-color: #2eca6a;
         font-size: 1em;
         font-weight: 600;
         cursor: pointer;
-        color: #fff;
-        -webkit-transition: 0.4s;
-        transition: 0.4s;
         &.hamburger{
           margin-left: auto;
           z-index: 10;
@@ -113,9 +110,6 @@ $green-color: #2eca6a;
         font-size: 1em;
         font-weight: 600;
         cursor: pointer;
-        color: #fff;
-        -webkit-transition: 0.4s;
-        transition: 0.4s;
         &:hover {
           color:$green-color
         }

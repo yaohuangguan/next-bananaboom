@@ -81,9 +81,9 @@ const appendToComment = (e) =>{
 }
 const getEmojiList = () =>{
   return (
-    <div className='d-flex text-center'>
+    <div className='d-flex text-center' style={{overflow:'scroll'}}>
     {emojiList.map((each,index) => (
-      <button key={index} className='mx-2' style={{width:'50px',borderRadius:'50px'}}  id={`${index}`}>
+      <button key={index} className='mx-2' style={{width:'10%',borderRadius:'50px'}}  id={`${index}`}>
         <span style={{fontSize:'20px'}} onClick={appendToComment}>{each.text}</span>
       </button>
     ))}
@@ -117,7 +117,7 @@ const getEmojiList = () =>{
                   <div className="errors text-danger">{errors}</div>
                 ) : null}
                 <div className="md-form m-0">
-                <div>
+                <div className='100-w'>
                   {emojiList ? (getEmojiList()) : null}
                 </div>
                   <textarea

@@ -5,19 +5,11 @@
   display: none;
   position: absolute;
   width: 100px;
-  background-color: #fff;
   top:60%;
   .dropdown-list {
     padding: 0;
   }
-  &-item {
-    a {
-      color: #333333;
-    }
-    &:hover {
-      background: rgba(#000, 0.9);
-    }
-  }
+  
 }
 
 .dropdown-hide {
