@@ -49,8 +49,7 @@ const English = ({ result, errors, logs, projects, currentUser }) => {
   return (
     <Layout>
       <BrowserTest></BrowserTest>
-      <Header
-        login={"Login"}
+      <Header 
         blogName={"Blog"}
         resumeName={"About"}
         resumeRoute={"/resume/[query]"}

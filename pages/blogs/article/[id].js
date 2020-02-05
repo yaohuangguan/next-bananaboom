@@ -4,7 +4,8 @@ import dynamic from "next/dynamic";
 import Head from "next/head";
 import { isInViewPort } from "../../../utils/Utils";
 import api from "../../../utils/Api";
-import { useEffect, useState } from "react";
+import { useEffect, useState } from "react"; 
+import CanvasAnimation from '../../meteor'
 const Comment = dynamic(() =>
   import("../../../components/Blog/Comments/Comments")
 );
@@ -21,6 +22,8 @@ const blog = ({ posts, comments, currentUser, router }) => {
       <Head>
         <title>{name || `Waiting for fetch...`} || By Sam Yao</title>
       </Head>
+      {content ? null: <CanvasAnimation></CanvasAnimation>}
+
       <div className="container">
         <a
           title="Go Back"
@@ -32,12 +35,13 @@ const blog = ({ posts, comments, currentUser, router }) => {
         >
           <span className="text-dark">Go Back</span>
         </a>
+
         <section className="my-5 px-4 article">
           <h2 className="h1-responsive font-weight-bold text-center my-5">
-            {name || `Waiting for fetch...`}
+            {name}
           </h2>
           <p style={{ lineHeight: "40px" }}>
-            {content || `Something went wrong...`}
+            {content}
           </p>
 
           {code ? (

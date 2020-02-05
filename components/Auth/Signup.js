@@ -1,12 +1,13 @@
 import { useEffect, useState, useRef } from "react";
-import router from "next/router";
+import { useRouter } from "next/router";
 import firebase from "../../firebase/firebase";
 import api from "../../utils/Api";
 import dynamic from "next/dynamic";
 const Login = dynamic(() => import("./Login"), {
   ssr: false
 });
-const Signup = ({ login }) => {
+const Signup = ({ linkColor }) => {
+  const router = useRouter();
   const SignupContainer = useRef(null);
   const [email, setemail] = useState("");
   const [password, setpassword] = useState("");
@@ -91,7 +92,28 @@ const Signup = ({ login }) => {
       }
     }
   };
-
+  const getSignupNameOnRoutes = () =>
+    router.pathname === "/" ? "Sign up" : "注册";
+  const getUserOnRoutes = () =>
+    router.pathname === "/" ? "Username" : "用户名";
+  const getEmailOnRoutes = () =>
+    router.pathname === "/" ? "Email" : "邮箱地址";
+  const getPasswordOnRoutes = () =>
+    router.pathname === "/" ? "Password" : "密码";
+  const getPasswordTipOnRoutes = () =>
+    router.pathname === "/"
+      ? "Password should be more than 6 characters"
+      : "密码至少需6位以上";
+  const getConfirmPasswordOnRoutes = () =>
+    router.pathname === "/" ? "Confirm Password" : "确认密码";
+  const getSubmitButtonOnRoutes = () =>
+    router.pathname === "/" ? "Sign up" : "确定";
+  const getSignUpMethodOnRoutes = () =>
+    router.pathname === "/" ? "or sign up with:" : "或者使用以下方法注册:";
+  const getAlreadyUserOnRoutes = () =>
+    router.pathname === "/" ? "I already have account" : "我已有账户";
+  const getLoginTextOnRoutes = () =>
+    router.pathname === "/" ? "Login" : "登录";
   return (
     <div>
       <div ref={SignupContainer} className="signup-container">
@@ -111,12 +133,10 @@ const Signup = ({ login }) => {
             >
               <span style={{ fontSize: "30px" }}>&#10005;</span>
             </div>
-            <h4 className="mb-4 text-dark">
-              {router.pathname == "/" ? "Sign up" : "注册"}
-            </h4>
+            <h4 className="mb-4 text-dark">{getSignupNameOnRoutes()}</h4>
             {errors ? <div className="text-danger">{errors}</div> : null}
             <label htmlFor="signup-displayName" className="m-0 text-dark">
-             {router.pathname == "/" ? "Username" : "用户名"}
+              {getUserOnRoutes()}
             </label>
             <input
               type="text"
@@ -125,11 +145,11 @@ const Signup = ({ login }) => {
               autoComplete="username"
               value={displayName}
               onChange={handleDisplayName}
-              placeholder={router.pathname == "/" ? "Username" : "用户名"}
+              placeholder={getUserOnRoutes()}
             />
 
             <label htmlFor="signup-email" className="m-0 text-dark">
-            {router.pathname == "/" ? "Email" : "邮箱地址"}
+              {getEmailOnRoutes()}
             </label>
             <input
               type="email"
@@ -138,11 +158,11 @@ const Signup = ({ login }) => {
               autoComplete="email"
               value={email}
               onChange={handleEmail}
-              placeholder={router.pathname == "/" ? "email" : "邮箱地址"}
+              placeholder={getEmailOnRoutes()}
             />
 
             <label htmlFor="signup-password" className="m-0 text-dark">
-            {router.pathname == "/" ? "Password" : "密码"}
+              {getPasswordOnRoutes()}
             </label>
             <div
               className="tooltips"
@@ -155,14 +175,10 @@ const Signup = ({ login }) => {
                 autoComplete="current-password"
                 value={password}
                 onChange={handlePassword}
-                placeholder={router.pathname == "/" ? "password" : "密码"}
+                placeholder={getPasswordOnRoutes()}
               />
 
-              <span className="tooltiptext">
-                {router.pathname == "/"
-                  ? "Password should be more than 6 characters"
-                  : "密码至少需6位以上"}
-              </span>
+              <span className="tooltiptext">{getPasswordTipOnRoutes()}</span>
 
               <div onClick={passwordReveal} className="password-show">
                 <img
@@ -172,9 +188,7 @@ const Signup = ({ login }) => {
               </div>
             </div>
             <label htmlFor="signup-passwordConf" className="m-0 text-dark">
-            {
-                router.pathname == "/" ? "Confirm Password" : "确认密码"
-              }
+              {getConfirmPasswordOnRoutes()}
             </label>
             <input
               type="password"
@@ -183,9 +197,7 @@ const Signup = ({ login }) => {
               autoComplete="current-password"
               value={passwordConf}
               onChange={handlePasswordConf}
-              placeholder={
-                router.pathname == "/" ? "password confirmation" : "确认密码"
-              }
+              placeholder={getConfirmPasswordOnRoutes()}
             />
 
             <button
@@ -193,14 +205,10 @@ const Signup = ({ login }) => {
               type="submit"
               onClick={handleUserSubmit}
             >
-              {router.pathname == "/" ? "Sign up" : "确定"}
+              {getSubmitButtonOnRoutes()}
             </button>
 
-            <p className="text-center">
-              {router.pathname == "/"
-                ? "or sign up with:"
-                : "或者使用以下方法注册:"}
-            </p>
+            <p className="text-center">{getSignUpMethodOnRoutes()}</p>
             <div className="login-list">
               <div onClick={firebase.signInWithGoogle}>
                 <img
@@ -224,20 +232,22 @@ const Signup = ({ login }) => {
               }}
               onClick={openLogin}
             >
-              {router.pathname == "/" ? "I already have account" : "我已有账户"}
+              {getAlreadyUserOnRoutes()}
             </p>
           </form>
         </div>
       </div>
       <div className="loginButton">
         <div className="buttons">
-          <div className="button text-white" onClick={openSignup}>
-            {login}
+          <div
+            className={`button ${linkColor || "text-white"}`}
+            onClick={openSignup}
+          >
+            {getLoginTextOnRoutes()}
           </div>
         </div>
       </div>
       <Login passwordReveal={passwordReveal}></Login>
-
     </div>
   );
 };

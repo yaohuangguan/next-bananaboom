@@ -62,6 +62,14 @@ const Login = ({ passwordReveal }) => {
       }
     }
   };
+  const getLoginNameOnRoutes = () => router.pathname == "/" ? "Log into your account" : "登录"
+  const getEmailOnRoutes = () => router.pathname === "/" ? "Email" : "邮箱地址"
+  const getPasswordOnRoutes = () => router.pathname === "/" ? "Password" : "密码"
+  const getLoginButtonOnRoutes = () => router.pathname == "/" ? "Login" : "确定"
+  const getSignUpOnRoutes = () => router.pathname == "/" ? "I don't have account" : "我要注册"
+  const getLoginMethodOnRoutes = () => router.pathname == "/"
+  ? "or log in with:"
+  : "或者使用以下方法登录:"
   return (
     <div>
       <div ref={LoginContainer} className="login-container">
@@ -82,11 +90,11 @@ const Login = ({ passwordReveal }) => {
               <span style={{ fontSize: "30px" }}>&#10005;</span>
             </div>
             <h4 className="mb-4">
-              {router.pathname == "/" ? "Log into your account" : "登录"}
+              {getLoginNameOnRoutes()}
             </h4>
             {errors ? <div className="text-danger">{errors}</div> : null}
             <label htmlFor="login-email" className="m-0 text-dark">
-            {router.pathname == "/" ? "Email" : "邮箱"}
+            {getEmailOnRoutes()}
             </label>
             <input
               type="email"
@@ -95,10 +103,10 @@ const Login = ({ passwordReveal }) => {
               autoComplete="email"
               value={email}
               onChange={handleEmail}
-              placeholder={router.pathname == "/" ? "email" : "注册时的邮箱"}
+              placeholder={getEmailOnRoutes()}
             />
             <label htmlFor="login-password" className="m-0 text-dark">
-            {router.pathname == "/" ? "Password" : "密码"}
+            {getPasswordOnRoutes()}
             </label>
             <div style={{ position: "relative", width: "100%" }}>
               <input
@@ -108,7 +116,7 @@ const Login = ({ passwordReveal }) => {
                 autoComplete="current-password"
                 value={password}
                 onChange={handlePassword}
-                placeholder={router.pathname == "/" ? "password" : "密码"}
+                placeholder={getPasswordOnRoutes()}
               />
               <div onClick={passwordReveal} className="password-show">
                 <img
@@ -123,13 +131,11 @@ const Login = ({ passwordReveal }) => {
               type="submit"
               onClick={handleUserSubmit}
             >
-              {router.pathname == "/" ? "Login" : "确定"}
+              {getLoginButtonOnRoutes()}
             </button>
 
             <p className="text-center">
-              {router.pathname == "/"
-                ? "or log in with:"
-                : "或者使用以下方法登录:"}
+              {getLoginMethodOnRoutes()}
             </p>
             <div className="login-list">
               <div onClick={firebase.signInWithGoogle}>
@@ -154,7 +160,7 @@ const Login = ({ passwordReveal }) => {
               }}
               onClick={openSignup}
             >
-              {router.pathname == "/" ? "I don't have account" : "我要注册"}
+              {getSignUpOnRoutes()}
             </p>
           </form>
         </div>

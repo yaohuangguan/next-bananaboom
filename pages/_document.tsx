@@ -31,7 +31,7 @@ export default class MyDocument extends Document {
         <Head>
           <link rel="manifest" href="./static/manifest.json"/>
         </Head>
-        <body style={{ margin: 0, backgroundColor: "#f7f7f7" }}>
+        <body style={{ margin: 0, backgroundColor: "white" }}>
           <Main />
           <NextScript />
         </body>

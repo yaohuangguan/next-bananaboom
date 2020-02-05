@@ -11,7 +11,6 @@ const Dropdown = dynamic(() => import("../DropDown/DropDown"), {
   ssr: false
 });
 const Hamburger = ({
-  login,
   blogName,
   resumeName,
   resumeRoute,
@@ -19,6 +18,7 @@ const Hamburger = ({
   currentUser,
   router
 }) => {
+  const getResumeRoutes = () =>router.pathname == "/" ? "en-us" : "ch-cn"
   return (
         <div
           className="dropdown-mobile-submenu bg-secondary px-1"
@@ -35,7 +35,7 @@ const Hamburger = ({
             <li className="nav-item">
               <Link
                 href={resumeRoute}
-                as={`/resume/${router.pathname == "/" ? "en-us" : "ch-cn"}`}
+                as={`/resume/${getResumeRoutes()}`}
               >
                 <a className="nav-link text-white font-weight-bold">
                   {resumeName}

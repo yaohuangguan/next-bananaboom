@@ -43,7 +43,6 @@ const Chinese = ({ result, errors,logs,projects, currentUser }) => {
   return (
     <Layout>
       <Header
-        login={"登录"}
         blogName={"博客"}
         resumeName={"介绍"}
         resumeRoute={"/resume/[query]"}

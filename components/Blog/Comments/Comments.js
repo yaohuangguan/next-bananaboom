@@ -2,12 +2,21 @@ import React, { useState, useEffect } from "react";
 import CommentList from "./CommentList";
 import api from "../../../utils/Api";
 import axios from "axios";
+import Signup from '../../Auth/Signup'
+import Emoji from '../EmojiList'
 const Comment = ({ currentUser, comments, _id }) => {
-  const [commentInputField, setinputField] = useState("");
+  const [commentInputField, setcommentInputField] = useState("");
   const [commentsCount, setcommentsCount] = useState(comments.length);
   const [errors, seterrors] = useState("");
   const [commentsList, setcommentsList] = useState(comments);
-  const handleCommentChange = e => setinputField(e.target.value);
+  const [emojiList, setemojiList] = useState('')
+  const handleCommentChange = async e => {
+    setcommentInputField(e.target.value);
+    const emoji = await fetch(`https://emoji.getdango.com/api/emoji?q=${commentInputField}`)
+    const data = await emoji.json()
+    setemojiList(data.results)
+  }
+  
   useEffect(() => {
     const CancelToken = axios.CancelToken;
     const source = CancelToken.source();
@@ -26,9 +35,9 @@ const Comment = ({ currentUser, comments, _id }) => {
     };
   }, []);
   const clearCommentField = () => {
-    const textarea = document.querySelector(".md-textarea");
+    const textarea = document.querySelector(".comment-input");
     textarea.value = "";
-    setinputField("");
+    setcommentInputField("");
   };
   const getNewComments = async () => {
     const response = await api.get(`/api/comments/${_id}`);
@@ -67,29 +76,28 @@ const Comment = ({ currentUser, comments, _id }) => {
       clearCommentField();
     }
   };
-
-  // const addReply = async (id) =>{
-  //   try {
-  //     const response = await api({
-  //       method:'post',
-  //       url:`/api/comments/reply/${id}`,
-  //       data:
-  //     })
-  //   } catch (error) {
-
-  //   }
-  // }
-  // const collectReply = (replyValue) =>{
-
-  // }
-
+const appendToComment = (e) =>{
+  setcommentInputField(commentInputField+e.target.textContent)
+}
+const getEmojiList = () =>{
+  return (
+    <div className='d-flex text-center'>
+    {emojiList.map((each,index) => (
+      <button key={index} className='mx-2' style={{width:'50px',borderRadius:'50px'}}  id={`${index}`}>
+        <span style={{fontSize:'20px'}} onClick={appendToComment}>{each.text}</span>
+      </button>
+    ))}
+  </div>
+  )
+}
   return (
     <div className="chat-room">
       <div className="comment-title mb-4">
         <h6 className="font-weight-bold">评论({commentsCount})</h6>
+        {commentsList.length == 0 ? "快来做第一个评论的人吧!" : null}
+
       </div>
-      {commentsList.length == 0 ? "快来做第一个评论的人吧!" : null}
-      <div className="px-2">
+      <div className=" mt-2">
         <div className="chat-message w-100">
           <ul className="list-unstyled chat">
             <CommentList
@@ -99,21 +107,28 @@ const Comment = ({ currentUser, comments, _id }) => {
             ></CommentList>
             <div className="textarea-whole">
               <h5>发布评论</h5>
-              <p className="text-muted">需要登录后才能留言</p>
+              {currentUser ? null : (
+                <div className="text-muted">需要登录后才能留言 <a><Signup linkColor={'text-primary'}></Signup></a></div>
+               
+              )}
+              
               <div className="form-group basic-textarea">
                 {errors ? (
                   <div className="errors text-danger">{errors}</div>
                 ) : null}
                 <div className="md-form m-0">
+                <div>
+                  {emojiList ? (getEmojiList()) : null}
+                </div>
                   <textarea
-                    className="form-control pl-2 my-0 md-textarea"
-                    rows={2}
+                    className="form-control my-0 comment-input text-center"
+                    rows={3}
                     id="textarea-char-counter"
                     length="120"
                     value={commentInputField}
                     onChange={handleCommentChange}
                   ></textarea>
-                  <label htmlFor="textarea-char-counter">说点儿什么呗</label>
+                  <label htmlFor="textarea-char-counter"></label>
                 </div>
               </div>
             </div>
@@ -128,13 +143,15 @@ const Comment = ({ currentUser, comments, _id }) => {
         </div>
       </div>
       <style jsx>{`
-        .textarea {
+        .comment-input{
           box-shadow: none;
+          border: 2px solid #333;
+          border-radius:30px
         }
-        .textarea:focus {
+        .comment-input:focus {
           border: none;
           outline: none;
-          border: 1px solid #2eca6a;
+          border: 2px solid #2eca6a;
           border-color: #2eca6a;
           box-shadow: none;
         }

@@ -262,15 +262,6 @@ const Canvas = () => {
 
   return (
     <div>
-      <Link href='/blogs' replace>
-        <a
-          className="btn btn-outline-white btn-rounded waves-effect"
-          style={{position:'absolute'}}
-        >
-          Go back
-        </a>
-      </Link>
-
       <canvas></canvas>
     </div>
   );
