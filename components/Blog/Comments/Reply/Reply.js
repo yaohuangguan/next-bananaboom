@@ -94,7 +94,7 @@ const Reply = ({ reply, id, currentUser }) => {
   return (
     <div className="reply-section w-100">
       {errors ? <div className="errors text-danger">{errors}</div> : null}
-      <div style={{ display: "flex", justifyContent: "space-between" }}>
+      <div style={{ display: "flex", justifyContent: "flex-end" }}>
         <a
           onClick={showReply}
           className="text-primary"
@@ -112,7 +112,7 @@ const Reply = ({ reply, id, currentUser }) => {
       <div className='d-none m-0 reply w-100 form-group' id={id}>
         {emojiList ? getEmojiList() : null}
   
-        <div>
+        <div style={{display:'flex',flexDirection:'column'}}>
           <input
             type="text"
             className="form-control reply-field"
@@ -122,8 +122,9 @@ const Reply = ({ reply, id, currentUser }) => {
           />
           <button
             type="submit"
-            className="purple-gradient btn-sm text-white"
+            className="bg-success btn-sm text-white"
             onClick={addReply}
+            style={{alignSelf:'flex-end',borderRadius:'40px'}}
           >
             回复
           </button>
