@@ -1,11 +1,11 @@
 import { useState, useEffect } from "react";
 import api from "../../utils/Api";
-import {useRouter} from "next/router";
+import { useRouter } from "next/router";
 import "../Blog/BlogListItem.scss";
 const Likes = ({ likes, _id }) => {
   const [likeCount, setCount] = useState(likes);
   const [ifLiked, handleLike] = useState(false);
-const router = useRouter()
+  const router = useRouter();
   const cancelLike = async () => {
     const heart = document.getElementById(`${_id}`);
     heart.classList.toggle("is_animating");
@@ -27,22 +27,17 @@ const router = useRouter()
 
     setCount(likesData[0].likes);
   };
-  const likeMySite = () => router.pathname === "/" ? "Like my site" : "点赞网站"
+  const getLikeOnRoutes = () => router.pathname ==='/'? 'like this website' : '点赞本站'
   return (
-    <div
-      style={{ display: "flex", flexDirection: "column" }}
-      className="font-weight-bold text-dark p-0"
-    >
+    <div style={{ display: "flex",justifyContent:'center',alignItems:'center' }} className="font-weight-bold text-dark">
+       <div>{getLikeOnRoutes()}</div>
       <div
         className={`heart ${ifLiked ? "liked is_animating" : ""}`}
         onClick={ifLiked ? cancelLike : addLike}
         id={_id}
-      >
-        {likeCount}
-      </div>
-      <span className="mr-5">
-       {likeMySite()}
-      </span>
+      ></div>
+      <div>{likeCount}</div>
+     
     </div>
   );
 };

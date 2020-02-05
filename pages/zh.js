@@ -67,6 +67,8 @@ const Chinese = ({ result, errors,logs,projects, currentUser }) => {
         ></Intro>
 
         <Subscribe
+        likes={likes} 
+        _id={_id}
           title={"对本博客感兴趣？输入邮箱加入推送"}
           info={
             "你的邮箱不会被以任何方式向第三方透露，若想了解你的邮箱如何安全地保存，请点击这里"
@@ -77,7 +79,6 @@ const Chinese = ({ result, errors,logs,projects, currentUser }) => {
           log={"查看网站版本更新日志"}
           logs_content={logs}
         />
-      {likes ? ( <Likes likes={likes} _id={_id}></Likes>) : null}
        
       </div>
 

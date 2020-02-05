@@ -77,6 +77,8 @@ const English = ({ result, errors, logs, projects, currentUser }) => {
           projects={projects}
         ></Intro>
         <Subscribe
+        likes={likes} 
+        _id={_id}
           title={"Show some interests? Follow my blog here!"}
           info={
             " Your information will NEVER be disclosed to anyone, any organization, even robots for any purposes. Learn more here for privacy."
@@ -91,13 +93,14 @@ const English = ({ result, errors, logs, projects, currentUser }) => {
           log={" Click here to see logs of updates"}
           logs_content={logs}
         />
-      {likes ? <Likes likes={likes} _id={_id}></Likes> : null}
+
         
       </div>
 
       <Footer
         date={footer_date ? footer_date : "Thanks for visiting!"}
         welcome={footer_welcome ? footer_welcome : "Welcome to my website!"}
+        
       ></Footer>
     </Layout>
   );

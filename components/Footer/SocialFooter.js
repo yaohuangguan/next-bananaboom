@@ -1,9 +1,10 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React from "react";
 import {useRouter} from 'next/router'
+import Likes from '../Likes/Likes'
 import '../Blog/BlogListItem.scss'
 import "./Footer.scss";
-const SocialFooter = () => {
+const SocialFooter = ({likes,_id}) => {
   const router = useRouter()
   const handleShareText = () =>{
     return router.pathname==='/'?'Share with friends':'分享本站'
@@ -26,7 +27,8 @@ const SocialFooter = () => {
     tooltip.innerHTML = handleShareText()
   }
   return (
-    <div>
+    <div className="mb-5">
+      <Likes likes={likes} _id={_id}></Likes>
       <div className="share-button  font-weight-bold" onClick={handleCopyText} onMouseOut={cleanCopyText}>
       <span className="share-button-text" id={`share-button-tip`}>
       {handleShareText()}

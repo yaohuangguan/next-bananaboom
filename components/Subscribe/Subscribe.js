@@ -5,6 +5,7 @@ import { getLoading } from "../../utils/Utils";
 import { useRouter } from "next/router";
 import "./Subscribe.scss";
 import Logs from "../Contents/Logs/Logs";
+import Likes from "../Likes/Likes";
 const mailApi = `https://qq.us20.list-manage.com/subscribe/post?u=192d7d7d1dcff6b2519629804&amp;id=4b2f990265`;
 const Subscribe = ({
   title,
@@ -12,7 +13,9 @@ const Subscribe = ({
   copyright,
   web_version,
   log,
-  logs_content
+  logs_content,
+  likes,
+  _id
 }) => {
   const router = useRouter();
   const [email, setemail] = useState(null);
@@ -115,7 +118,7 @@ const Subscribe = ({
           <Logs version={web_version} check={log} logs={logs_content}></Logs>
           <p className="text-dark">{copyright}</p>
         </div>
-        <SocialFooter></SocialFooter>
+        <SocialFooter likes={likes} _id={_id}></SocialFooter>
       </div>
     </>
   );
