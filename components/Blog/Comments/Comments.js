@@ -83,7 +83,7 @@ const getEmojiList = () =>{
   return (
     <div className='d-flex text-center' style={{overflow:'scroll'}}>
     {emojiList.map((each,index) => (
-      <button key={index} className='mx-2' style={{width:'10%',borderRadius:'50px'}}  id={`${index}`}>
+      <button key={index} className='mx-2' style={{width:'15%',borderRadius:'50px'}}  id={`${index}`}>
         <span style={{fontSize:'20px'}} onClick={appendToComment}>{each.text}</span>
       </button>
     ))}
@@ -116,8 +116,8 @@ const getEmojiList = () =>{
                 {errors ? (
                   <div className="errors text-danger">{errors}</div>
                 ) : null}
-                <div className="md-form m-0">
-                <div className='100-w'>
+                <div className="m-0">
+                <div className='w-100'>
                   {emojiList ? (getEmojiList()) : null}
                 </div>
                   <textarea
@@ -137,7 +137,7 @@ const getEmojiList = () =>{
               className="btn btn-hover color-5 mb-3 waves-effect waves-light float-right"
               onClick={submitComment}
             >
-              Send
+              发送
             </button>
           </ul>
         </div>

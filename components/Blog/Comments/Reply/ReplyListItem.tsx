@@ -18,7 +18,8 @@ const ReplyListItem = ({ id, content, date, photoURL, user }) => {
         className="mb-1 w-100"
         style={{ display: "flex", flexFlow: "column wrap" }}
       >
-        <div className="p-3 ">
+        
+        <div className="p-3">
           <div className="mb-2">
             <strong className="primary-font font-weight-bold">{user}</strong>
             <small className="pull-right text-muted">{date}</small>
@@ -32,7 +33,7 @@ const ReplyListItem = ({ id, content, date, photoURL, user }) => {
           className="text-primary"
           style={{ alignSelf: "flex-end" }}
         >
-          Reply
+          回复
         </a>
         <div className="w-100 md-form m-0 d-none reply position-relative" id={id}>
           <input
@@ -40,7 +41,7 @@ const ReplyListItem = ({ id, content, date, photoURL, user }) => {
             className="form-control"
             placeholder="Enter your public reply here..."
           />
-           <button type='submit' className='btn-hover color-4 position-absolute' style={{top:0,right:'1%'}} >Reply</button>
+           <button type='submit' className='btn-hover color-4 position-absolute' style={{top:0,right:'1%'}} >回复</button>
         </div>
       </div>
     </div>

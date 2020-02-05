@@ -75,12 +75,12 @@ const Reply = ({ reply, id, currentUser }) => {
   };
   const getEmojiList = () => {
     return (
-      <div className="d-flex text-center" style={{overflow:'scroll'}}>
+      <div className="d-flex text-center w-100" style={{overflow:'scroll'}}>
         {emojiList.map((each, index) => (
           <button
             key={index}
             className="mx-2"
-            style={{ width: "10%", borderRadius: "50px" }}
+            style={{ width: "15%", borderRadius: "50px" }}
             id={`${index}`}
           >
             <span style={{ fontSize: "20px" }} onClick={appendToComment}>
@@ -92,7 +92,7 @@ const Reply = ({ reply, id, currentUser }) => {
     );
   };
   return (
-    <div className="reply-section">
+    <div className="reply-section w-100">
       {errors ? <div className="errors text-danger">{errors}</div> : null}
       <div style={{ display: "flex", justifyContent: "space-between" }}>
         <a
@@ -100,7 +100,7 @@ const Reply = ({ reply, id, currentUser }) => {
           className="text-primary"
           style={{ alignSelf: "flex-end" }}
         >
-          Reply
+          回复
         </a>
         <div>
           <a>
@@ -109,11 +109,10 @@ const Reply = ({ reply, id, currentUser }) => {
           </a>
         </div>
       </div>
-      <div className='d-none' id={id}>
+      <div className='d-none m-0 reply w-100 form-group' id={id}>
         {emojiList ? getEmojiList() : null}
   
-        <div className="md-form m-0 reply position-relative">
-  
+        <div>
           <input
             type="text"
             className="form-control reply-field"
@@ -123,17 +122,30 @@ const Reply = ({ reply, id, currentUser }) => {
           />
           <button
             type="submit"
-            className="btn-hover color-4 position-absolute"
-            style={{ top: 0, right: "1%" }}
+            className="purple-gradient btn-sm text-white"
             onClick={addReply}
           >
-            Reply
+            回复
           </button>
         </div>
       </div>
       {replyList.length === 0 ? null : (
         <ReplyList reply={replyList} showReply={showReply}></ReplyList>
       )}
+      <style jsx>{`
+        .reply-field{
+          box-shadow: none;
+          border: 2px solid #333;
+          border-radius:30px
+        }
+        .reply-field:focus {
+          border: none;
+          outline: none;
+          border: 2px solid #2eca6a;
+          border-color: #2eca6a;
+          box-shadow: none;
+        }
+      `}</style>
     </div>
   );
 };
