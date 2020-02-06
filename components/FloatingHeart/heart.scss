@@ -1,0 +1,102 @@
+.heart-purple {
+  fill: #7d32df;
+  width: 30px;
+  animation: pulse 1s infinite;
+}
+
+  .heart-input{
+    box-shadow: none;
+    border: 2px solid #7d32df;
+    border-radius:30px;
+    &:focus {
+      border: none;
+      outline: none;
+      border: 2px solid #7d32df;
+      border-color: #7d32df;
+      box-shadow: none;
+    }
+  }
+  
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.3); }
+  100% { transform: scale(1); }
+} 
+.wrapper {
+  background: #f7f7f7;
+  min-height: 100%;
+  height:100vh;
+  text-align: center;
+}
+
+.x1 {
+  left: 15%;
+  opacity: 1;
+  -webkit-animation: moveclouds 2s linear infinite,2s pulse infinite;
+  animation: moveclouds 10s linear infinite,2s pulse infinite;
+}
+
+.x2 {
+  left: 25%;
+  opacity: 1;
+  -webkit-animation: moveclouds 2s linear infinite,2s pulse infinite;
+  animation: moveclouds 10s linear infinite,2s pulse infinite;
+}
+.x3 {
+  left: 15%;
+  opacity: 1;
+  -webkit-animation: moveclouds 2s linear infinite,2s pulse infinite;
+  animation: moveclouds 10s linear infinite,2s pulse infinite;
+}
+.x4 {
+  left: 55%;
+  opacity: 1;
+  -webkit-animation: moveclouds 2s linear infinite,2s pulse infinite;
+  animation: moveclouds 10s linear infinite,2s pulse infinite;
+}
+.x5 {
+  left: 65%;
+  opacity: 1;
+  -webkit-animation: moveclouds 2s linear infinite,2s pulse infinite;
+  animation: moveclouds 10s linear infinite,2s pulse infinite;
+}
+.x6 {
+  left: 55%;
+  opacity: 1;
+  -webkit-animation: moveclouds 2s linear infinite,2s pulse infinite;
+  animation: moveclouds 10s linear infinite,2s pulse infinite;
+}
+
+
+@-webkit-keyframes moveclouds {
+  0% {
+    top: 500px;
+  }
+  100% {
+    top: -500px;
+  }
+}
+
+@keyframes moveclouds {
+  0% {
+    top: 500px;
+  }
+  100% {
+    top: -500px;
+  }
+}
+
+
+
+
+.altheart {
+  background: url(http://static.indigoimages.ca/2016/shop/113439_img25_twotoneheart.png)
+    no-repeat center;
+  width: 35px;
+  height: 35px;
+  position: relative;
+  display: block;
+  z-index:100;
+  margin:0
+}
