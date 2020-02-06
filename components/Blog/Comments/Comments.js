@@ -3,7 +3,6 @@ import CommentList from "./CommentList";
 import api from "../../../utils/Api";
 import axios from "axios";
 import Signup from '../../Auth/Signup'
-import Emoji from '../EmojiList'
 const Comment = ({ currentUser, comments, _id }) => {
   const [commentInputField, setcommentInputField] = useState("");
   const [commentsCount, setcommentsCount] = useState(comments.length);

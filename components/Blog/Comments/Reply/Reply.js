@@ -65,9 +65,11 @@ const Reply = ({ reply, id, currentUser }) => {
         .data[0].reply;
       setreplyList(newReply);
       cleanReply();
+      showReply()
     } catch (error) {
       console.log(error);
       cleanReply();
+      showReply()
     }
   };
   const appendToComment = e => {
@@ -92,24 +94,33 @@ const Reply = ({ reply, id, currentUser }) => {
     );
   };
   return (
-    <div className="reply-section w-100">
+    <div className="reply-section row form-group">
       {errors ? <div className="errors text-danger">{errors}</div> : null}
-      <div style={{ display: "flex", justifyContent: "flex-end" }}>
-        <a
-          onClick={showReply}
-          className="text-primary"
-          style={{ alignSelf: "flex-end" }}
-        >
-          回复
-        </a>
-        <div>
-          <a>
-            <img src="https://img.icons8.com/cotton/30/000000/comments--v2.png" />
-            {replyList.length}
-          </a>
+      <div className='col-lg-12' style={{ display: "flex",justifyContent:'space-between'}}>
+      {replyList.length === 0 ? null : (
+        <div style={{justifySelf:'flex-start'}}>
+          <ReplyList reply={replyList} showReply={showReply}></ReplyList>
         </div>
+      )}
+        <div style={{justifySelf:'flex-end'}}>
+          <a
+            onClick={showReply}
+            className="text-primary"
+          >
+            回复
+          </a>
+         
+  
+            <a>
+              <img src="https://img.icons8.com/cotton/30/000000/comments--v2.png" />
+              {replyList.length}
+            </a>
+       
+        </div>
+        
       </div>
-      <div className='d-none m-0 reply w-100 form-group' id={id}>
+     
+      <div className='d-none m-0 reply col-md-6' id={id}>
         {emojiList ? getEmojiList() : null}
   
         <div style={{display:'flex',flexDirection:'column'}}>
@@ -129,10 +140,10 @@ const Reply = ({ reply, id, currentUser }) => {
             回复
           </button>
         </div>
+        
       </div>
-      {replyList.length === 0 ? null : (
-        <ReplyList reply={replyList} showReply={showReply}></ReplyList>
-      )}
+    
+      
       <style jsx>{`
         .reply-field{
           box-shadow: none;

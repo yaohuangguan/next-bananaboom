@@ -47,6 +47,7 @@ class MyApp extends App<MyProps, MyState> {
           let userString = JSON.stringify(user);
           userParsed = JSON.parse(userString);
         }
+        console.log(userParsed)
         return {
           currentUser: userParsed
         };

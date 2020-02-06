@@ -19,20 +19,21 @@ const CommentListItem = ({ user, comment, date, photoURL, id, reply, currentUser
               style={{ display: "flex", flexFlow: "column wrap" }}
             >
               <div className="p-3">
-                <div className="header mb-2" style={{display:'flex',flexDirection:'column'}}>
+                <div className="header" style={{display:'flex',flexDirection:'column'}}>
                   <span className="font-weight-bold">
                     {user}
                   </span>
                   <span className="text-muted" style={{justifySelf:'flex-end'}}>{date}</span>
   
                 </div>
-                <p>{comment}</p>
-               
+                <span>{comment}</span>
+                <Reply reply={reply} id={id} currentUser={currentUser}/>
               </div>
-            
+             
             </div>
+            
           </div>
-          <Reply reply={reply} id={id} currentUser={currentUser}/>
+         
         </div>
       )}
       
