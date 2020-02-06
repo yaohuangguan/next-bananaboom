@@ -57,11 +57,11 @@ const Header = ({
       if(currentUser){
           if(currentUser.vip){
             return (
-              <div className="option">
+
               <Link href='/youandme'>
                   <a className='text-secondary'>Only We Know</a>
               </Link>
-            </div>
+
               )
           }
           
@@ -108,10 +108,11 @@ const Header = ({
           </Link>
         </div>
         <div className="loginOption">
-        {getYouAndMe()}
+        
           {currentUser ? (
                 <div className="option">
                   <Dropdown currentUser={currentUser}></Dropdown>
+                  {getYouAndMe()}
                 </div> 
             ) : (
               <div className="option text-white">
