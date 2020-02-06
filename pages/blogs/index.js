@@ -7,7 +7,8 @@ import BlogList from "../../components/Blog/BlogList";
 import api from '../../utils/Api'
 import Head from "next/head";
 import SearchBox from "../../components/SearchBox/SearchBox";
-const Blog = ({ blogs, errors }) => {
+import Link from "next/link";
+const Blog = ({ blogs, errors,currentUser }) => {
   const router = useRouter();
 
   const [searchField, setsearchField] = useState("");
@@ -45,7 +46,17 @@ const Blog = ({ blogs, errors }) => {
     setfilteredBlog(result);
   }, [searchField]);
 
-
+  const getVip = () => (currentUser ? currentUser.vip : null);
+  const getNewPostButton = () =>{
+    if(getVip()){
+      return(
+        <Link href='/youandme/write'>
+          <a className='btn btn-secondary'>写文章</a>
+        </Link>
+        )
+    }
+   return null
+  }
   return (
     <Layout>
       <Head>
@@ -93,6 +104,7 @@ const Blog = ({ blogs, errors }) => {
 
       {blogs ? (
         <div className="container">
+        {getNewPostButton()}
           <SearchBox
             searchField={searchField}
             handleChange={handleChange}

@@ -1,5 +1,10 @@
 import React from "react";
-
+const style = {
+  boxShadow:'none',
+  borderRadius:'50px',
+  width:'50vw',
+  color:'rgb(142, 61, 247)'
+}
 const SearchBox = ({ handleChange, searchField }) => {
   return (
     <div className="text-center">
@@ -11,20 +16,15 @@ const SearchBox = ({ handleChange, searchField }) => {
           className="search px-3 py-3 my-3 text-center"
           placeholder="Search"
           onChange={handleChange}
+          style={style}
         />
       </label>
       <style jsx>{`
-        .search {
-          box-shadow:none;
-          border-radius: 50px;
-          width: 50vw;
-          color: #2eca6a;
-        }
         .search:focus {
           border:none;
           outline:none;
-          border: 2px solid #2eca6a;
-          border-color: #2eca6a;
+          border: 2px solid rgb(142, 61, 247);
+          border-color:rgb(142, 61, 247);
           box-shadow: none;
         }
       `}</style>
