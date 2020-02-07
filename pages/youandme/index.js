@@ -11,22 +11,25 @@ const socketURL =
   process.env.NODE_ENV === "development"
     ? "http://localhost:5000"
     : "https://nextbananaboom.herokuapp.com";
+
 const index = ({ currentUser }) => {
   const router = useRouter();
   const [socket, setSocket] = useState(null);
   const [chatUser, setuser] = useState('');
   const getVip = () => (currentUser ? currentUser.vip : null);
   useEffect(() => {
+    const socket = io(socketURL);
     const connectSocket = () => {
-      const socket = io(socketURL);
       socket.on("connect", () => {
         console.log("Socket Connected");
       });
-
       setSocket(socket);
     };
     connectSocket();
-    return () => {};
+    return () => {
+      socket.emit('disconnect')
+      socket.off()
+    };
   }, [socketURL]);
   useEffect(() => {
     const checkLogin = () => {
