@@ -8,8 +8,8 @@ const BlogList = props => {
   return (
     <div className='row'>
       {blogs && blogs.map(({ _id, ...other }) => (
-    <div className='col-md-6'>
-      <BlogListItem key={_id} {...other} _id={_id} /> 
+    <div className='col-md-6' key={_id} >
+      <BlogListItem {...other} _id={_id} /> 
     </div>
       ))}
     </div>

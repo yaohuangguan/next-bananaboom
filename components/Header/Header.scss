@@ -54,10 +54,16 @@ $green-color: #2eca6a;
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        padding: 20px;
+        padding: 5px 20px 5px 20px;
         font-size: 1em;
-        font-weight: 600;
+        font-weight: 500;
         cursor: pointer;
+        a{
+          color:white;
+          &:hover {
+            color:$green-color
+          }
+        }
         &.hamburger{
           margin-left: auto;
           z-index: 10;
@@ -74,9 +80,7 @@ $green-color: #2eca6a;
             display: none;
           }
         }
-        &:hover {
-          color:$green-color
-        }
+       
       }
     }
    
@@ -97,22 +101,26 @@ $green-color: #2eca6a;
       }
       .signup {
         font-size: 1rem;
-        padding: 20px;
+        padding: 5px 20px 5px 20px;
+
         font-weight: 500;
-        color: $green-color;
       }
       .option {
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        padding: 20px;
+        padding: 5px 20px 5px 20px;
         font-size: 1em;
-        font-weight: 600;
+        font-weight: 500;
         cursor: pointer;
-        &:hover {
-          color:$green-color
+        a{
+          color:white;
+          &:hover {
+            color:$green-color
+          }
         }
+        
       }
     }
   }

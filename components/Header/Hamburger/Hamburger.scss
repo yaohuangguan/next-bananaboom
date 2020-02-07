@@ -6,10 +6,17 @@
   position: absolute;
   width: 100px;
   top:60%;
+  border:3px solid rgb(125, 46, 199);
   .dropdown-list {
     padding: 0;
   }
-  
+  .navbar-nav{
+    .nav-item{
+      .nav-link{
+        color:'rgb(125, 46, 199)'
+      }
+    }
+  }
 }
 
 .dropdown-hide {

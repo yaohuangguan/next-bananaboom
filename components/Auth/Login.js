@@ -62,6 +62,9 @@ const Login = ({ passwordReveal }) => {
       }
     }
   };
+  const handleForgetPassword = async () =>{
+    console.log('forget pasword')
+  }
   const getLoginNameOnRoutes = () => router.pathname == "/" ? "Log into your account" : "登录"
   const getEmailOnRoutes = () => router.pathname === "/" ? "Email" : "邮箱地址"
   const getPasswordOnRoutes = () => router.pathname === "/" ? "Password" : "密码"
@@ -70,6 +73,7 @@ const Login = ({ passwordReveal }) => {
   const getLoginMethodOnRoutes = () => router.pathname == "/"
   ? "or log in with:"
   : "或者使用以下方法登录:"
+  const getForgetPasswordOnRoutes =()=> router.pathname==='/' ? 'Forget Password?' :'忘记密码?'
   return (
     <div>
       <div ref={LoginContainer} className="login-container">
@@ -125,7 +129,13 @@ const Login = ({ passwordReveal }) => {
                 />{" "}
               </div>
             </div>
-
+            <span style={{
+                alignSelf: "flex-end",
+                textDecoration: "underline",
+                cursor: "pointer",
+                color:'blue'
+              }}
+              onClick={handleForgetPassword}>{getForgetPasswordOnRoutes()}</span>
             <button
               className="btn btn-hover color-3 my-4 btn-block text-white"
               type="submit"
@@ -156,7 +166,8 @@ const Login = ({ passwordReveal }) => {
               style={{
                 alignSelf: "flex-end",
                 textDecoration: "underline",
-                cursor: "pointer"
+                cursor: "pointer",
+                color:'blue'
               }}
               onClick={openSignup}
             >

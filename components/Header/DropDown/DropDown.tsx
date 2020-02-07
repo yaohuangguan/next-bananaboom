@@ -16,6 +16,8 @@ const DropDown = ({ currentUser }) => {
     return router.pathname === "/" ? "Dashboard" : "个人中心";
   };
   const { uid, displayName, photoURL, _id } = currentUser;
+  const getGreeting = () =>
+    router.pathname == "/" ? `Hi,${displayName}.` : `你好,${displayName}`;
   return (
     <>
       <div className="dropdown">
@@ -23,6 +25,7 @@ const DropDown = ({ currentUser }) => {
 
         <div className="dropdown-submenu py-1">
           <ul className="dropdown-list">
+            <span className='text-muted'>{getGreeting()}</span>
             <Link href="/dashboard/[id]" as={`/dashboard/${_id ? _id : uid}`}>
               <li className="dropdown-item text-secondary">
                 {getDashboardOnRoutes()}

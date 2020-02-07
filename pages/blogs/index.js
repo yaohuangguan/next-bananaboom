@@ -4,11 +4,11 @@ import { useState, useEffect } from "react";
 import Layout from "../../components/Layout/Layout";
 import { useRouter } from "next/router";
 import BlogList from "../../components/Blog/BlogList";
-import api from '../../utils/Api'
+import api from "../../utils/Api";
 import Head from "next/head";
 import SearchBox from "../../components/SearchBox/SearchBox";
 import Link from "next/link";
-const Blog = ({ blogs, errors,currentUser }) => {
+const Blog = ({ blogs, errors, currentUser }) => {
   const router = useRouter();
 
   const [searchField, setsearchField] = useState("");
@@ -40,23 +40,25 @@ const Blog = ({ blogs, errors,currentUser }) => {
     heroShrinker();
   }, []);
   useEffect(() => {
-    const result = blogs && blogs.filter(blog =>
-      blog.name.toLowerCase().includes(searchField.toLowerCase())
-    );
+    const result =
+      blogs &&
+      blogs.filter(blog =>
+        blog.name.toLowerCase().includes(searchField.toLowerCase())
+      );
     setfilteredBlog(result);
   }, [searchField]);
 
   const getVip = () => (currentUser ? currentUser.vip : null);
-  const getNewPostButton = () =>{
-    if(getVip()){
-      return(
-        <Link href='/youandme/write'>
-          <a className='btn btn-secondary'>写文章</a>
+  const getNewPostButton = () => {
+    if (getVip()) {
+      return (
+        <Link href="/youandme/write">
+          <a className="btn btn-secondary">写文章</a>
         </Link>
-        )
+      );
     }
-   return null
-  }
+    return null;
+  };
   return (
     <Layout>
       <Head>
@@ -86,8 +88,8 @@ const Blog = ({ blogs, errors,currentUser }) => {
               }}
             >
               Go back
-            </a>
-            <br />
+            </a>{" "}
+            <div className="text-center">{getNewPostButton()}</div>
             <h4 className="card-title my-4 py-2" style={{ fontSize: "2.7rem" }}>
               Blogs
             </h4>
@@ -104,12 +106,13 @@ const Blog = ({ blogs, errors,currentUser }) => {
 
       {blogs ? (
         <div className="container">
-        {getNewPostButton()}
           <SearchBox
             searchField={searchField}
             handleChange={handleChange}
           ></SearchBox>
-        {filteredBlog.length == 0 ? '没有找到相关文章 No result matches': null}
+          {filteredBlog.length == 0
+            ? "没有找到相关文章 No result matches"
+            : null}
 
           <BlogList blogs={filteredBlog} />
         </div>
@@ -121,11 +124,11 @@ const Blog = ({ blogs, errors,currentUser }) => {
 };
 
 Blog.getInitialProps = async () => {
-  let posts
-  let errors
+  let posts;
+  let errors;
   try {
     const response = await api.get("/api/posts");
-    posts = await response.data
+    posts = await response.data;
   } catch (error) {
     errors = `Sorry, network issue happened, please check your internet or come back later! Thank you. \n
     `;

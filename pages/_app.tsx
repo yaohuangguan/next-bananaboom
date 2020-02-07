@@ -47,7 +47,7 @@ class MyApp extends App<MyProps, MyState> {
           let userString = JSON.stringify(user);
           userParsed = JSON.parse(userString);
         }
-        console.log(userParsed)
+        process.env.NODE_ENV==='development' ? console.log("user", userParsed):null;
         return {
           currentUser: userParsed
         };

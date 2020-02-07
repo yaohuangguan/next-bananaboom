@@ -99,8 +99,9 @@ const BlogListItem = ({
           : null}
 
         <span>
-          created by:
-          <span>{author}</span>, {createdDate}
+          作者:
+          <span>{author}</span> <br/>
+         日期:<span>{createdDate}</span>
         </span>
         <div style={{ display: "flex", justifyContent: "space-between" }}>
           <Link
