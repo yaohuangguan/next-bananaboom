@@ -41,6 +41,7 @@ HTTP, TCP/IP, DNS and Web Server work...."
       rel="stylesheet"
     />
     <script src="/static/lazyload.min.js" async></script>
+    <script src='../../utils/Socket.js' async></script>
   </Head>
 );
 
