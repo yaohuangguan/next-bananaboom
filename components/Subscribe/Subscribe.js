@@ -5,7 +5,7 @@ import { getLoading } from "../../utils/Utils";
 import { useRouter } from "next/router";
 import "./Subscribe.scss";
 import Logs from "../Contents/Logs/Logs";
-import Likes from "../Likes/Likes";
+
 const mailApi = `https://qq.us20.list-manage.com/subscribe/post?u=192d7d7d1dcff6b2519629804&amp;id=4b2f990265`;
 const Subscribe = ({
   title,
@@ -30,7 +30,8 @@ const Subscribe = ({
     setTimeout(() => {
       document.getElementById("mce-EMAIL").value = "";
       const subscribe = document.getElementById("mc-embedded-subscribe");
-      subscribe.textContent = router.pathname==='/'?'Thank you!':'感谢关注!';
+      subscribe.textContent =
+        router.pathname === "/" ? "Thank you!" : "感谢关注!";
     }, 5000);
   };
   useEffect(() => {
@@ -50,14 +51,14 @@ const Subscribe = ({
     setemail(e.target.value);
     e.target.style.color = "#6a82fb";
   };
-  const subscribeButtonLoading = () =>{
+  const subscribeButtonLoading = () => {
     return router.pathname === "/" ? "Subscribing..." : "正在关注...";
-  }
-    
-  const subscribeButton = () =>{
+  };
+
+  const subscribeButton = () => {
     return router.pathname === "/" ? "Subscribe" : "订阅";
-  }
-    
+  };
+
   return (
     <>
       <div className="text-center">
@@ -69,7 +70,19 @@ const Subscribe = ({
           className="validate form-a"
           noValidate
         >
-          <label className='font-weight-bold' htmlFor="email">
+          <div className="subscribe-button">
+            <span className="subscribe-button-text">
+              <a
+                href="https://s3.us-east-2.amazonaws.com/www.bananaboom.space/Mailchimp%E2%80%99s+Legal+Policies.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {info}
+              </a>
+            </span>
+          </div>
+
+          <label className="font-weight-bold" htmlFor="email">
             {title}
 
             <input
@@ -104,17 +117,6 @@ const Subscribe = ({
         </form>
 
         <div className="information">
-          <p className="text-muted">
-            <a
-              href="https://s3.us-east-2.amazonaws.com/www.bananaboom.space/Mailchimp%E2%80%99s+Legal+Policies.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-dark"
-            >
-              {info}
-            </a>
-          </p>
-
           <Logs version={web_version} check={log} logs={logs_content}></Logs>
           <p className="text-dark">{copyright}</p>
         </div>

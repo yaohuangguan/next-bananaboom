@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import api from "../../utils/Api";
 import { useRouter } from "next/router";
-import "../Blog/BlogListItem.scss";
+import "../Footer/Footer.scss";
 const Likes = ({ likes, _id }) => {
   const [likeCount, setCount] = useState(likes);
   const [ifLiked, handleLike] = useState(false);
@@ -15,6 +15,11 @@ const Likes = ({ likes, _id }) => {
     const newLikes = await api.get(`/api/homepage/likes`);
     const likesData = await newLikes.data;
     setCount(likesData[0].likes);
+    let tooltip = document.getElementById(`like-button-tip`);
+    tooltip.innerHTML =
+      router.pathname === "/"
+        ? "Thanks anyway!"
+        : "还在继续努力！";
   };
   const addLike = async () => {
     const heart = document.getElementById(`${_id}`);
@@ -24,20 +29,41 @@ const Likes = ({ likes, _id }) => {
     const response = await api.post(`/api/homepage/likes/${_id}`);
     const newLikes = await api.get(`/api/homepage/likes`);
     const likesData = await newLikes.data;
-
     setCount(likesData[0].likes);
+    let tooltip = document.getElementById(`like-button-tip`);
+    tooltip.innerHTML =
+      router.pathname === "/"
+        ? "Thank you!"
+        : "谢谢点赞！";
   };
-  const getLikeOnRoutes = () => router.pathname ==='/'? 'like this website' : '点赞本站'
+  const getLikeOnRoutes = () =>
+    router.pathname === "/" ? "Like this website" : "点赞本站";
+  const cleanLikeText = () => {
+    let tooltip = document.getElementById(`like-button-tip`);
+    tooltip.innerHTML = getLikeOnRoutes();
+  };
   return (
-    <div style={{ display: "flex",justifyContent:'center',alignItems:'center' }} className="font-weight-bold text-dark">
-       <div>{getLikeOnRoutes()}</div>
-      <div
-        className={`heart ${ifLiked ? "liked is_animating" : ""}`}
-        onClick={ifLiked ? cancelLike : addLike}
-        id={_id}
-      ></div>
-      <div>{likeCount}</div>
-     
+    <div
+      style={{
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center"
+      }}
+      className="font-weight-bold text-dark"
+    >
+      <div className="like-button font-weight-bold d-flex" style={{alignItems:'center'}}>
+        <div
+          className={`heart ${ifLiked ? "liked is_animating" : ""}`}
+          onClick={ifLiked ? cancelLike : addLike}
+          onMouseOut={cleanLikeText}
+          id={_id}
+        >
+          <span className="like-button-text position-absolute" style={{bottom:'90%'}}  id='like-button-tip'>
+            {getLikeOnRoutes()}
+          </span>
+        </div>
+        <span>{likeCount}</span>
+      </div>
     </div>
   );
 };

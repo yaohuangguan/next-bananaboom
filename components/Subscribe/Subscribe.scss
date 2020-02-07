@@ -33,6 +33,42 @@
   .show {
     display: block;
   }
+  .subscribe-button{
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+  .subscribe-button-text {
+    visibility: hidden;
+    width: 200px;
+    background-color:#ffff;
+    color: rgb(125, 46, 199);
+    border:2px solid rgb(125, 46, 199);
+    text-align: center;
+    padding: 3px;
+    position: absolute;
+    z-index: 1;
+    bottom: 150%;
+    left: 90%;
+    margin-left: -120px;
+    opacity: 0;
+    transition: opacity 0.3s;
+    &:after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      margin-left: -5px;
+      border-width: 5px;
+      border-style: solid;
+      border-color: rgb(125, 46, 199) transparent transparent transparent;
+    }
+  }
+  &:hover .subscribe-button-text {
+    visibility: visible;
+    opacity: 1;
+  }
+  
+  }
   &.validation {
     color: red;
     display: none;
@@ -64,3 +100,4 @@
     height: 3.5rem;
   }
 }
+
