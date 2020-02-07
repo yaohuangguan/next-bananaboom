@@ -21,16 +21,11 @@ const index = ({ currentUser }) => {
   return (
     <div>
       {getVip() ? (
-        <div className="wrapper">
-          <div className="altheart x1"></div>
-          <div className="altheart x2"></div>
-          <div className="altheart x3"></div>
-          <div className="altheart x4"></div>
-          <div className="altheart x5"></div>
-          <div className="altheart x6"></div>
+
+         
           <div className="row">
             <div className="col p-3 m-3">
-              <h1 style={{ color: "rgb(142, 61, 247)" }}>
+              <h1>
                 Sam{" "}
                 <svg className="heart-purple" viewBox="0 0 32 30">
                   <path
@@ -47,11 +42,7 @@ const index = ({ currentUser }) => {
             ></div>
 
             <div className="input">
-              <input
-                type="text"
-                className="heart-input"
-                placeholder="输入名字"
-              />
+            
               <input
                 type="text"
                 className="heart-input"
@@ -72,7 +63,7 @@ const index = ({ currentUser }) => {
             </div>
             <div className="col-lg-8"></div>
           </div>
-        </div>
+
       ) : null}
     </div>
   );
