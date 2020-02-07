@@ -17,6 +17,9 @@ const dashboard = ({ currentUser }) => {
     if (!newDisplayName || newDisplayName.trim() == "") {
       return setresult("要修改的用户名不能为空");
     }
+    if(!currentUser._id){
+      return setresult('Google账户类型暂不支持名称更改')
+    }
     const id = currentUser._id;
     const response = await api.post("/api/users/changeusername", {
       newDisplayName,
