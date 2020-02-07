@@ -48,7 +48,6 @@ $green-color: #2eca6a;
     }
     .loginOption{
       display: flex;
-      
       .option{
         display: flex;
         flex-direction: column;
@@ -56,7 +55,7 @@ $green-color: #2eca6a;
         align-items: center;
         padding: 5px 20px 5px 20px;
         font-size: 1em;
-        font-weight: 500;
+        font-weight: 700;
         cursor: pointer;
         a{
           color:white;
@@ -102,7 +101,6 @@ $green-color: #2eca6a;
       .signup {
         font-size: 1rem;
         padding: 5px 20px 5px 20px;
-
         font-weight: 500;
       }
       .option {

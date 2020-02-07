@@ -3,6 +3,7 @@ import dynamic from "next/dynamic";
 import Link from "next/link";
 import { withRouter } from "next/router";
 import "../Header/Hamburger/Hamburger.scss";
+import './Header.scss'
 const Signup = dynamic(() => import("../Auth/Signup"), {
   ssr: false
 });
@@ -58,7 +59,7 @@ const Header = ({
       if (currentUser.vip) {
         return (
           <Link href="/youandme">
-            <a className="text-secondary">Only We Know</a>
+            <a>Only We Know</a>
           </Link>
         );
       }
@@ -90,11 +91,7 @@ const Header = ({
 
           <Link href={changeLanguageRoute}>
             <div className="option">
-              <a>
-                <span className="draw-border-white p-1">
-                  {changeLanguageRoute == "/" ? "English" : "中文"}
-                </span>
-              </a>
+              <a>{changeLanguageRoute == "/" ? "English" : "中文"}</a>
             </div>
           </Link>
         </div>

@@ -26,7 +26,7 @@ const ChatLogin = ({ socket, setUser }) => {
   return (
     <div className="socket-chat-login col-md-6">
       <form onSubmit={handleSubmit} className="socket-chat-login-form">
-        <label htmlFor="nickname">Hoooooooo</label>
+        <label htmlFor="nickname">HooooooooH</label>
         <input
           type="text"
           className="heart-input"
@@ -34,7 +34,7 @@ const ChatLogin = ({ socket, setUser }) => {
           id="nickname"
           value={nickname}
           onChange={handleNickname}
-          placeholder={"heey"}
+          placeholder={"名称"}
         />
         <button
           type="submit"

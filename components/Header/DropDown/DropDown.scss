@@ -8,7 +8,7 @@
     }
   }
   .dropdown-submenu {
-    font-weight: 300;
+    font-weight: 500;
     border: 2px solid rgb(125, 46, 199);
     text-transform: none;
     right: 10px;
@@ -18,14 +18,15 @@
     background-color: #fff;
     .dropdown-list{
       padding: 0;
-    }
-    &-item {
-      a{
-        color: #333333;
+      .dropdown-list-item {
+        span{
+          color: rgb(125, 46, 199);
+        }
+        &:hover {
+          background: rgba(#000, 0.1);
+        }
       }
-      &:hover {
-        background: rgba(#000, 0.9);
-      }
     }
+    
   }
 }

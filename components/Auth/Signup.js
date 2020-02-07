@@ -228,7 +228,8 @@ const Signup = ({ linkColor }) => {
               style={{
                 alignSelf: "flex-end",
                 textDecoration: "underline",
-                cursor: "pointer"
+                cursor: "pointer",
+                color:'blue'
               }}
               onClick={openLogin}
             >

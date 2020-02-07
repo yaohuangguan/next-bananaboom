@@ -1,6 +1,7 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import Link from "next/link";
 import { withRouter } from "next/router";
+import './Hamburger.scss'
 const Hamburger = ({
   blogName,
   resumeName,

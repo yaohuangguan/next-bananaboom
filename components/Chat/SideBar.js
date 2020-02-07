@@ -4,7 +4,7 @@ const SideBar = ({chats,logout,activeChat,chatUser,handleActiveChat}) => {
   return (
     <div>
       <div >
-      密室
+      Chat room entered
       </div>
     </div>
   )

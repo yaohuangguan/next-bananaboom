@@ -24,26 +24,26 @@ const DropDown = ({ currentUser }) => {
         <img src={photoURL} width="40px" height="40px" alt="userprofileimg" />
 
         <div className="dropdown-submenu py-1">
-          <ul className="dropdown-list">
+          <ul className="dropdown-list text-center">
             <span className='text-muted'>{getGreeting()}</span>
             <Link href="/dashboard/[id]" as={`/dashboard/${_id ? _id : uid}`}>
-              <li className="dropdown-item text-secondary">
-                {getDashboardOnRoutes()}
+              <li className="dropdown-list-item">
+                <span>{getDashboardOnRoutes()}</span>
               </li>
             </Link>
             {_id ? (
-              <li className="dropdown-item text-secondary" onClick={logout}>
-                <a>{getUserLogOutOnRoutes()}</a>{" "}
+              <li className="dropdown-list-item" onClick={logout}>
+                <span>{getUserLogOutOnRoutes()}</span>{" "}
               </li>
             ) : (
               <li
-                className="dropdown-item text-secondary"
+                className="dropdown-list-item"
                 onClick={() => {
                   firebase.auth.signOut();
                   router.reload();
                 }}
               >
-                <a>{getUserLogOutOnRoutes()}</a>
+                <span>{getUserLogOutOnRoutes()}</span>
               </li>
             )}
           </ul>

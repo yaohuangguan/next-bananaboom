@@ -9,7 +9,7 @@ const ChatContainer = ({chatUser,logout,socket}) => {
   }
   return (
     <div className='p-5'>
-    {chatUser.name}
+    Your name:{chatUser.name}
       <SideBar
       logout={logout}
       chats={chats}
