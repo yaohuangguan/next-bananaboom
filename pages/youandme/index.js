@@ -6,7 +6,9 @@ import ChatContainer from '../../components/Chat/ChatContainer'
 import Layout from "../../components/Layout/Layout";
 import io from "../../utils/Socket";
 import { USER_CONNECTED, LOGOUT,ROOM_WELCOME } from "../../components/Chat/Events";
-import "../../components/Chat/chat.scss";
+import DrawingCanvas from '../../components/DrawingCanvas/Drawing'
+import "./youandme.scss";
+
 const socketURL =
   process.env.NODE_ENV === "development"
     ? "http://localhost:5000"
@@ -25,6 +27,8 @@ const index = ({ currentUser }) => {
       });
       setSocket(socket);
     };
+    socket.on(ROOM_WELCOME,data => console.log(data))
+
     connectSocket();
     return () => {
       socket.emit('disconnect')
@@ -41,7 +45,10 @@ const index = ({ currentUser }) => {
       return router.back();
     };
     checkLogin();
-    return () => {};
+    document.body.style.backgroundColor = '#E5CCFF'
+    return () => {
+      document.body.style.backgroundColor = 'white'
+    };
   }, [currentUser]);
   const setUser = user => {
     socket.emit(USER_CONNECTED, user);
@@ -56,13 +63,19 @@ const index = ({ currentUser }) => {
   const getChatRoom = () => {
     return  !chatUser ? <ChatLogin socket={socket} setUser={setUser}></ChatLogin> : <ChatContainer socket={socket} chatUser={chatUser} logout={logout}></ChatContainer>
   };
+  const getLoveDate = () =>{
+    return (
+      <div>Date here</div>
+    )
+
+  }
   return (
     <Layout>
       <div>
         {getVip() ? (
-          <div className="row">
+          <div className="row love-container">
             <div className="col-lg-12 p-3 m-3 text-center">
-              <h1>
+              <span className='z-depth-1 px-2  py-2 love-title'>
                 Sam{" "}
                 <svg className="heart-purple" viewBox="0 0 32 30">
                   <path
@@ -70,38 +83,24 @@ const index = ({ currentUser }) => {
     	c6.1-9.3,16-12.1,16-21.2C32,3.8,28.2,0,23.6,0z"
                   />
                 </svg>{" "}
-                Cennifer秘密基地
-              </h1>
-            </div>
-            <div
-              id="messages"
-              className="col-md-6"
-              style={{ border: "2px solid black", padding: "10px" }}
-            >
-              {getChatRoom()}
-            </div>
+                Cennifer
+              </span>
 
-            <div className="col-md" style={{ border: "2px solid black" }}>
-              施工区域
-            </div>
-            <div
-              className="col-lg-12 p-5"
-              style={{ border: "2px solid black" }}
-            >
-              施工区域
-            </div>
+                <DrawingCanvas></DrawingCanvas>
 
-            <div
-              className="col-md-6"
-              style={{ border: "2px solid black", padding: "300px" }}
-            >
-              施工区域
             </div>
-            <div
-              className="col-md-6"
-              style={{ border: "2px solid black", padding: "300px" }}
-            >
-              施工区域
+            <div className="col-lg-12 main-love-container" style={{borderTop:'5px dotted yellow'}}>
+              <div
+                className="w-50 love-left-side"
+              >
+                {getChatRoom()}
+              </div>
+              <div
+                className="w-50 love-right-side"
+              >
+                {getLoveDate()}
+              </div>
+  
             </div>
           </div>
         ) : null}

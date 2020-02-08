@@ -53,7 +53,7 @@ const Blog = ({ blogs, errors, currentUser }) => {
     if (getVip()) {
       return (
         <Link href="/youandme/write">
-          <a className="btn btn-secondary">写文章</a>
+          <a className="btn draw-border-white waves-effect">写文章</a>
         </Link>
       );
     }
@@ -94,7 +94,7 @@ const Blog = ({ blogs, errors, currentUser }) => {
               Blogs
             </h4>
             <p className="mb-4 pb-2 px-md-5 mx-md-5">
-              以下内容皆是个人见解，并不一定具有权威性。很多是我从事前端开发后通过个人学习和感触得来，不希望代表权威性，但希望能给读者带来启发。
+              以下内容皆是个人见解，并不一定具有权威性。很多是我从事Web开发后通过个人学习和感触得来，不希望代表权威性，但希望能给读者带来启发。
               <br />
               Those posts are purely my personal aspects towards front end
               engineering which do not stand for authority, but to enlighten and

@@ -1,0 +1,79 @@
+@import url("https://fonts.googleapis.com/css?family=Concert+One&display=swap");
+.love-container {
+  font-family: "Concert One", cursive;
+  .love-title {
+    border: 2px solid rgb(245, 218, 83);
+    background-color: rgb(245, 218, 83);
+    font-size: 30px;
+    color: white;
+    text-transform: uppercase;
+    font-weight: 200;
+  }
+}
+.main-love-container {
+  background: url("https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/64758727-240e-4a27-b0ed-5da32e3d1423/dcj65ur-1a923848-7cc7-4989-ba7e-27b630c22464.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcLzY0NzU4NzI3LTI0MGUtNGEyNy1iMGVkLTVkYTMyZTNkMTQyM1wvZGNqNjV1ci0xYTkyMzg0OC03Y2M3LTQ5ODktYmE3ZS0yN2I2MzBjMjI0NjQucG5nIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.M0xWvSIKWqA5kg6vTK3QczxOIq57lWPwgPqIVJaTUpE")
+   no-repeat center center;
+  min-height: 100%;
+  height: 100vh;
+  margin: 0;
+  width: 100%;
+  display: flex;
+  .love-left-side {
+    border-right: 4px dashed yellow;
+    height: 100vh;
+    padding: 10px;
+    &:hover{
+      border: 2px solid white;
+    }
+  }
+  .love-right-side {
+    border-left: 4px dashed yellow;
+    height: 100vh;
+    padding: 10px;
+    &:hover{
+      border: 2px solid white;
+    }
+  }
+  
+}
+.heart-purple {
+  fill: white;
+  width: 30px;
+  animation: pulse 1s infinite;
+  -webkit-animation: pulse 1s infinite;
+}
+.heart-input {
+  box-shadow: none;
+  border: 2px solid white;
+  border-radius: 30px;
+  &:focus {
+    border: none;
+    outline: none;
+    border: 2px solid #7d32df;
+    border-color: #7d32df;
+    box-shadow: none;
+  }
+}
+
+@-webkit-keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.3);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.3);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
