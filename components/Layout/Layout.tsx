@@ -74,7 +74,10 @@ const Layout = ({ children }) => {
     </ErrorBoundary>
   );
 };
-Layout.getInitialProps = () => {
+Layout.getInitialProps = ({pathname}) => {
+  if(pathname==='/youandme'){
+   return require('../../pages/youandme/youandme.scss')
+  }
   return (
     //main scss
     require("../../styles/index.scss"),
@@ -87,6 +90,8 @@ Layout.getInitialProps = () => {
     require("../Header/Header.scss"),
     require("../Header/Hamburger/Hamburger.scss"),
     require("../Header/DropDown/DropDown.scss"),
+    //Footer
+    require('../Footer/Footer.scss'),
     //Blog
     require("../../pages/blogs/Blog.scss"),
     require("../Blog/BlogListItem.scss"),
@@ -102,7 +107,8 @@ Layout.getInitialProps = () => {
     require("../Contents/Logs/Logs.scss"),
     //Subscribe
     require("../Subscribe/Subscribe.scss")
-  );
+    //You and me private page
+  )
 };
 
 export default Layout;

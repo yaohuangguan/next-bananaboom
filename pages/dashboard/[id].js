@@ -31,6 +31,7 @@ const dashboard = ({ currentUser }) => {
     setresult(result.message);
     localStorage.setItem("currentUser", JSON.stringify(result.userToSend));
     currentUser = result.userToSend
+    window.location.reload()
   };
   const handleChange = e => {
     setdisplayName(e.target.value);

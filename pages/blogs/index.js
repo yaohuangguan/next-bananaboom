@@ -48,17 +48,7 @@ const Blog = ({ blogs, errors, currentUser }) => {
     setfilteredBlog(result);
   }, [searchField]);
 
-  const getVip = () => (currentUser ? currentUser.vip : null);
-  const getNewPostButton = () => {
-    if (getVip()) {
-      return (
-        <Link href="/youandme/write">
-          <a className="btn draw-border-white waves-effect">写文章</a>
-        </Link>
-      );
-    }
-    return null;
-  };
+  
   return (
     <Layout>
       <Head>
@@ -89,7 +79,6 @@ const Blog = ({ blogs, errors, currentUser }) => {
             >
               Go back
             </a>{" "}
-            <div className="text-center">{getNewPostButton()}</div>
             <h4 className="card-title my-4 py-2" style={{ fontSize: "2.7rem" }}>
               Blogs
             </h4>

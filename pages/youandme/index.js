@@ -2,22 +2,28 @@ import React, { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import api from "../../utils/Api";
 import ChatLogin from "../../components/Chat/ChatLogin";
-import ChatContainer from '../../components/Chat/ChatContainer'
+import ChatContainer from "../../components/Chat/ChatContainer";
 import Layout from "../../components/Layout/Layout";
 import io from "../../utils/Socket";
-import { USER_CONNECTED, LOGOUT,ROOM_WELCOME } from "../../components/Chat/Events";
-import DrawingCanvas from '../../components/DrawingCanvas/Drawing'
+import CKEditor from '../../components/CKeditor/Editor';
+import PrivatePost from '../../components/Blog/PrivatePost/PrivatePost.js'
+import {
+  USER_CONNECTED,
+  LOGOUT,
+  ROOM_WELCOME
+} from "../../components/Chat/Events";
+import DrawingCanvas from "../../components/DrawingCanvas/Drawing";
 import "./youandme.scss";
-
 const socketURL =
   process.env.NODE_ENV === "development"
     ? "http://localhost:5000"
     : "https://nextbananaboom.herokuapp.com";
 
-const index = ({ currentUser }) => {
+const index = ({ currentUser,posts,errors }) => {
   const router = useRouter();
   const [socket, setSocket] = useState(null);
-  const [chatUser, setuser] = useState('');
+  const [chatUser, setuser] = useState("");
+  const [privatePosts, setprivatePosts] = useState(posts)
   const getVip = () => (currentUser ? currentUser.vip : null);
   useEffect(() => {
     const socket = io(socketURL);
@@ -27,12 +33,12 @@ const index = ({ currentUser }) => {
       });
       setSocket(socket);
     };
-    socket.on(ROOM_WELCOME,data => console.log(data))
+    socket.on(ROOM_WELCOME, data => console.log(data));
 
     connectSocket();
     return () => {
-      socket.emit('disconnect')
-      socket.off()
+      socket.emit("disconnect");
+      socket.off();
     };
   }, [socketURL]);
   useEffect(() => {
@@ -45,37 +51,59 @@ const index = ({ currentUser }) => {
       return router.back();
     };
     checkLogin();
-    document.body.style.backgroundColor = '#E5CCFF'
+    document.body.style.backgroundColor = "#E5CCFF";
     return () => {
-      document.body.style.backgroundColor = 'white'
+      document.body.style.backgroundColor = "white";
     };
   }, [currentUser]);
+  const getNewPrivatePosts = async () =>{
+    const response = await api('/api/posts/private/posts')
+    let data = await response.data
+    setprivatePosts(data)
+  }
+
+  useEffect(() => {
+    const getNewPrivatePosts = async () =>{
+      const response = await api('/api/posts/private/posts')
+      let data = await response.data
+      setprivatePosts(data)
+    }
+   getNewPrivatePosts()
+    return () => {
+
+    };
+  }, [posts])
   const setUser = user => {
     socket.emit(USER_CONNECTED, user);
     console.log("user", user);
     setuser(user);
-
   };
   const logout = () => {
     socket.emit(LOGOUT);
     setuser(null);
   };
   const getChatRoom = () => {
-    return  !chatUser ? <ChatLogin socket={socket} setUser={setUser}></ChatLogin> : <ChatContainer socket={socket} chatUser={chatUser} logout={logout}></ChatContainer>
+    return !chatUser ? (
+      <ChatLogin socket={socket} setUser={setUser}></ChatLogin>
+    ) : (
+      <ChatContainer
+        socket={socket}
+        chatUser={chatUser}
+        logout={logout}
+      ></ChatContainer>
+    );
   };
-  const getLoveDate = () =>{
-    return (
-      <div>Date here</div>
-    )
-
-  }
+  const getLoveDate = () => {
+    return <div>Date here</div>;
+  };
+const handleErrors = () => errors ? <div className='text-danger'>{errors}</div> : null
   return (
     <Layout>
       <div>
         {getVip() ? (
           <div className="row love-container">
             <div className="col-lg-12 p-3 m-3 text-center">
-              <span className='z-depth-1 px-2  py-2 love-title'>
+              <span className="z-depth-1 px-2  py-2 love-title">
                 Sam{" "}
                 <svg className="heart-purple" viewBox="0 0 32 30">
                   <path
@@ -86,21 +114,19 @@ const index = ({ currentUser }) => {
                 Cennifer
               </span>
 
-                <DrawingCanvas></DrawingCanvas>
-
+              <DrawingCanvas></DrawingCanvas>
             </div>
-            <div className="col-lg-12 main-love-container" style={{borderTop:'5px dotted yellow'}}>
-              <div
-                className="w-50 love-left-side"
-              >
-                {getChatRoom()}
+            <div className="col-lg-12 main-love-container">
+              <div className=" love-left-side">{getChatRoom()}
+              {handleErrors()}
+              <PrivatePost posts={privatePosts}></PrivatePost>
               </div>
-              <div
-                className="w-50 love-right-side"
-              >
+              <div className=" love-right-side">
                 {getLoveDate()}
+                <div className="blog-container">
+                  <CKEditor></CKEditor>
+                </div>
               </div>
-  
             </div>
           </div>
         ) : null}
@@ -108,5 +134,19 @@ const index = ({ currentUser }) => {
     </Layout>
   );
 };
-
+index.getInitialProps = async () => {
+  let posts;
+  let errors;
+  try {
+    const response = await api.get('/api/posts/private/posts')
+    posts = await response.data
+    console.log('server',posts)
+  } catch (error) {
+    errors = '获取文章时出现了错误'
+  }
+  return {
+    posts,
+    errors
+  }
+}
 export default index;

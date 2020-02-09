@@ -58,7 +58,7 @@ const Subscribe = ({
   const subscribeButton = () => {
     return router.pathname === "/" ? "Subscribe" : "订阅";
   };
-
+ 
   return (
     <>
       <div className="text-center">
@@ -80,7 +80,6 @@ const Subscribe = ({
                 {info}
               </a>
             </span>
-          </div>
 
           <label className="font-weight-bold" htmlFor="email">
             {title}
@@ -88,13 +87,14 @@ const Subscribe = ({
             <input
               type="email"
               name="EMAIL"
-              className="form-control form-control-lg form-control-a text-center"
+              className="form-control form-control-lg form-control-a text-center "
               id="mce-EMAIL"
               onChange={getEmail}
               placeholder="Please enter email address"
               required
             />
           </label>
+          </div>
 
           <div className="clear">
             <button

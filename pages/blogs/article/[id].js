@@ -2,27 +2,33 @@ import Layout from "../../../components/Layout/Layout";
 import { withRouter } from "next/router";
 import dynamic from "next/dynamic";
 import Head from "next/head";
-import { isInViewPort } from "../../../utils/Utils";
 import api from "../../../utils/Api";
-import { useEffect, useState } from "react"; 
-import CanvasAnimation from '../../meteor'
+import { useEffect, useState } from "react";
+import CanvasAnimation from "../../meteor";
 const Comment = dynamic(() =>
   import("../../../components/Blog/Comments/Comments")
 );
 
 const blog = ({ posts, comments, currentUser, router }) => {
   const [loadComment, setloadComment] = useState("");
-
+  const { name, content, code, code2, _id } = posts;
+  console.log(content);
   useEffect(() => {
     require("../../../utils/prism");
+    const contentDiv = document.getElementById("content-field");
+    if (typeof content === "String") {
+      const temp = document.createElement("div");
+      temp.innerHTML = content;
+    } else {
+      contentDiv.innerHTML = content;
+    }
   }, []);
-  const { name, content, code, code2, _id } = posts;
   return (
     <Layout>
       <Head>
         <title>{name || `Waiting for fetch...`} || By Sam Yao</title>
       </Head>
-      {content ? null: <CanvasAnimation></CanvasAnimation>}
+      {content ? null : <CanvasAnimation></CanvasAnimation>}
 
       <div className="container">
         <a
@@ -40,9 +46,7 @@ const blog = ({ posts, comments, currentUser, router }) => {
           <h2 className="h1-responsive font-weight-bold text-center my-5">
             {name}
           </h2>
-          <p style={{ lineHeight: "40px" }}>
-            {content}
-          </p>
+          <div style={{ lineHeight: "40px" }} id="content-field"></div>
 
           {code ? (
             <pre>
