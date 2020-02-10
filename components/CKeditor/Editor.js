@@ -68,6 +68,7 @@ const Editor = () => {
       setauthor('')
       settags('')
       setisPrivate('')
+      router.reload()
 
     } catch (error) {
       console.log(error);

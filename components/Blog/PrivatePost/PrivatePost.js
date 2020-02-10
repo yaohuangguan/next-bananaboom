@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import PrivatePostItem from "./PrivatePostItem";
 const PrivatePost = ({ posts }) => {
-
   useEffect(() => {
     const config = () => {
       if (Object.prototype.toString.call(posts) === "[object Object]") {

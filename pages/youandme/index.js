@@ -23,7 +23,7 @@ const index = ({ currentUser,posts,errors }) => {
   const router = useRouter();
   const [socket, setSocket] = useState(null);
   const [chatUser, setuser] = useState("");
-  const [privatePosts, setprivatePosts] = useState(posts)
+  const [privatePosts, setprivatePosts] = useState('')
   const getVip = () => (currentUser ? currentUser.vip : null);
   useEffect(() => {
     const socket = io(socketURL);
@@ -46,9 +46,10 @@ const index = ({ currentUser,posts,errors }) => {
       if (currentUser) {
         if (currentUser.vip) {
           return null;
+        } else {
+          return router.back()
         }
       }
-      return router.back();
     };
     checkLogin();
     document.body.style.backgroundColor = "#E5CCFF";
@@ -66,13 +67,14 @@ const index = ({ currentUser,posts,errors }) => {
     const getNewPrivatePosts = async () =>{
       const response = await api('/api/posts/private/posts')
       let data = await response.data
+      console.log(data)
       setprivatePosts(data)
     }
    getNewPrivatePosts()
     return () => {
 
     };
-  }, [posts])
+  }, [])
   const setUser = user => {
     socket.emit(USER_CONNECTED, user);
     console.log("user", user);
