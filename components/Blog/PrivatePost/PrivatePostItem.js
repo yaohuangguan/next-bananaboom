@@ -1,9 +1,9 @@
 import { useEffect } from "react";
 
-const PrivatePostItem = ({ tags, name, info, author, content }) => {
+const PrivatePostItem = ({ tags, name, info, author, content,id }) => {
   console.log(content)
   useEffect(() => {
-    const contentDiv = document.getElementById("private-content");
+    const contentDiv = document.getElementById(id);
     contentDiv.innerHTML = content;
     return () => {};
   }, []);
@@ -19,7 +19,7 @@ const PrivatePostItem = ({ tags, name, info, author, content }) => {
       <p>
         类型:{tags}
       </p>
-      <div id="private-content"></div>
+      <div id={id}></div>
     </div>
   );
 };

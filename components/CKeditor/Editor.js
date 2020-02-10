@@ -87,7 +87,7 @@ const Editor = () => {
           <input type="text" value={info} onChange={handleInfoChange} />
         </label>
         <label htmlFor="title">
-          文章名称
+          标题
           <input type="text" value={title} onChange={handleTitleChange} />
         </label>
         <label htmlFor="tags">
