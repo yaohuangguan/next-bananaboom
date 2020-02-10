@@ -93,7 +93,7 @@ const Signup = ({ linkColor }) => {
     }
   };
   const getSignupNameOnRoutes = () =>
-    router.pathname === "/" ? "Sign up" : "注册";
+    router.pathname === "/" ? "Sign up" : "免费注册";
   const getUserOnRoutes = () =>
     router.pathname === "/" ? "Username" : "用户名";
   const getEmailOnRoutes = () =>
@@ -113,7 +113,7 @@ const Signup = ({ linkColor }) => {
   const getAlreadyUserOnRoutes = () =>
     router.pathname === "/" ? "I already have account" : "我已有账户";
   const getLoginTextOnRoutes = () =>
-    router.pathname === "/" ? "Login" : "登录";
+    router.pathname === "/" ? "Login/Register" : "登录/注册";
   return (
     <div>
       <div ref={SignupContainer} className="signup-container">
@@ -126,14 +126,18 @@ const Signup = ({ linkColor }) => {
               justifyContent: "center"
             }}
           >
-            <div
-              onClick={closeSignup}
-              className="py-2 px-2 text-dark"
-              style={{ alignSelf: "flex-end" }}
-            >
-              <span style={{ fontSize: "30px" }}>&#10005;</span>
+            <div className="signup-title">
+              <h4 className="py-3 mt-3">
+                {getSignupNameOnRoutes()}{" "}
+               
+              </h4>
+              <span
+                  style={{ fontSize: "30px" }}
+                  onClick={closeSignup}
+                >
+                  &#10005;
+                </span>
             </div>
-            <h4 className="mb-4 text-dark">{getSignupNameOnRoutes()}</h4>
             {errors ? <div className="text-danger">{errors}</div> : null}
             <label htmlFor="signup-displayName" className="m-0 text-dark">
               {getUserOnRoutes()}
@@ -201,7 +205,7 @@ const Signup = ({ linkColor }) => {
             />
 
             <button
-              className="btn btn-hover color-3 my-4 btn-block text-white"
+              className="btn btn-hover color-3 my-4 text-white"
               type="submit"
               onClick={handleUserSubmit}
             >
@@ -229,7 +233,7 @@ const Signup = ({ linkColor }) => {
                 alignSelf: "flex-end",
                 textDecoration: "underline",
                 cursor: "pointer",
-                color:'blue'
+                color: "blue"
               }}
               onClick={openLogin}
             >
@@ -239,8 +243,8 @@ const Signup = ({ linkColor }) => {
         </div>
       </div>
       <div className="loginButton">
-        <a className={`${linkColor || ''}`} onClick={openSignup}>
-         {getLoginTextOnRoutes()}
+        <a className={`${linkColor || ""}`} onClick={openSignup}>
+          {getLoginTextOnRoutes()}
         </a>
       </div>
       <Login passwordReveal={passwordReveal}></Login>

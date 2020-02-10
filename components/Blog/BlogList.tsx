@@ -4,7 +4,6 @@ const BlogListItem = dynamic(() => import("../Blog/BlogListItem"), {
 });
 const BlogList = props => {
   const { blogs } = props;
-  console.log(blogs.map)
   return (
     <div className='row'>
       {blogs && blogs.map(({ _id, isPrivate, ...other }) => {

@@ -12,15 +12,16 @@ const Comment = dynamic(() =>
 const blog = ({ posts, comments, currentUser, router }) => {
   const [loadComment, setloadComment] = useState("");
   const { name, content, code, code2, _id } = posts;
-  console.log(content);
   useEffect(() => {
     require("../../../utils/prism");
     const contentDiv = document.getElementById("content-field");
     if (typeof content === "String") {
       const temp = document.createElement("div");
       temp.innerHTML = content;
-    } else {
+
+    }  else {
       contentDiv.innerHTML = content;
+
     }
   }, []);
   return (

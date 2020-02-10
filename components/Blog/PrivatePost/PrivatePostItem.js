@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 
 const PrivatePostItem = ({ tags, name, info, author, content,id }) => {
-  console.log(content)
+
   useEffect(() => {
     const contentDiv = document.getElementById(id);
     contentDiv.innerHTML = content;

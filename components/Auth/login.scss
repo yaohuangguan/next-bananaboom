@@ -21,28 +21,28 @@ body {
   @media screen and (max-width: 415px) {
     height: 30vh;
     width: 80%;
-    top: 5%;
+    top: 1%;
     bottom:20%;
     left: 10%;
   }
   @media screen and (min-width: 415px) and (max-width: 768px) {
     height: 30vh;
     width: 80%;
-    top: 5%;
+    top: 1%;
     bottom:20%;
     left: 10%;
   }
   @media screen and (min-width: 992px) {
     height: 30vh;
     width: 30%;
-    top: 5%;
+    top: 1%;
     bottom:20%;
     left: 35%;
   }
   @media screen and (min-width: 768px) and (max-width: 992px) {
     height: 30vh;
     width: 40%;
-    top: 5%;
+    top: 1%;
     bottom:20%;
     left: 30%;
   }
@@ -78,28 +78,28 @@ body {
   @media screen and (max-width: 415px) {
     height: 30vh;
     width: 80%;
-    top: 5%;
+    top: 1%;
     bottom:20%;
     left: 10%;
   }
   @media screen and (min-width: 415px) and (max-width: 768px) {
     height: 30vh;
     width: 80%;
-    top: 5%;
+    top: 1%;
     bottom:20%;
     left: 10%;
   }
   @media screen and (min-width: 992px) {
     height: 30vh;
     width: 30%;
-    top: 5%;
+    top: 1%;
     bottom:20%;
     left: 35%;
   }
   @media screen and (min-width: 768px) and (max-width: 992px) {
     height: 30vh;
     width: 40%;
-    top: 5%;
+    top: 1%;
     bottom:20%;
     left: 30%;
   }
@@ -132,6 +132,10 @@ body {
     cursor: default;
     display: flex;
     position: relative;
+    .signup-title{
+      display: flex;
+      justify-content: space-between;
+    }
     .password-show {
       justify-self: flex-end;
       position: absolute;

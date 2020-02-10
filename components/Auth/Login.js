@@ -62,18 +62,23 @@ const Login = ({ passwordReveal }) => {
       }
     }
   };
-  const handleForgetPassword = async () =>{
-    console.log('forget pasword')
-  }
-  const getLoginNameOnRoutes = () => router.pathname == "/" ? "Log into your account" : "登录"
-  const getEmailOnRoutes = () => router.pathname === "/" ? "Email" : "邮箱地址"
-  const getPasswordOnRoutes = () => router.pathname === "/" ? "Password" : "密码"
-  const getLoginButtonOnRoutes = () => router.pathname == "/" ? "Login" : "确定"
-  const getSignUpOnRoutes = () => router.pathname == "/" ? "I don't have account" : "我要注册"
-  const getLoginMethodOnRoutes = () => router.pathname == "/"
-  ? "or log in with:"
-  : "或者使用以下方法登录:"
-  const getForgetPasswordOnRoutes =()=> router.pathname==='/' ? 'Forget Password?' :'忘记密码?'
+  const handleForgetPassword = async () => {
+    console.log("forget pasword");
+  };
+  const getLoginNameOnRoutes = () =>
+    router.pathname == "/" ? "Log into your account" : "登录";
+  const getEmailOnRoutes = () =>
+    router.pathname === "/" ? "Email" : "邮箱地址";
+  const getPasswordOnRoutes = () =>
+    router.pathname === "/" ? "Password" : "密码";
+  const getLoginButtonOnRoutes = () =>
+    router.pathname == "/" ? "Login" : "确定";
+  const getSignUpOnRoutes = () =>
+    router.pathname == "/" ? "I don't have account" : "我要注册";
+  const getLoginMethodOnRoutes = () =>
+    router.pathname == "/" ? "or log in with:" : "或者使用以下方法登录:";
+  const getForgetPasswordOnRoutes = () =>
+    router.pathname === "/" ? "Forget Password?" : "忘记密码?";
   return (
     <div>
       <div ref={LoginContainer} className="login-container">
@@ -86,19 +91,15 @@ const Login = ({ passwordReveal }) => {
               justifyContent: "center"
             }}
           >
-            <div
-              onClick={closeLogin}
-              className="py-2 px-2 text-dark"
-              style={{ alignSelf: "flex-end" }}
-            >
-              <span style={{ fontSize: "30px" }}>&#10005;</span>
+            <div className="signup-title">
+              <h4 className="py-3 mt-3">{getLoginNameOnRoutes()}</h4>
+              <span style={{ fontSize: "30px" }} onClick={closeLogin}>
+                &#10005;
+              </span>
             </div>
-            <h4 className="mb-4">
-              {getLoginNameOnRoutes()}
-            </h4>
             {errors ? <div className="text-danger">{errors}</div> : null}
             <label htmlFor="login-email" className="m-0 text-dark">
-            {getEmailOnRoutes()}
+              {getEmailOnRoutes()}
             </label>
             <input
               type="email"
@@ -110,7 +111,7 @@ const Login = ({ passwordReveal }) => {
               placeholder={getEmailOnRoutes()}
             />
             <label htmlFor="login-password" className="m-0 text-dark">
-            {getPasswordOnRoutes()}
+              {getPasswordOnRoutes()}
             </label>
             <div style={{ position: "relative", width: "100%" }}>
               <input
@@ -129,13 +130,17 @@ const Login = ({ passwordReveal }) => {
                 />{" "}
               </div>
             </div>
-            <span style={{
+            <span
+              style={{
                 alignSelf: "flex-end",
                 textDecoration: "underline",
                 cursor: "pointer",
-                color:'blue'
+                color: "blue"
               }}
-              onClick={handleForgetPassword}>{getForgetPasswordOnRoutes()}</span>
+              onClick={handleForgetPassword}
+            >
+              {getForgetPasswordOnRoutes()}
+            </span>
             <button
               className="btn btn-hover color-3 my-4 btn-block text-white"
               type="submit"
@@ -144,9 +149,7 @@ const Login = ({ passwordReveal }) => {
               {getLoginButtonOnRoutes()}
             </button>
 
-            <p className="text-center">
-              {getLoginMethodOnRoutes()}
-            </p>
+            <p className="text-center">{getLoginMethodOnRoutes()}</p>
             <div className="login-list">
               <div onClick={firebase.signInWithGoogle}>
                 <img
@@ -167,7 +170,7 @@ const Login = ({ passwordReveal }) => {
                 alignSelf: "flex-end",
                 textDecoration: "underline",
                 cursor: "pointer",
-                color:'blue'
+                color: "blue"
               }}
               onClick={openSignup}
             >
