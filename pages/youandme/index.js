@@ -5,8 +5,8 @@ import ChatLogin from "../../components/Chat/ChatLogin";
 import ChatContainer from "../../components/Chat/ChatContainer";
 import Layout from "../../components/Layout/Layout";
 import io from "../../utils/Socket";
-import CKEditor from '../../components/CKeditor/Editor';
-import PrivatePost from '../../components/Blog/PrivatePost/PrivatePost.js'
+import CKEditor from "../../components/CKeditor/Editor";
+import PrivatePost from "../../components/Blog/PrivatePost/PrivatePost.js";
 import {
   USER_CONNECTED,
   LOGOUT,
@@ -19,11 +19,11 @@ const socketURL =
     ? "http://localhost:5000"
     : "https://nextbananaboom.herokuapp.com";
 
-const index = ({ currentUser,posts,errors }) => {
+const index = ({ currentUser, posts, errors }) => {
   const router = useRouter();
   const [socket, setSocket] = useState(null);
   const [chatUser, setuser] = useState("");
-  const [privatePosts, setprivatePosts] = useState('')
+  const [privatePosts, setprivatePosts] = useState("");
   const getVip = () => (currentUser ? currentUser.vip : null);
   useEffect(() => {
     const socket = io(socketURL);
@@ -47,7 +47,7 @@ const index = ({ currentUser,posts,errors }) => {
         if (currentUser.vip) {
           return null;
         } else {
-          return router.back()
+          return router.back();
         }
       }
     };
@@ -57,24 +57,22 @@ const index = ({ currentUser,posts,errors }) => {
       document.body.style.backgroundColor = "white";
     };
   }, [currentUser]);
-  const getNewPrivatePosts = async () =>{
-    const response = await api('/api/posts/private/posts')
-    let data = await response.data
-    setprivatePosts(data)
-  }
+  const getNewPrivatePosts = async () => {
+    const response = await api("/api/posts/private/posts");
+    let data = await response.data;
+    setprivatePosts(data);
+  };
 
   useEffect(() => {
-    const getNewPrivatePosts = async () =>{
-      const response = await api('/api/posts/private/posts')
-      let data = await response.data
-      console.log(data)
-      setprivatePosts(data)
-    }
-   getNewPrivatePosts()
-    return () => {
-
+    const getNewPrivatePosts = async () => {
+      const response = await api("/api/posts/private/posts");
+      let data = await response.data;
+      console.log(data);
+      setprivatePosts(data);
     };
-  }, [])
+    getNewPrivatePosts();
+    return () => {};
+  }, []);
   const setUser = user => {
     socket.emit(USER_CONNECTED, user);
     console.log("user", user);
@@ -98,7 +96,8 @@ const index = ({ currentUser,posts,errors }) => {
   const getLoveDate = () => {
     return <div>Date here</div>;
   };
-const handleErrors = () => errors ? <div className='text-danger'>{errors}</div> : null
+  const handleErrors = () =>
+    errors ? <div className="text-danger">{errors}</div> : null;
   return (
     <Layout>
       <div>
@@ -119,9 +118,10 @@ const handleErrors = () => errors ? <div className='text-danger'>{errors}</div> 
               <DrawingCanvas></DrawingCanvas>
             </div>
             <div className="col-lg-12 main-love-container">
-              <div className=" love-left-side">{getChatRoom()}
-              {handleErrors()}
-              <PrivatePost posts={privatePosts}></PrivatePost>
+              <div className=" love-left-side">
+                {getChatRoom()}
+                {handleErrors()}
+                <PrivatePost posts={privatePosts}></PrivatePost>
               </div>
               <div className=" love-right-side">
                 {getLoveDate()}
@@ -140,15 +140,15 @@ index.getInitialProps = async () => {
   let posts;
   let errors;
   try {
-    const response = await api.get('/api/posts/private/posts')
-    posts = await response.data
-    console.log('server',posts)
+    const response = await api.get("/api/posts/private/posts");
+    posts = await response.data;
+    console.log("server", posts);
   } catch (error) {
-    errors = '获取文章时出现了错误'
+    errors = "获取文章时出现了错误";
   }
   return {
     posts,
     errors
-  }
-}
+  };
+};
 export default index;

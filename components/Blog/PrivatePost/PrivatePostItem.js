@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 
-const PrivatePostItem = ({ tags, name, info, author, content, id }) => {
+const PrivatePostItem = ({ tags, name, info, author, content, id,createdDate }) => {
   useEffect(() => {
     const contentDiv = document.getElementById(id);
     contentDiv.innerHTML = content;
@@ -13,6 +13,7 @@ const PrivatePostItem = ({ tags, name, info, author, content, id }) => {
       <span>{info}</span>
       <p>作者:{author}</p>
       <p>类型:{tags}</p>
+      <p>日期:{createdDate}</p>
       <div id={id}></div>
     </div>
   );
