@@ -19,7 +19,9 @@ const blog = ({ posts, comments, currentUser, router }) => {
       const temp = document.createElement("div");
       temp.innerHTML = content;
 
-    }  else {
+    }  else if(content === undefined){
+      contentDiv.innerHTML = '';
+    } else {
       contentDiv.innerHTML = content;
 
     }
@@ -50,9 +52,12 @@ const blog = ({ posts, comments, currentUser, router }) => {
           <div style={{ lineHeight: "40px" }} id="content-field"></div>
 
           {code ? (
-            <pre>
-              <code className="language-javascript">{code}</code>
-            </pre>
+            <div>
+              源码
+              <pre>
+                <code className="language-javascript">{code}</code>
+              </pre>
+            </div>
           ) : null}
           {code2 ? (
             <div>

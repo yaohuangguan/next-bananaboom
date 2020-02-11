@@ -83,8 +83,8 @@ const English = ({ result, errors, logs, projects, currentUser }) => {
           info={
             " Your information will NEVER be disclosed to anyone, any organization, even robots for any purposes. Learn more here for privacy."
           }
-          copyright={` All rights reserved ©2019  ${webUrl ||
-            "www.yaobaiyang.com"} `}
+          copyright={` All rights reserved ©2019-2020  ${webUrl ||
+            "yaobaiyang.com"} `}
           web_version={
             subscribe_web_version
               ? subscribe_web_version
