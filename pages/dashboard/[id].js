@@ -17,8 +17,8 @@ const dashboard = ({ currentUser }) => {
     if (!newDisplayName || newDisplayName.trim() == "") {
       return setresult("要修改的用户名不能为空");
     }
-    if(!currentUser._id){
-      return setresult('Google账户类型暂不支持名称更改')
+    if (!currentUser._id) {
+      return setresult("Google账户类型暂不支持名称更改");
     }
     const id = currentUser._id;
     const response = await api.post("/api/users/changeusername", {
@@ -30,8 +30,8 @@ const dashboard = ({ currentUser }) => {
     setdisplayName(result.newDisplayName);
     setresult(result.message);
     localStorage.setItem("currentUser", JSON.stringify(result.userToSend));
-    currentUser = result.userToSend
-    window.location.reload()
+    currentUser = result.userToSend;
+    window.location.reload();
   };
   const handleChange = e => {
     setdisplayName(e.target.value);
@@ -41,7 +41,6 @@ const dashboard = ({ currentUser }) => {
       <div>
         {currentUser ? (
           <div>
-
             <div>
               用户名:{currentUser.displayName} => {newDisplayName}{" "}
             </div>
@@ -54,7 +53,6 @@ const dashboard = ({ currentUser }) => {
             </button>
             <br />
             <div className="text-danger">{result ? result : null}</div>
-
           </div>
         ) : (
           <h2>You must log in to see this page</h2>

@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
-import api from "../utils/Api";
-import {connect} from'react-redux'
+import api from '../utils/Api'
 import Layout from "../components/Layout/Layout";
 import Header from "../components/Header/Header";
 import Jumbo from "../components/Jumbo/Jumbo";
@@ -10,7 +9,7 @@ import Footer from "../components/Footer/Footer";
 import Animation from '../utils/Animation'
 import consolelog from "../utils/Console.log";
 import BrowserTest from "../utils/BrowserTest";
-import Likes from "../components/Likes/Likes";
+
 const English = ({ result, errors, logs, projects, currentUser }) => {
   const [webUrl, SetWebUrl] = useState("");
   useEffect(() => {

@@ -1,15 +1,15 @@
 import { useState, useEffect } from "react";
 import CKEditor from "ckeditor4-react";
-import {useRouter} from 'next/router'
+import { useRouter } from "next/router";
 import api from "../../utils/Api";
 const Editor = () => {
-  const router = useRouter()
+  const router = useRouter();
   const [blogText, setblogText] = useState("");
   const [author, setauthor] = useState("");
   const [info, setinfo] = useState("");
   const [title, settitle] = useState("");
   const [tags, settags] = useState("");
-  const [isPrivate, setisPrivate] = useState("");
+  const [isPrivate, setisPrivate] = useState(false);
   const [content, setcontent] = useState("");
   const [errors, seterrors] = useState("");
   const handleEditorChange = evt => {
@@ -62,14 +62,13 @@ const Editor = () => {
         content
       });
       const data = await response.data;
-      seterrors('')
-      settitle('')
-      setinfo('')
-      setauthor('')
-      settags('')
-      setisPrivate('')
-      router.reload()
-
+      seterrors("");
+      settitle("");
+      setinfo("");
+      setauthor("");
+      settags("");
+      setisPrivate(false);
+      router.reload();
     } catch (error) {
       console.log(error);
     }
@@ -110,7 +109,8 @@ const Editor = () => {
             language: "zh-cn",
             uiColor: "#bb8bfa",
             extraPlugins:
-              "colorbutton,colordialog,iframe,font,smiley,preview,templates"
+              "colorbutton,colordialog,iframe,font,smiley,preview,templates",
+            
           }}
           onChange={handleEditorChange}
           onBeforeLoad={CKEDITOR => (CKEDITOR.disableAutoInline = true)}

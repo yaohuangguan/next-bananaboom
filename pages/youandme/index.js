@@ -23,7 +23,7 @@ const index = ({ currentUser, posts, errors }) => {
   const router = useRouter();
   const [socket, setSocket] = useState(null);
   const [chatUser, setuser] = useState("");
-  const [privatePosts, setprivatePosts] = useState("");
+  const [privatePosts, setprivatePosts] = useState(posts);
   const getVip = () => (currentUser ? currentUser.vip : null);
   useEffect(() => {
     const socket = io(socketURL);
@@ -63,16 +63,7 @@ const index = ({ currentUser, posts, errors }) => {
     setprivatePosts(data);
   };
 
-  useEffect(() => {
-    const getNewPrivatePosts = async () => {
-      const response = await api("/api/posts/private/posts");
-      let data = await response.data;
-      console.log(data);
-      setprivatePosts(data);
-    };
-    getNewPrivatePosts();
-    return () => {};
-  }, []);
+  
   const setUser = user => {
     socket.emit(USER_CONNECTED, user);
     console.log("user", user);
@@ -121,7 +112,7 @@ const index = ({ currentUser, posts, errors }) => {
               <div className=" love-left-side">
                 {getChatRoom()}
                 {handleErrors()}
-                <PrivatePost posts={privatePosts}></PrivatePost>
+                <PrivatePost></PrivatePost>
               </div>
               <div className=" love-right-side">
                 {getLoveDate()}
@@ -136,19 +127,19 @@ const index = ({ currentUser, posts, errors }) => {
     </Layout>
   );
 };
-index.getInitialProps = async () => {
-  let posts;
-  let errors;
-  try {
-    const response = await api.get("/api/posts/private/posts");
-    posts = await response.data;
-    console.log("server", posts);
-  } catch (error) {
-    errors = "获取文章时出现了错误";
-  }
-  return {
-    posts,
-    errors
-  };
-};
+// index.getInitialProps = async () => {
+//   let posts;
+//   let errors;
+//   try {
+//     const response = await api.get("/api/posts/private/posts");
+//     posts = await response.data;
+//     console.log("server", posts);
+//   } catch (error) {
+//     errors = "获取文章时出现了错误";
+//   }
+//   return {
+//     posts,
+//     errors
+//   };
+// };
 export default index;

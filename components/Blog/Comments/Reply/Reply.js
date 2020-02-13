@@ -16,8 +16,8 @@ const Reply = ({ reply, id, currentUser }) => {
     setemojiList(data.results);
   };
   useEffect(() => {
-    const CancelToken = axios.CancelToken;
-    const source = CancelToken.source();
+    const source = axios.CancelToken.source();
+
     const getNewReply = async () => {
       const newReply = await (
         await api.get(`/api/comments/reply/${id}`, {
@@ -65,11 +65,11 @@ const Reply = ({ reply, id, currentUser }) => {
         .data[0].reply;
       setreplyList(newReply);
       cleanReply();
-      showReply()
+      showReply();
     } catch (error) {
       console.log(error);
       cleanReply();
-      showReply()
+      showReply();
     }
   };
   const appendToComment = e => {
@@ -77,7 +77,7 @@ const Reply = ({ reply, id, currentUser }) => {
   };
   const getEmojiList = () => {
     return (
-      <div className="d-flex text-center w-100" style={{overflow:'scroll'}}>
+      <div className="d-flex text-center w-100" style={{ overflow: "scroll" }}>
         {emojiList.map((each, index) => (
           <button
             key={index}
@@ -96,34 +96,31 @@ const Reply = ({ reply, id, currentUser }) => {
   return (
     <div className="reply-section row form-group">
       {errors ? <div className="errors text-danger">{errors}</div> : null}
-      <div className='col-lg-12' style={{ display: "flex",justifyContent:'space-between'}}>
-      {replyList.length === 0 ? null : (
-        <div style={{justifySelf:'flex-start'}}>
-          <ReplyList reply={replyList} showReply={showReply}></ReplyList>
-        </div>
-      )}
-        <div style={{justifySelf:'flex-end'}}>
-          <a
-            onClick={showReply}
-            className="text-primary"
-          >
+      <div
+        className="col-lg-12"
+        style={{ display: "flex", justifyContent: "space-between" }}
+      >
+        {replyList.length === 0 ? null : (
+          <div style={{ justifySelf: "flex-start" }}>
+            <ReplyList reply={replyList} showReply={showReply}></ReplyList>
+          </div>
+        )}
+        <div style={{ justifySelf: "flex-end" }}>
+          <a onClick={showReply} className="text-primary">
             回复
           </a>
-         
-  
-            <a>
-              <img src="https://img.icons8.com/cotton/30/000000/comments--v2.png" />
-              {replyList.length}
-            </a>
-       
+
+          <a>
+            <img src="https://img.icons8.com/cotton/30/000000/comments--v2.png" />
+            {replyList.length}
+          </a>
         </div>
-        
       </div>
-     
-      <div className='d-none m-0 reply col-md-6' id={id}>
+
+      <div className="d-none m-0 reply col-md-6" id={id}>
         {emojiList ? getEmojiList() : null}
-  
-        <div style={{display:'flex',flexDirection:'column'}}>
+
+        <div style={{ display: "flex", flexDirection: "column" }}>
           <input
             type="text"
             className="form-control reply-field"
@@ -135,20 +132,18 @@ const Reply = ({ reply, id, currentUser }) => {
             type="submit"
             className="bg-success btn-sm text-white"
             onClick={addReply}
-            style={{alignSelf:'flex-end',borderRadius:'40px'}}
+            style={{ alignSelf: "flex-end", borderRadius: "40px" }}
           >
             回复
           </button>
         </div>
-        
       </div>
-    
-      
+
       <style jsx>{`
-        .reply-field{
+        .reply-field {
           box-shadow: none;
           border: 2px solid #333;
-          border-radius:30px
+          border-radius: 30px;
         }
         .reply-field:focus {
           border: none;

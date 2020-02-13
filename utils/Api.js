@@ -3,13 +3,14 @@ const baseURL =
   process.env.NODE_ENV === "production"
     ? "https://nextbananaboom.herokuapp.com"
     : "http://localhost:5000";
-let api = axios.create({
+const api = axios.create({
   baseURL: baseURL,
   headers: {
     Accept: "application/json",
     "Content-Type": "application/json"
   }
 });
+
 api.defaults.timeout = 10000;
 api.interceptors.request.use(
   config => {
@@ -28,7 +29,7 @@ api.interceptors.response.use(
     return response;
   },
   error => {
-    if (error.response.status) {
+    if (error.response) {
       switch (error.response.status) {
         case 401:
           console.log("401");
@@ -45,5 +46,6 @@ api.interceptors.response.use(
     }
   }
 );
-
-export default api;
+const source = axios.CancelToken.source();
+api.source = source
+export default api

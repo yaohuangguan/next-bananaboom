@@ -7,7 +7,7 @@ import Intro from "../components/Contents/Intro/English";
 import Subscribe from "../components/Subscribe/Subscribe";
 import Footer from "../components/Footer/Footer";
 import Animation from "../utils/Animation";
-import Likes from "../components/Likes/Likes";
+
 const Chinese = ({ result, errors,logs,projects, currentUser }) => {
   const [webUrl, setwebUrl] = useState("");
   useEffect(() => {

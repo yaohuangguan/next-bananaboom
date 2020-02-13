@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import CommentList from "./CommentList";
 import api from "../../../utils/Api";
-import axios from "axios";
+import axios from 'axios'
 import Signup from "../../Auth/Signup";
-import CKEditor from "ckeditor4-react";
+
 const Comment = ({ currentUser, comments, _id }) => {
   const [commentInputField, setcommentInputField] = useState("");
   const [commentsCount, setcommentsCount] = useState(comments.length);
@@ -20,8 +20,7 @@ const Comment = ({ currentUser, comments, _id }) => {
   };
 
   useEffect(() => {
-    const CancelToken = axios.CancelToken;
-    const source = CancelToken.source();
+    const source = axios.CancelToken.source()
 
     const getNewComments = async () => {
       const response = await api.get(`/api/comments/${_id}`, {
@@ -33,7 +32,7 @@ const Comment = ({ currentUser, comments, _id }) => {
     };
     getNewComments();
     return () => {
-      source.cancel("Operation canceled by the user.");
+     source.cancel("Operation canceled by the user.");
     };
   }, []);
   const clearCommentField = () => {
