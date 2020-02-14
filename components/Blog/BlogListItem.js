@@ -19,26 +19,22 @@ const BlogListItem = ({
 }) => {
   const [likeCount, setCount] = useState(likes);
   const [ifLiked, handleLike] = useState(false);
-
-  const cancelLike = async () => {
-    const heart = document.getElementById(`${_id}`);
+  const likeAndUpdate = async (id, action) => {
+    const heart = document.getElementById(`${id}`);
     heart.classList.toggle("is_animating");
     heart.classList.toggle("liked");
     handleLike(!ifLiked);
-    const response = await api.put(`/api/posts/likes/${_id}`);
-    const newLikes = await api.get(`/api/posts/likes/${_id}`);
-    const likesData = await newLikes.data;
+    const response = await api.post(`/api/posts/likes/${id}/${action}`);
+    const newLikes = await api.get(`/api/posts/likes/${id}`);
+    return await newLikes.data;
+  };
+  const cancelLike = async () => {
+    const likesData = await likeAndUpdate(_id, "remove");
+
     setCount(likesData.likes);
   };
   const addLike = async () => {
-    const heart = document.getElementById(`${_id}`);
-    heart.classList.toggle("is_animating");
-    heart.classList.toggle("liked");
-    handleLike(!ifLiked);
-
-    const response = await api.post(`/api/posts/likes/${_id}`);
-    const newLikes = await api.get(`/api/posts/likes/${_id}`);
-    const likesData = await newLikes.data;
+    const likesData = await likeAndUpdate(_id, "add");
     setCount(likesData.likes);
   };
   const handleCopyText = () => {
@@ -100,8 +96,8 @@ const BlogListItem = ({
 
         <span>
           作者:
-          <span>{author}</span> <br/>
-         日期:<span>{createdDate}</span>
+          <span>{author}</span> <br />
+          日期:<span>{createdDate}</span>
         </span>
         <div style={{ display: "flex", justifyContent: "space-between" }}>
           <Link

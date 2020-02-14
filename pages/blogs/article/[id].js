@@ -5,6 +5,7 @@ import Head from "next/head";
 import api from "../../../utils/Api";
 import { useEffect, useState } from "react";
 import CanvasAnimation from "../../meteor";
+
 const Comment = dynamic(() =>
   import("../../../components/Blog/Comments/Comments")
 );
@@ -18,12 +19,10 @@ const blog = ({ posts, comments, currentUser, router }) => {
     if (typeof content === "String") {
       const temp = document.createElement("div");
       temp.innerHTML = content;
-
-    }  else if(content === undefined){
-      contentDiv.innerHTML = '';
+    } else if (content === undefined) {
+      contentDiv.innerHTML = "";
     } else {
       contentDiv.innerHTML = content;
-
     }
   }, []);
   return (
@@ -81,13 +80,15 @@ const blog = ({ posts, comments, currentUser, router }) => {
 
 blog.getInitialProps = async ({ query }) => {
   const { id } = query;
-  const response = await api.get(`/api/posts/${id}`);
-  const comments = await api.get(`/api/comments/${id}`);
-  const content = await response.data;
-  const commentsResponse = await comments.data;
+  const urls = [`/api/posts/${id}`, `/api/comments/${id}`];
+  const mapUrls = urls.map(async url => {
+    const response = await api.get(url);
+    return await response.data;
+  });
+  const [posts, comments] = await Promise.all(mapUrls);
   return {
-    posts: content[0],
-    comments: commentsResponse
+    posts: posts[0],
+    comments
   };
 };
 

@@ -1,16 +1,16 @@
 import { useState, useEffect } from "react";
-import api from '../utils/Api'
+import api from "../utils/Api";
 import Layout from "../components/Layout/Layout";
 import Header from "../components/Header/Header";
 import Jumbo from "../components/Jumbo/Jumbo";
 import Intro from "../components/Contents/Intro/English";
 import Subscribe from "../components/Subscribe/Subscribe";
 import Footer from "../components/Footer/Footer";
-import Animation from '../utils/Animation'
+import Animation from "../utils/Animation";
 import consolelog from "../utils/Console.log";
 import BrowserTest from "../utils/BrowserTest";
 
-const English = ({ result, errors, logs, projects, currentUser }) => {
+const English = ({ homepage, errors, logs, projects, currentUser }) => {
   const [webUrl, SetWebUrl] = useState("");
   useEffect(() => {
     Animation();
@@ -43,12 +43,12 @@ const English = ({ result, errors, logs, projects, currentUser }) => {
     footer_welcome_cn,
     likes,
     backgroundURL
-  } = result[0];
+  } = homepage[0];
 
   return (
     <Layout>
       <BrowserTest></BrowserTest>
-      <Header 
+      <Header
         blogName={"Blog"}
         resumeName={"About"}
         resumeRoute={"/resume/[query]"}
@@ -76,8 +76,8 @@ const English = ({ result, errors, logs, projects, currentUser }) => {
           projects={projects}
         ></Intro>
         <Subscribe
-        likes={likes} 
-        _id={_id}
+          likes={likes}
+          _id={_id}
           title={"Show some interests? Follow my blog here!"}
           info={
             " Your information will NEVER be disclosed to anyone, any organization, even robots for any purposes. Learn more here for privacy."
@@ -92,41 +92,41 @@ const English = ({ result, errors, logs, projects, currentUser }) => {
           log={" Click here to see logs of updates"}
           logs_content={logs}
         />
-
-        
       </div>
 
       <Footer
         date={footer_date ? footer_date : "Thanks for visiting!"}
         welcome={footer_welcome ? footer_welcome : "Welcome to my website!"}
-        
       ></Footer>
     </Layout>
   );
 };
-English.getInitialProps = async (req) => {
-  let result;
-  let logs;
-  let projects;
+English.getInitialProps = async req => {
   let errors;
-  
+
   try {
-    const responseResult = await api.get("/api/homepage");
-    const responseLogs = await api.get("/api/homepage/logs");
-    const responseProjects = await api.get("/api/homepage/projects");
-    result = await responseResult.data;
-    logs = await responseLogs.data;
-    projects = await responseProjects.data;
+    const urls = [
+      "/api/homepage",
+      "/api/homepage/logs",
+      "/api/homepage/projects"
+    ];
+    const [homepage, logs, projects] = await Promise.all(
+      urls.map(async url => {
+        const response = await api.get(url);
+        return await response.data;
+      })
+    );
+    return {
+      homepage,
+      logs,
+      projects
+    };
   } catch (error) {
     console.log(error);
-    result = "Error";
     errors = `Sorry, 404. This is an error. The page now is incomplete, in order to have the latest contents, please check your network or refresh the page.`;
   }
   return {
-    result,
-    errors,
-    logs,
-    projects
+    errors
   };
 };
 
