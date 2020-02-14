@@ -6,6 +6,7 @@ const Editor = () => {
   const router = useRouter();
   const [blogText, setblogText] = useState("");
   const [author, setauthor] = useState("");
+  const [code, setcode] = useState("");
   const [info, setinfo] = useState("");
   const [title, settitle] = useState("");
   const [tags, settags] = useState("");
@@ -22,6 +23,10 @@ const Editor = () => {
   const handleAuthorChange = e => {
     console.log(e.target.value);
     setauthor(e.target.value);
+  };
+  const handleCodeChange = e => {
+    console.log(e.target.value);
+    setcode(e.target.value);
   };
   const handleInfoChange = e => {
     console.log(e.target.value);
@@ -59,7 +64,8 @@ const Editor = () => {
         name: title,
         tags,
         isPrivate,
-        content
+        content,
+        code
       });
       const data = await response.data;
       seterrors("");
@@ -67,6 +73,7 @@ const Editor = () => {
       setinfo("");
       setauthor("");
       settags("");
+      setcode('')
       setisPrivate(false);
       router.reload();
     } catch (error) {
@@ -85,6 +92,10 @@ const Editor = () => {
         <label htmlFor="info">
           文章简介
           <input type="text" value={info} onChange={handleInfoChange} />
+        </label>
+        <label htmlFor="code">
+          代码
+          <input type="text" value={code} onChange={handleCodeChange} />
         </label>
         <label htmlFor="title">
           标题
