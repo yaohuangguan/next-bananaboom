@@ -1,6 +1,11 @@
 @import url("https://fonts.googleapis.com/css?family=Concert+One&display=swap");
 .love-container {
   font-family: "Concert One", cursive;
+  background-image: url("https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/64758727-240e-4a27-b0ed-5da32e3d1423/dcj65ur-1a923848-7cc7-4989-ba7e-27b630c22464.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcLzY0NzU4NzI3LTI0MGUtNGEyNy1iMGVkLTVkYTMyZTNkMTQyM1wvZGNqNjV1ci0xYTkyMzg0OC03Y2M3LTQ5ODktYmE3ZS0yN2I2MzBjMjI0NjQucG5nIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.M0xWvSIKWqA5kg6vTK3QczxOIq57lWPwgPqIVJaTUpE");
+  background-repeat: repeat;
+  background-attachment: scroll;
+  background-size: 100%;
+  background-position: center;
 
   .love-title {
     border: 2px solid rgb(245, 218, 83);
@@ -13,29 +18,38 @@
   }
 }
 .main-love-container {
-  background-image: url("https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/64758727-240e-4a27-b0ed-5da32e3d1423/dcj65ur-1a923848-7cc7-4989-ba7e-27b630c22464.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcLzY0NzU4NzI3LTI0MGUtNGEyNy1iMGVkLTVkYTMyZTNkMTQyM1wvZGNqNjV1ci0xYTkyMzg0OC03Y2M3LTQ5ODktYmE3ZS0yN2I2MzBjMjI0NjQucG5nIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.M0xWvSIKWqA5kg6vTK3QczxOIq57lWPwgPqIVJaTUpE");
-  background-repeat: repeat;
-  background-attachment: scroll;
-  background-size: 100%;
-  background-position: center;
-  min-height: 100vh;
-  height: 100vh;
   margin: 0;
   width: 100%;
   display: flex;
+
   border-top: 8px dotted yellow;
+  @media screen and (max-width: 415px) {
+    flex-direction: column;
+  }
+  @media screen and (min-width: 415px) and (max-width: 768px) {
+    flex-direction: column;
+
+  }
+  @media screen and (min-width: 992px) {
+    flex-direction: row;
+
+  }
+  @media screen and (min-width: 768px) and (max-width: 992px) {
+    flex-direction: column;
+
+  }
   .love-left-side {
     border-right: 4px dashed yellow;
     height: 100vh;
-    padding: 10px;
-    width: 50vw;
+    padding: 40px;
     overflow: scroll;
+   
   }
   .love-right-side {
     height: 100vh;
-    padding: 10px;
-    width: 50vw;
-    overflow:scroll;
+    padding: 40px;
+    overflow: scroll;
+  
     .blog-container {
       border-top: 4px dotted yellow;
       .input-section {

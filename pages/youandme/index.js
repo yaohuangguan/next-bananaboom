@@ -93,6 +93,8 @@ const index = ({ currentUser, posts, errors }) => {
       <div>
         {getVip() ? (
           <div className="row love-container">
+          <DateCounting fromDate={'February 14 2020 00:00:00'} isPrivate={true} ></DateCounting>
+
             <div className="col-lg-12 p-3 m-3 text-center">
               <span className="z-depth-1 px-2  py-2 love-title">
                 Sam{" "}
@@ -107,19 +109,22 @@ const index = ({ currentUser, posts, errors }) => {
 
               <DrawingCanvas></DrawingCanvas>
             </div>
-            <div className="col-lg-12 main-love-container">
-              <div className=" love-left-side">
+            
+            <div className="main-love-container">
+              <div className="love-left-side">
                 {getChatRoom()}
                 {handleErrors()}
                 <PrivatePost></PrivatePost>
+             
+             
               </div>
-              <div className=" love-right-side">
-                <DateCounting fromDate={'February 14 2020 00:00:00'} isPrivate={true} ></DateCounting>
+              <div className="love-right-side">
                 <div className="blog-container">
                   <CKEditor></CKEditor>
                 </div>
               </div>
             </div>
+           
           </div>
         ) : null}
       </div>
