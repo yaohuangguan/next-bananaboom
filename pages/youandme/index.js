@@ -114,7 +114,7 @@ const index = ({ currentUser, posts, errors }) => {
                 <PrivatePost></PrivatePost>
               </div>
               <div className=" love-right-side">
-                <DateCounting fromDate={'February 13 2020 00:00:00'} isPrivate={true} ></DateCounting>
+                <DateCounting fromDate={'February 14 2020 00:00:00'} isPrivate={true} ></DateCounting>
                 <div className="blog-container">
                   <CKEditor></CKEditor>
                 </div>
