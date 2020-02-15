@@ -16,12 +16,17 @@ const PrivatePost = () => {
   useEffect(() => {
     const source = axios.CancelToken.source()
     const getNewPrivatePosts = async () => {
-      const response = await api("/api/posts/private/posts", {
-        cancelToken: source.token
-      });
-      let data = await response.data;
-      console.log(data);
-      setprivatePosts(data);
+      try {
+        const response = await api("/api/posts/private/posts", {
+          cancelToken: source.token
+        });
+        let data = await response.data;
+        console.log(data);
+        setprivatePosts(data);
+      } catch (error) {
+        console.log(error)
+      }
+      
     };
     getNewPrivatePosts();
     return () => {

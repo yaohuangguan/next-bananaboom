@@ -5,7 +5,7 @@ export const getChineseContent = () => {
     <p className="text-muted">
       首先，这有点像简历，但我希望它更随意一些。它的主要目的是让你更多地了解我在做什么。
     </p>
-      <p>迈阿密大学</p>
+      <p>迈阿密大学 公立常青藤之一</p>
       <p>交互研究 GPA:3.7</p>
       <p>主要研究方向: Web理论和技术研究</p>
       <p>相关课程: Web应用编程, Web交互编程, HCI理论和可用性, 网络安全, 电子商务</p>
@@ -42,7 +42,7 @@ export const getEnglishContent = () => {
     <div>
     <p className='text-muted'>First off, this is a bit like resume, but its not. Its main purpose is to let you to know a little more about what i am doing and me as a person.</p>
       <h5>Education:</h5>
-      <p>Miami University</p>
+      <p>Miami University  Public Ivies</p>
       <p>Bachelor of Art in Interactive Media Studies (STEM Major) GPA:3.7</p>
       <p>Major Concentration: Website Technology</p>
       <p>

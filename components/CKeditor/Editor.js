@@ -52,8 +52,7 @@ const Editor = () => {
       author.trim() == "" ||
       info.trim() == "" ||
       title.trim() == "" ||
-      tags.trim() == "" ||
-      !isPrivate
+      tags.trim() == "" 
     ) {
       return seterrors("都要填的,老婆");
     }
@@ -110,7 +109,7 @@ const Editor = () => {
           私密
           <input
             type="checkbox"
-            value={isPrivate}
+            value={isPrivate || false}
             onChange={handlePrivateChange}
           />
         </label>

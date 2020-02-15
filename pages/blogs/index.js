@@ -7,7 +7,7 @@ import BlogList from "../../components/Blog/BlogList";
 import api from "../../utils/Api";
 import Head from "next/head";
 import SearchBox from "../../components/SearchBox/SearchBox";
-import Link from "next/link";
+
 const Blog = ({ blogs, errors, currentUser }) => {
   const router = useRouter();
 
@@ -69,6 +69,7 @@ const Blog = ({ blogs, errors, currentUser }) => {
       </div>
       <div className="blog">
         <div className="text-white text-center rgba-stylish-light px-5">
+        
           <div className="py-5">
             <a
               className="btn draw-border-white waves-effect"
@@ -89,6 +90,7 @@ const Blog = ({ blogs, errors, currentUser }) => {
               engineering which do not stand for authority, but to enlighten and
               inspire readers.
             </p>
+           
           </div>
         </div>
       </div>

@@ -1,17 +1,18 @@
 import React, { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import api from "../../utils/Api";
-import ChatLogin from "../../components/Chat/ChatLogin";
-import ChatContainer from "../../components/Chat/ChatContainer";
+import ChatLogin from "../../components/Private/Chat/ChatLogin";
+import ChatContainer from "../../components/Private/Chat/ChatContainer";
 import Layout from "../../components/Layout/Layout";
 import io from "../../utils/Socket";
 import CKEditor from "../../components/CKeditor/Editor";
-import PrivatePost from "../../components/Blog/PrivatePost/PrivatePost.js";
+import PrivatePost from "../../components/Private/PrivatePost/PrivatePost.js";
+import DateCounting from '../../components/Private/CountDate/CountDate'
 import {
   USER_CONNECTED,
   LOGOUT,
   ROOM_WELCOME
-} from "../../components/Chat/Events";
+} from "../../components/Private/Chat/Events";
 import DrawingCanvas from "../../components/DrawingCanvas/Drawing";
 import "./youandme.scss";
 const socketURL =
@@ -84,9 +85,7 @@ const index = ({ currentUser, posts, errors }) => {
       ></ChatContainer>
     );
   };
-  const getLoveDate = () => {
-    return <div>Date here</div>;
-  };
+ 
   const handleErrors = () =>
     errors ? <div className="text-danger">{errors}</div> : null;
   return (
@@ -115,7 +114,7 @@ const index = ({ currentUser, posts, errors }) => {
                 <PrivatePost></PrivatePost>
               </div>
               <div className=" love-right-side">
-                {getLoveDate()}
+                <DateCounting fromDate={'February 13 2020 00:00:00'} isPrivate={true} ></DateCounting>
                 <div className="blog-container">
                   <CKEditor></CKEditor>
                 </div>
