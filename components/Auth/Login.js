@@ -139,10 +139,10 @@ const Login = ({ passwordReveal }) => {
               }}
               onClick={handleForgetPassword}
             >
-              {getForgetPasswordOnRoutes()}
+              {/* {getForgetPasswordOnRoutes()} */}
             </span>
             <button
-              className="btn btn-hover color-3 my-4 btn-block text-white"
+              className="btn btn-hover color-3 my-4 mx-0 btn-block text-white"
               type="submit"
               onClick={handleUserSubmit}
             >

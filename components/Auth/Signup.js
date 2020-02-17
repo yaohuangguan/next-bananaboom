@@ -57,6 +57,14 @@ const Signup = ({ linkColor }) => {
     modalContainer.classList.remove("out");
     modalContainer.classList.add("popup");
   };
+  const validEmail = () => {
+    let re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(email);
+  };
+  const validPassword = () =>{
+    let re = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/
+    return re.test(password)
+  }
   const handleUserSubmit = async e => {
     e.preventDefault();
     if (!displayName || !email || !password || !passwordConf) {
@@ -64,7 +72,12 @@ const Signup = ({ linkColor }) => {
       shakeMessage.classList.toggle("shake-message");
       return seterrors(["填写完整信息(Fill all the requirements)"]);
     }
-
+    if(!validPassword()) {
+      return seterrors(["信息不符合要求"]);
+    }
+    if(!validEmail()){
+      return seterrors(["信息不符合要求"]);
+    }
     try {
       const response = await api.post("/api/users", {
         displayName,
@@ -102,8 +115,8 @@ const Signup = ({ linkColor }) => {
     router.pathname === "/" ? "Password" : "密码";
   const getPasswordTipOnRoutes = () =>
     router.pathname === "/"
-      ? "Password should be more than 6 characters"
-      : "密码至少需6位以上";
+      ? "Password should be more than 8 characters,including numbers and letters"
+      : "密码至少需8位以上,包括数字和字母";
   const getConfirmPasswordOnRoutes = () =>
     router.pathname === "/" ? "Confirm Password" : "确认密码";
   const getSubmitButtonOnRoutes = () =>
@@ -205,7 +218,7 @@ const Signup = ({ linkColor }) => {
             />
 
             <button
-              className="btn btn-hover color-3 my-4 text-white"
+              className="btn btn-hover color-3 my-4 mx-0 text-white"
               type="submit"
               onClick={handleUserSubmit}
             >
