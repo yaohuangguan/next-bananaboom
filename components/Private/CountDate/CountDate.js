@@ -46,28 +46,28 @@ const CountDate = ({fromDate,isPrivate,fromWhat}) => {
   }, []);
   return (
     <>
-      <div id="countdown" class={`countdown ${isPrivate ? 'countdown-private' : ''}`}>
+      <div id="countdown" className={`countdown ${isPrivate ? 'countdown-private' : ''}`}>
 
         <div>
           {fromWhat}
         </div>
-        <div class="time">
+        <div className="time">
             <h2 id="year">00</h2>
             <small>年</small>
           </div>
-          <div class="time">
+          <div className="time">
             <h2 id="days">00</h2>
             <small>天</small>
           </div>
-          <div class="time">
+          <div className="time">
             <h2 id="hours">00</h2>
             <small>小时</small>
           </div>
-          <div class="time">
+          <div className="time">
             <h2 id="minutes">00</h2>
             <small>分钟</small>
           </div>
-          <div class="time">
+          <div className="time">
             <h2 id="seconds">00</h2>
             <small>秒</small>
           </div>
