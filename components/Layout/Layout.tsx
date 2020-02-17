@@ -84,7 +84,10 @@ const Layout = ({ children }) => {
 };
 Layout.getInitialProps = ({ pathname }) => {
   if (pathname === "/youandme") {
-    return require("../../pages/youandme/youandme.scss");
+    require('../Private/Chat/chat.scss')
+
+    require("../../pages/youandme/youandme.scss");
+    return require('../Private/CountDate/countdate.scss')
   }
   return (
     //main scss

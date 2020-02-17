@@ -11,6 +11,11 @@ const serviceWorker = app => (req, res) => {
   const filePath = path.resolve('./.next/service-worker.js');
   app.serveStatic(req, res, filePath);
 };
+process.on("uncaughtException", (err) => {
+  console.log("app crashed", err);
+
+  process.exit(1);
+});
 app
   .prepare()
   .then(() => {

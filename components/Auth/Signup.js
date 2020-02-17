@@ -95,7 +95,6 @@ const Signup = ({ linkColor }) => {
       clearInput();
       closeSignup();
     } catch (error) {
-      console.log(error.response);
       if (error.response.data.message) {
         seterrors(error.response.data.message);
       }

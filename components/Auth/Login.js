@@ -52,7 +52,7 @@ const Login = ({ passwordReveal }) => {
       clearInput();
       closeLogin();
     } catch (error) {
-      console.log(error.response);
+
       if (error.response.data.message) {
         seterrors(error.response.data.message);
       }
