@@ -3,7 +3,7 @@ const baseURL =
   process.env.NODE_ENV === "production"
     ? "https://nextbananaboom.herokuapp.com"
     : "http://localhost:5000";
-const api = axios.create({
+const _api = axios.create({
   baseURL: baseURL,
   headers: {
     Accept: "application/json",
@@ -11,20 +11,21 @@ const api = axios.create({
   }
 });
 
-api.defaults.timeout = 10000;
-api.interceptors.request.use(
+
+_api.defaults.timeout = 10000;
+_api.interceptors.request.use(
   config => {
-    api.defaults.headers.common["X-XSS-Protection"] = 1;
-    api.defaults.headers.common["X-Content-Type-Options"] = "nosniff";
-    api.defaults.headers.common["Referrer-Policy"] = "same-origin";
-    api.defaults.headers.common["X-Frame-Options"] = "Deny";
+    _api.defaults.headers.common["X-XSS-Protection"] = 1;
+    _api.defaults.headers.common["X-Content-Type-Options"] = "nosniff";
+    _api.defaults.headers.common["Referrer-Policy"] = "same-origin";
+    _api.defaults.headers.common["X-Frame-Options"] = "Deny";
     return config;
   },
 
   error => Promise.reject(error)
 );
 
-api.interceptors.response.use(
+_api.interceptors.response.use(
   response => {
     return response;
   },
@@ -47,5 +48,5 @@ api.interceptors.response.use(
   }
 );
 const source = axios.CancelToken.source();
-api.source = source
-export default api
+_api.source = source;
+export default _api;
