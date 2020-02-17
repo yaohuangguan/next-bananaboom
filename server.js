@@ -15,12 +15,29 @@ app
   .then(() => {
     const server = express();
     server.use(compression());
-    process.setMaxListeners(0);
-    server.get("/service-worker.js", serviceWorker(app));
-    server.all("*", (req, res) => {
-      res.set({
-        'Content-Security-Policy':" script-src 'self' 'unsafe-inline' *.yaobaiyang.com"
+    server.use(
+      helmet.contentSecurityPolicy({
+        directives: {
+          defaultSrc: ["'self'", "*.yaobaiyang.com"],
+          scriptSrc: ["'self'", "'unsafe-inline'"],
+          sandbox: ["allow-forms", "allow-scripts"],
+          objectSrc: ["'none'"],
+          upgradeInsecureRequests: true
+        }
       })
+    );
+    server.use((req, res, next) => {
+      res.setHeader("Content-Security-Policy", "frame-ancestors 'none'");
+      res.setHeader("X-XSS-Protection", 1);
+      res.setHeader("X-Content-Type-Options", "nosniff");
+      res.setHeader("Referrer-Policy", "same-origin");
+      res.setHeader("X-Frame-Options", "Deny");
+      next();
+    });
+    process.setMaxListeners(0);
+    // server.get("/service-worker.js", serviceWorker(app));
+    server.all("*", (req, res) => {
+     
       return handle(req, res);
     });
 
