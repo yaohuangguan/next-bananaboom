@@ -18,6 +18,9 @@ app
     process.setMaxListeners(0);
     server.get("/service-worker.js", serviceWorker(app));
     server.all("*", (req, res) => {
+      res.set({
+        'Content-Security-Policy':" script-src 'self' 'unsafe-inline' *.yaobaiyang.com"
+      })
       return handle(req, res);
     });
 
