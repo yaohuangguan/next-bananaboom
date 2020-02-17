@@ -4,21 +4,26 @@ import { useEffect, useState } from "react";
 import ErrorBoundary from "../NotFound/ErrorBoundary";
 import HeadConfig from "../Head/Head";
 const fillColor = ["#30C4EE", `#006CB7`, `#EE6352`, `#59CD90`, `#F4E04D`];
-
+const getEnvironment = () =>
+  process.env.NODE_ENV === "development" ? true : false;
 const Layout = ({ children }) => {
   const [loading, setLoading] = useState(false);
- 
+
   useEffect(() => {
     const SmoothScroll = require("smooth-scroll");
     let scroll = new SmoothScroll('a[href*="#"]', {
       speed: 1200
     });
     const routeStart = url => {
-      console.log("App is changing to: ", url);
+      if (getEnvironment()) {
+        console.log("App is changing to: ", url);
+      }
       setLoading(true);
     };
     const routeEnd = url => {
-      console.log("App is changed to: ", url);
+      if (getEnvironment()) {
+        console.log("App is changed to: ", url);
+      }
       const urlReloadList = [
         `/blogs/article/${Router.query.id}`,
         "/resume/ch-cn",
@@ -28,13 +33,14 @@ const Layout = ({ children }) => {
         return each == url;
       });
       if (ifReload) {
-        console.log("reloaded");
         window.location.reload();
       }
     };
     const routeError = (err, url) => {
       if (err.cancelled) {
-        console.log(`Route to ${url} was cancelled!`);
+        if (getEnvironment()) {
+          console.log(`Route to ${url} was cancelled!`);
+        }
       }
     };
     Router.events.on("routeChangeError", routeError);
@@ -69,14 +75,16 @@ const Layout = ({ children }) => {
             <div className="spinner-center"></div>
             <div className="loading-text">Loading...</div>
           </div>
-        ) : children}
+        ) : (
+          children
+        )}
       </div>
     </ErrorBoundary>
   );
 };
-Layout.getInitialProps = ({pathname}) => {
-  if(pathname==='/youandme'){
-   return require('../../pages/youandme/youandme.scss')
+Layout.getInitialProps = ({ pathname }) => {
+  if (pathname === "/youandme") {
+    return require("../../pages/youandme/youandme.scss");
   }
   return (
     //main scss
@@ -91,7 +99,7 @@ Layout.getInitialProps = ({pathname}) => {
     require("../Header/Hamburger/Hamburger.scss"),
     require("../Header/DropDown/DropDown.scss"),
     //Footer
-    require('../Footer/Footer.scss'),
+    require("../Footer/Footer.scss"),
     //Blog
     require("../../pages/blogs/Blog.scss"),
     require("../Blog/BlogListItem.scss"),
@@ -108,7 +116,7 @@ Layout.getInitialProps = ({pathname}) => {
     //Subscribe
     require("../Subscribe/Subscribe.scss")
     //You and me private page
-  )
+  );
 };
 
 export default Layout;
