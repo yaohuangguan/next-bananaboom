@@ -108,7 +108,7 @@ const Blog = ({ blogs, errors, currentUser }) => {
           <BlogList blogs={filteredBlog} />
         </div>
       ) : (
-        <p>{errors}</p>
+        <>{errors}</>
       )}
     </Layout>
   );

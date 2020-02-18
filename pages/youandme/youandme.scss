@@ -1,10 +1,10 @@
 @import url("https://fonts.googleapis.com/css?family=Concert+One&display=swap");
 .love-container {
   font-family: "Concert One", cursive;
-  background-image: url("https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/64758727-240e-4a27-b0ed-5da32e3d1423/dcj65ur-1a923848-7cc7-4989-ba7e-27b630c22464.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcLzY0NzU4NzI3LTI0MGUtNGEyNy1iMGVkLTVkYTMyZTNkMTQyM1wvZGNqNjV1ci0xYTkyMzg0OC03Y2M3LTQ5ODktYmE3ZS0yN2I2MzBjMjI0NjQucG5nIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.M0xWvSIKWqA5kg6vTK3QczxOIq57lWPwgPqIVJaTUpE");
-  background-repeat: repeat;
+  background-image: url("https://i.pinimg.com/originals/d2/fb/a7/d2fba7d109c0cb27c53acf8524887652.png");
+  background-repeat: no-repeat;
   background-attachment: scroll;
-  background-size: 100%;
+  background-size: cover;
   background-position: center;
 
   .love-title {
@@ -64,6 +64,17 @@
       .input-section {
         display: flex;
         flex-wrap: wrap;
+        label{
+          margin:10px;
+        }
+        .editor-input{
+          border-radius: 50px;
+          border-color: #c497ff;
+        }
+        #checkbox{
+          transform: scale(2);
+          margin-left: 10px;
+        }
       }
     }
   }

@@ -73,7 +73,7 @@ const Layout = ({ children }) => {
           <div className="loading-container">
             <div className="spinner"></div>
             <div className="spinner-center"></div>
-            <div className="loading-text">Loading...</div>
+            <div className="loading-text">Spinning...</div>
           </div>
         ) : (
           children

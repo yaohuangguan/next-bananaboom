@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect,memo } from "react";
 import api from "../utils/Api";
 import Layout from "../components/Layout/Layout";
 import Header from "../components/Header/Header";
