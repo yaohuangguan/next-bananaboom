@@ -19,6 +19,7 @@ const English = ({ homepage, errors, logs, projects, currentUser }) => {
     }
     SetWebUrl(window.location.hostname);
   }, []);
+  
   const {
     _id,
     jumbo_name,
