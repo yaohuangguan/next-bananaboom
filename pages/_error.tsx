@@ -1,21 +1,26 @@
 import React from "react";
 import Layout from "../components/Layout/Layout";
 import Link from "next/link";
-function Error({ statusCode,message }) {
+function Error({ statusCode, message }) {
   return (
     <Layout>
       <div className="text-secondary" style={{ height: "100vh" }}>
         <div className="row">
           <div className="col-md-6 mx-auto pt-5 text-center">
+            <h3>Oops! This is an error!</h3>
 
             <h3>
               Error:{statusCode} <br />
-             {message}
+              {message}
             </h3>
 
             <br />
-            <h3>Oops! This is an error!</h3>
-            <img src="https://aradseyr.com/en/wp-content/images/no-results.png" alt="404" />
+            <img
+              src="https://res.cloudinary.com/next-bananaboom/image/upload/v1582040878/WechatIMG5636_s7pzyf.png"
+              style={{ marginLeft: "60px" }}
+              alt="404"
+              title="女朋友做的^^"
+            />
             <div className="mx-auto">
               <Link href="/">
                 <input
@@ -34,7 +39,7 @@ function Error({ statusCode,message }) {
 
 Error.getInitialProps = ({ res, err }) => {
   const statusCode = res ? res.statusCode : err ? err.statusCode : 404;
-  const message = err && err.message
+  const message = res ? res.statusCode : err ? err.message : "Error out";
   return { statusCode, message };
 };
 
