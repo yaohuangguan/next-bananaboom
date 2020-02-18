@@ -46,7 +46,7 @@ const CountDate = ({fromDate,isPrivate,fromWhat}) => {
   }, []);
   return (
     <>
-      <div id="countdown" className={`countdown ${isPrivate ? 'countdown-private' : ''}`}>
+      <div id="countdown" className={`z-depth-2 countdown ${isPrivate ? 'countdown-private' : ''}`}>
 
         <div>
           {fromWhat}

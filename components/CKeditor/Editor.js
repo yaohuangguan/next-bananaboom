@@ -137,7 +137,7 @@ const Editor = () => {
   return (
     <>
       <div id="blog-text"></div>
-      <form className="input-section w-100" onSubmit={handleFormSubmit}>
+      <form className="input-section w-100" style={{backgroundColor:'rgba(255,255,255,0.6)',padding:'20px',borderRadius:'50px', marginBottom:'20px'}} onSubmit={handleFormSubmit}>
         {errors ? <div className="text-danger">{errors}</div> : null}
         <label htmlFor="author">
           作者
@@ -174,14 +174,14 @@ const Editor = () => {
           data={blogText}
           config={{
             language: "zh-cn",
-            uiColor: "#bb8bfa",
+            uiColor: "#DFD0F0",
             extraPlugins:
               "colorbutton,colordialog,iframe,font,smiley,preview,templates"
           }}
           onChange={handleEditorChange}
           onBeforeLoad={CKEDITOR => (CKEDITOR.disableAutoInline = true)}
         ></CKEditor>
-        <button className="btn-block p-3 btn-secondary" type="submit">
+        <button className="btn-block p-3" style={{backgroundColor:'#DFD0F0'}} type="submit">
           发送
         </button>
       </form>

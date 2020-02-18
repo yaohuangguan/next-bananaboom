@@ -1,7 +1,7 @@
 @import url("https://fonts.googleapis.com/css?family=Concert+One&display=swap");
 .love-container {
   font-family: "Concert One", cursive;
-  background-image: url("https://i.pinimg.com/originals/d2/fb/a7/d2fba7d109c0cb27c53acf8524887652.png");
+  background-image: url("https://lh3.googleusercontent.com/proxy/8SEPxdkLH3YfnQHDXPY2Ii9SgwbsJNB-xhmEkx4hEtXgdvVDqMXp2cCCIjolrJuBUm6wV1EvtyhXiLNX3gNURlwTpysJbw1OB2XSOMI");
   background-repeat: no-repeat;
   background-attachment: scroll;
   background-size: cover;
@@ -21,8 +21,6 @@
   margin: 0;
   width: 100%;
   display: flex;
-
-  border-top: 8px dotted yellow;
   @media screen and (max-width: 415px) {
     flex-direction: column;
   }
@@ -36,7 +34,6 @@
     flex-direction: column;
   }
   .love-left-side {
-    border-right: 4px dashed yellow;
     height: 100vh;
     padding: 40px;
     overflow: scroll;
@@ -60,7 +57,7 @@
     overflow: scroll;
 
     .blog-container {
-      border-top: 4px dotted yellow;
+      border-top: 4px solid #b39be4;
       .input-section {
         display: flex;
         flex-wrap: wrap;
