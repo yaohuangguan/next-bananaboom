@@ -1,7 +1,7 @@
 import React from "react";
 import Layout from "../components/Layout/Layout";
 import Link from "next/link";
-function Error({ statusCode }) {
+function Error({ statusCode,message }) {
   return (
     <Layout>
       <div className="text-secondary" style={{ height: "100vh" }}>
@@ -10,7 +10,7 @@ function Error({ statusCode }) {
 
             <h3>
               Error:{statusCode} <br />
-              请求不存在
+             {message}
             </h3>
 
             <br />
@@ -34,7 +34,8 @@ function Error({ statusCode }) {
 
 Error.getInitialProps = ({ res, err }) => {
   const statusCode = res ? res.statusCode : err ? err.statusCode : 404;
-  return { statusCode };
+  const message = err && err.message
+  return { statusCode, message };
 };
 
 export default Error;
