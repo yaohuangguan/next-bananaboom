@@ -10,7 +10,7 @@ function Error({ statusCode }) {
             <h3>Oops! This is an error!</h3>
 
             <h3>
-              Error:{statusCode} <br />
+              Error: {statusCode} <br />
             </h3>
 
             <br />
@@ -20,7 +20,7 @@ function Error({ statusCode }) {
                   style={{ marginLeft: "10%" }}
                   width="90%"
                   alt="404"
-                  title="image credit to my girlfriend."
+                  title="image credit to my girlfriend^"
                 />
               </a>
               <Link href="/">
