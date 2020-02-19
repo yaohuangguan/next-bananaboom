@@ -2,6 +2,7 @@ import { useEffect, useState, useRef } from "react";
 import { useRouter } from "next/router";
 import firebase from "../../firebase/firebase";
 import api from "../../utils/Api";
+import Loader from '../Loader/Loader'
 import dynamic from "next/dynamic";
 const Login = dynamic(() => import("./Login"), {
   ssr: false
@@ -14,7 +15,7 @@ const Signup = ({ linkColor }) => {
   const [displayName, setdisplayName] = useState("");
   const [passwordConf, setpasswordConf] = useState("");
   const [errors, seterrors] = useState([]);
-
+  const [loading, setloading] = useState(false)
   const openSignup = e => {
     SignupContainer.current.classList.remove("out");
     SignupContainer.current.classList.add("popup");
@@ -79,6 +80,7 @@ const Signup = ({ linkColor }) => {
       return seterrors(["信息不符合要求"]);
     }
     try {
+      setloading(true)
       const response = await api.post("/api/users", {
         displayName,
         email,
@@ -95,6 +97,7 @@ const Signup = ({ linkColor }) => {
       clearInput();
       closeSignup();
     } catch (error) {
+      setloading(false)
       if (error.response.data.message) {
         seterrors(error.response.data.message);
       }
@@ -221,7 +224,7 @@ const Signup = ({ linkColor }) => {
               type="submit"
               onClick={handleUserSubmit}
             >
-              {getSubmitButtonOnRoutes()}
+              {!loading ? getSubmitButtonOnRoutes() : <Loader></Loader>}
             </button>
 
             <p className="text-center">{getSignUpMethodOnRoutes()}</p>

@@ -2,6 +2,7 @@ import { useEffect, useState, useRef } from "react";
 import router from "next/router";
 import firebase from "../../firebase/firebase";
 import api from "../../utils/Api";
+import Loader from "../Loader/Loader";
 
 const Login = ({ passwordReveal }) => {
   const LoginContainer = useRef(null);
@@ -9,7 +10,7 @@ const Login = ({ passwordReveal }) => {
   const [email, setemail] = useState("");
   const [password, setpassword] = useState("");
   const [errors, seterrors] = useState([]);
-
+  const [loading, setloading] = useState(false)
   const closeLogin = () => {
     LoginContainer.current.classList.add("out");
   };
@@ -39,6 +40,7 @@ const Login = ({ passwordReveal }) => {
       return seterrors(["填写完整信息(Fill all the requirements)"]);
     }
     try {
+      setloading(true)
       const response = await api.post("/api/users/signin", {
         email,
         password
@@ -52,7 +54,7 @@ const Login = ({ passwordReveal }) => {
       clearInput();
       closeLogin();
     } catch (error) {
-
+      setloading(false)
       if (error.response.data.message) {
         seterrors(error.response.data.message);
       }
@@ -146,7 +148,7 @@ const Login = ({ passwordReveal }) => {
               type="submit"
               onClick={handleUserSubmit}
             >
-              {getLoginButtonOnRoutes()}
+              {!loading ? getLoginButtonOnRoutes() : <Loader></Loader>}
             </button>
 
             <p className="text-center">{getLoginMethodOnRoutes()}</p>

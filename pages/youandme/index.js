@@ -131,19 +131,5 @@ const index = ({ currentUser, posts, errors }) => {
     </Layout>
   );
 };
-// index.getInitialProps = async () => {
-//   let posts;
-//   let errors;
-//   try {
-//     const response = await api.get("/api/posts/private/posts");
-//     posts = await response.data;
-//     console.log("server", posts);
-//   } catch (error) {
-//     errors = "获取文章时出现了错误";
-//   }
-//   return {
-//     posts,
-//     errors
-//   };
-// };
+
 export default index;

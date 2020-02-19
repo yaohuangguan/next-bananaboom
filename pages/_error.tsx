@@ -6,31 +6,26 @@ function Error({ statusCode, message }) {
     <Layout>
       <div className="text-secondary" style={{ height: "100vh" }}>
         <div className="row text-center">
-          <div className="col-md-6 pt-5">
+          <div className="col-md-6 pt-5" style={{ margin: "0 auto" }}>
             <h3>Oops! This is an error!</h3>
 
             <h3>
               Error:{statusCode} <br />
-              {message}
+              Please go back
             </h3>
 
             <br />
-            <img
-              src="https://res.cloudinary.com/next-bananaboom/image/upload/v1582040878/WechatIMG5636_s7pzyf.png"
-              style={{marginLeft:'7%'}}
-              width='80%'
-              alt="404"
-              title="女朋友做的^^"
-            />
-            <div className="mx-auto">
-              <Link href="/">
-                <input
-                  type="button"
-                  className="btn btn-outline-secondary btn-xl"
-                  value={"Take Me Back Now!!!"}
+            <Link href="/">
+              <a>
+                <img
+                  src="https://res.cloudinary.com/next-bananaboom/image/upload/v1582040878/WechatIMG5636_s7pzyf.png"
+                  style={{ marginLeft: "7%" }}
+                  width="80%"
+                  alt="404"
+                  title="女朋友做的^^"
                 />
-              </Link>
-            </div>
+              </a>
+            </Link>
           </div>
         </div>
       </div>
@@ -40,7 +35,8 @@ function Error({ statusCode, message }) {
 
 Error.getInitialProps = ({ res, err }) => {
   const statusCode = res ? res.statusCode : err ? err.statusCode : 404;
-  const message = res ? res.statusCode : err ? err.message : "Error out";
+  const message = res ? res.statusCode : err ? err : "Error out";
+  
   return { statusCode, message };
 };
 

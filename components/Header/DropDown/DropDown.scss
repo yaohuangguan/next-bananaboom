@@ -9,7 +9,7 @@
   }
   .dropdown-submenu {
     font-weight: 500;
-    border: 2px solid rgb(125, 46, 199);
+    border: 2px solid rgb(110, 93, 126);
     text-transform: none;
     right: 10px;
     display: none;
@@ -17,6 +17,7 @@
     width: 150px;
     background-color: #fff;
     .dropdown-list{
+      list-style: none;
       padding: 0;
       .dropdown-list-item {
         span{

@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
 import PrivatePostItem from "./PrivatePostItem";
 import api from "../../../utils/Api";
-import axios from 'axios'
+import axios from "axios";
+import Loader from "../../Loader/Loader";
 const PrivatePost = () => {
   const [privatePosts, setprivatePosts] = useState("");
+  const [loading, setloading] = useState(false);
   useEffect(() => {
     const config = () => {
       if (Object.prototype.toString.call(privatePosts) === "[object Object]") {
@@ -14,7 +16,8 @@ const PrivatePost = () => {
     return () => {};
   }, []);
   useEffect(() => {
-    const source = axios.CancelToken.source()
+    setloading(true);
+    const source = axios.CancelToken.source();
     const getNewPrivatePosts = async () => {
       try {
         const response = await api("/api/posts/private/posts", {
@@ -22,11 +25,12 @@ const PrivatePost = () => {
         });
         let data = await response.data;
         console.log(data);
+        setloading(false);
         setprivatePosts(data);
       } catch (error) {
-        console.log(error)
+        setloading(false);
+        console.log(error);
       }
-      
     };
     getNewPrivatePosts();
     return () => {
@@ -35,13 +39,17 @@ const PrivatePost = () => {
   }, []);
   return (
     <>
-      {privatePosts
-        ? privatePosts.map(({ _id, ...other }) => (
+      {!loading ? (
+        privatePosts ? (
+          privatePosts.map(({ _id, ...other }) => (
             <div key={_id}>
               <PrivatePostItem id={_id} {...other}></PrivatePostItem>
             </div>
           ))
-        : null}
+        ) : null
+      ) : (
+        <Loader></Loader>
+      )}
     </>
   );
 };

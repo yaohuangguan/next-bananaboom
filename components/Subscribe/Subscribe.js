@@ -5,8 +5,9 @@ import { getLoading } from "../../utils/Utils";
 import { useRouter } from "next/router";
 import "./Subscribe.scss";
 import Logs from "../Contents/Logs/Logs";
+import Loader from "../Loader/Loader";
+import api from "../../utils/Api";
 
-const mailApi = `https://qq.us20.list-manage.com/subscribe/post?u=192d7d7d1dcff6b2519629804&amp;id=4b2f990265`;
 const Subscribe = ({
   title,
   info,
@@ -21,18 +22,22 @@ const Subscribe = ({
   const [email, setemail] = useState(null);
   const [send, setsend] = useState(false);
   const [loading, setloading] = useState(false);
+  const [result, setresult] = useState("");
   const validEmail = () => {
     var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     return re.test(email);
   };
-  const onLoading = () => {
+  const handleSubmit = async e => {
+    e.preventDefault();
     setloading(true);
-    setTimeout(() => {
-      document.getElementById("mce-EMAIL").value = "";
-      const subscribe = document.getElementById("mc-embedded-subscribe");
-      subscribe.textContent =
-        router.pathname === "/" ? "Thank you!" : "感谢关注!";
-    }, 5000);
+    try {
+      const response = await api.post("/api/auth/subscribe", { email });
+      const data = await response.data;
+      setresult(data.status);
+    } catch (error) {
+      setresult(error.status);
+    }
+    setloading(false);
   };
   useEffect(() => {
     function test() {
@@ -51,24 +56,19 @@ const Subscribe = ({
     setemail(e.target.value);
     e.target.style.color = "#6a82fb";
   };
-  const subscribeButtonLoading = () => {
-    return router.pathname === "/" ? "Subscribing..." : "正在关注...";
-  };
 
   const subscribeButton = () => {
     return router.pathname === "/" ? "Subscribe" : "订阅";
   };
- 
+
   return (
     <>
       <div className="text-center">
         <form
-          action={mailApi}
-          method="post"
           id="mc-embedded-subscribe-form"
           name="mc-embedded-subscribe-form"
           className="validate form-a"
-          noValidate
+          onSubmit={handleSubmit}
         >
           <div className="subscribe-button">
             <span className="subscribe-button-text">
@@ -81,37 +81,30 @@ const Subscribe = ({
               </a>
             </span>
 
-          <label className="font-weight-bold" htmlFor="email">
-            {title}
+            <label className="font-weight-bold" htmlFor="email">
+              {title}
 
-            <input
-              type="email"
-              name="EMAIL"
-              className="form-control form-control-lg form-control-a text-center "
-              id="mce-EMAIL"
-              onChange={getEmail}
-              placeholder="Please enter email address"
-              required
-            />
-          </label>
+              <input
+                type="email"
+                name="EMAIL"
+                className="form-control form-control-lg form-control-a text-center "
+                id="mce-EMAIL"
+                onChange={getEmail}
+                placeholder="Please enter email address"
+                required
+              />
+            </label>
           </div>
 
           <div className="clear">
+            {result ? <div className="text-secondary">{result}</div> : null}
             <button
               type="submit"
               disabled={!send}
               id="mc-embedded-subscribe"
               className="btn purple-gradient"
-              onClick={onLoading}
             >
-              {loading ? (
-                <div>
-                  {getLoading("purple")}
-                  {subscribeButtonLoading()}
-                </div>
-              ) : (
-                subscribeButton()
-              )}
+              {loading ? <Loader></Loader> : subscribeButton()}
             </button>
           </div>
         </form>
