@@ -87,10 +87,10 @@ const Signup = ({ linkColor }) => {
         password,
         passwordConf
       });
-
+      const user = await response.data.userToSend
       window.localStorage.setItem(
         "currentUser",
-        JSON.stringify(response.data.userToSend)
+        JSON.stringify(user)
       );
       router.reload();
       console.log(response);

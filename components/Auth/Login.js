@@ -46,9 +46,10 @@ const Login = ({ passwordReveal }) => {
         password
       });
       // console.log(response.data.userToSend);
+      const user = await response.data.userToSend
       window.localStorage.setItem(
         "currentUser",
-        JSON.stringify(response.data.userToSend)
+        JSON.stringify(user)
       );
       router.reload();
       clearInput();

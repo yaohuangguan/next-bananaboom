@@ -127,6 +127,7 @@ const Editor = () => {
         code
       });
       const data = await response.data;
+
       dispatch({type:'RESET'})
       router.reload();
     } catch (error) {

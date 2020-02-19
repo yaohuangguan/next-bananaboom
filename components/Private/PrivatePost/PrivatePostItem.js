@@ -8,13 +8,13 @@ const PrivatePostItem = ({ tags, name, info, author, content, id,createdDate }) 
     return () => {};
   }, []);
   return (
-    <div style={{backgroundColor:'rgba(255,255,255,0.6)',padding:'20px',borderRadius:'50px', marginBottom:'20px'}}>
+    <div style={{backgroundColor:'rgba(255,255,255,0.6)',padding:'40px',borderRadius:'50px', marginBottom:'20px'}} >
       <h3>{name}</h3>
       <span>{info}</span>
       <p>作者:{author}</p>
       <p>类型:{tags}</p>
       <p>日期:{createdDate}</p>
-      <div id={id}></div>
+      <div id={id} width='100%' style={{overflow:'hidden'}}></div>
     </div>
   );
 };
