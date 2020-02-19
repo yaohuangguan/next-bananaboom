@@ -42,7 +42,15 @@ const PrivatePost = () => {
       {!loading ? (
         privatePosts ? (
           privatePosts.map(({ _id, ...other }) => (
-            <div key={_id}>
+            <div
+              key={_id}
+              style={{
+                backgroundColor: "rgba(255,255,255,0.8)",
+                padding: "40px",
+                borderRadius: "50px",
+                marginBottom: "20px"
+              }}
+            >
               <PrivatePostItem id={_id} {...other}></PrivatePostItem>
             </div>
           ))

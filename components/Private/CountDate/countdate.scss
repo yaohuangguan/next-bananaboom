@@ -45,15 +45,21 @@
   align-items: center;
   justify-content: center;
   padding: 20px;
+  h1{
+    font-weight: 700;
+
+  }
+  h2{
+    margin: 0 0 5px;
+    font-weight: 700;
+  }
 }
 
-.time h2 {
-  margin: 0 0 5px;
-}
+
 
 @media (max-width: 500px) {
   h1 {
-    font-size: 45px;
+    font-size: 55px;
   }
 
   .time {
@@ -61,7 +67,7 @@
   }
 
   .time h2 {
-    font-size: 12px;
+    font-size: 15px;
     margin: 0;
   }
 

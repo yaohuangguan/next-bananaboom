@@ -138,7 +138,7 @@ const Editor = () => {
   return (
     <>
       <div id="blog-text"></div>
-      <form className="input-section w-100" style={{backgroundColor:'rgba(255,255,255,0.6)',padding:'20px',borderRadius:'50px', marginBottom:'20px'}} onSubmit={handleFormSubmit}>
+      <form className="input-section" style={{backgroundColor:'rgba(255,255,255,0.6)',padding:'20px',borderRadius:'50px', marginBottom:'20px'}} onSubmit={handleFormSubmit}>
         {errors ? <div className="text-danger">{errors}</div> : null}
         <label htmlFor="author">
           作者
@@ -175,6 +175,7 @@ const Editor = () => {
           data={blogText}
           config={{
             language: "zh-cn",
+            height:'40em',
             uiColor: "#DFD0F0",
             extraPlugins:
               "colorbutton,colordialog,iframe,font,smiley,preview,templates"

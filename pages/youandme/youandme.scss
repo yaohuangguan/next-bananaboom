@@ -1,22 +1,30 @@
 @import url("https://fonts.googleapis.com/css?family=Concert+One&display=swap");
 .love-container {
-  font-family: "Concert One", cursive;
   background-image: url("https://res.cloudinary.com/next-bananaboom/image/upload/v1582091001/unnamed_gzqwqi.jpg");
   background-repeat: no-repeat;
   background-attachment: scroll;
   background-size: cover;
   background-position: center;
+  font-family: "Poppins", sans-serif;
+  display: flex;
+  justify-content: center;
 
   .love-title {
     border: 2px solid rgb(245, 218, 83);
     background-color: rgb(245, 218, 83);
     font-size: 30px;
     color: white;
-
+    border-radius: 30px;
+    font-family: "Concert One", cursive;
     text-transform: uppercase;
     font-weight: 200;
+    .heart-purple {
+      fill: white;
+      width: 35px;
+      animation: pulse 1s infinite;
+      -webkit-animation: pulse 1s infinite;
+    }
   }
-}
 .main-love-container {
   margin: 0;
   width: 100%;
@@ -33,10 +41,24 @@
   @media screen and (min-width: 768px) and (max-width: 992px) {
     flex-direction: column;
   }
+
   .love-left-side {
     height: 100vh;
-    padding: 40px;
+    padding: 20px;
+    max-width: 3000px;
     overflow: scroll;
+    .heart-input {
+      box-shadow: none;
+      border: 2px solid white;
+      border-radius: 30px;
+      &:focus {
+        border: none;
+        outline: none;
+        border: 2px solid #bb8bfa;
+        border-color: #bb8bfa;
+        box-shadow: none;
+      }
+    }
     &::-webkit-scrollbar {
       width: 1em;
       background-color:white;
@@ -53,7 +75,7 @@
   }
   .love-right-side {
     height: 100vh;
-    padding: 40px;
+    padding: 20px;
     overflow: scroll;
 
     .blog-container {
@@ -76,24 +98,10 @@
     }
   }
 }
-.heart-purple {
-  fill: white;
-  width: 30px;
-  animation: pulse 1s infinite;
-  -webkit-animation: pulse 1s infinite;
 }
-.heart-input {
-  box-shadow: none;
-  border: 2px solid white;
-  border-radius: 30px;
-  &:focus {
-    border: none;
-    outline: none;
-    border: 2px solid #bb8bfa;
-    border-color: #bb8bfa;
-    box-shadow: none;
-  }
-}
+
+
+
 
 @-webkit-keyframes pulse {
   0% {

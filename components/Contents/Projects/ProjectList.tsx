@@ -4,7 +4,7 @@ const ProjectList = props => {
   return (
     <>
       <div className="row">
-        {items.map(( {_id, ...otherProps} ) => <ProjectListItem key={_id} _id={_id} {...otherProps} />
+        {items && items.map(( {_id, ...otherProps} ) => <ProjectListItem key={_id} _id={_id} {...otherProps} />
         )}
       </div>
     </>

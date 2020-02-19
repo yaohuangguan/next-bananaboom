@@ -1,4 +1,4 @@
-import { useState, useEffect,memo } from "react";
+import { useState, useEffect, memo } from "react";
 import api from "../utils/Api";
 import Layout from "../components/Layout/Layout";
 import Header from "../components/Header/Header";
@@ -19,7 +19,7 @@ const English = ({ homepage, errors, logs, projects, currentUser }) => {
     }
     SetWebUrl(window.location.hostname);
   }, []);
-  
+
   const {
     _id,
     jumbo_name,
@@ -103,31 +103,20 @@ const English = ({ homepage, errors, logs, projects, currentUser }) => {
   );
 };
 English.getInitialProps = async req => {
-  let errors;
-
-  try {
-    const urls = [
-      "/api/homepage",
-      "/api/homepage/logs",
-      "/api/homepage/projects"
-    ];
-    const [homepage, logs, projects] = await Promise.all(
-      urls.map(async url => {
-        const response = await api.get(url);
-        return await response.data;
-      })
-    );
-    return {
-      homepage,
-      logs,
-      projects
-    };
-  } catch (error) {
-    console.log(error);
-    errors = `Sorry, 404. This is an error. The page now is incomplete, in order to have the latest contents, please check your network or refresh the page.`;
-  }
+  const urls = [
+    "/api/homepage",
+    "/api/homepage/logs",
+    "/api/homepage/projects"
+  ];
+  const mapPromise = urls.map(async url => {
+    const response = await api.get(url);
+    return await response.data;
+  });
+  const [homepage, logs, projects] = await Promise.all(mapPromise);
   return {
-    errors
+    homepage,
+    logs,
+    projects
   };
 };
 
