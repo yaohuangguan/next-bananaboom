@@ -19,11 +19,11 @@
 * {
   box-sizing: border-box;
   &::-moz-selection {
-    background-color: palevioletred;
+    background-color: rgb(67, 120, 255);
     color: white;
   }
   &::selection {
-    background-color: palevioletred;
+    background-color: rgb(67, 120, 255);
     color: white;
   }
 }
