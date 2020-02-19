@@ -8,6 +8,7 @@ import Subscribe from "../components/Subscribe/Subscribe";
 import Footer from "../components/Footer/Footer";
 import Animation from "../utils/Animation";
 
+
 const Chinese = ({ homepage, errors, logs, projects, currentUser }) => {
   const [webUrl, setwebUrl] = useState("");
   useEffect(() => {
