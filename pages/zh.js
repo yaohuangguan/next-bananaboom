@@ -52,7 +52,7 @@ const Chinese = ({ homepage, errors, logs, projects, currentUser }) => {
       />
       <Jumbo
         name={jumbo_name_cn || "Sam博客！"}
-        welcome={jumbo_welcome_cn || "努力工作 尽情欢乐"}
+        welcome={jumbo_welcome_cn || "Explore the unknown"}
         info={jumbo_info_cn ? "" : errors}
         button={jumbo_button_cn || "探索"}
         backgroundPicture={false}
