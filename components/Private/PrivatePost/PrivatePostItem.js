@@ -8,7 +8,7 @@ const PrivatePostItem = ({ tags, name, info, author, content, id,createdDate }) 
     return () => {};
   }, []);
   return (
-    <div style={{backgroundColor:'rgba(255,255,255,0.7)',padding:'20px',borderRadius:'50px', marginBottom:'20px'}}>
+    <div style={{backgroundColor:'rgba(255,255,255,0.6)',padding:'20px',borderRadius:'50px', marginBottom:'20px'}}>
       <h3>{name}</h3>
       <span>{info}</span>
       <p>作者:{author}</p>

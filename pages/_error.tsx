@@ -5,8 +5,8 @@ function Error({ statusCode, message }) {
   return (
     <Layout>
       <div className="text-secondary" style={{ height: "100vh" }}>
-        <div className="row">
-          <div className="col-md-6 mx-auto pt-5 text-center">
+        <div className="row text-center">
+          <div className="col-md-6 pt-5 ml-5">
             <h3>Oops! This is an error!</h3>
 
             <h3>
@@ -17,7 +17,8 @@ function Error({ statusCode, message }) {
             <br />
             <img
               src="https://res.cloudinary.com/next-bananaboom/image/upload/v1582040878/WechatIMG5636_s7pzyf.png"
-              style={{ marginLeft: "60px" }}
+              style={{marginLeft:'7%'}}
+              width='80%'
               alt="404"
               title="女朋友做的^^"
             />

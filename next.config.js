@@ -44,4 +44,4 @@ const nextConfig = withOffline(
 //   }
 // };
 
-module.exports = nextConfig;
+module.exports = {...nextConfig};
