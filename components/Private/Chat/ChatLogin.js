@@ -26,7 +26,7 @@ const ChatLogin = ({ socket, setUser }) => {
   return (
     <div className="socket-chat-login col-md-6">
       <form onSubmit={handleSubmit} className="socket-chat-login-form">
-        <label htmlFor="nickname">HooooooooH</label>
+        <label htmlFor="nickname">Chat</label>
         <input
           type="text"
           className="heart-input"

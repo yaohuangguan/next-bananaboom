@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { useRouter } from "next/router";
+import dynamic from "next/dynamic";
 import api from "../../utils/Api";
 import ChatLogin from "../../components/Private/Chat/ChatLogin";
 import ChatContainer from "../../components/Private/Chat/ChatContainer";
 import Layout from "../../components/Layout/Layout";
 import io from "../../utils/Socket";
-import CKEditor from "../../components/CKeditor/Editor";
 import PrivatePost from "../../components/Private/PrivatePost/PrivatePost.js";
 import DateCounting from "../../components/Private/CountDate/CountDate";
 import {
@@ -15,6 +15,9 @@ import {
 } from "../../components/Private/Chat/Events";
 import DrawingCanvas from "../../components/DrawingCanvas/Drawing";
 import "./youandme.scss";
+const CKEditor = dynamic(() => import("../../components/CKeditor/Editor"), {
+  ssr: false
+});
 const socketURL =
   process.env.NODE_ENV === "development"
     ? "http://localhost:5000"
@@ -98,7 +101,6 @@ const index = ({ currentUser, posts, errors }) => {
             {getLoveTitle()}
 
             <div className="main-love-container">
-
               <div className="love-left-side">
                 {getChatRoom()}
                 {handleErrors()}

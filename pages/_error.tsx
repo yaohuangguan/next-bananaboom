@@ -1,7 +1,7 @@
 import React from "react";
 import Layout from "../components/Layout/Layout";
 import Link from "next/link";
-function Error({ statusCode, message }) {
+function Error({ statusCode }) {
   return (
     <Layout>
       <div className="text-secondary" style={{ height: "100vh" }}>
@@ -11,20 +11,20 @@ function Error({ statusCode, message }) {
 
             <h3>
               Error:{statusCode} <br />
-              Click on the bear to go back
             </h3>
 
             <br />
-            <Link href="/">
               <a>
                 <img
-                  src="https://res.cloudinary.com/next-bananaboom/image/upload/v1582040878/WechatIMG5636_s7pzyf.png"
-                  style={{ marginLeft: "7%" }}
-                  width="80%"
+                  src="https://res.cloudinary.com/next-bananaboom/image/upload/v1582125657/%E8%80%81%E5%A9%86%E7%9A%84%E7%88%B1_fxvtnv.gif"
+                  style={{ marginLeft: "10%" }}
+                  width="90%"
                   alt="404"
-                  title="image credit to my girlfriend,thank you."
+                  title="image credit to my girlfriend."
                 />
               </a>
+              <Link href="/">
+              <a className='btn btn-outline-secondary'>Take me back</a>
             </Link>
           </div>
         </div>
@@ -35,9 +35,8 @@ function Error({ statusCode, message }) {
 
 Error.getInitialProps = ({ res, err }) => {
   const statusCode = res ? res.statusCode : err ? err.statusCode : 404;
-  const message = res ? res.statusCode : err ? err : "Error out";
   
-  return { statusCode, message };
+  return { statusCode };
 };
 
 export default Error;

@@ -50,7 +50,7 @@ const Jumbo = ({
           }}
         >
           <div className="jumbo">
-            <h3 className="text-white pb-3 mb-3">{name}</h3>
+            <h1 className="text-white pb-3 mb-3">{name}</h1>
             <h2 className="card-title h2 pb-5 mb-5 jumbo">{welcome}</h2>
             <h4 className="pb-2 my-4">{info}</h4>
 
