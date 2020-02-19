@@ -16,11 +16,9 @@ app
   .then(() => {
     const server = express();
     server.use(compression());
-    
     process.setMaxListeners(0);
     // server.get("/service-worker.js", serviceWorker(app));
     server.all("*", (req, res) => {
-     
       return handle(req, res);
     });
 

@@ -6,7 +6,7 @@ function Error({ statusCode, message }) {
     <Layout>
       <div className="text-secondary" style={{ height: "100vh" }}>
         <div className="row text-center">
-          <div className="col-md-6 pt-5 ml-5">
+          <div className="col-md-6 pt-5">
             <h3>Oops! This is an error!</h3>
 
             <h3>

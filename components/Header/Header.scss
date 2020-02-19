@@ -1,5 +1,6 @@
 $green-color: #2eca6a;
 $blue-color:#17cdff;
+
 .nav{
   width: 100%;
   display: flex;
@@ -11,8 +12,8 @@ $blue-color:#17cdff;
   transition: all 0.5s ease-in-out;
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
-  font-family: Audiowide;
- 
+  font-family: 'Sriracha', cursive;
+  font-size: large;
   
   .header {
     all: inherit;

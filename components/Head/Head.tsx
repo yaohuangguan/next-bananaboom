@@ -50,10 +50,7 @@ const HeadConfig = () => {
 Node.js, Express.js, GraphQL, Docker, Postman, PostgreSQL, MongoDB, Redis, Knowing how
 HTTP, TCP/IP, DNS and Web Server work...."
       />
-      <link
-        href="https://fonts.googleapis.com/css?family=Audiowide|Poppins&display=swap"
-        rel="stylesheet"
-      ></link>
+     
 
       <link
         href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css"

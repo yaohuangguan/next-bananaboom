@@ -32,7 +32,7 @@ const Jumbo = ({
   }, [checkMobile]);
 
   return (
-    <div style={{ fontFamily: "Audiowide" }}>
+    <div className='jumbo-section'>
       <div
         style={style}
         className={`${backgroundPicture === true ? "english" : "chinese"} ${
