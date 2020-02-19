@@ -7,7 +7,7 @@ function Error({ statusCode }) {
       <div className="text-secondary" style={{ height: "100vh" }}>
         <div className="row text-center">
           <div className="col-md-6 pt-5" style={{ margin: "0 auto" }}>
-            <h3>Oops! This is an error!</h3>
+            <h1>Oops! This is an error!</h1>
 
             <h3>
               Error: {statusCode} <br />
