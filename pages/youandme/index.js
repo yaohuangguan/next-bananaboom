@@ -43,28 +43,17 @@ const index = ({ currentUser, posts, errors }) => {
     };
   }, [socketURL]);
   useEffect(() => {
-    const checkLogin = () => {
-      if (currentUser) {
-        if (currentUser.vip) {
-          return null;
-        } else {
-          return router.back();
-        }
-      }
-    };
-    checkLogin();
     document.body.style.backgroundColor = "#E5CCFF";
     return () => {
       document.body.style.backgroundColor = "white";
     };
   }, [currentUser]);
-  const getNewPrivatePosts = async () => {
-    const response = await api("/api/posts/private/posts");
-    let data = await response.data;
-    setprivatePosts(data);
-  };
-
   
+  const pushTo404 = () => {
+    if(typeof window !== 'undefined'){
+      router.push('/notfound')
+    }
+  }
   const setUser = user => {
     socket.emit(USER_CONNECTED, user);
     console.log("user", user);
@@ -126,7 +115,7 @@ const index = ({ currentUser, posts, errors }) => {
             </div>
            
           </div>
-        ) : null}
+        ) : pushTo404()}
       </div>
     </Layout>
   );

@@ -11,7 +11,7 @@ function Error({ statusCode, message }) {
 
             <h3>
               Error:{statusCode} <br />
-              Please go back
+              Click on the bear to go back
             </h3>
 
             <br />
@@ -22,7 +22,7 @@ function Error({ statusCode, message }) {
                   style={{ marginLeft: "7%" }}
                   width="80%"
                   alt="404"
-                  title="女朋友做的^^"
+                  title="image credit to my girlfriend,thank you."
                 />
               </a>
             </Link>

@@ -6,13 +6,7 @@ const dashboard = ({ currentUser }) => {
   const router = useRouter();
   const [newDisplayName, setdisplayName] = useState("");
   const [result, setresult] = useState("");
-  useEffect(() => {
-    const checkLogin = () => {
-      return currentUser ? null : router.back();
-    };
-    checkLogin();
-    return () => {};
-  }, [currentUser]);
+
   const changeDisplayName = async () => {
     if (!newDisplayName || newDisplayName.trim() == "") {
       return setresult("要修改的用户名不能为空");
@@ -36,6 +30,11 @@ const dashboard = ({ currentUser }) => {
   const handleChange = e => {
     setdisplayName(e.target.value);
   };
+  const pushTo404 = () =>{
+    if(typeof window !== 'undefined'){
+      router.push('/notfound')
+    }
+  } 
   return (
     <Layout>
       <div>
@@ -54,9 +53,7 @@ const dashboard = ({ currentUser }) => {
             <br />
             <div className="text-danger">{result ? result : null}</div>
           </div>
-        ) : (
-          <h2>You must log in to see this page</h2>
-        )}
+        ) : pushTo404()}
       </div>
     </Layout>
   );
