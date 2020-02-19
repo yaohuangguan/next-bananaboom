@@ -11,6 +11,32 @@
   background-size: cover;
   background-position: center center;
   color: white;
+  position: relative;
+  // &::before{
+  //   content: "";
+  //   position: absolute;
+  //   left: 0;
+  //   top: 0;
+  //   right: 0;
+  //   background-repeat: repeat;
+  //   height: 15px;
+  //   background-size: 40px 20px;
+  //   background-image:
+  //     radial-gradient(circle at 20px 0px, white 12px, transparent 13px);
+  // }
+  
+  &::after{
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background-repeat: repeat;
+    height: 15px;
+    background-size: 40px 20px;
+    background-image:
+      radial-gradient(circle at 20px 15px, white 12px, transparent 13px);
+  }
 }
 
 .time {
