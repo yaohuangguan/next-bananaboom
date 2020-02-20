@@ -23,6 +23,7 @@ function Error({ statusCode }) {
                   title="image credit to my girlfriend^"
                 />
               </a>
+              
               <Link href="/">
               <a className='btn btn-outline-secondary'>Take me back</a>
             </Link>
