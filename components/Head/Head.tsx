@@ -1,7 +1,6 @@
 import Head from "next/head";
 
 const HeadConfig = () => {
-
   return (
     <Head>
       <meta charSet="utf-8" />
@@ -31,9 +30,16 @@ const HeadConfig = () => {
         href="/static/safari-pinned-tab.svg"
         color="#5bbad5"
       />
-      <link rel="preconnect" href="https://i.ibb.co" crossOrigin="" />
-      <link rel="preconnect" href="https://fonts.gstatic.com" />
-      <link rel="preconnect" href="https://abs.twimg.com" />
+      <link rel="preconnect" href="https://i.ibb.co" crossOrigin="true" />
+      <link rel="dns-prefetch" href="https://i.ibb.co" />
+      <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossOrigin="true"
+      />
+      <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
+      <link rel="preconnect" href="https://abs.twimg.com" crossOrigin="true" />
+      <link rel="dns-prefetch" href="https://abs.twimg.com" />
       <meta name="msapplication-TileColor" content="#2d89ef" />
       <meta name="theme-color" content="#ffffff"></meta>
       <meta name="theme-color" content="normal" />
@@ -50,7 +56,6 @@ const HeadConfig = () => {
 Node.js, Express.js, GraphQL, Docker, Postman, PostgreSQL, MongoDB, Redis, Knowing how
 HTTP, TCP/IP, DNS and Web Server work...."
       />
-     
 
       <link
         href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css"
@@ -62,7 +67,6 @@ HTTP, TCP/IP, DNS and Web Server work...."
         rel="stylesheet"
       />
       <script src="/static/lazyload.min.js" async></script>
-     
     </Head>
   );
 };

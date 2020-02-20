@@ -1,27 +1,52 @@
 .jumbo-section{
   font-family: 'Sriracha', cursive;
-  font-size: x-large;
-  .card-title {
-    // background: -webkit-linear-gradient(#fc5c7d, #6a82fb);
-    // -webkit-background-clip: text;
-    // background-clip: text;
-    // -webkit-text-fill-color: transparent;
-    font-weight: bold;
-    font-size: 4em;
-    @media screen and (max-width: 415px) {
-      font-size: 4em;
+ 
+  .jumbo{
+
+    .card-subtitle{
+      @media screen and (max-width: 415px) {
+        font-size:2em;
+    
+      }
+      @media screen and (min-width: 415px) and (max-width: 768px) {
+        font-size: 2em;
+    
+      }
+      @media screen and (min-width: 992px) {
+        font-size: 2.5em;
+      }
+      @media screen and (min-width: 768px) and (max-width: 992px) {
+        font-size: 2.5em;
+      }
     }
-    @media screen and (min-width: 415px) and (max-width: 768px) {
-      font-size: 4em;
+    .card-title {
+      // background: -webkit-linear-gradient(#fc5c7d, #6a82fb);
+      // -webkit-background-clip: text;
+      // background-clip: text;
+      // -webkit-text-fill-color: transparent;
+      font-weight: bold;
+      @media screen and (max-width: 415px) {
+        font-size:5em;
+    
+      }
+      @media screen and (min-width: 415px) and (max-width: 768px) {
+        font-size: 5em;
+    
+      }
+      @media screen and (min-width: 992px) {
+        font-size: 8em;
+      }
+      @media screen and (min-width: 768px) and (max-width: 992px) {
+        font-size: 6em;
+      }
+     
     }
-    @media screen and (min-width: 992px) {
-      font-size: 6em;
+    .card-button{
+      font-size: 1.2em;
     }
-    @media screen and (min-width: 768px) and (max-width: 992px) {
-      font-size: 4em;
-    }
+    
   }
-  
+ 
   
   
   

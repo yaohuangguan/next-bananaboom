@@ -50,12 +50,12 @@ const Jumbo = ({
           }}
         >
           <div className="jumbo">
-            <h1 className="text-white pb-3 mb-3">{name}</h1>
-            <h2 className="card-title h2 pb-5 mb-5 jumbo">{welcome}</h2>
+            <h1 className="card-subtitle mb-3">{name}</h1>
+            <h2 className="card-title mb-5">{welcome}</h2>
             <h4 className="pb-2 my-4">{info}</h4>
 
             <a
-              className="btn-hover color-3 btn jumbowave-effects"
+              className="btn-hover color-3 btn jumbowave-effects card-button"
               href="#content"
             >
               &#9992; {button}

@@ -3,7 +3,7 @@ export const getBeeHexImg = () => {
   return (
     <div className="view overlay text-center zoom z-depth-1">
       <img
-        data-src="https://i.ibb.co/F5j835W/IMG-2938.jpg" 
+        data-src="https://res.cloudinary.com/next-bananaboom/image/upload/v1582172681/WechatIMG7_o8oktj.jpg" 
         alt="beehex"
         className="lazyload"
         width="100%"
