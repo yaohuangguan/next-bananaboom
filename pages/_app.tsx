@@ -2,6 +2,7 @@ import App from "next/app";
 import firebase from "../firebase/firebase";
 import { Provider } from "react-redux";
 import withRedux from "../redux/withRedux";
+import api from "../utils/Api";
 interface MyProps {
   Component: any;
   pageProps: any;
@@ -10,7 +11,7 @@ interface MyProps {
 interface MyState {
   currentUser: "";
 }
-class MyApp extends App<MyProps, MyState> {
+class SamMainApp extends App<MyProps, MyState> {
   // Only uncomment this method if you have blocking data requirements for
   // every single page in your application. This disables the ability to
   // perform automatic static optimization, causing every page in your app to
@@ -24,8 +25,32 @@ class MyApp extends App<MyProps, MyState> {
   // }
 
   unsubscribeFromAuth = null;
+  getUserProfile = async token => {
+    if (!token) return;
 
+    try {
+      const response = await api.get("/api/users/profile", {
+        headers: {
+          "x-auth-token": token
+        }
+      });
+      const data = await response.data;
+      this.setState(state => {
+        if (token) {
+          process.env.NODE_ENV === "development"
+            ? console.log("user", data)
+            : null;
+
+          return typeof token === "string" && { currentUser: data };
+        }
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
   componentDidMount() {
+    let user = window.localStorage.getItem("token") || null;
+    this.getUserProfile(user);
     this.unsubscribeFromAuth = firebase.auth.onAuthStateChanged(user => {
       if (user) {
         this.setState(state => {
@@ -34,24 +59,9 @@ class MyApp extends App<MyProps, MyState> {
           };
         });
       }
-      return process.env.NODE_ENV==='development' ? console.log("currentuser from google auth", user):null;
-    });
-
-    this.setState(state => {
-      let user = window.localStorage.getItem("currentUser") || null;
-      let userParsed: any;
-      if (user) {
-        if (Object.prototype.toString.call(user) === "[object String]") {
-          userParsed = JSON.parse(user);
-        } else {
-          let userString = JSON.stringify(user);
-          userParsed = JSON.parse(userString);
-        }
-        process.env.NODE_ENV==='development' ? console.log("user", userParsed):null;
-        return {
-          currentUser: userParsed
-        };
-      }
+      return process.env.NODE_ENV === "development"
+        ? console.log("currentuser from google auth", user)
+        : null;
     });
   }
 
@@ -69,4 +79,4 @@ class MyApp extends App<MyProps, MyState> {
   }
 }
 
-export default withRedux(MyApp);
+export default withRedux(SamMainApp);

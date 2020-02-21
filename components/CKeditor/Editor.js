@@ -3,12 +3,12 @@ import CKEditor from "ckeditor4-react";
 import { useRouter } from "next/router";
 import api from "../../utils/Api";
 const INITIAL_STATE = {
-  content: "" || localStorage.getItem("cachedText"),
-  author: "" || localStorage.getItem("authorText"),
-  code: "" || localStorage.getItem("codeText"),
-  info: "" || localStorage.getItem("infoText"),
-  title: "" || localStorage.getItem("titleText"),
-  tags: "" || localStorage.getItem("tagText"),
+  content: localStorage.getItem("cachedText") || "",
+  author: localStorage.getItem("authorText") || "",
+  code: localStorage.getItem("codeText") || "",
+  info: localStorage.getItem("infoText") || "",
+  title: localStorage.getItem("titleText") || "",
+  tags: localStorage.getItem("tagText") || "",
   isPrivate: false,
   errors: ""
 };
@@ -48,16 +48,7 @@ const reducer = (state, action) => {
 const Editor = () => {
   const router = useRouter();
   const [state, dispatch] = useReducer(reducer, INITIAL_STATE);
-  const {
-    content,
-    author,
-    code,
-    info,
-    title,
-    tags,
-    isPrivate,
-    errors
-  } = state;
+  const { content, author, code, info, title, tags, isPrivate, errors } = state;
 
   // const [blogText, setblogText] = useState("");
   // const [author, setauthor] = useState("");

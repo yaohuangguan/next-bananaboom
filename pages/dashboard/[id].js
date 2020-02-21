@@ -15,26 +15,17 @@ const dashboard = ({ currentUser }) => {
       return setresult("Google账户类型暂不支持名称更改");
     }
     const id = currentUser._id;
-    const response = await api.post("/api/users/changeusername", {
-      newDisplayName,
-      id
+    const response = await api.post(`/api/users/changeusername/${id}`, {
+      newDisplayName
     });
     const result = await response.data;
-    console.log(result);
-    setdisplayName(result.newDisplayName);
     setresult(result.message);
-    localStorage.setItem("currentUser", JSON.stringify(result.userToSend));
-    currentUser = result.userToSend;
-    window.location.reload();
+    router.reload()
   };
   const handleChange = e => {
     setdisplayName(e.target.value);
   };
-  const pushTo404 = () =>{
-    if(typeof window !== 'undefined'){
-      router.push('/notfound')
-    }
-  } 
+ 
   return (
     <Layout>
       <div>
@@ -53,7 +44,7 @@ const dashboard = ({ currentUser }) => {
             <br />
             <div className="text-danger">{result ? result : null}</div>
           </div>
-        ) : pushTo404()}
+        ) : null}
       </div>
     </Layout>
   );

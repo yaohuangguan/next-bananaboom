@@ -3,10 +3,14 @@ import Link from "next/link";
 
 class ErrorBoundary extends React.Component {
   state = {
-    hasError: false
+    hasError: false,
+    error:''
   };
   static getDerivedStateFromError(error) {
     // 更新 state 使下一次渲染能够显示降级后的 UI
+    this.setState(prev => {
+      error:error
+    })
     return { hasError: true };
   }
 
@@ -19,6 +23,7 @@ class ErrorBoundary extends React.Component {
       // 你可以自定义降级后的 UI 并渲染
       return (
         <div className="d-flex justify-content-center container">
+        {error? error : null}
           <h1>
             页面发生了错误，请返回主页。 Something went wrong. Please click{" "}
             <Link href="/">

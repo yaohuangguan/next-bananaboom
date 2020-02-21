@@ -28,7 +28,8 @@ const index = ({ currentUser, posts, errors }) => {
   const [socket, setSocket] = useState(null);
   const [chatUser, setuser] = useState("");
   const [privatePosts, setprivatePosts] = useState(posts);
-  const getVip = () => (currentUser ? currentUser.vip : null);
+  const getVip = () =>
+    currentUser ? currentUser.private_token === "ilovechenfangting" : null;
   useEffect(() => {
     const socket = io(socketURL);
     const connectSocket = () => {

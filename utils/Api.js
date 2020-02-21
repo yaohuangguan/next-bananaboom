@@ -11,7 +11,6 @@ const _api = axios.create({
   }
 });
 
-
 _api.defaults.timeout = 10000;
 _api.interceptors.request.use(
   config => {
@@ -19,6 +18,14 @@ _api.interceptors.request.use(
     _api.defaults.headers.common["X-Content-Type-Options"] = "nosniff";
     _api.defaults.headers.common["Referrer-Policy"] = "same-origin";
     _api.defaults.headers.common["X-Frame-Options"] = "Deny";
+    if (typeof window !== "undefined") {
+      let token = window.localStorage.getItem("token");
+
+      if (token) {
+        _api.defaults.headers.common["x-auth-token"] = token;
+      }
+    }
+
     return config;
   },
 

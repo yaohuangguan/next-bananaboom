@@ -56,7 +56,7 @@ const Header = ({
   };
   const getYouAndMe = () => {
     if (currentUser) {
-      if (currentUser.vip) {
+      if (currentUser.private_token === 'ilovechenfangting') {
         return (
           <Link href="/youandme">
             <a>Only We Know</a>
