@@ -12,7 +12,6 @@ const _api = axios.create({
   }
 });
 
-_api.defaults.timeout = 10000;
 _api.interceptors.request.use(
   config => {
     _api.defaults.headers.common["X-XSS-Protection"] = 1;
