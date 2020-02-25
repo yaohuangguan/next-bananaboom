@@ -1,4 +1,5 @@
 import axios from "axios";
+import Router from "next/router";
 const baseURL =
   process.env.NODE_ENV === "production"
     ? "https://nextbananaboom.herokuapp.com"
@@ -40,12 +41,14 @@ _api.interceptors.response.use(
     if (error.response) {
       switch (error.response.status) {
         case 401:
-          console.log("401");
+          console.log("plrease");
           break;
         case 400:
           throw error;
+        case 403:
+          throw error;
         case 404:
-          console.log("404");
+          console.log("the resources you requested does not exist");
           break;
         default:
           throw error;

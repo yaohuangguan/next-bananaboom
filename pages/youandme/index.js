@@ -14,6 +14,7 @@ import {
   ROOM_WELCOME
 } from "../../components/Private/Chat/Events";
 import DrawingCanvas from "../../components/DrawingCanvas/Drawing";
+
 import "./youandme.scss";
 const CKEditor = dynamic(() => import("../../components/CKeditor/Editor"), {
   ssr: false

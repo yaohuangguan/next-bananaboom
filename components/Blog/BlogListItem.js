@@ -30,7 +30,6 @@ const BlogListItem = ({
   };
   const cancelLike = async () => {
     const likesData = await likeAndUpdate(_id, "remove");
-
     setCount(likesData.likes);
   };
   const addLike = async () => {

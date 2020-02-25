@@ -1,6 +1,6 @@
 /* eslint-disable react/style-prop-object */
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Layout from "../../components/Layout/Layout";
 import { useRouter } from "next/router";
 import BlogList from "../../components/Blog/BlogList";
@@ -15,29 +15,31 @@ const Blog = ({ blogs, errors, currentUser }) => {
   const [filteredBlog, setfilteredBlog] = useState([]);
   const handleChange = e => setsearchField(e.target.value);
   useEffect(() => {
-    const heroShrinker = () => {
-      let header = document.querySelector(".shrinkedHeader");
-      let blog = document.querySelector(".blog");
-      let heroHeight = header.clientHeight;
-      window.addEventListener("scroll", () => {
-        let scrollOffset = scrollY;
-        if (scrollOffset > blog.clientHeight) {
-          header.classList.remove("shrinkedHeader");
-          header.classList.add("shrinked");
-          blog.classList.add("emptyHeight");
-        } else {
-          header.classList.add("shrinkedHeader");
-          header.classList.remove("shrinked");
-          blog.classList.remove("emptyHeight");
-        }
-        if (scrollOffset > heroHeight - 215) {
-          header.classList.add("fixme");
-        } else {
-          header.classList.remove("fixme");
-        }
-      });
+    let header = document.querySelector(".shrinkedHeader");
+    let blog = document.querySelector(".blog");
+    let heroHeight = header.clientHeight;
+    const shrinkHeader = () => {
+      let scrollOffset = scrollY;
+      if (scrollOffset > blog.clientHeight) {
+        header.classList.remove("shrinkedHeader");
+        header.classList.add("shrinked");
+        blog.classList.add("emptyHeight");
+      } else {
+        header.classList.add("shrinkedHeader");
+        header.classList.remove("shrinked");
+        blog.classList.remove("emptyHeight");
+      }
+      if (scrollOffset > heroHeight - 215) {
+        header.classList.add("fixme");
+      } else {
+        header.classList.remove("fixme");
+      }
     };
-    heroShrinker();
+    window.addEventListener("scroll", shrinkHeader, true);
+
+    return () => {
+      window.removeEventListener("scroll", shrinkHeader, true);
+    };
   }, []);
   useEffect(() => {
     const result =
@@ -48,7 +50,6 @@ const Blog = ({ blogs, errors, currentUser }) => {
     setfilteredBlog(result);
   }, [searchField]);
 
-  
   return (
     <Layout>
       <Head>
@@ -69,7 +70,6 @@ const Blog = ({ blogs, errors, currentUser }) => {
       </div>
       <div className="blog">
         <div className="text-white text-center rgba-stylish-light px-5">
-        
           <div className="py-5">
             <a
               className="btn draw-border-white waves-effect"
@@ -90,7 +90,6 @@ const Blog = ({ blogs, errors, currentUser }) => {
               engineering which do not stand for authority, but to enlighten and
               inspire readers.
             </p>
-           
           </div>
         </div>
       </div>

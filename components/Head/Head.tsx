@@ -5,29 +5,29 @@ const HeadConfig = () => {
     <Head>
       <meta charSet="utf-8" />
       <title>Moviegoer</title>
-      <link rel="icon" href="/static/favicon.ico" />
-      <link rel="manifest" href="/static/manifest.json" />
+      <link rel="icon" href="/favicon.ico" />
+      <link rel="manifest" href="/manifest.json" />
       <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       <link
         rel="apple-touch-icon"
         sizes="180x180"
-        href="/static/apple-touch-icon.png"
+        href="/apple-touch-icon.png"
       />
       <link
         rel="icon"
         type="image/png"
         sizes="32x32"
-        href="/static/favicon-32x32.png"
+        href="/favicon-32x32.png"
       />
       <link
         rel="icon"
         type="image/png"
         sizes="16x16"
-        href="/static/favicon-16x16.png"
+        href="/favicon-16x16.png"
       />
       <link
         rel="mask-icon"
-        href="/static/safari-pinned-tab.svg"
+        href="/safari-pinned-tab.svg"
         color="#5bbad5"
       />
       <link rel="preconnect" href="https://i.ibb.co" crossOrigin="true" />
@@ -66,7 +66,7 @@ HTTP, TCP/IP, DNS and Web Server work...."
         href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.10/css/mdb.min.css"
         rel="stylesheet"
       />
-      <script src="/static/lazyload.min.js" async></script>
+      <script src="/lazyload.min.js" async></script>
     </Head>
   );
 };

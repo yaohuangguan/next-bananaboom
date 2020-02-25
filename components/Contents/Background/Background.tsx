@@ -23,7 +23,7 @@ const Background = () => {
           data-src="https://res.cloudinary.com/next-bananaboom/image/upload/v1582172681/WechatIMG5_trpzmw.jpg"
           className="z-depth-2 lazyload"
           width="100%"
-          alt="HMUN"
+          alt="my daily photos"
         />
         <div className="mask flex-center rgba-stylish-light">
           <p className="white-text">ME,ME,ME,STILL ME</p>
@@ -34,7 +34,7 @@ const Background = () => {
           data-src="https://res.cloudinary.com/next-bananaboom/image/upload/v1582172681/WechatIMG6_fvqhbm.jpg"
           className="z-depth-2 lazyload"
           width="100%"
-          alt="HMUN"
+          alt="harvard model united nation"
         />
         <div className="mask flex-center rgba-stylish-light">
           <p className="white-text">Harvard Model United Nations</p>

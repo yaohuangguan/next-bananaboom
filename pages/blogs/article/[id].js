@@ -4,7 +4,7 @@ import dynamic from "next/dynamic";
 import Head from "next/head";
 import api from "../../../utils/Api";
 import { useEffect, useState } from "react";
-import CanvasAnimation from "../../meteor";
+import SpecialWrapper from '../../../components/Special/SpecialWrapper/Wrapper'
 
 const Comment = dynamic(() =>
   import("../../../components/Blog/Comments/Comments")
@@ -12,7 +12,8 @@ const Comment = dynamic(() =>
 
 const blog = ({ posts, comments, currentUser, router }) => {
   const [loadComment, setloadComment] = useState("");
-  const { name, content, code, code2, _id } = posts;
+  const { name, content, code, code2, _id , project_id } = posts;
+
   useEffect(() => {
     require("../../../utils/prism");
     const contentDiv = document.getElementById("content-field");
@@ -30,7 +31,7 @@ const blog = ({ posts, comments, currentUser, router }) => {
       <Head>
         <title>{name || `Waiting for fetch...`} || By Sam Yao</title>
       </Head>
-      {content ? null : <CanvasAnimation></CanvasAnimation>}
+      {content ? null : <SpecialWrapper project={project_id} ></SpecialWrapper>}
 
       <div className="container">
         <a

@@ -23,12 +23,18 @@ const Comment = ({ currentUser, comments, _id }) => {
     const source = axios.CancelToken.source()
 
     const getNewComments = async () => {
-      const response = await api.get(`/api/comments/${_id}`, {
-        cancelToken: source.token
-      });
-      let getComments = await response.data;
-      setcommentsList(getComments);
-      setcommentsCount(getComments.length);
+      try {
+        const response = await api.get(`/api/comments/${_id}`, {
+          cancelToken: source.token
+        });
+        let getComments = await response.data;
+        setcommentsList(getComments);
+        setcommentsCount(getComments.length);
+      } catch (error) {
+        console.log(error)
+        seterrors(error)
+      }
+     
     };
     getNewComments();
     return () => {
@@ -146,7 +152,7 @@ const Comment = ({ currentUser, comments, _id }) => {
             </div>
             <button
               type="button"
-              className="btn btn-hover color-5 mb-3 waves-effect waves-light float-right"
+              className="btn btn-hover color-3 mb-3 waves-effect waves-light float-right"
               onClick={submitComment}
             >
               发送

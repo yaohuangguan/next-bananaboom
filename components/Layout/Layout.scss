@@ -69,12 +69,12 @@
   position: relative;
   top: 50vh;
   transform: translateY(-50%);
-  z-index: 10000;
+  z-index: 10;
   .spinner {
     display: inline-block;
     width: 100px;
     height: 100px;
-    background: url("https://i.ibb.co/fCS2kDm/lakers-spinner.png") center center;
+    background: url("https://res.cloudinary.com/next-bananaboom/image/upload/v1582436390/lakers-spinner_f1wepn.png") center center;
     background-size: contain;
     transition-origin: 50% 50%;
     animation: spinner 3s infinite alternate ease-in-out;

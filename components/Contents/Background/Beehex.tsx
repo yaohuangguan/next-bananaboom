@@ -4,7 +4,7 @@ export const getBeeHexImg = () => {
     <div className="view overlay text-center zoom z-depth-1">
       <img
         data-src="https://res.cloudinary.com/next-bananaboom/image/upload/v1582172681/WechatIMG7_o8oktj.jpg" 
-        alt="beehex"
+        alt="my team at BeeHex."
         className="lazyload"
         width="100%"
       />

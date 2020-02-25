@@ -1,15 +1,10 @@
 const next = require('next')
 const express = require('express')
-const path = require('path')
 const compression = require('compression')
 const port = parseInt(process.env.PORT, 10) || 3000;
 const dev = process.env.NODE_ENV !== "production";
 const app = next({ dev });
 const handle = app.getRequestHandler();
-const serviceWorker = app => (req, res) => {
-  const filePath = path.resolve('./.next/service-worker.js');
-  app.serveStatic(req, res, filePath);
-};
 
 app
   .prepare()

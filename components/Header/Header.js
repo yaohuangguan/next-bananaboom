@@ -74,7 +74,7 @@ const Header = ({
       <div className="header">
         <Link href={homeRoute}>
           <a id="logo" className="px-3 p-2">
-            <img src="/static/favicon.png" width="50px" height="50px" alt="s" />
+            <img src="/favicon.png" width="50px" height="50px" alt="s" />
           </a>
         </Link>
         <div className="options">
