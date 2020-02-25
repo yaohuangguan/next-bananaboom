@@ -17,15 +17,16 @@ const blog = ({ posts, comments, currentUser, router }) => {
   useEffect(() => {
     require("../../../utils/prism");
     const contentDiv = document.getElementById("content-field");
-    if (typeof content === "String") {
-      const temp = document.createElement("div");
-      temp.innerHTML = content;
-    } else if (content === undefined) {
-      contentDiv.innerHTML = "";
-    } else {
+    if (typeof content === "string") {
+      // const temp = document.createElement("div");
+      // const textNode = document.createTextNode(temp)
+      // temp.appendChild(textNode)
       contentDiv.innerHTML = content;
-    }
+
+    } 
   }, []);
+  console.log(typeof content)
+  console.log(project_id)
   return (
     <Layout>
       <Head>
