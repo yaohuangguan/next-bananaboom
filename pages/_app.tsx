@@ -3,6 +3,7 @@ import firebase from "../firebase/firebase";
 import { Provider } from "react-redux";
 import withRedux from "../redux/withRedux";
 import api from "../utils/Api";
+import Router from "next/router";
 interface MyProps {
   Component: any;
   pageProps: any;
@@ -29,12 +30,14 @@ class SamMainApp extends App<MyProps, MyState> {
     if (!token) return;
 
     try {
+      
       const response = await api.get("/api/users/profile", {
         headers: {
           "x-auth-token": token
         }
       });
       const data = await response.data;
+
       this.setState(state => {
         if (token) {
           process.env.NODE_ENV === "development"
@@ -45,7 +48,7 @@ class SamMainApp extends App<MyProps, MyState> {
         }
       });
     } catch (error) {
-      console.log(error);
+      console.log("auth failed, please login");
     }
   };
   componentDidMount() {

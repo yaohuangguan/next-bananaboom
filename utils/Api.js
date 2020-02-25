@@ -40,7 +40,11 @@ _api.interceptors.response.use(
     if (error.response) {
       switch (error.response.status) {
         case 401:
-          console.log("plrease");
+          if (localStorage.getItem("refresh") != "1") {
+            Router.reload();
+            localStorage.setItem("refresh", "1");
+          }
+
           break;
         case 400:
           throw error;

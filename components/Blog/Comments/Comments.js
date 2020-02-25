@@ -10,18 +10,20 @@ const Comment = ({ currentUser, comments, _id }) => {
   const [errors, seterrors] = useState("");
   const [commentsList, setcommentsList] = useState(comments);
   const [emojiList, setemojiList] = useState("");
-  const handleCommentChange = async e => {
-    setcommentInputField(e.target.value);
+  const fetchEmoji = async () =>{
     const emoji = await fetch(
       `https://emoji.getdango.com/api/emoji?q=${commentInputField}`
     );
     const data = await emoji.json();
     setemojiList(data.results);
+  }
+  const handleCommentChange = async e => {
+    setcommentInputField(e.target.value);
+    fetchEmoji()
   };
 
   useEffect(() => {
     const source = axios.CancelToken.source()
-
     const getNewComments = async () => {
       try {
         const response = await api.get(`/api/comments/${_id}`, {
