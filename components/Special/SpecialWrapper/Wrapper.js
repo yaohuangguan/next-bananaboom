@@ -2,6 +2,7 @@ import React from "react";
 import Meteor from "../Meteor/meteor";
 import Music from "../MusicPlayer/Music";
 const Wrapper = ({ project }) => {
+  console.log(project)
   function wrap() {
     switch (project) {
       case "music":
