@@ -17,7 +17,7 @@ const Music = () => {
     const songs = ["simmer", "titanic", "sayyouwontletgo", "heroes"];
 
     // Keep track of song
-    let songIndex = 3;
+    let songIndex = 0;
 
     // Initially load song details into DOM
     loadSong(songs[songIndex]);

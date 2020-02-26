@@ -87,8 +87,7 @@ const BlogListItem = ({
                 src={each}
                 key={index}
                 alt="img"
-                width="180px"
-                height="180px"
+                width="100%"
               ></img>
             ))
           : null}
@@ -105,7 +104,7 @@ const BlogListItem = ({
             replace
           >
             <a className="btn draw-border-blue" style={{ height: "50px" }}>
-              {button || "Read More"}
+              {button || "See it in action"}
             </a>
           </Link>
 
