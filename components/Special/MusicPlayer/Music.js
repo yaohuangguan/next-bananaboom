@@ -145,10 +145,10 @@ const Music = () => {
           </div>
         </div>
   
-        <audio src="/music/heroes.mp3" id="audio"></audio>
+        <audio src="/music/simmer.mp3" id="audio"></audio>
   
         <div className="img-container">
-          <img src="/heroes.jpg" alt="music-cover" id="cover" />
+          <img src="/simmer.jpg" alt="music-cover" id="cover" />
         </div>
         <div className="navigation">
           <button id="prev" className="action-btn">
