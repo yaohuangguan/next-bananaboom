@@ -1,13 +1,16 @@
 import React from "react";
 import router from "next/router";
 import Link from "next/link";
+import api from "../../../utils/Api";
 import firebase from "../../../firebase/firebase";
 import "./DropDown.scss";
 const DropDown = ({ currentUser }) => {
-  const logout = () => {
-    window.localStorage.removeItem("token");
-    window.localStorage.removeItem("currentUser");
+  const logout = async () => {
+    localStorage.removeItem("token");
+
     router.reload();
+   const response =  await api.post("/api/users/logout");
+
   };
   const getUserLogOutOnRoutes = () => {
     return router.pathname === "/" ? "Log out" : "退出登录";
@@ -25,7 +28,7 @@ const DropDown = ({ currentUser }) => {
 
         <div className="dropdown-submenu py-1">
           <ul className="dropdown-list text-center">
-            <span className='text-muted'>{getGreeting()}</span>
+            <span className="text-muted">{getGreeting()}</span>
             <Link href="/dashboard/[id]" as={`/dashboard/${_id ? _id : uid}`}>
               <li className="dropdown-list-item">
                 <span>{getDashboardOnRoutes()}</span>
