@@ -1,7 +1,5 @@
 import App from "next/app";
 import firebase from "../firebase/firebase";
-import { Provider } from "react-redux";
-import withRedux from "../redux/withRedux";
 import api from "../utils/Api";
 import Router from "next/router";
 interface MyProps {
@@ -30,7 +28,6 @@ class SamMainApp extends App<MyProps, MyState> {
     if (!token) return;
 
     try {
-      
       const response = await api.get("/api/users/profile", {
         headers: {
           "x-auth-token": token
@@ -48,7 +45,7 @@ class SamMainApp extends App<MyProps, MyState> {
         }
       });
     } catch (error) {
-      console.log("auth failed, please login");
+
     }
   };
   componentDidMount() {
@@ -72,14 +69,10 @@ class SamMainApp extends App<MyProps, MyState> {
     this.unsubscribeFromAuth();
   }
   render() {
-    const { Component, pageProps, reduxStore } = this.props;
+    const { Component, pageProps } = this.props;
 
-    return (
-      <Provider store={reduxStore}>
-        <Component {...this.state} {...pageProps}></Component>
-      </Provider>
-    );
+    return <Component {...this.state} {...pageProps}></Component>;
   }
 }
 
-export default withRedux(SamMainApp);
+export default SamMainApp;
