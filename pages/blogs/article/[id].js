@@ -15,6 +15,7 @@ const blog = ({ posts, comments, currentUser, router }) => {
   const { name, content, code, code2, _id , project_id } = posts;
 
   useEffect(() => {
+    document.title = name;
     require("../../../utils/prism");
     const contentDiv = document.getElementById("content-field");
     if (typeof content === "string") {
@@ -25,12 +26,12 @@ const blog = ({ posts, comments, currentUser, router }) => {
 
     } 
   }, []);
-  console.log(typeof content)
-  console.log(project_id)
+  // console.log(typeof content)
+  // console.log(project_id)
   return (
     <Layout>
       <Head>
-        <title>{name || `Waiting for fetch...`} || By Sam Yao</title>
+        <title>{name} | yaobaiyang.com</title>
       </Head>
       {content ? null : <SpecialWrapper project={project_id} ></SpecialWrapper>}
 

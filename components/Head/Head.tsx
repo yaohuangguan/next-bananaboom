@@ -6,7 +6,7 @@ const HeadConfig = () => {
       <meta charSet="utf-8" />
       <title>Moviegoer</title>
       <link rel="icon" href="/favicon.ico" />
-      <link rel="manifest" href="/manifest.json" />
+
       <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       <link
         rel="apple-touch-icon"
