@@ -34,7 +34,6 @@ $blue-color:#17cdff;
       margin-right: auto;
       padding: 20px 10px 20px 20px;
 
-      font-weight: 600;
       // @media screen and (max-width: 415px) {
       //   width: 90%;
       // }
@@ -56,8 +55,6 @@ $blue-color:#17cdff;
         justify-content: center;
         align-items: center;
         padding: 5px 20px 5px 20px;
-
-        font-weight: 700;
         cursor: pointer;
         a{
           color:white;
@@ -101,9 +98,8 @@ $blue-color:#17cdff;
         display: flex;
       }
       .signup {
-
         padding: 5px 20px 5px 20px;
-        font-weight: 500;
+
       }
       .option {
         display: flex;
@@ -112,7 +108,6 @@ $blue-color:#17cdff;
         align-items: center;
         padding: 5px 20px 5px 20px;
 
-        font-weight: 500;
         cursor: pointer;
         a{
           color:white;
@@ -125,7 +120,7 @@ $blue-color:#17cdff;
     }
   }
   .solid {
-    box-shadow: 1px 2px 15px rgba(100, 100, 100, 0.3);
+    box-shadow: 1px 2px 15px rgba(143, 52, 255, 0.6);
   }
   
   .white-lighter {

@@ -8,7 +8,12 @@ const ChatContainer = ({chatUser,logout,socket}) => {
     setactiveChat(activeChat)
   }
   return (
-    <div className='p-5'>
+    <div style={{
+      backgroundColor: "rgba(255,255,255,0.8)",
+      padding: "40px",
+      borderRadius: "50px",
+      marginBottom: "20px"
+    }}>
     Your name:{chatUser.name}
       <SideBar
       logout={logout}
@@ -17,7 +22,8 @@ const ChatContainer = ({chatUser,logout,socket}) => {
       handleActiveChat={handleActiveChat}
       activeChat={activeChat}
       ></SideBar>
-      
+
+
     </div>
   )
 }
