@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import CommentList from "./CommentList";
 import api from "../../../utils/Api";
-import axios from 'axios'
+import axios from "axios";
 import Signup from "../../Auth/Signup";
 
 const Comment = ({ currentUser, comments, _id }) => {
@@ -10,37 +10,40 @@ const Comment = ({ currentUser, comments, _id }) => {
   const [errors, seterrors] = useState("");
   const [commentsList, setcommentsList] = useState(comments);
   const [emojiList, setemojiList] = useState("");
-  const fetchEmoji = async () =>{
+  const fetchEmoji = async () => {
     const emoji = await fetch(
       `https://emoji.getdango.com/api/emoji?q=${commentInputField}`
     );
     const data = await emoji.json();
     setemojiList(data.results);
-  }
+  };
   const handleCommentChange = async e => {
     setcommentInputField(e.target.value);
-    fetchEmoji()
+    fetchEmoji();
   };
 
   useEffect(() => {
-    const source = axios.CancelToken.source()
+    let source = axios.CancelToken.source();
     const getNewComments = async () => {
       try {
-        const response = await api.get(`/api/comments/${_id}`, {
-          cancelToken: source.token
-        });
-        let getComments = await response.data;
-        setcommentsList(getComments);
-        setcommentsCount(getComments.length);
+          const response = await api.get(`/api/comments/${_id}`, {
+            cancelToken: source.token
+          });
+          let getComments = await response.data;
+          setcommentsList(getComments);
+          setcommentsCount(getComments.length);
       } catch (error) {
-        console.log(error)
-        seterrors(error)
+        if (axios.isCancel(error)) {
+          console.log("caught cancel axios");
+        } else {
+          seterrors(error);
+        }
       }
-     
     };
     getNewComments();
     return () => {
-     source.cancel("Operation canceled by the user.");
+      console.log("unmounting");
+      source.cancel();
     };
   }, []);
   const clearCommentField = () => {

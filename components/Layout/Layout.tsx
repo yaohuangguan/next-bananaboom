@@ -29,12 +29,10 @@ const Layout = ({ children }) => {
         "/resume/ch-cn",
         "/resume/en-us"
       ];
-      const ifReload = urlReloadList.some(each => {
+      const ifReload = Promise.resolve(urlReloadList.some(each => {
         return each == url;
-      });
-      if (ifReload) {
-        window.location.reload();
-      }
+      }));
+      ifReload.then(()=>Router.reload())
     };
     const routeError = (err, url) => {
       if (err.cancelled) {
@@ -73,7 +71,6 @@ const Layout = ({ children }) => {
           <div className="loading-container">
             <div className="spinner"></div>
             <div className="spinner-center"></div>
-            <div className="loading-text">Spinning...</div>
           </div>
         ) : (
           children

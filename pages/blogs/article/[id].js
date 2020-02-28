@@ -5,7 +5,7 @@ import Head from "next/head";
 import api from "../../../utils/Api";
 import { useEffect, useState } from "react";
 import SpecialWrapper from '../../../components/Special/SpecialWrapper/Wrapper'
-
+import Pay from '../../../components/Blog/Pay/Pay'
 const Comment = dynamic(() =>
   import("../../../components/Blog/Comments/Comments")
 );
@@ -70,7 +70,7 @@ const blog = ({ posts, comments, currentUser, router }) => {
             </div>
           ) : null}
         </section>
-
+            <Pay></Pay>
         <Comment
           comments={comments}
           _id={_id}

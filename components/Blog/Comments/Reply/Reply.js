@@ -16,19 +16,24 @@ const Reply = ({ reply, id, currentUser }) => {
     setemojiList(data.results);
   };
   useEffect(() => {
-    const source = axios.CancelToken.source();
-
+    let source = axios.CancelToken.source();
     const getNewReply = async () => {
-      const newReply = await (
-        await api.get(`/api/comments/reply/${id}`, {
+      try {
+        const response = await api.get(`/api/comments/reply/${id}`, {
           cancelToken: source.token
-        })
-      ).data[0].reply;
-      setreplyList(newReply);
+        });
+        const newReply = await response.data[0].reply;
+
+        setreplyList(newReply);
+      } catch (error) {
+        if (axios.isCancel(error)) {
+          console.log("caught cancel");
+        }
+      }
     };
     getNewReply();
     return () => {
-      source.cancel("cancel");
+      source.cancel();
     };
   }, []);
   const showReply = e => {
