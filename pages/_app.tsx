@@ -50,7 +50,10 @@ class SamMainApp extends App<MyProps, MyState> {
   };
   componentDidMount() {
     let user = window.localStorage.getItem("token") || null;
-    this.getUserProfile(user);
+    let refresh = localStorage.getItem('refresh')
+    if(!refresh){
+      this.getUserProfile(user);
+    }
     this.unsubscribeFromAuth = firebase.auth.onAuthStateChanged(user => {
       if (user) {
         this.setState(state => {

@@ -17,9 +17,10 @@ const Pay = () => {
           alignItems: "center",
           position: "relative"
         }}
+        className='text-center'
         onClick={handleChange}
       >
-        <div ref={dashang} style={{ textAlign: "center" }}>
+        <div ref={dashang}>
           <p>Thank you for your support!!</p>
           <img
             src="https://res.cloudinary.com/next-bananaboom/image/upload/v1582866923/dashang_r3ltt4.jpg"
@@ -31,7 +32,6 @@ const Pay = () => {
         <div
           ref={pay}
           style={{
-            textAlign: "center",
             position: "absolute",
             visibility: "hidden"
           }}

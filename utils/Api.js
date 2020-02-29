@@ -19,8 +19,8 @@ _api.interceptors.request.use(
     _api.defaults.headers.common["Referrer-Policy"] = "same-origin";
     _api.defaults.headers.common["X-Frame-Options"] = "Deny";
     if (typeof window !== "undefined") {
-      let token = window.localStorage.getItem("token");
-
+      localStorage.removeItem('refresh')
+      let token = localStorage.getItem("token");
       if (token) {
         _api.defaults.headers.common["x-auth-token"] = token;
       }
@@ -40,12 +40,11 @@ _api.interceptors.response.use(
     if (error.response) {
       switch (error.response.status) {
         case 401:
-          if (localStorage.getItem("refresh") != "1") {
-            Router.reload();
-            localStorage.setItem("refresh", "1");
-          }
+          console.log("401 error");
 
-          break;
+          localStorage.setItem("refresh", true);
+          
+          throw error;
         case 400:
           throw error;
         case 403:

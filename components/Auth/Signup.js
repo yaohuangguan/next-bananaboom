@@ -92,6 +92,8 @@ const Signup = ({ linkColor }) => {
         "token",
         user.token
       );
+
+
       router.reload();
 
       clearInput();

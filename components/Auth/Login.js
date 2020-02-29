@@ -52,6 +52,7 @@ const Login = ({ passwordReveal }) => {
         "token",
         user.token
       );
+
       router.reload();
       clearInput();
       closeLogin();

@@ -6,7 +6,11 @@ const dashboard = ({ currentUser }) => {
   const router = useRouter();
   const [newDisplayName, setdisplayName] = useState("");
   const [result, setresult] = useState("");
-
+  useEffect(() => {
+    return () => {
+      router.reload();
+    };
+  }, []);
   const changeDisplayName = async () => {
     if (!newDisplayName || newDisplayName.trim() == "") {
       return setresult("要修改的用户名不能为空");
@@ -20,12 +24,11 @@ const dashboard = ({ currentUser }) => {
     });
     const result = await response.data;
     setresult(result.message);
-    router.reload()
   };
   const handleChange = e => {
     setdisplayName(e.target.value);
   };
- 
+
   return (
     <Layout>
       <div>
