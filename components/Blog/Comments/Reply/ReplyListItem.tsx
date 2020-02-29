@@ -11,8 +11,8 @@ const ReplyListItem = ({ id, content, date, photoURL, user }) => {
           photoURL
         }
         alt="avatar"
-        width="30px"
-        height="30px"
+        width="40px"
+        height="40px"
         className="avatar rounded-circle mt-3"
       />
       <div

@@ -68,10 +68,14 @@ const Comment = ({ currentUser, comments, _id }) => {
       return seterrors("You can't post a comment more than 120 words");
     }
     const { displayName, photoURL } = currentUser;
+    
     try {
       const response = await api({
         method: "post",
         url: `/api/comments/${_id}`,
+        headers:{
+          "x-google-auth":currentUser.ma ? currentUser.ma : null
+        },
         data: JSON.stringify({
           user: displayName,
           photoURL,
