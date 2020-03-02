@@ -103,20 +103,29 @@ const English = ({ homepage, errors, logs, projects, currentUser }) => {
   );
 };
 English.getInitialProps = async req => {
-  const urls = [
-    "/api/homepage",
-    "/api/homepage/logs",
-    "/api/homepage/projects"
-  ];
-  const mapPromise = urls.map(async url => {
-    const response = await api.get(url);
-    return await response.data;
-  });
-  const [homepage, logs, projects] = await Promise.all(mapPromise);
+  let errors;
+  try {
+    const urls = [
+      "/api/homepage",
+      "/api/homepage/logs",
+      "/api/homepage/projects"
+    ];
+    const getData = urls.map(async url => {
+      const response = await api.get(url);
+      return await response.data;
+    });
+    const [homepage, logs, projects] = await Promise.all(getData);
+    return {
+      homepage,
+      logs,
+      projects
+    };
+  } catch (error) {
+    errors = `Sorry, 404. It shows incomplete pages，for the up to date contents，please refresh the page.`;
+  }
+
   return {
-    homepage,
-    logs,
-    projects
+    errors
   };
 };
 

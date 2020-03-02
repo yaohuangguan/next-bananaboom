@@ -8,6 +8,7 @@ import Layout from "../../components/Layout/Layout";
 import io from "../../utils/Socket";
 import PrivatePost from "../../components/Private/PrivatePost/PrivatePost.js";
 import DateCounting from "../../components/Private/CountDate/CountDate";
+import ToDo from "../../components/Private/ToDo/ToDo";
 import {
   USER_CONNECTED,
   LOGOUT,
@@ -24,7 +25,7 @@ const socketURL =
     ? "http://localhost:5000"
     : "https://nextbananaboom.herokuapp.com";
 
-const index = ({ currentUser, posts, errors }) => {
+const index = ({ currentUser, posts, errors, todos }) => {
   const router = useRouter();
   const [socket, setSocket] = useState(null);
   const [chatUser, setuser] = useState("");
@@ -109,6 +110,7 @@ const index = ({ currentUser, posts, errors }) => {
                 <PrivatePost></PrivatePost>
               </div>
               <div className="love-right-side">
+                <ToDo todos={todos}></ToDo>
                 <div className="blog-container">
                   <CKEditor></CKEditor>
                 </div>
