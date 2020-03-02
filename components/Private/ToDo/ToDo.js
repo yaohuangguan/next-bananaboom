@@ -29,13 +29,12 @@ const ToDo = () => {
       
     };
   }, [])
-  const handleDone = async (e) => {
-    const id = e.target.id
+  const handleDone = async (id) => {
+
     const response = await api.post(`/api/todo/done/${id}`)
     const todos = await response.data
     settodos(todos)
 
-    console.log(await response.data)
   }
   const handleTitle = e => {
     return settitle(e.target.value);
@@ -58,7 +57,7 @@ const ToDo = () => {
           <input type="text" name="title" onChange={handleTitle} style={{borderRadius:'50px'}} />
         </label>
 
-        <button className="btn btn-pink" type="submit">
+        <button className="btn-sm btn-pink" type="submit">
           添加
         </button>
       </form>
