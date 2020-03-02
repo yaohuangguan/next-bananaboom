@@ -3,28 +3,32 @@ import React from "react";
 const ToDoList = ({ todos, handleDone }) => {
   const mapTodo = () => {
     return (
-      <>
+      <div start="1">
         {todos &&
-          todos.map(({ todo, done, _id }) => (
-            <div
-              key={_id}
-              style={{ display: "flex", justifyContent: "space-between" }}
-            >
-              <div className="title">{todo}</div>
-              <div className="done">
-                {!done ? (
-                  <span id={_id} onClick={handleDone}>
-                    ❌
-                  </span>
-                ) : (
-                  <span id={_id} onClick={handleDone}>
-                    ✅
-                  </span>
-                )}
+          todos.map(({ todo, done, _id }, index) => (
+            <div key={_id} style={{ display: "flex", justifyContent:'space-between' }}>
+              <div>
+                <span>{index + 1}.</span> <span className="title">{todo}</span>
               </div>
-            </div>
+              
+                <span
+                  className="done"
+                  style={{ cursor: "pointer",fontSize:'20px' }}
+                >
+                  {!done ? (
+                    <span id={_id} onClick={handleDone}>
+                      ❌
+                    </span>
+                  ) : (
+                    <span id={_id} onClick={handleDone}>
+                      ✅
+                    </span>
+                  )}
+                </span>
+              </div>
+
           ))}
-      </>
+      </div>
     );
   };
   return <>{mapTodo()}</>;
