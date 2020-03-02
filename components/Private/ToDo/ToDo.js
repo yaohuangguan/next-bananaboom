@@ -4,14 +4,14 @@ import api from "../../../utils/Api";
 const ToDo = () => {
   const [title, settitle] = useState("");
   const [todos, settodos] = useState("");
- 
+  const [errors, seterrors] = useState('')
   const handleSubmit = async e => {
     e.preventDefault();
-    if(!title || title.trim() == '') return;
+    if(!title || title.trim() == '') return seterrors('可以一起做的事情有很多，老婆');
     const response = await api.post("/api/todo", { todo: title });
     const todos = await response.data
     settodos(todos)
-    console.log(await response.data);
+    
   };
   useEffect(() => {
     const getTodo =async() => {
@@ -61,6 +61,7 @@ const ToDo = () => {
           添加
         </button>
       </form>
+      {errors ? (<span className='text-danger'>{errors}</span>) : null}
       <ToDoList todos={todos} handleDone={handleDone}></ToDoList>
     </div>
   );
