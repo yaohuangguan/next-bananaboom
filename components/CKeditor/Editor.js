@@ -129,7 +129,13 @@ const Editor = () => {
   };
   return (
     <>
-      <div id="blog-text"></div>
+      <div id="blog-text" style={{
+          backgroundColor: "rgba(255,255,255,0.6)",
+          padding: "20px",
+          borderRadius: "50px",
+          marginBottom: "20px"
+        }}></div>
+
       <form
         className="input-section"
         style={{
@@ -140,7 +146,6 @@ const Editor = () => {
         }}
         onSubmit={handleFormSubmit}
       >
-        {errors ? <div className="text-danger">{errors}</div> : null}
         <label htmlFor="author">
           作者
           <input
@@ -197,6 +202,8 @@ const Editor = () => {
             onChange={handlePrivateChange}
           />
         </label>
+        {errors ? <div className="text-danger">{errors}</div> : null}
+
         <CKEditor
           data={content}
           config={{

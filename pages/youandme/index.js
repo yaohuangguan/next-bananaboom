@@ -117,7 +117,7 @@ const index = ({ currentUser, posts, errors, todos }) => {
               </div>
             </div>
           </div>
-        ) : null}
+        ) : '返回主页刷新页面 然后重新登录'}
       </div>
     </Layout>
   );

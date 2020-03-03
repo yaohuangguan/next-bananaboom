@@ -40,7 +40,7 @@ export const getChineseContent = () => {
 export const getEnglishContent = () => {
   return (
     <div>
-    <p className='text-muted'>First off, this is a bit like resume, but its not. Its main purpose is to let you to know a little more about what i am doing and me as a person.</p>
+    <p className='text-muted'>First off, this is a bit like resume, but its not. Its main purpose is to let you to know a little more about what i am doing and me as a friend.</p>
       <h5>Education:</h5>
       <p>Miami University  Public Ivies</p>
       <p>Bachelor of Art in Interactive Media Studies (STEM Major) GPA:3.7</p>
