@@ -28,9 +28,9 @@ const DropDown = ({ currentUser }) => {
 
         <div className="dropdown-submenu py-1">
           <ul className="dropdown-list text-center">
-            <span className="text-muted">{getGreeting()}</span>
+            <span className="text-muted" style={{wordWrap:'break-word'}}>{getGreeting()}</span>
             <Link href="/dashboard/[id]" as={`/dashboard/${_id ? _id : uid}`}>
-              <li className="dropdown-list-item">
+              <li className="dropdown-list-item" >
                 <span>{getDashboardOnRoutes()}</span>
               </li>
             </Link>

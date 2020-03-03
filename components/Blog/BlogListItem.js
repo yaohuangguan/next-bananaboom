@@ -103,7 +103,7 @@ const BlogListItem = ({
             as={`/blogs/article/${_id}`}
             replace
           >
-            <a className="btn draw-border-blue" style={{ height: "50px" }}>
+            <a className="btn draw-border-blue text-center" style={{ height: "50px" }}>
               {button || "See it in action"}
             </a>
           </Link>
