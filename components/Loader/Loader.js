@@ -1,11 +1,14 @@
-
-const Loader = () => {
+const Loader = ({ color, size }) => {
   return (
-    <>
-      <div className="spinner-border text-white"   role="status">
+    <div className='text-center'>
+      <div
+        className={`spinner-border ${color}`}
+        style={{ width: `${size}`, height: `${size}` }}
+        role="status"
+      >
         <span className="sr-only">Loading...</span>
       </div>
-    </>
+    </div>
   );
 };
 

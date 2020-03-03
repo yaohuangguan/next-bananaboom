@@ -130,7 +130,7 @@ const Editor = () => {
   return (
     <>
       <div id="blog-text" style={{
-          backgroundColor: "rgba(255,255,255,0.6)",
+          backgroundColor: "rgba(255,255,255,0.9)",
           padding: "20px",
           borderRadius: "50px",
           marginBottom: "20px"
@@ -139,7 +139,7 @@ const Editor = () => {
       <form
         className="input-section"
         style={{
-          backgroundColor: "rgba(255,255,255,0.6)",
+          backgroundColor: "rgba(255,255,255,0.9)",
           padding: "20px",
           borderRadius: "50px",
           marginBottom: "20px"

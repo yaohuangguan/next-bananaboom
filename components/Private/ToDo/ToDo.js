@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react";
 import ToDoList from "./ToDoList";
 import api from "../../../utils/Api";
+import Loader from '../../Loader/Loader'
 const ToDo = () => {
   const [title, settitle] = useState("");
   const [todos, settodos] = useState("");
   const [errors, seterrors] = useState("");
+  const [loading, setloading] = useState(false)
   const handleSubmit = async e => {
     e.preventDefault();
     if (!title || title.trim() == "")
@@ -14,18 +16,24 @@ const ToDo = () => {
     settodos(todos);
   };
   useEffect(() => {
+    setloading(true)
     const getTodo = async () => {
       try {
         const response = await api.get("/api/todo");
         const todos = await response.data;
         console.log("todos", todos);
+        setloading(false)
+
         settodos(todos);
       } catch (error) {
         console.log(error);
+        setloading(false)
       }
     };
     getTodo();
-    return () => {};
+    return () => {
+
+    };
   }, []);
   const handleDone = async id => {
     const response = await api.post(`/api/todo/done/${id}`);
@@ -36,9 +44,10 @@ const ToDo = () => {
     return settitle(e.target.value);
   };
   return (
+   
     <div
       style={{
-        backgroundColor: "rgba(255,255,255,0.8)",
+        backgroundColor: "rgba(255,255,255,0.9)",
         padding: "40px",
         borderRadius: "50px",
         marginBottom: "20px",
@@ -61,12 +70,17 @@ const ToDo = () => {
           />
         </label>
 
-        <button className="btn-sm btn-pink" type="submit">
+        <button className="btn-sm btn-secondary" type="submit">
           添加
         </button>
       </form>
       {errors ? <span className="text-danger">{errors}</span> : null}
-      <ToDoList todos={todos} handleDone={handleDone}></ToDoList>
+      {
+      !loading ? (
+        <ToDoList todos={todos} handleDone={handleDone}></ToDoList>
+      ) : <Loader color={'text-secondary'} size={'60px'}></Loader>
+    }
+      
     </div>
   );
 };

@@ -7,8 +7,6 @@ const fillColor = ["#30C4EE", `#006CB7`, `#EE6352`, `#59CD90`, `#F4E04D`];
 const getEnvironment = () =>
   process.env.NODE_ENV === "development" ? true : false;
 const Layout = ({ children }) => {
-  const [loading, setLoading] = useState(false);
-
   useEffect(() => {
     const SmoothScroll = require("smooth-scroll");
     let scroll = new SmoothScroll('a[href*="#"]', {
@@ -18,7 +16,7 @@ const Layout = ({ children }) => {
       if (getEnvironment()) {
         console.log("App is changing to: ", url);
       }
-      setLoading(true);
+
     };
     const routeEnd = url => {
       if (getEnvironment()) {
@@ -29,10 +27,12 @@ const Layout = ({ children }) => {
         "/resume/ch-cn",
         "/resume/en-us"
       ];
-      const ifReload = Promise.resolve(urlReloadList.some(each => {
-        return each == url;
-      }));
-      ifReload.then(()=>Router.reload())
+      const ifReload = Promise.resolve(
+        urlReloadList.some(each => {
+          return each == url;
+        })
+      );
+      ifReload.then(() => Router.reload());
     };
     const routeError = (err, url) => {
       if (err.cancelled) {
@@ -67,24 +67,17 @@ const Layout = ({ children }) => {
             </p>
           </div>
         </noscript>
-        {loading ? (
-          <div className="loading-container">
-            <div className="spinner"></div>
-            <div className="spinner-center"></div>
-          </div>
-        ) : (
-          children
-        )}
+        {children}
       </div>
     </ErrorBoundary>
   );
 };
 Layout.getInitialProps = ({ pathname }) => {
   if (pathname === "/youandme") {
-    require('../Private/Chat/chat.scss')
+    require("../Private/Chat/chat.scss");
 
     require("../../pages/youandme/youandme.scss");
-    return require('../Private/CountDate/countdate.scss')
+    return require("../Private/CountDate/countdate.scss");
   }
   return (
     //main scss

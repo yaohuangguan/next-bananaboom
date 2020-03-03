@@ -23,6 +23,7 @@ const Subscribe = ({
   const [send, setsend] = useState(false);
   const [loading, setloading] = useState(false);
   const [result, setresult] = useState("");
+  const [status, setstatus] = useState("");
   const validEmail = () => {
     var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     return re.test(email);
@@ -33,9 +34,11 @@ const Subscribe = ({
     try {
       const response = await api.post("/api/auth/subscribe", { email });
       const data = await response.data;
-      setresult(data.status);
+      setresult(data.message);
+      setstatus(data.status);
     } catch (error) {
-      setresult(error.status);
+      console.log(error);
+      setresult("Error happened.");
     }
     setloading(false);
   };
@@ -97,7 +100,11 @@ const Subscribe = ({
           </div>
 
           <div className="clear">
-            {result ? <div className="text-secondary">{result}</div> : null}
+            {status && status === "success" ? (
+              <div className="text-success">{result}</div>
+            ) : (
+              <div className="text-danger">{result}</div>
+            )}
             <button
               type="submit"
               disabled={!send}

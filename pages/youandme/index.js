@@ -117,7 +117,7 @@ const index = ({ currentUser, posts, errors, todos }) => {
               </div>
             </div>
           </div>
-        ) : '返回主页刷新页面 然后重新登录'}
+        ) : '验证登录信息，如果没有反应，回主页重新登录'}
       </div>
     </Layout>
   );

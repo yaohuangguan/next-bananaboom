@@ -9,7 +9,7 @@ const PrivatePostItem = ({ tags, name, info, author, content, id,createdDate,cod
   }, []);
   return (
     <>
-      <h3>{name}</h3>
+      <h3 style={{color:'#FF69B4'}}>{name}</h3>
       <code>{info}</code> <br/>
       <code>作者:{author}</code> <br/>
       <code>类型:{tags}</code> <br/>

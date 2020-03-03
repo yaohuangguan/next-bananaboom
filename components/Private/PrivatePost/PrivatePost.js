@@ -45,7 +45,7 @@ const PrivatePost = () => {
             <div
               key={_id}
               style={{
-                backgroundColor: "rgba(255,255,255,0.8)",
+                backgroundColor: "rgba(255,255,255,0.9)",
                 padding: "40px",
                 borderRadius: "50px",
                 marginBottom: "20px"
@@ -56,7 +56,7 @@ const PrivatePost = () => {
           ))
         ) : null
       ) : (
-        <Loader></Loader>
+        <Loader color={'text-secondary'} size={'80px'}></Loader>
       )}
     </>
   );

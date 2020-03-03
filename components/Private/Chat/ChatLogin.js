@@ -13,7 +13,7 @@ const ChatLogin = ({ socket, setUser }) => {
     e.preventDefault();
     try {
       if(!nickname || nickname.trim() == ''){
-        return seterror('输入个名字啊啊啊啊啊啊啊啊')
+        return seterror('输入名字')
       }
       await socket.emit(CONFIRM_USER, nickname, isUser);
     } catch (error) {
@@ -38,16 +38,11 @@ const ChatLogin = ({ socket, setUser }) => {
         />
         <button
           type="submit"
-          style={{
-            color: "rgb(142, 61, 247)",
-            borderRadius: "20px",
-            width: "40px",
-            fontSize: "20px"
-          }}
+          className='btn-sm btn-secondary'
         >
           ❤
         </button>
-        <div className="socket-chat-error">{error ? error : null}</div>
+        <div className="socket-chat-error text-danger">{error ? error : null}</div>
       </form>
     </div>
   );
