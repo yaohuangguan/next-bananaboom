@@ -55,10 +55,13 @@
   justify-content: center;
   z-index: 1;
   justify-self: center;
+  background-color: transparent;
+  
 }
 
+
 .action-btn {
-  background-color: #fff;
+  background-color: transparent;
   border: 0;
   color: #9a999d;
   font-size: 20px;

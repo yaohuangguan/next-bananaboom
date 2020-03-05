@@ -7,8 +7,8 @@ import BlogList from "../../components/Blog/BlogList";
 import api from "../../utils/Api";
 import Head from "next/head";
 import SearchBox from "../../components/SearchBox/SearchBox";
-
-const Blog = ({ blogs, errors, currentUser }) => {
+import Loader from "../../components/Loader/Loader";
+const Blog = ({ blogs, errors, currentUser, loading }) => {
   const router = useRouter();
 
   const [searchField, setsearchField] = useState("");
@@ -18,6 +18,7 @@ const Blog = ({ blogs, errors, currentUser }) => {
     let header = document.querySelector(".shrinkedHeader");
     let blog = document.querySelector(".blog");
     let heroHeight = header.clientHeight;
+
     const shrinkHeader = () => {
       let scrollOffset = scrollY;
       if (scrollOffset > blog.clientHeight) {
@@ -109,6 +110,9 @@ const Blog = ({ blogs, errors, currentUser }) => {
       ) : (
         <>{errors}</>
       )}
+      {!loading ? (
+        <Loader color={"text-secondary"}></Loader>
+      ) : null}
     </Layout>
   );
 };
@@ -126,7 +130,8 @@ Blog.getInitialProps = async () => {
 
   return {
     blogs: posts,
-    errors: errors
+    errors: errors,
+    loading: true
   };
 };
 

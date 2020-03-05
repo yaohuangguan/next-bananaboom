@@ -3,6 +3,7 @@ import "./BlogListItem.scss";
 import api from "../../utils/Api";
 import { useState } from "react";
 import { randomColor } from "../../utils/Utils";
+
 const colors = [`blue`, `orange`, `cyan`, `indigo`, `green`];
 
 const BlogListItem = ({
