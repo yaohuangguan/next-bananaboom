@@ -5,7 +5,9 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "push": "git add . && git commit -m d && ggpush",
+    "prod":"next build && next start"
   },
   "dependencies": {
     "@zeit/next-sass": "^1.0.1",
