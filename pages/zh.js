@@ -101,7 +101,8 @@ Chinese.getInitialProps = async () => {
     ];
     const getData = urls.map(async url => {
       const response = await api.get(url);
-      return await response.data;
+      const data = await response.data;
+      return data;
     });
     const [homepage, logs, projects] = await Promise.all(getData);
     return {

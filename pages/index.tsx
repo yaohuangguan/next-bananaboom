@@ -104,6 +104,7 @@ const Index = ({ homepage, errors, logs, projects, currentUser }) => {
 };
 Index.getInitialProps = async req => {
   let errors;
+  let t0 = performance.now();
   try {
     const urls = [
       "/api/homepage",
@@ -112,9 +113,12 @@ Index.getInitialProps = async req => {
     ];
     const getData = urls.map(async url => {
       const response = await api.get(url);
-      return await response.data;
+      const data = await response.data;
+      return data
     });
     const [homepage, logs, projects] = await Promise.all(getData);
+    let t1 = performance.now();
+    console.log("index took", t1 - t0, "ms");
     return {
       homepage,
       logs,

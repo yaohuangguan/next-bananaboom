@@ -500,3 +500,21 @@
 
 // mongo "mongodb+srv://bananaboom-ommcz.mongodb.net/blogs"  --username samyao
 
+
+// async function fetch(){
+//   const urls = [
+//     "https://nextbananaboom.herokuapp.com/api/homepage",
+//     "https://nextbananaboom.herokuapp.com/api/homepage/logs",
+//     "https://nextbananaboom.herokuapp.com/api/homepage/projects"
+//   ];
+//   const getData = urls.map(async url => {
+//     const response = await fetch(url);
+//     return await response.json();
+//   });
+//   const [homepage, logs, projects] = await Promise.all(getData);
+//   return {
+//     homepage,
+//     logs,
+//     projects
+//   };
+// }
