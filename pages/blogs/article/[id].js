@@ -42,9 +42,9 @@ const blog = ({ posts, comments, currentUser, router }) => {
             e.preventDefault();
             router.replace("/blogs");
           }}
-          className="btn draw-border-blue"
+          className="btn draw-border-black"
         >
-          <span className="text-dark">Go Back</span>
+          <span className='text-dark'>Go Back</span>
         </a>
 
         <section className="my-5 px-4 article">

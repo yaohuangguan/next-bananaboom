@@ -9,6 +9,7 @@ const Jumbo = ({
   backgroundPicture,
   backgroundURL
 }) => {
+  //// https://res.cloudinary.com/next-bananaboom/image/upload/v1582173503/WechatIMG11_ei3ugm.jpg
   const style = {
     backgroundImage: `url(${
       backgroundPicture ? backgroundURL.english : backgroundURL.chinese

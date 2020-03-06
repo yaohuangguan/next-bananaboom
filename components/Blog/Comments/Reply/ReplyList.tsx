@@ -6,7 +6,6 @@ const ReplyList = ({ reply, showReply, comment_id, currentUser,handleNewReply,ge
   const [targetUser, settargetUser] = useState('')
   const handleReplyChange = e => {
     setreplyContent(e.target.value);
-    console.log(replyContent);
   };
   const handleTargetUser = (user) => {
     settargetUser(user)
@@ -25,6 +24,7 @@ const ReplyList = ({ reply, showReply, comment_id, currentUser,handleNewReply,ge
       const newReply = await api.get(`/api/comments/reply/${comment_id}`)
       const data = await newReply.data[0].reply;
       handleNewReply(data)
+      setreplyContent('');
     } catch (error) {
       console.log(error);
     }

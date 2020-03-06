@@ -64,10 +64,10 @@
   @include btn-border-drawing(#ffffff, #ffe593, 2px, bottom, right);
 }
 .draw-border-blue {
-  @include btn-border-drawing(#2eafeb, #eb782e, 2px, bottom, right);
+  @include btn-border-drawing(#3e91e4, #eb782e, 2px, bottom, right);
 }
 .draw-border-black {
-  @include btn-border-drawing(#111111, #02a74c, 2px, bottom, right);
+  @include btn-border-drawing(#414141, #4b84ff, 2px, top, left);
 }
 
 
