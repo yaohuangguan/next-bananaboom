@@ -109,6 +109,11 @@ const index = ({ currentUser, posts, errors, todos }) => {
                 {handleErrors()}
                 <PrivatePost></PrivatePost>
               </div>
+
+              <div className="text-center scroll-friendly bg-secondary white-text">
+                滑动这里滑动整个页面 <br />{" "}
+              </div>
+
               <div className="love-right-side">
                 <ToDo todos={todos}></ToDo>
                 <div className="blog-container">
@@ -117,7 +122,9 @@ const index = ({ currentUser, posts, errors, todos }) => {
               </div>
             </div>
           </div>
-        ) : '验证登录信息，如果没有反应，回主页重新登录'}
+        ) : (
+          "验证登录信息，如果没有反应，回主页重新登录"
+        )}
       </div>
     </Layout>
   );

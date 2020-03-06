@@ -29,17 +29,29 @@
   margin: 0;
   width: 100%;
   display: flex;
+  .scroll-friendly{
+    display: none;
+  }
   @media screen and (max-width: 415px) {
     flex-direction: column;
+    .scroll-friendly{
+      display: block;
+    }
   }
   @media screen and (min-width: 415px) and (max-width: 768px) {
     flex-direction: column;
+    .scroll-friendly{
+      display: block;
+    }
   }
   @media screen and (min-width: 992px) {
     flex-direction: row;
   }
   @media screen and (min-width: 768px) and (max-width: 992px) {
     flex-direction: column;
+    .scroll-friendly{
+      display: block;
+    }
   }
 
   .love-left-side {
