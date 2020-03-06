@@ -11,7 +11,7 @@ const Comment = dynamic(() =>
 );
 
 const blog = ({ posts, comments, currentUser, router }) => {
-  const [loadComment, setloadComment] = useState("");
+
   const { name, content, code, code2, _id , project_id } = posts;
 
   useEffect(() => {

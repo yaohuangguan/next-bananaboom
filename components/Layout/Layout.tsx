@@ -3,20 +3,22 @@ import Router from "next/router";
 import { useEffect, useState } from "react";
 import ErrorBoundary from "../NotFound/ErrorBoundary";
 import HeadConfig from "../Head/Head";
+
 const fillColor = ["#30C4EE", `#006CB7`, `#EE6352`, `#59CD90`, `#F4E04D`];
 const getEnvironment = () =>
   process.env.NODE_ENV === "development" ? true : false;
 const Layout = ({ children }) => {
+  const [loading, setloading] = useState(false);
   useEffect(() => {
     const SmoothScroll = require("smooth-scroll");
     let scroll = new SmoothScroll('a[href*="#"]', {
       speed: 1200
     });
     const routeStart = url => {
+      setloading(true);
       if (getEnvironment()) {
         console.log("App is changing to: ", url);
       }
-
     };
     const routeEnd = url => {
       if (getEnvironment()) {
@@ -57,7 +59,7 @@ const Layout = ({ children }) => {
   return (
     <ErrorBoundary>
       <HeadConfig></HeadConfig>
-      <div>
+      <>
         <noscript>
           <div className="javascript-detect text-center">
             <p>检测到你没有使用JavaScript，为了正常使用本站请启用JavaScript</p>
@@ -67,8 +69,15 @@ const Layout = ({ children }) => {
             </p>
           </div>
         </noscript>
-        {children}
-      </div>
+        {!loading ? (
+          children
+        ) : (
+          <>
+            <div className="loader"></div>
+            {children}
+          </>
+        )}
+      </>
     </ErrorBoundary>
   );
 };

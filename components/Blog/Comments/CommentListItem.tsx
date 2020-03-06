@@ -27,7 +27,7 @@ const CommentListItem = ({ user, comment, date, photoURL, id, reply, currentUser
   
                 </div>
                 <span>{comment}</span>
-                <Reply reply={reply} id={id} currentUser={currentUser}/>
+                <Reply reply={reply} comment_id={id} currentUser={currentUser} />
               </div>
              
             </div>

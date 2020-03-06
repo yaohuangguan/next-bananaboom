@@ -2,7 +2,7 @@ import ReplyList from "./ReplyList";
 import api from "../../../../utils/Api";
 import axios from "axios";
 import { useState, useEffect } from "react";
-const Reply = ({ reply, id, currentUser }) => {
+const Reply = ({ reply, comment_id, currentUser }) => {
   const [replyContent, setreplyContent] = useState("");
   const [replyList, setreplyList] = useState(reply);
   const [errors, seterrors] = useState("");
@@ -19,12 +19,18 @@ const Reply = ({ reply, id, currentUser }) => {
     let source = axios.CancelToken.source();
     const getNewReply = async () => {
       try {
-        const response = await api.get(`/api/comments/reply/${id}`, {
+        const response = await api.get(`/api/comments/reply/${comment_id}`, {
           cancelToken: source.token
         });
         const newReply = await response.data[0].reply;
-
         setreplyList(newReply);
+        const emoji = await axios.get(
+          `https://emoji.getdango.com/api/emoji?q=$happy`,{
+            cancelToken: source.token
+          }
+        );
+        const data = await emoji.data;
+        setemojiList(data.results);
       } catch (error) {
         if (axios.isCancel(error)) {
           console.log("caught cancel");
@@ -37,8 +43,10 @@ const Reply = ({ reply, id, currentUser }) => {
     };
   }, []);
   const showReply = e => {
-    const reply = document.getElementById(id);
-    reply.classList.toggle("d-none");
+    const reply = document.getElementById(comment_id);
+    if(reply){
+      reply.classList.toggle("d-none");
+    }
   };
 
   const cleanReply = () => {
@@ -58,17 +66,16 @@ const Reply = ({ reply, id, currentUser }) => {
       const { displayName, photoURL } = currentUser;
       const response = await api({
         method: "post",
-        url: `/api/comments/reply/${id}`,
+        url: `/api/comments/reply/${comment_id}`,
         data: JSON.stringify({
           user: displayName,
           photoURL,
           reply: replyContent
         })
       });
-      await response.data;
-      const newReply = await (await api.get(`/api/comments/reply/${id}`))
-        .data[0].reply;
-      setreplyList(newReply);
+
+      const data = getNewReply(comment_id)
+      handleNewReply(data)
       cleanReply();
       showReply();
     } catch (error) {
@@ -77,6 +84,14 @@ const Reply = ({ reply, id, currentUser }) => {
       showReply();
     }
   };
+  const getNewReply = async (comment_id) => {
+    const newReply = await api.get(`/api/comments/reply/${comment_id}`)
+    const data = await newReply.data[0].reply
+    return data;
+  }
+  const handleNewReply = (newReply) => {
+    setreplyList(newReply);
+  }
   const appendToComment = e => {
     setreplyContent(replyContent + e.target.textContent);
   };
@@ -107,7 +122,7 @@ const Reply = ({ reply, id, currentUser }) => {
       >
         {replyList.length === 0 ? null : (
           <div style={{ justifySelf: "flex-start" }}>
-            <ReplyList reply={replyList} showReply={showReply}></ReplyList>
+            <ReplyList reply={replyList} showReply={showReply} comment_id={comment_id} currentUser={currentUser} handleNewReply={handleNewReply} getNewReply={getNewReply}></ReplyList>
           </div>
         )}
         <div style={{ justifySelf: "flex-end" }}>
@@ -115,14 +130,11 @@ const Reply = ({ reply, id, currentUser }) => {
             回复
           </a>
 
-          <a>
-            <img src="https://img.icons8.com/cotton/30/000000/comments--v2.png" />
-            {replyList.length}
-          </a>
+          <a>({replyList.length})</a>
         </div>
       </div>
 
-      <div className="d-none m-0 reply col-md-6" id={id}>
+      <div className="d-none m-0 reply col-md-6" id={comment_id}>
         {emojiList ? getEmojiList() : null}
 
         <div style={{ display: "flex", flexDirection: "column" }}>
@@ -135,7 +147,7 @@ const Reply = ({ reply, id, currentUser }) => {
           />
           <button
             type="submit"
-            className="bg-success btn-sm text-white"
+            className="bg-dark btn-sm text-white"
             onClick={addReply}
             style={{ alignSelf: "flex-end", borderRadius: "40px" }}
           >

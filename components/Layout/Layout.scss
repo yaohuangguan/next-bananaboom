@@ -1,0 +1,30 @@
+.loader {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 4px;
+  background-image: linear-gradient(
+    to right,
+    #6253e1,
+    rgb(174, 65, 189),
+    #a3a1ff,
+    #f24645
+  );
+  transition: all .3s ease-in-out 0s;
+  transform: translateX(60%);
+  animation: horizontal-loader 2s cubic-bezier(.2,.5,.4,.7) infinite;
+  animation-delay: .1s;
+  z-index: 10000;
+}
+
+@keyframes horizontal-loader {
+0% {
+  transform: translateX(-100%);
+}
+50% {
+  transform: translateX(0);
+}
+100% {
+  transform: translateX(100%);
+}
+}

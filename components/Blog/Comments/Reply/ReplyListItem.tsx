@@ -1,15 +1,27 @@
-const ReplyListItem = ({ id, content, date, photoURL, user }) => {
+const ReplyListItem = ({
+  id,
+  content,
+  date,
+  photoURL,
+  user,
+  targetUser,
+  handleTargetUser,
+  replyContent,
+  handleReplyChange,
+  makeReplyReq
+}) => {
   const showReply = e => {
     const reply = document.getElementById(id);
-    reply.classList.toggle("d-none");
+    if (reply) {
+      reply.classList.toggle("d-none");
+    }
+    handleTargetUser(user)
   };
 
   return (
     <div style={{ display: "flex" }}>
       <img
-        src={
-          photoURL
-        }
+        src={photoURL}
         alt="avatar"
         width="40px"
         height="40px"
@@ -19,14 +31,20 @@ const ReplyListItem = ({ id, content, date, photoURL, user }) => {
         className="mb-1 w-100"
         style={{ display: "flex", flexFlow: "column wrap" }}
       >
-        
         <div className="p-3">
           <div className="mb-2">
             <strong className="primary-font font-weight-bold">{user}</strong>
             <small className="pull-right text-muted">{date}</small>
             <br />
           </div>
-          <p className="mb-2">{content}</p>
+          <p className="mb-2">
+            {targetUser ? (
+              <span className="bg-light">
+                @{targetUser}
+              </span>
+            ) : null}
+              {content}
+          </p>
         </div>
 
         <a
@@ -36,20 +54,44 @@ const ReplyListItem = ({ id, content, date, photoURL, user }) => {
         >
           回复
         </a>
-        <div className="w-100 m-0 d-none reply form-group" id={id}>
+        <div
+          className="w-100 m-0 d-none reply form-group"
+          style={{ position: "relative" }}
+          id={id}
+        >
+          <a
+            className="bg-success white-text"
+            style={{
+              position: "absolute",
+              left: 0,
+              top: "-25px",
+              borderRadius: "30px"
+            }}
+          >
+            @{user}
+          </a>
           <input
             type="text"
             className="form-control reply-field"
             placeholder="Enter your public reply here..."
+            value={replyContent}
+            onChange={handleReplyChange}
           />
-           <button type='submit' style={{borderRadius:'50px'}} className='bg-success btn-sm text-white'>回复</button>
+          <button
+            type="submit"
+            style={{ borderRadius: "50px" }}
+            className="bg-dark btn-sm text-white"
+            onClick={makeReplyReq}
+          >
+            发送
+          </button>
         </div>
       </div>
       <style jsx>{`
-        .reply-field{
+        .reply-field {
           box-shadow: none;
           border: 2px solid #333;
-          border-radius:30px
+          border-radius: 30px;
         }
         .reply-field:focus {
           border: none;

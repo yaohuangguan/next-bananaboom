@@ -11,10 +11,10 @@ const Comment = ({ currentUser, comments, _id }) => {
   const [commentsList, setcommentsList] = useState(comments);
   const [emojiList, setemojiList] = useState("");
   const fetchEmoji = async () => {
-    const emoji = await fetch(
+    const emoji = await axios(
       `https://emoji.getdango.com/api/emoji?q=${commentInputField}`
     );
-    const data = await emoji.json();
+    const data = await emoji.data;
     setemojiList(data.results);
   };
   const handleCommentChange = async e => {
@@ -88,7 +88,6 @@ const Comment = ({ currentUser, comments, _id }) => {
       seterrors("");
       clearCommentField();
     } catch (error) {
-      seterrors(error);
       clearCommentField();
     }
   };
@@ -161,7 +160,7 @@ const Comment = ({ currentUser, comments, _id }) => {
             </div>
             <button
               type="button"
-              className="btn btn-hover color-3 mb-3 waves-effect waves-light float-right"
+              className="btn bg-dark text-white mb-3 waves-effect waves-light float-right"
               onClick={submitComment}
             >
               发送
