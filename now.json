@@ -12,17 +12,9 @@
       "headers" : [
         {
           "key" : "Cache-Control",
-          "value" : "no-cache"
+          "value" : "public, max-age=0, must-revalidate"
         }
       ]
-    }
-  ],
-  "routes": [
-    { "src": "/shopping", "dest": "https://yby.best" },
-    {
-      "src": "^/sw.js",
-      "headers": { "cache-control": "s-maxage=0" },
-      "dest": "/sw.js"
     }
   ]
 }
