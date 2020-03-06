@@ -102,9 +102,9 @@ const Index = ({ homepage, errors, logs, projects, currentUser }) => {
     </Layout>
   );
 };
-Index.getInitialProps = async req => {
+Index.getInitialProps = async () => {
   let errors;
-  let start = new Date()
+
   try {
     const urls = [
       "/api/homepage",
@@ -114,12 +114,10 @@ Index.getInitialProps = async req => {
     const getData = urls.map(async url => {
       const response = await api.get(url);
       const data = await response.data;
-      return data
+      return data;
     });
     const [homepage, logs, projects] = await Promise.all(getData);
-   
-    let end = new Date() - start;
-    console.log('index time', end,'ms')
+
     return {
       homepage,
       logs,
@@ -127,11 +125,10 @@ Index.getInitialProps = async req => {
     };
   } catch (error) {
     errors = `Sorry, 404. It shows incomplete pages，for the up to date contents，please refresh the page.`;
+    return {
+      errors
+    };
   }
-
-  return {
-    errors
-  };
 };
 
 export default Index;

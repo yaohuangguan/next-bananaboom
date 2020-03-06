@@ -18,9 +18,9 @@
 //     code: `import { withRouter } from "react-router-dom";
 //           const Blog3 = ({ history }) => {
 //             return (
-             
+
 //                 <a href='#' onClick={(e) => {e.preventDefault();history.go(-1)}} title='Go Back'>)}
-          
+
 //                 export default withRouter(Blog3)`
 //   },
 //   {
@@ -60,7 +60,7 @@
 //     }
 //     }
 //     }
-    
+
 //     a()()() // sam plays basketball very well`
 //   }
 // ]);
@@ -90,10 +90,10 @@
 //           This is basically how to use Axios interceptors globally. Of course,
 //           this code is not perfect, it has a lot of space to improve. Wishing
 //           this could help you a little bit.
-          
+
 //           Method 2 using Vue $http,
 //           import this in your main.js file, and you can use replaced this.$http to make axios request globally`,
-//     code: `      
+//     code: `
 //           import axios from "axios";
 //           const api = axios.create({
 //             baseURL: '/',
@@ -114,7 +114,7 @@
 //             },
 //             error => Promise.reject(error)
 //           );
-     
+
 //           api.interceptors.response.use(
 //             response => {
 //               if (response.status === 200 || response.status === 201) {
@@ -128,15 +128,13 @@
 //               if (error.response.status) {
 //                 switch (error.response.status) {
 //                   case 401:
-                   
 
 //                     break;
 
 //                   case 403:
-                   
+
 //                     break;
 //                   case 404:
-                   
 
 //                   default:
 //                     throw error;
@@ -229,9 +227,9 @@
 //     code: `import { withRouter } from "react-router-dom";
 //           const Blog3 = ({ history }) => {
 //             return (
-             
+
 //                 <a href='#' onClick={(e) => {e.preventDefault();history.go(-1)}} title='Go Back'>)}
-          
+
 //                 export default withRouter(Blog3)`
 //   },
 //   {
@@ -272,7 +270,7 @@
 //     }
 //     }
 //     }
-    
+
 //     a()()() // sam plays basketball very well`
 //   }
 // ];
@@ -499,22 +497,38 @@
 //   -keyout localhost-privkey.pem -out localhost-cert.pem
 
 // mongo "mongodb+srv://bananaboom-ommcz.mongodb.net/blogs"  --username samyao
+const axios = require("axios");
 
+async function api() {
+  let errors;
 
-// async function fetch(){
-//   const urls = [
-//     "https://nextbananaboom.herokuapp.com/api/homepage",
-//     "https://nextbananaboom.herokuapp.com/api/homepage/logs",
-//     "https://nextbananaboom.herokuapp.com/api/homepage/projects"
-//   ];
-//   const getData = urls.map(async url => {
-//     const response = await fetch(url);
-//     return await response.json();
-//   });
-//   const [homepage, logs, projects] = await Promise.all(getData);
-//   return {
-//     homepage,
-//     logs,
-//     projects
-//   };
-// }
+  try {
+    const urls = [
+      "https://nextbananaboom.herokuapp.com/api/homepage",
+      "https://nextbananaboom.herokuapp.com/api/homepage/logs",
+      "https://nextbananaboom.herokuapp.com/api/homepage/projects"
+    ];
+    const getData = urls.map(async url => {
+      const response = await fetch(url);
+      const data = await response.json();
+      return data;
+    });
+    const [homepage, logs, projects] = await Promise.all(getData);
+
+    return {
+      homepage,
+      logs,
+      projects
+    };
+  } catch (error) {
+    errors = `Sorry, 404. It shows incomplete pages，for the up to date contents，please refresh the page.`;
+
+    return {
+      errors
+    };
+  }
+}
+const result = api();
+console.log(result);
+
+module.exports = axios;

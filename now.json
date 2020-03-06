@@ -6,6 +6,17 @@
       "NODE_ENV": "production"
     }
   },
+  "headers":[
+    {
+      "source": "/(.*)",
+      "headers" : [
+        {
+          "key" : "Cache-Control",
+          "value" : "no-cache"
+        }
+      ]
+    }
+  ],
   "routes": [
     { "src": "/shopping", "dest": "https://yby.best" },
     {
