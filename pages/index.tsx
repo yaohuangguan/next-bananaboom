@@ -10,7 +10,7 @@ import Animation from "../utils/Animation";
 import consolelog from "../utils/Console.log";
 import BrowserTest from "../utils/BrowserTest";
 
-const English = ({ homepage, errors, logs, projects, currentUser }) => {
+const Index = ({ homepage, errors, logs, projects, currentUser }) => {
   const [webUrl, SetWebUrl] = useState("");
   useEffect(() => {
     Animation();
@@ -102,7 +102,7 @@ const English = ({ homepage, errors, logs, projects, currentUser }) => {
     </Layout>
   );
 };
-English.getInitialProps = async req => {
+Index.getInitialProps = async req => {
   let errors;
   try {
     const urls = [
@@ -129,4 +129,4 @@ English.getInitialProps = async req => {
   };
 };
 
-export default English;
+export default Index;
