@@ -1,29 +1,31 @@
 const withSass = require("@zeit/next-sass");
 const withCSS = require("@zeit/next-css");
-
-const nextConfig = withCSS(
-  withSass({
-    webpack(config, options) {
-      config.module.rules.push(
-        {
-          test: /\.(png|jpg|gif|svg|eot|ttf|woff|woff2)$/,
-          use: {
-            loader: "url-loader",
+const withPwa = require("next-pwa");
+const nextConfig = withPwa(
+  withCSS(
+    withSass({
+      webpack(config, options) {
+        config.module.rules.push(
+          {
+            test: /\.(png|jpg|gif|svg|eot|ttf|woff|woff2)$/,
+            use: {
+              loader: "url-loader",
+              options: {
+                limit: 100000
+              }
+            }
+          },
+          {
+            test: /\.(ogg|mp3|wav|mpe?g)$/i,
+            loader: "file-loader",
             options: {
-              limit: 100000
+              name: "[path][name].[ext]"
             }
           }
-        },
-        {
-          test: /\.(ogg|mp3|wav|mpe?g)$/i,
-          loader: "file-loader",
-          options: {
-            name: "[path][name].[ext]"
-          }
-        }
-      );
-      return config;
-    }
-  })
+        );
+        return config;
+      }
+    })
+  )
 );
-module.exports = { ...nextConfig, target: "serverless" };
+module.exports = nextConfig;

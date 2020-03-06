@@ -1,7 +1,6 @@
 import App from "next/app";
 import firebase from "../firebase/firebase";
 import api from "../utils/Api";
-import Router from "next/router";
 interface MyProps {
   Component: any;
   pageProps: any;

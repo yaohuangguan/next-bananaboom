@@ -1,6 +1,6 @@
 {
-  "short_name": "Sam Yao",
-  "name": "Sam Yao Web Blog",
+  "name": "Samyao",
+  "short_name": "samyao",
   "icon": [
     {
       "src": "./favicon.ico",
@@ -18,8 +18,13 @@
       "type": "image/png"
     }
   ],
-  "start_url": "/",
+  "gcm_sender_id": "123",
+  "gcm_user_visible_only": true,
+  "start_url": "/sw.js",
+  "permissions": ["gcm"],
+  "scope": "/sw.js",
+  "orientation": "portrait",
   "display": "standalone",
-  "theme_color": "#000000",
+  "theme_color": "#ffffff",
   "background_color": "#ffffff"
 }
