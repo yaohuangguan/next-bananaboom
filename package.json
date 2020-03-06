@@ -6,7 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "push": "git add . && git commit -m d && ggpush",
+    "push": "git add . && git commit -m d && git push origin master",
     "prod":"next build && next start"
   },
   "dependencies": {
