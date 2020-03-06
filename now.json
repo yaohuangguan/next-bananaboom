@@ -1,13 +1,17 @@
 {
   "name": "next-bananaboom",
-  "version":2,
+  "version": 2,
   "build": {
     "env": {
       "NODE_ENV": "production"
     }
   },
   "routes": [
-    { "src": "/shopping", "dest": "https://yby.best" }
+    { "src": "/shopping", "dest": "https://yby.best" },
+    {
+      "src": "^/sw.js",
+      "headers": { "cache-control": "s-maxage=0" },
+      "dest": "/sw.js"
+    }
   ]
-
 }
