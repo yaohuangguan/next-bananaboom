@@ -62,7 +62,7 @@ const Index = ({ homepage, errors, logs, projects, currentUser }) => {
         welcome={jumbo_welcome || "Always on the road"}
         info={jumbo_info ? "" : errors}
         button={jumbo_button || "Explore"}
-        backgroundPicture={true}
+        language={'english'}
         backgroundURL={backgroundURL}
       />
       <div className="container">

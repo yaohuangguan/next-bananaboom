@@ -55,7 +55,7 @@ const Chinese = ({ homepage, errors, logs, projects, currentUser }) => {
         welcome={jumbo_welcome_cn || "Explore the unknown"}
         info={jumbo_info_cn ? "" : errors}
         button={jumbo_button_cn || "探索"}
-        backgroundPicture={false}
+        language={'chinese'}
         backgroundURL={backgroundURL}
       />
       <div className="container">
