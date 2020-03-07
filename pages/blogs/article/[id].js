@@ -23,7 +23,7 @@ const blog = ({ posts, comments, currentUser, router }) => {
       // const textNode = document.createTextNode(temp)
       // temp.appendChild(textNode)
       contentDiv.innerHTML = content;
-      contentDiv.style.wordWrap = 'break-word'
+
     } 
   }, []);
   // console.log(typeof content)
@@ -51,7 +51,7 @@ const blog = ({ posts, comments, currentUser, router }) => {
           <h2 className="h1-responsive font-weight-bold text-center my-5">
             {name}
           </h2>
-          <div style={{ lineHeight: "40px" }} id="content-field"></div>
+          <div style={{ lineHeight: "40px",wordWrap:'break-word' }} id="content-field"></div>
 
           {code ? (
             <div>

@@ -10,7 +10,6 @@
   color: $color;
   transition: color $duration $duration/3;
   position: relative;
-
   &::before,
   &::after {
     border: 0 solid transparent;
