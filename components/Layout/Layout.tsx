@@ -69,14 +69,11 @@ const Layout = ({ children }) => {
             </p>
           </div>
         </noscript>
-        {!loading ? (
-          children
-        ) : (
-          <>
-            <div className="loader"></div>
-            {children}
-          </>
-        )}
+
+        <>
+          {loading ? <div className="loader"></div> : null}
+          {children}
+        </>
       </>
     </ErrorBoundary>
   );
