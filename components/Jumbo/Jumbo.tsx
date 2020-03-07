@@ -23,7 +23,18 @@ const Jumbo = ({ name, welcome, info, button, language, backgroundURL }) => {
 
   return (
     <div className="jumbo-section">
-      <video id="background-video" poster='https://res.cloudinary.com/next-bananaboom/image/upload/v1583502300/svg_flg6tm.gif' autoPlay loop muted playsInline>
+      <video
+        id="background-video"
+        poster={
+          language === "english"
+            ? "https://res.cloudinary.com/next-bananaboom/image/upload/v1583502300/svg_flg6tm.gif"
+            : "https://res.cloudinary.com/next-bananaboom/image/upload/v1583558076/spce_rnwawc.gif"
+        }
+        autoPlay
+        loop
+        muted
+        playsInline
+      >
         <source
           src={language === "english" ? "/video/en.webm" : "/video/c.webm"}
           type="video/webm"
