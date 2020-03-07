@@ -23,7 +23,7 @@ const blog = ({ posts, comments, currentUser, router }) => {
       // const textNode = document.createTextNode(temp)
       // temp.appendChild(textNode)
       contentDiv.innerHTML = content;
-
+      contentDiv.style.wordWrap = 'break-word'
     } 
   }, []);
   // console.log(typeof content)
