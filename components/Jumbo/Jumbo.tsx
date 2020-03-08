@@ -28,11 +28,11 @@ const Jumbo = ({ name, welcome, info, button, language, backgroundURL }) => {
       >
         <video
           className="background-video"
-          // poster={
-          //   language === "english"
-          //     ? "https://res.cloudinary.com/next-bananaboom/image/upload/v1583502300/svg_flg6tm.gif"
-          //     : "https://res.cloudinary.com/next-bananaboom/image/upload/v1583558076/spce_rnwawc.gif"
-          // }
+          poster={
+            language === "english"
+              ? "https://res.cloudinary.com/next-bananaboom/image/upload/v1583667017/Screen_Shot_2020-03-08_at_1.47.46_PM_jix5ig_ixzaau.jpg"
+              : "https://res.cloudinary.com/next-bananaboom/image/upload/v1583667009/Screen_Shot_2020-03-08_at_1.48.48_PM_tao0mf_tnnt8l.jpg"
+          }
           autoPlay
           loop
           muted
