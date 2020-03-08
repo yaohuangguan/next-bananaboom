@@ -2,11 +2,32 @@
   font-family: "Sriracha", cursive;
   position: relative;
 
-  #background-video {
-    min-height: 100vh;
-    min-width: 100vw;
-    z-index: -1000;
-    overflow: hidden;
+  .background-video {
+    @media screen and (min-width: 320px) and(max-width:415px) {
+      min-width: 100%;
+      min-height: 100vh;
+    }
+    @media screen and (max-width: 330px) {
+      min-width: 100%;
+      min-height: 100vh;
+     
+    }
+    @media screen and (min-width: 415px) and (max-width: 768px) {
+      min-width: 100%;
+      min-height: 100vh;
+    }
+    @media screen and (min-width: 992px) and (max-width: 1439px) {
+      min-width: 100%;
+      min-height: 100vh;
+    }
+    @media screen and (min-width: 1440px) {
+      min-width: 100%;
+      min-height: 100vh;
+    }
+    @media screen and (min-width: 768px) and (max-width: 992px) {
+      min-width: 100%;
+      min-height: 100vh;
+    }
   }
   .jumbo-wrapper {
     min-height: 100vh;
@@ -20,10 +41,10 @@
     .jumbo {
       .card-subtitle {
         @media screen and (min-width: 320px) and(max-width:415px) {
-          font-size: 1.5em;
+          font-size: 2em;
         }
         @media screen and (max-width: 330px) {
-          font-size: 1em;
+          font-size: 1.5em;
         }
         @media screen and (min-width: 415px) and (max-width: 768px) {
           font-size: 2em;
@@ -45,7 +66,7 @@
         // -webkit-text-fill-color: transparent;
         font-weight: bold;
         @media screen and (min-width: 320px) and(max-width:415px) {
-          font-size: 2.5em;
+          font-size: 3em;
         }
         @media screen and (max-width: 330px) {
           font-size: 3em;

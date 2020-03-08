@@ -23,27 +23,31 @@ const Jumbo = ({ name, welcome, info, button, language, backgroundURL }) => {
 
   return (
     <div className="jumbo-section">
-      <video
-        id="background-video"
-        poster={
-          language === "english"
-            ? "https://res.cloudinary.com/next-bananaboom/image/upload/v1583502300/svg_flg6tm.gif"
-            : "https://res.cloudinary.com/next-bananaboom/image/upload/v1583558076/spce_rnwawc.gif"
-        }
-        autoPlay
-        loop
-        muted
-        playsInline
+      <div
+        style={{ maxHeight: "100vh", maxWidth: "100vw", overflow: "hidden" }}
       >
-        <source
-          src={language === "english" ? "/video/en.webm" : "/video/c.webm"}
-          type="video/webm"
-        />
-        <source
-          src={language === "english" ? "/video/en.mpeg" : "/video/c.mpeg"}
-          type="video/mp4"
-        />
-      </video>
+        <video
+          className="background-video"
+          poster={
+            language === "english"
+              ? "https://res.cloudinary.com/next-bananaboom/image/upload/v1583502300/svg_flg6tm.gif"
+              : "https://res.cloudinary.com/next-bananaboom/image/upload/v1583558076/spce_rnwawc.gif"
+          }
+          autoPlay
+          loop
+          muted
+          playsInline
+        >
+          <source
+            src={language === "english" ? "/video/en.webm" : "/video/c.webm"}
+            type="video/webm"
+          />
+          <source
+            src={language === "english" ? "/video/en.mpeg" : "/video/c.mpeg"}
+            type="video/mp4"
+          />
+        </video>
+      </div>
       <div className="text-white text-center py-5 px-4 jumbo-wrapper">
         <div className="jumbo">
           <h1 className="card-subtitle mb-3">{name}</h1>
