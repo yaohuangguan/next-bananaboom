@@ -25,11 +25,11 @@ const Jumbo = ({ name, welcome, info, button, language, backgroundURL }) => {
     <div className="jumbo-section">
       <video
         id="background-video"
-        poster={
-          language === "english"
-            ? "https://res.cloudinary.com/next-bananaboom/image/upload/v1583646555/Screen_Shot_2020-03-08_at_1.47.46_PM_jix5ig.png"
-            : "https://res.cloudinary.com/next-bananaboom/image/upload/v1583646555/Screen_Shot_2020-03-08_at_1.48.48_PM_tao0mf.png"
-        }
+        // poster={
+        //   language === "english"
+        //     ? "https://res.cloudinary.com/next-bananaboom/image/upload/v1583646555/Screen_Shot_2020-03-08_at_1.47.46_PM_jix5ig.png"
+        //     : "https://res.cloudinary.com/next-bananaboom/image/upload/v1583646555/Screen_Shot_2020-03-08_at_1.48.48_PM_tao0mf.png"
+        // }
         autoPlay
         loop
         muted
