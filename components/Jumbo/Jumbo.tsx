@@ -27,8 +27,8 @@ const Jumbo = ({ name, welcome, info, button, language, backgroundURL }) => {
         id="background-video"
         poster={
           language === "english"
-            ? "https://res.cloudinary.com/next-bananaboom/image/upload/v1583502300/svg_flg6tm.gif"
-            : "https://res.cloudinary.com/next-bananaboom/image/upload/v1583558076/spce_rnwawc.gif"
+            ? "https://res.cloudinary.com/next-bananaboom/image/upload/v1583646555/Screen_Shot_2020-03-08_at_1.47.46_PM_jix5ig.png"
+            : "https://res.cloudinary.com/next-bananaboom/image/upload/v1583646555/Screen_Shot_2020-03-08_at_1.48.48_PM_tao0mf.png"
         }
         autoPlay
         loop

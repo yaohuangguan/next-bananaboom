@@ -58,7 +58,7 @@ const Chinese = ({ homepage, errors, logs, projects, currentUser }) => {
         language={'chinese'}
         backgroundURL={backgroundURL}
       />
-      <div className="container">
+      <div className='container'>
         <Intro
           title={intro_title_cn || "永远在路上"}
           subtitle={intro_subtitle_cn || "嗨,我是Sam"}
