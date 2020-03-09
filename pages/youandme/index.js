@@ -93,7 +93,7 @@ const index = ({ currentUser, posts, errors, todos }) => {
     </div>
   );
   return (
-    <Layout>
+    <Layout head={'We are happy couple | yaobaiyang.com'}>
       <div>
         {getVip() ? (
           <div className="row love-container">

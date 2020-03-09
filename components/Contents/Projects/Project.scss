@@ -1,9 +1,10 @@
 .hover {
-  transition: all 0.5s ease;
+  transition: transform 0.5s ease, box-shadow 0.5s ease;
+  border-radius: 30px;
   &:hover {
-    background-color: rgba($color: #6a82fb, $alpha: 0.1);
-    transform: scale(1.02);
+    transform: scale(1.03);
+    -webkit-box-shadow: 10px 10px 0px -2px rgba(200, 199, 245, 1);
+    -moz-box-shadow: 10px 10px 0px -2px rgba(200, 199, 245, 1);
+    box-shadow: 10px 10px 0px -2px rgba(200, 199, 245, 1);
   }
 }
-
-

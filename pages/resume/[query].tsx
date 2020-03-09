@@ -22,10 +22,7 @@ const Resume = ({ resumeItem, errors, router }) => {
   };
 
   return (
-    <Layout>
-      <Head>
-        <title>Application Board</title>
-      </Head>
+    <Layout head={'Sam\'s about page 关于Sam的个人生活爱好等'}>
       <div className="container">
         {router.asPath == "/resume/en-us" ? (
           <div className="float-right pt-2">

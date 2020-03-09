@@ -30,7 +30,7 @@ const dashboard = ({ currentUser }) => {
   };
 
   return (
-    <Layout>
+    <Layout head={'用户中心 User Control || yaobaiyang.com'}>
       <div>
         {currentUser ? (
           <div>

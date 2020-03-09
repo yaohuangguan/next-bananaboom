@@ -1,6 +1,7 @@
 import App from "next/app";
 import firebase from "../firebase/firebase";
 import api from "../utils/Api";
+import Head from "next/head";
 interface MyProps {
   Component: any;
   pageProps: any;
@@ -43,14 +44,12 @@ class SamMainApp extends App<MyProps, MyState> {
           return typeof token === "string" && { currentUser: data };
         }
       });
-    } catch (error) {
-
-    }
+    } catch (error) {}
   };
   componentDidMount() {
     let user = window.localStorage.getItem("token") || null;
-    let refresh = localStorage.getItem('refresh')
-    if(!refresh){
+    let refresh = localStorage.getItem("refresh");
+    if (!refresh) {
       this.getUserProfile(user);
     }
     this.unsubscribeFromAuth = firebase.auth.onAuthStateChanged(user => {

@@ -3,17 +3,13 @@ import Router from "next/router";
 import { useEffect, useState } from "react";
 import ErrorBoundary from "../NotFound/ErrorBoundary";
 import HeadConfig from "../Head/Head";
-
 const fillColor = ["#30C4EE", `#006CB7`, `#EE6352`, `#59CD90`, `#F4E04D`];
 const getEnvironment = () =>
   process.env.NODE_ENV === "development" ? true : false;
-const Layout = ({ children }) => {
+const Layout = ({ children, head }) => {
   const [loading, setloading] = useState(false);
   useEffect(() => {
-    const SmoothScroll = require("smooth-scroll");
-    let scroll = new SmoothScroll('a[href*="#"]', {
-      speed: 1200
-    });
+    
     const routeStart = url => {
       setloading(true);
       if (getEnvironment()) {
@@ -53,27 +49,27 @@ const Layout = ({ children }) => {
         Router.pathname === "/blogs/article/[id]" ? null : routeEnd
       );
       Router.events.off("routeChangeError", routeError);
+
     };
   }, []);
 
   return (
     <ErrorBoundary>
-      <HeadConfig></HeadConfig>
-      <>
-        <noscript>
-          <div className="javascript-detect text-center">
-            <p>检测到你没有使用JavaScript，为了正常使用本站请启用JavaScript</p>
-            <p>
-              No JavaScript detected, please enable it and refresh the site for
-              a better experience.
-            </p>
-          </div>
-        </noscript>
+      <HeadConfig head={head}></HeadConfig>
 
-        <>
-          {loading ? <div className="loader"></div> : null}
-          {children}
-        </>
+      <noscript>
+        <div className="javascript-detect text-center">
+          <p>检测到你没有使用JavaScript，为了正常使用本站请启用JavaScript</p>
+          <p>
+            No JavaScript detected, please enable it and refresh the site for a
+            better experience.
+          </p>
+        </div>
+      </noscript>
+
+      <>
+        {loading ? <div className="loader"></div> : null}
+        {children}
       </>
     </ErrorBoundary>
   );

@@ -47,7 +47,7 @@ const Index = ({ homepage, errors, logs, projects, currentUser }) => {
   } = homepage[0];
 
   return (
-    <Layout>
+    <Layout head={"Sam 个人博客 博客文章 技术文章 生活文章 个人心得"}>
       <BrowserTest></BrowserTest>
       <Header
         blogName={"Blog"}
@@ -58,22 +58,18 @@ const Index = ({ homepage, errors, logs, projects, currentUser }) => {
         currentUser={currentUser ? currentUser : null}
       />
       <Jumbo
-        name={jumbo_name || "Sam's blog"}
-        welcome={jumbo_welcome || "Always on the road"}
+        name={jumbo_name}
+        welcome={jumbo_welcome}
         info={jumbo_info ? "" : errors}
-        button={jumbo_button || "Explore"}
-        language={'english'}
+        button={jumbo_button}
+        language={"english"}
         backgroundURL={backgroundURL}
       />
       <div className="container">
         <Intro
-          title={intro_title ? intro_title : "Always on the road"}
-          subtitle={intro_subtitle ? intro_subtitle : "Hi, I am Sam."}
-          intro={
-            intro_intro
-              ? intro_intro
-              : `I am a Full stack developer and designer, open source software contributor at BeeHex 3D food printing. You can also find some of my projects and posts on GitHub and CSDN. This website is being consistently maintained by me and improving its performance and user experience. If you have any good ideas of improving this site, Such as UI&UX, performance ideas, database design or technical tools related, maybe reporting bugs,etc... please go to the bottom of this site and leave a comment!`
-          }
+          title={intro_title}
+          subtitle={intro_subtitle}
+          intro={intro_intro}
           projects={projects}
         ></Intro>
         <Subscribe
@@ -85,20 +81,13 @@ const Index = ({ homepage, errors, logs, projects, currentUser }) => {
           }
           copyright={` All rights reserved ©2019-2020  ${webUrl ||
             "yaobaiyang.com"} `}
-          web_version={
-            subscribe_web_version
-              ? subscribe_web_version
-              : "Web version: last version"
-          }
+          web_version={subscribe_web_version}
           log={" Click here to see logs of updates"}
           logs_content={logs}
         />
       </div>
 
-      <Footer
-        date={footer_date ? footer_date : "Thanks for visiting!"}
-        welcome={footer_welcome ? footer_welcome : "Welcome to my website!"}
-      ></Footer>
+      <Footer date={footer_date} welcome={footer_welcome}></Footer>
     </Layout>
   );
 };

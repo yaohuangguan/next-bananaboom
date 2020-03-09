@@ -18,7 +18,14 @@ const Jumbo = ({ name, welcome, info, button, language, backgroundURL }) => {
     }
   };
   useEffect(() => {
+    const SmoothScroll = require("smooth-scroll");
+    let scroll = new SmoothScroll('a[href*="#"]', {
+      speed: 1200
+    });
     checkMobile();
+    return () => {
+      scroll.destroy();
+    };
   }, [checkMobile]);
 
   return (
@@ -37,7 +44,7 @@ const Jumbo = ({ name, welcome, info, button, language, backgroundURL }) => {
           loop
           muted
           playsInline
-          preload='auto'
+          preload="auto"
         >
           <source
             src={language === "english" ? "/video/en.webm" : "/video/c.webm"}

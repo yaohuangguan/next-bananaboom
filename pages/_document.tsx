@@ -31,7 +31,7 @@ export default class MyDocument extends Document {
         <Head>
           <meta name="theme-color" content="red" />
           <meta name="mobile-web-app-capable" content="yes" />
-         
+
           <meta name="apple-mobile-web-app-title" content="Sam web blog" />
           <meta name="apple-mobile-web-app-capable" content="yes" />
           <meta
@@ -63,6 +63,14 @@ export default class MyDocument extends Document {
 
           <meta name="screen-orientation" content="portrait" />
           <link rel="manifest" href="/manifest.json" />
+          <meta
+            name="description"
+            content="姚柏杨的网站，yaobaiyang's website, yaobaiyang.com"
+          />
+          <meta
+            property="og:description"
+            content="姚柏杨的网站，yaobaiyang's website, yaobaiyang.com"
+          />
         </Head>
         <body style={{ margin: 0, backgroundColor: "white" }}>
           <Main />

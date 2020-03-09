@@ -5,7 +5,6 @@ import Layout from "../../components/Layout/Layout";
 import { useRouter } from "next/router";
 import BlogList from "../../components/Blog/BlogList";
 import api from "../../utils/Api";
-import Head from "next/head";
 import SearchBox from "../../components/SearchBox/SearchBox";
 import Loader from "../../components/Loader/Loader";
 const Blog = ({ blogs, errors, currentUser, loading }) => {
@@ -61,12 +60,7 @@ const Blog = ({ blogs, errors, currentUser, loading }) => {
   }, [searchField]);
 
   return (
-    <Layout>
-      <Head>
-        <meta charSet="utf-8" />
-        <title>Blog Posts</title>
-        <meta property="og:title" content="Sam的博客" />
-      </Head>
+    <Layout head={'Sam 个人博客 博客文章 技术文章 生活文章 个人心得 Blog Posts'}>
       <div className="shrinkedHeader">
         <a
           className="btn draw-border-white waves-effect"

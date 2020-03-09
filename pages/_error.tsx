@@ -3,7 +3,7 @@ import Layout from "../components/Layout/Layout";
 import Link from "next/link";
 function Error({ statusCode }) {
   return (
-    <Layout>
+    <Layout head={'页面发生了错误，请刷新页面然后尝试 | yaobaiyang.com'}>
       <div className="text-secondary" style={{ height: "100vh" }}>
         <div className="row text-center">
           <div className="col-md-6 pt-5" style={{ margin: "0 auto" }}>

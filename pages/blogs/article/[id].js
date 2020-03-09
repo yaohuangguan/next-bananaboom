@@ -1,7 +1,6 @@
 import Layout from "../../../components/Layout/Layout";
 import { withRouter } from "next/router";
 import dynamic from "next/dynamic";
-import Head from "next/head";
 import api from "../../../utils/Api";
 import { useEffect, useState } from "react";
 import SpecialWrapper from '../../../components/Special/SpecialWrapper/Wrapper'
@@ -29,10 +28,7 @@ const blog = ({ posts, comments, currentUser, router }) => {
   // console.log(typeof content)
   // console.log(project_id)
   return (
-    <Layout>
-      <Head>
-        <title>{name} | yaobaiyang.com</title>
-      </Head>
+    <Layout head={`${name} | Sam 个人博客 yaobaiyang.com`}>
       {content ? null : <SpecialWrapper project={project_id} ></SpecialWrapper>}
 
       <div className="container">
