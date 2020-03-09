@@ -37,6 +37,7 @@ const Jumbo = ({ name, welcome, info, button, language, backgroundURL }) => {
           loop
           muted
           playsInline
+          preload='auto'
         >
           <source
             src={language === "english" ? "/video/en.webm" : "/video/c.webm"}

@@ -74,7 +74,7 @@ const BlogListItem = ({
               className={`lighten-2 ${randomColor(
                 colors
               )} white-text mx-2 px-2 py-1`}
-              style={{ height: "30px" }}
+              style={{ height: "30px"}}
               key={index}
             >
               <span className="font-weight-bold">{tag}</span>

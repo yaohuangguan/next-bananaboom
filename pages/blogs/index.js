@@ -10,7 +10,6 @@ import SearchBox from "../../components/SearchBox/SearchBox";
 import Loader from "../../components/Loader/Loader";
 const Blog = ({ blogs, errors, currentUser, loading }) => {
   const router = useRouter();
-
   const [searchField, setsearchField] = useState("");
   const [filteredBlog, setfilteredBlog] = useState([]);
   const handleChange = e => setsearchField(e.target.value);
@@ -43,11 +42,21 @@ const Blog = ({ blogs, errors, currentUser, loading }) => {
     };
   }, []);
   useEffect(() => {
+    // if (typeof Worker !== "undefined") {
+    //   let worker = new Worker("./worker/Worker.js");
+
+    //   worker.onmessage = e => {
+    //     const result = e.data;
+    //     setfilteredBlog(result);
+    //   };
+    //   worker.postMessage({ blogs, searchField });
+    // }
     const result =
-      blogs &&
-      blogs.filter(blog =>
-        blog.name.toLowerCase().includes(searchField.toLowerCase())
-      );
+    blogs &&
+    blogs.filter(blog => {
+      let temp = blog.name + blog.info + blog.tags.map(each => each);
+      return temp.toLowerCase().includes(searchField.toLowerCase());
+    });
     setfilteredBlog(result);
   }, [searchField]);
 
@@ -110,9 +119,7 @@ const Blog = ({ blogs, errors, currentUser, loading }) => {
       ) : (
         <>{errors}</>
       )}
-      {!loading ? (
-        <Loader color={"text-secondary"}></Loader>
-      ) : null}
+      {!loading ? <Loader color={"text-secondary"}></Loader> : null}
     </Layout>
   );
 };
