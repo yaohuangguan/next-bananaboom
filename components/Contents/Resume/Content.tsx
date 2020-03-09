@@ -8,10 +8,10 @@ export const getChineseContent = () => {
       <p>迈阿密大学 公立常青藤之一</p>
       <p>交互研究 GPA:3.7</p>
       <p>主要研究方向: Web理论和技术研究</p>
-      <p>相关课程: Web应用编程, Web交互编程, HCI理论和可用性, 网络安全, 电子商务</p>
+      <p>相关技能: Web应用编程, Web交互编程, HCI理论和可用性, 网络安全, 电子商务</p>
       <br />
 
-      <h5>前端开发工程师 at BeeHex </h5>
+      <h5 className='blue-text'>前端开发工程师 at BeeHex </h5>
       <div className='d-flex row'>
         <div className="col-md-12">{getBeeHexImg()}</div>
         <div className="col-md-12 mt-3">
@@ -41,17 +41,17 @@ export const getEnglishContent = () => {
   return (
     <div>
     <p className='text-muted'>First off, this is a bit like resume, but its not. Its main purpose is to let you to know a little more about what i am doing and me as a friend.</p>
-      <h5>Education:</h5>
+      <h5 className='blue-text'>Education:</h5>
       <p>Miami University  Public Ivies</p>
       <p>Bachelor of Art in Interactive Media Studies (STEM Major) GPA:3.7</p>
       <p>Major Concentration: Website Technology</p>
       <p>
-        Relevant Courses: Web Application Programming, Web Interaction
+        Relevant Skills: Web Application Programming, Web Interaction
         Programming, HCI theory and usability, Cyber Security, Digital Marketing
       </p>
       <br />
 
-      <h5>Software Engineer at BeeHex </h5>
+      <h5 className='blue-text'>Software Engineer at BeeHex </h5>
       <div className="d-flex row">
         <div className="col-md-12">{getBeeHexImg()}</div>
 

@@ -4,13 +4,13 @@ import { useState, useEffect } from "react";
 import api from "../../utils/Api";
 const dashboard = ({ currentUser }) => {
   const router = useRouter();
-  const [newDisplayName, setdisplayName] = useState("");
-  const [result, setresult] = useState("");
   useEffect(() => {
     return () => {
-      router.reload();
+      router.reload()
     };
   }, []);
+  const [newDisplayName, setdisplayName] = useState("");
+  const [result, setresult] = useState("");
   const changeDisplayName = async () => {
     if (!newDisplayName || newDisplayName.trim() == "") {
       return setresult("要修改的用户名不能为空");
@@ -30,7 +30,7 @@ const dashboard = ({ currentUser }) => {
   };
 
   return (
-    <Layout head={'用户中心 User Control || yaobaiyang.com'}>
+    <Layout head={"用户中心 User Control || yaobaiyang.com"}>
       <div>
         {currentUser ? (
           <div>

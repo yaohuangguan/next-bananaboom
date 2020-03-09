@@ -7,11 +7,12 @@ import BlogList from "../../components/Blog/BlogList";
 import api from "../../utils/Api";
 import SearchBox from "../../components/SearchBox/SearchBox";
 import Loader from "../../components/Loader/Loader";
-const Blog = ({ blogs, errors, currentUser, loading }) => {
+const Blog = ({ blogs, errors, currentUser }) => {
   const router = useRouter();
   const [searchField, setsearchField] = useState("");
   const [filteredBlog, setfilteredBlog] = useState([]);
   const handleChange = e => setsearchField(e.target.value);
+  
   useEffect(() => {
     let header = document.querySelector(".shrinkedHeader");
     let blog = document.querySelector(".blog");
@@ -51,16 +52,18 @@ const Blog = ({ blogs, errors, currentUser, loading }) => {
     //   worker.postMessage({ blogs, searchField });
     // }
     const result =
-    blogs &&
-    blogs.filter(blog => {
-      let temp = blog.name + blog.info + blog.tags.map(each => each);
-      return temp.toLowerCase().includes(searchField.toLowerCase());
-    });
+      blogs &&
+      blogs.filter(blog => {
+        let temp = blog.name + blog.info + blog.tags.map(each => each);
+        return temp.toLowerCase().includes(searchField.toLowerCase());
+      });
     setfilteredBlog(result);
   }, [searchField]);
 
   return (
-    <Layout head={'Sam 个人博客 博客文章 技术文章 生活文章 个人心得 Blog Posts'}>
+    <Layout
+      head={"Sam 个人博客 博客文章 技术文章 生活文章 个人心得 Blog Posts"}
+    >
       <div className="shrinkedHeader">
         <a
           className="btn draw-border-white waves-effect"
@@ -111,9 +114,8 @@ const Blog = ({ blogs, errors, currentUser, loading }) => {
           <BlogList blogs={filteredBlog} />
         </div>
       ) : (
-        <>{errors}</>
+        <Loader color={"text-secondary"}></Loader>
       )}
-      {!loading ? <Loader color={"text-secondary"}></Loader> : null}
     </Layout>
   );
 };
