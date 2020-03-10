@@ -2,7 +2,7 @@ import { useEffect, useState, useRef } from "react";
 import { useRouter } from "next/router";
 import firebase from "../../firebase/firebase";
 import api from "../../utils/Api";
-import Loader from '../Loader/Loader'
+import Loader from "../Loader/Loader";
 import dynamic from "next/dynamic";
 const Login = dynamic(() => import("./Login"), {
   ssr: false
@@ -15,7 +15,7 @@ const Signup = ({ linkColor }) => {
   const [displayName, setdisplayName] = useState("");
   const [passwordConf, setpasswordConf] = useState("");
   const [errors, seterrors] = useState([]);
-  const [loading, setloading] = useState(false)
+  const [loading, setloading] = useState(false);
   const openSignup = e => {
     SignupContainer.current.classList.remove("out");
     SignupContainer.current.classList.add("popup");
@@ -62,10 +62,10 @@ const Signup = ({ linkColor }) => {
     let re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     return re.test(email);
   };
-  const validPassword = () =>{
-    let re = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/
-    return re.test(password)
-  }
+  const validPassword = () => {
+    let re = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
+    return re.test(password);
+  };
   const handleUserSubmit = async e => {
     e.preventDefault();
     if (!displayName || !email || !password || !passwordConf) {
@@ -73,33 +73,29 @@ const Signup = ({ linkColor }) => {
       shakeMessage.classList.toggle("shake-message");
       return seterrors(["填写完整信息(Fill all the requirements)"]);
     }
-    if(!validPassword()) {
+    if (!validPassword()) {
       return seterrors(["信息不符合要求"]);
     }
-    if(!validEmail()){
+    if (!validEmail()) {
       return seterrors(["信息不符合要求"]);
     }
     try {
-      setloading(true)
+      setloading(true);
       const response = await api.post("/api/users", {
         displayName,
         email,
         password,
         passwordConf
       });
-      const user = await response.data
-      window.localStorage.setItem(
-        "token",
-        user.token
-      );
-
+      const user = await response.data;
+      window.localStorage.setItem("token", user.token);
 
       router.reload();
 
       clearInput();
       closeSignup();
     } catch (error) {
-      setloading(false)
+      setloading(false);
       if (error.response.data.message) {
         seterrors(error.response.data.message);
       }
@@ -107,6 +103,8 @@ const Signup = ({ linkColor }) => {
         const errors = error.response.data.errors.map(each => `  ${each.msg}`);
         seterrors(errors);
       }
+    } finally {
+      setloading(false);
     }
   };
   const getSignupNameOnRoutes = () =>
@@ -144,16 +142,10 @@ const Signup = ({ linkColor }) => {
             }}
           >
             <div className="signup-title">
-              <h4 className="py-3 mt-3">
-                {getSignupNameOnRoutes()}{" "}
-               
-              </h4>
-              <span
-                  style={{ fontSize: "30px" }}
-                  onClick={closeSignup}
-                >
-                  &#10005;
-                </span>
+              <h4 className="py-3 mt-3">{getSignupNameOnRoutes()} </h4>
+              <span style={{ fontSize: "30px" }} onClick={closeSignup}>
+                &#10005;
+              </span>
             </div>
             {errors ? <div className="text-danger">{errors}</div> : null}
             <label htmlFor="signup-displayName" className="m-0 text-dark">

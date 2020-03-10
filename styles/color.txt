@@ -1,0 +1,7 @@
+ Pink : rgb(247, 109, 196); #FF69B4
+
+ Blue: 
+
+ Yellow: rgb(245, 218, 83)
+
+ light-purple: rgba(200, 199, 245, 1)

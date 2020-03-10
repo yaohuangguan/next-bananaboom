@@ -14,13 +14,13 @@ const ToDoList = ({ todos, handleDone }) => {
     return (
       <>
         {todos &&
-          todos.map(({ todo, done, _id }, index) => (
+          todos.map(({ todo, done, _id },index) => (
             <div
               key={_id}
               style={{ display: "flex", justifyContent: "space-between" }}
             >
               <div>
-                <span>{index + 1}.</span>{" "}
+                <span>{todos.length - index}.</span>{" "}
                 <span
                   className={`${done ? "line-through" : "todo"}`}
                   ref={todoRef}

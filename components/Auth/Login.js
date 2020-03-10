@@ -10,7 +10,7 @@ const Login = ({ passwordReveal }) => {
   const [email, setemail] = useState("");
   const [password, setpassword] = useState("");
   const [errors, seterrors] = useState([]);
-  const [loading, setloading] = useState(false)
+  const [loading, setloading] = useState(false);
   const closeLogin = () => {
     LoginContainer.current.classList.add("out");
   };
@@ -40,24 +40,21 @@ const Login = ({ passwordReveal }) => {
       return seterrors(["填写完整信息(Fill all the requirements)"]);
     }
     try {
-      setloading(true)
+      setloading(true);
       const response = await api.post("/api/users/signin", {
         email,
         password
       });
       // console.log(response.data.userToSend);
-      const user = await response.data
+      const user = await response.data;
 
-      window.localStorage.setItem(
-        "token",
-        user.token
-      );
+      window.localStorage.setItem("token", user.token);
 
       router.reload();
       clearInput();
       closeLogin();
     } catch (error) {
-      setloading(false)
+      setloading(false);
       if (error.response.data.message) {
         seterrors(error.response.data.message);
       }
@@ -65,6 +62,8 @@ const Login = ({ passwordReveal }) => {
         const errors = error.response.data.errors.map(each => `  ${each.msg}`);
         seterrors(errors);
       }
+    } finally {
+      setloading(false);
     }
   };
   const handleForgetPassword = async () => {
