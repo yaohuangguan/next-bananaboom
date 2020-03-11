@@ -5,3 +5,5 @@
  Yellow: rgb(245, 218, 83)
 
  light-purple: rgba(200, 199, 245, 1)
+
+ blue green : #00ffe5;

@@ -10,10 +10,9 @@
     #a3a1ff,
     #f24645
   );
-  transition: all .3s ease-in-out 0s;
-  transform: translateX(60%);
+  transition: transform .3s ease 0s;
+  transform: translateX(50%);
   animation: horizontal-loader 2s cubic-bezier(.2,.5,.4,.7) infinite;
-  animation-delay: .1s;
   z-index: 10000;
 }
 

@@ -60,13 +60,13 @@
 }
 
 .draw-border-white {
-  @include btn-border-drawing(#ffffff, #ffe593, 2px, bottom, right);
+  @include btn-border-drawing(#ffffff, #00ffe5, 2px, bottom, right);
 }
 .draw-border-blue {
   @include btn-border-drawing(#3e91e4, #eb782e, 2px, bottom, right);
 }
 .draw-border-black {
-  @include btn-border-drawing(#414141, #4b84ff, 2px, top, left);
+  @include btn-border-drawing(#2d2d2d, #5cabff, 2px, top, left);
 }
 
 

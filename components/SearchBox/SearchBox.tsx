@@ -12,7 +12,7 @@ const SearchBox = ({ handleChange, searchField }) => {
           value={searchField}
           type="search"
           className="search px-3 py-3 my-3 text-center"
-          placeholder="Search"
+          placeholder="Search Blog List"
           onChange={handleChange}
           style={style}
         />

@@ -76,7 +76,7 @@ const Blog = ({ blogs, errors, currentUser }) => {
         </a>
       </div>
       <div className="blog">
-        <div className="text-white text-center rgba-stylish-light px-5">
+        <div className="text-white text-center px-5">
           <div className="py-5">
             <a
               className="btn draw-border-white waves-effect"
