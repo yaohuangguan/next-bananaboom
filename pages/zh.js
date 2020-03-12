@@ -16,25 +16,15 @@ const Chinese = ({ homepage, errors, logs, projects, currentUser }) => {
   }, []);
   const {
     _id,
-    jumbo_name,
     jumbo_name_cn,
-    jumbo_welcome,
     jumbo_welcome_cn,
-    jumbo_info,
     jumbo_info_cn,
-    jumbo_button,
     jumbo_button_cn,
-    intro_title,
     intro_title_cn,
-    intro_subtitle,
     intro_subtitle_cn,
-    intro_intro,
     intro_intro_cn,
-    subscribe_web_version,
     subscribe_web_version_cn,
-    footer_date,
     footer_date_cn,
-    footer_welcome,
     footer_welcome_cn,
     likes,
     backgroundURL
@@ -70,7 +60,7 @@ const Chinese = ({ homepage, errors, logs, projects, currentUser }) => {
           _id={_id}
           title={"对本博客感兴趣？输入邮箱加入推送"}
           info={
-            "你的邮箱不会被以任何方式向第三方透露，若想了解你的邮箱如何安全地保存，请点击这里"
+            "Your infomation is secure."
           }
           copyright={` All rights reserved ©2019-2020  ${webUrl ||
             "yaobaiyang.com"} `}

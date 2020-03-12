@@ -1,11 +1,9 @@
 import App from "next/app";
 import firebase from "../firebase/firebase";
 import api from "../utils/Api";
-import Head from "next/head";
 interface MyProps {
   Component: any;
   pageProps: any;
-  reduxStore: any;
 }
 interface MyState {
   currentUser: "";
@@ -44,7 +42,9 @@ class SamMainApp extends App<MyProps, MyState> {
           return typeof token === "string" && { currentUser: data };
         }
       });
-    } catch (error) {}
+    } catch (error) {
+      console.log('token faield')
+    }
   };
   componentDidMount() {
     let user = window.localStorage.getItem("token") || null;

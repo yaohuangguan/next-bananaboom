@@ -23,25 +23,15 @@ const Index = ({ homepage, errors, logs, projects, currentUser }) => {
   const {
     _id,
     jumbo_name,
-    jumbo_name_cn,
     jumbo_welcome,
-    jumbo_welcome_cn,
     jumbo_info,
-    jumbo_info_cn,
     jumbo_button,
-    jumbo_button_cn,
     intro_title,
-    intro_title_cn,
     intro_subtitle,
-    intro_subtitle_cn,
     intro_intro,
-    intro_intro_cn,
     subscribe_web_version,
-    subscribe_web_version_cn,
     footer_date,
-    footer_date_cn,
     footer_welcome,
-    footer_welcome_cn,
     likes,
     backgroundURL
   } = homepage[0];
@@ -77,7 +67,7 @@ const Index = ({ homepage, errors, logs, projects, currentUser }) => {
           _id={_id}
           title={"Show some interests? Follow my blog here!"}
           info={
-            " Your information will NEVER be disclosed to anyone, any organization, even robots for any purposes. Learn more here for privacy."
+            " Your information will be secured."
           }
           copyright={` All rights reserved ©2019-2020  ${webUrl ||
             "yaobaiyang.com"} `}
