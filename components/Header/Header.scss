@@ -1,6 +1,6 @@
 $green-color: #2eca6a;
-$blue-color:#00ffe5;
-.nav{
+$blue-color: #00ffe5;
+.nav {
   width: 100%;
   display: flex;
   position: fixed;
@@ -11,13 +11,13 @@ $blue-color:#00ffe5;
   transition: all 0.5s ease-in-out;
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
-  font-family: 'Sriracha', cursive;
+  font-family: "Sriracha", cursive;
   font-size: large;
-  
+
   .header {
     all: inherit;
-    &.scrollUp{
-      transform: translateY(-80px)
+    &.scrollUp {
+      transform: translateY(-80px);
     }
     // width: 100%;
     // display: flex;
@@ -31,7 +31,6 @@ $blue-color:#00ffe5;
     // backface-visibility: hidden;
     #logo {
       margin-right: auto;
-      padding: 20px 10px 20px 20px;
 
       // @media screen and (max-width: 415px) {
       //   width: 90%;
@@ -46,24 +45,34 @@ $blue-color:#00ffe5;
       //   width: 85%;
       // }
     }
-    .loginOption{
+    .loginOption {
       display: flex;
-      .option{
+      .option {
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
         padding: 5px 20px 5px 20px;
         cursor: pointer;
-        a{
-          color:white;
+        color: white;
+        a {
+          color: white;
           &:hover {
-            color:$blue-color
+            color: $blue-color;
           }
         }
-        &.hamburger{
+        &:hover {
+          color: $blue-color;
+        }
+
+        &.hamburger {
           margin-left: auto;
           z-index: 10;
+          height: 40px;
+          margin-top: 20px;
+          margin-right: 20px;
+          border: 2px solid white;
+          border-radius: 50px;
           @media screen and (max-width: 415px) {
             display: flex;
           }
@@ -77,10 +86,9 @@ $blue-color:#00ffe5;
             display: none;
           }
         }
-       
       }
     }
-   
+
     .options {
       margin-left: auto;
       display: flex;
@@ -98,7 +106,6 @@ $blue-color:#00ffe5;
       }
       .signup {
         padding: 5px 20px 5px 20px;
-
       }
       .option {
         display: flex;
@@ -108,20 +115,18 @@ $blue-color:#00ffe5;
         padding: 5px 20px 5px 20px;
 
         cursor: pointer;
-        a{
-          color:white;
-          &:hover {
-            color:$blue-color
-          }
+
+        color: white;
+        &:hover {
+          color: $blue-color;
         }
-        
       }
     }
   }
   .solid {
     box-shadow: 1px 2px 15px rgba(143, 52, 255, 0.6);
   }
-  
+
   .white-lighter {
     color: #fff;
     -webkit-transition: 0.4s;
@@ -132,6 +137,4 @@ $blue-color:#00ffe5;
     transition: 0.4s;
     color: white !important;
   }
-  
 }
-
