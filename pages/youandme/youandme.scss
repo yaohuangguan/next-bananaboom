@@ -11,8 +11,8 @@
 
   .love-title {
     // border: 2px solid rgb(245, 218, 83);
-    border: 2px solid rgb(247, 109, 196);
-    background-color: rgb(247, 109, 196);
+    border: 2px solid rgb(245, 218, 83);
+    background-color: rgb(245, 218, 83);
     font-size: 30px;
     color: white;
     border-radius: 30px;
@@ -21,100 +21,101 @@
     font-weight: 200;
     .heart-purple {
       fill: white;
-      width: 35px;
-      animation: pulse 1s infinite;
-      -webkit-animation: pulse 1s infinite;
+      width: 30px;
+      &:hover {
+        animation: pulse 1s infinite;
+        -webkit-animation: pulse 1s infinite;
+      }
     }
   }
-.main-love-container {
-  margin: 0;
-  width: 100%;
-  display: flex;
-  .scroll-friendly{
-    display: none;
-  }
-  @media screen and (max-width: 415px) {
-    flex-direction: column;
-    .scroll-friendly{
-      display: block;
+  .main-love-container {
+    margin: 0;
+    width: 100%;
+    display: flex;
+    .scroll-friendly {
+      display: none;
     }
-  }
-  @media screen and (min-width: 415px) and (max-width: 768px) {
-    flex-direction: column;
-    .scroll-friendly{
-      display: block;
+    @media screen and (max-width: 415px) {
+      flex-direction: column;
+      .scroll-friendly {
+        display: block;
+      }
     }
-  }
-  @media screen and (min-width: 992px) {
-    flex-direction: row;
-  }
-  @media screen and (min-width: 768px) and (max-width: 992px) {
-    flex-direction: column;
-    .scroll-friendly{
-      display: block;
+    @media screen and (min-width: 415px) and (max-width: 768px) {
+      flex-direction: column;
+      .scroll-friendly {
+        display: block;
+      }
     }
-  }
+    @media screen and (min-width: 992px) {
+      flex-direction: row;
+    }
+    @media screen and (min-width: 768px) and (max-width: 992px) {
+      flex-direction: column;
+      .scroll-friendly {
+        display: block;
+      }
+    }
 
-  .love-left-side {
-    height: 100vh;
-    padding: 20px;
-    max-width: 3000px;
-    overflow: scroll;
-    .heart-input {
-      box-shadow: none;
-      border: 2px solid white;
-      border-radius: 30px;
-      &:focus {
-        border: none;
-        outline: none;
-        border: 2px solid #bb8bfa;
-        border-color: #bb8bfa;
+    .love-left-side {
+      height: 100vh;
+      padding: 20px;
+      max-width: 3000px;
+      overflow: scroll;
+      .heart-input {
         box-shadow: none;
+        border: 2px solid white;
+        border-radius: 30px;
+        &:focus {
+          border: none;
+          outline: none;
+          border: 2px solid #bb8bfa;
+          border-color: #bb8bfa;
+          box-shadow: none;
+        }
+      }
+      &::-webkit-scrollbar {
+        width: 1em;
+        background-color: white;
+        border-radius: 30px;
+      }
+
+      &::-webkit-scrollbar-track {
+        box-shadow: 0 0 3px #384db5;
+      }
+
+      &::-webkit-scrollbar-thumb {
+        background-color: #cfa5ff;
+        border-radius: 30px;
+        width: 1.2em;
       }
     }
-    &::-webkit-scrollbar {
-      width: 1em;
-      background-color:white;
-    }
-     
-    &::-webkit-scrollbar-track {
-      box-shadow: inset 0 0 3px #384db5
-    }
-     
-    &::-webkit-scrollbar-thumb {
-      background-color:  #DFD0F0;
-  
-    }
-  }
-  .love-right-side {
-    height: 100vh;
-    padding: 20px;
-    overflow: scroll;
+    .love-right-side {
+      height: 100vh;
+      padding: 20px;
+      overflow: scroll;
 
-    .blog-container {
-      border-top: 4px solid #b39be4;
-      .input-section {
-        display: flex;
-        flex-wrap: wrap;
-        label{
-          margin:10px;
-        }
-        .editor-input{
-          border-radius: 50px;
-          border-color: #c497ff;
-        }
-        #checkbox{
-          transform: scale(2);
-          margin-left: 10px;
+      .blog-container {
+        border-top: 4px solid #b39be4;
+        .input-section {
+          display: flex;
+          flex-wrap: wrap;
+          label {
+            margin: 10px;
+          }
+          .editor-input {
+            border-radius: 50px;
+            border-color: #c497ff;
+          }
+          #checkbox {
+            transform: scale(2);
+            margin-left: 10px;
+          }
         }
       }
     }
   }
 }
-}
-
-
-
 
 @-webkit-keyframes pulse {
   0% {
