@@ -31,17 +31,17 @@ const Header = ({
         let a = scrollY;
         let b = navbar.clientHeight;
         currentScrollTop = a;
-        if (a == 0) {
+        if (a === 0 || b === 0) {
           navbar.classList.remove("purple-gradient");
           navbar.classList.remove("solid");
         }
-        if (c < currentScrollTop && a > b + b) {
+        if (c < currentScrollTop && a > 5*b) {
           navbar.classList.add("scrollUp");
         } else if (c > currentScrollTop && !(a <= b)) {
           navbar.classList.remove("scrollUp");
           navbar.classList.add("solid");
           navbar.classList.add("purple-gradient");
-        }
+        } 
         c = currentScrollTop;
       });
     };
@@ -59,7 +59,7 @@ const Header = ({
       if (currentUser.private_token === "ilovechenfangting") {
         return (
           <Link href="/youandme">
-            <a>Only We Know</a>
+            <span>Only We Know</span>
           </Link>
         );
       }
@@ -101,13 +101,13 @@ const Header = ({
               {getYouAndMe()}
             </a>
           ) : (
-            <a className="option">
+            <div className="option">
               <Signup></Signup>
-            </a>
+            </div>
           )}
 
-          <a className="option hamburger" onClick={turnOnDropDown}>
-            {getMenuRoute()}
+          <div className="option hamburger" onClick={turnOnDropDown}>
+            <span>{getMenuRoute()}</span>
             <HamburgerMenu
               currentUser={currentUser}
               blogName={blogName}
@@ -115,7 +115,7 @@ const Header = ({
               changeLanguageRoute={changeLanguageRoute}
               resumeRoute={resumeRoute}
             />
-          </a>
+          </div>
         </div>
       </div>
     </div>

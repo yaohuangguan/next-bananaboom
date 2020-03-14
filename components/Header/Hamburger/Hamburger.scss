@@ -1,3 +1,5 @@
+$blue-color: #00ffe5;
+
 .dropdown-mobile-submenu {
   font-weight: 300;
   text-transform: none;
@@ -9,8 +11,13 @@
   border: 2px solid rgb(2, 188, 185);
   border-radius: 30px;
   background-color: rgb(2, 188, 185);
-  color: white;
   transition: opacity .5s ease;
+  a{
+    color: white;
+    &:hover{
+      color:$blue-color ;
+    }
+  }
   &::before{
     content: "";
     position: absolute;
@@ -24,7 +31,7 @@
 }
 
 .dropdown-hide {
-  opacity: 1 !important;
+  opacity: 1;
   animation: showup 1s ease-in forwards;
   -webkit-animation: showup 1s ease-in forwards;
 }
@@ -40,7 +47,7 @@
 
   }
   100%{
-    transform: translateY(450px);
+    transform: translateY(460px);
     opacity: 1;
 
   }

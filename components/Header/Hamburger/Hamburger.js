@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import Link from "next/link";
 import { withRouter } from "next/router";
-import './Hamburger.scss'
+import "./Hamburger.scss";
 const Hamburger = ({
   blogName,
   resumeName,
@@ -10,40 +10,25 @@ const Hamburger = ({
   currentUser,
   router
 }) => {
-  const getResumeRoutes = () =>router.pathname == "/" ? "en-us" : "ch-cn"
+  const getResumeRoutes = () => (router.pathname == "/" ? "en-us" : "ch-cn");
   return (
-        <div
-          className="dropdown-mobile-submenu px-1"
-        >
-          <ul className="navbar-nav mx-auto text-center">
-            <li className="nav-item">
-              <Link href="/blogs">
-                <a className="nav-link">
-                  {blogName} <span className="sr-only">(current)</span>
-                </a>
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link
-                href={resumeRoute}
-                as={`/resume/${getResumeRoutes()}`}
-              >
-                <a className="nav-link">
-                  {resumeName}
-                </a>
-              </Link>
-            </li>
-  
-            <li className="nav-item">
-              <Link href={changeLanguageRoute}>
-                <a className="nav-link">
-                  {changeLanguageRoute == "/" ? "English" : "中文"}
-                </a>
-              </Link>
-            </li>
-          </ul>
-        </div>
+    <div className="dropdown-mobile-submenu px-1 mx-auto text-center">
+      <Link href="/blogs">
+        <a className="nav-link">
+          {blogName} <span className="sr-only">(current)</span>
+        </a>
+      </Link>
 
+      <Link href={resumeRoute} as={`/resume/${getResumeRoutes()}`}>
+        <a className="nav-link">{resumeName}</a>
+      </Link>
+
+      <Link href={changeLanguageRoute}>
+        <a className="nav-link">
+          {changeLanguageRoute == "/" ? "English" : "中文"}
+        </a>
+      </Link>
+    </div>
   );
 };
 

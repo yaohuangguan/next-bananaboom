@@ -28,8 +28,11 @@ const PrivatePost = () => {
         setloading(false);
         setprivatePosts(data);
       } catch (error) {
-        setloading(false);
-        console.log(error);
+        if (axios.isCancel(error)) {
+          console.log("caught cancel axios");
+        } else {
+          setloading(false);
+        }
       }
     };
     getNewPrivatePosts();
@@ -56,7 +59,7 @@ const PrivatePost = () => {
           ))
         ) : null
       ) : (
-        <Loader color={'text-secondary'} size={'80px'}></Loader>
+        <Loader color={"text-secondary"} size={"80px"}></Loader>
       )}
     </>
   );

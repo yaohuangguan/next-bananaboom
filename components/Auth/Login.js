@@ -3,7 +3,6 @@ import router from "next/router";
 import firebase from "../../firebase/firebase";
 import api from "../../utils/Api";
 import Loader from "../Loader/Loader";
-
 const Login = ({ passwordReveal }) => {
   const LoginContainer = useRef(null);
 

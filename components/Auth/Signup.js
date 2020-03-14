@@ -46,13 +46,13 @@ const Signup = ({ linkColor }) => {
   const handleEmail = e => {
     setemail(e.target.value);
   };
-  const handlePasswordConf = e => {
+  const handlePasswordConf = e=> {
     setpasswordConf(e.target.value);
   };
   const handlePassword = e => {
     setpassword(e.target.value);
   };
-  const openLogin = e => {
+  const openLogin = () => {
     closeSignup();
     const modalContainer = document.querySelector(".login-container");
     modalContainer.classList.remove("out");

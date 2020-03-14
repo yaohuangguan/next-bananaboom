@@ -7,6 +7,7 @@ import BlogList from "../../components/Blog/BlogList";
 import api from "../../utils/Api";
 import SearchBox from "../../components/SearchBox/SearchBox";
 import Loader from "../../components/Loader/Loader";
+import { route } from "next/dist/next-server/server/router";
 const Blog = ({ blogs, errors, currentUser }) => {
   const router = useRouter();
   const [searchField, setsearchField] = useState("");
@@ -59,18 +60,18 @@ const Blog = ({ blogs, errors, currentUser }) => {
       });
     setfilteredBlog(result);
   }, [searchField]);
-
+  const goBack = e => {
+    e.preventDefault()
+    router.back()
+  }
   return (
     <Layout
       head={"Sam 个人博客 博客文章 技术文章 生活文章 个人心得 Blog Posts"}
     >
       <div className="shrinkedHeader">
         <a
-          className="btn draw-border-white waves-effect"
-          onClick={e => {
-            e.preventDefault();
-            router.back();
-          }}
+          className="btn draw-border-white"
+          onClick={goBack}
         >
           Go back
         </a>
@@ -79,11 +80,8 @@ const Blog = ({ blogs, errors, currentUser }) => {
         <div className="text-white text-center px-5">
           <div className="py-5">
             <a
-              className="btn draw-border-white waves-effect"
-              onClick={e => {
-                e.preventDefault();
-                router.back();
-              }}
+              className="btn draw-border-white"
+              onClick={goBack}
             >
               Go back
             </a>{" "}
