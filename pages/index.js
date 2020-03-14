@@ -55,7 +55,7 @@ const Index = ({ homepage, errors, logs, projects, currentUser }) => {
         language={"english"}
         backgroundURL={backgroundURL}
       />
-      <div className="container">
+      <div className="container mt-3">
         <Intro
           title={intro_title}
           subtitle={intro_subtitle}
