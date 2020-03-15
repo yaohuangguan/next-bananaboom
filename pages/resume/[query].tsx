@@ -4,7 +4,6 @@ import china from '../../public/china.png'
 import uk from "../../public/uk.png";
 import ResumeList from "../../components/Contents/Resume/ResumeList/ResumeList";
 import Layout from "../../components/Layout/Layout";
-import Head from "next/head";
 import api from "../../utils/Api";
 import { withRouter } from "next/router";
 import shuffle from "../../utils/Shuffle";
@@ -135,7 +134,7 @@ const Resume = ({ resumeItem, errors, router }) => {
               </p>
               <p>
                 <a
-                  href="https://meritpages.com/samyao"
+                  href="https://miamioh.meritpages.com/stories/Baiyang-Yao-Named-To-Dean-s-List-at-Miami-University-/12472471"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
