@@ -1,9 +1,9 @@
 import "./Logs.scss";
 import LogItem from "./LogItem";
-const Logs = ({ version, check,logs }) => {
+const Logs = ({ version, logs }) => {
   const openLogs = e => {
     const modalContainer = document.querySelector(".logs-container");
-    modalContainer.classList.remove('out')
+    modalContainer.classList.remove("out");
     modalContainer.classList.add("popup");
   };
   const closeLogs = () => {
@@ -12,26 +12,21 @@ const Logs = ({ version, check,logs }) => {
   return (
     <div>
       <p className="text-dark">
-        {version}
-        <img src="https://img.icons8.com/ios/20/000000/react-native.png" alt='react' />
         <a
           className="text-dark"
           onClick={openLogs}
-          style={{textDecoration:'underline'}}
+          style={{ textDecoration: "underline" }}
         >
-          {check}
+          {version}
+          <i className="fab fa-react"></i>
         </a>
       </p>
 
-      <div
-        className="logs-container"
-      >
+      <div className="logs-container">
         <div className="modal-dialog" role="document">
           <div className="modal-content">
             <div className="modal-header purple-gradient white-text">
-              <h4 className="title">
-                 网站更新日志 Logs of Updates
-              </h4>
+              <h4 className="title">网站更新日志 Logs of Updates</h4>
               <button
                 type="button"
                 className="close"
@@ -44,9 +39,10 @@ const Logs = ({ version, check,logs }) => {
             </div>
 
             <div className="modal-body mb-0 text-center">
-              {logs && logs.map(({_id, ...other}) => {
-                return <LogItem key={_id} {...other}></LogItem>;
-              })}
+              {logs &&
+                logs.map(({ _id, ...other }) => {
+                  return <LogItem key={_id} {...other}></LogItem>;
+                })}
             </div>
           </div>
         </div>

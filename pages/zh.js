@@ -65,7 +65,6 @@ const Chinese = ({ homepage, errors, logs, projects, currentUser }) => {
           copyright={` All rights reserved ©2019-2020  ${webUrl ||
             "yaobaiyang.com"} `}
           web_version={subscribe_web_version_cn}
-          log={"查看网站版本更新日志"}
           logs_content={logs}
         />
       </div>

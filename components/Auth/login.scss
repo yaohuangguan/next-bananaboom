@@ -12,43 +12,35 @@ body {
 .signup-container {
   font-family: "Poppins", sans-serif;
   position: fixed;
-  width: 30%;
+  width: 40%;
   top: 1%;
-  left: 30%;
+  left: 50%;
   transform: scale(0);
   z-index: 5;
- 
   @media screen and (max-width: 415px) {
-    height: 30vh;
-    width: 80%;
+    width: 90%;
     top: 1%;
-    bottom:20%;
-    left: 10%;
+    left: 5%;
   }
   @media screen and (min-width: 415px) and (max-width: 768px) {
-    height: 30vh;
     width: 80%;
     top: 1%;
-    bottom:20%;
     left: 10%;
   }
   @media screen and (min-width: 992px) {
-    height: 30vh;
-    width: 30%;
     top: 1%;
-    bottom:20%;
-    left: 35%;
+    left: 30%;
   }
   @media screen and (min-width: 768px) and (max-width: 992px) {
-    height: 30vh;
-    width: 40%;
+    width: 80%;
     top: 1%;
-    bottom:20%;
-    left: 30%;
+    left: 10%;
   }
   &.popup {
     transform: scaleY(0.01) scaleX(0);
     animation: unfoldIn 1s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+    display: block;
+
     .modal-background {
       .modal-inner {
         transform: scale(0);
@@ -57,6 +49,7 @@ body {
     }
     &.out {
       transform: scale(1);
+      display: block;
       animation: unfoldOut 1s 0.3s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
       .modal-background {
         .modal-inner {
@@ -70,38 +63,28 @@ body {
   font-family: "Poppins", sans-serif;
   position: fixed;
   width: 40%;
-  top: 8%;
-  left: 30%;
+  top: 1%;
+  left: 50%;
   transform: scale(0);
   z-index: 1;
-  
   @media screen and (max-width: 415px) {
-    height: 30vh;
-    width: 80%;
+    width: 90%;
     top: 1%;
-    bottom:20%;
-    left: 10%;
+    left: 5%;
   }
   @media screen and (min-width: 415px) and (max-width: 768px) {
-    height: 30vh;
     width: 80%;
     top: 1%;
-    bottom:20%;
     left: 10%;
   }
   @media screen and (min-width: 992px) {
-    height: 30vh;
-    width: 30%;
     top: 1%;
-    bottom:20%;
-    left: 35%;
+    left: 30%;
   }
   @media screen and (min-width: 768px) and (max-width: 992px) {
-    height: 30vh;
-    width: 40%;
+    width: 80%;
     top: 1%;
-    bottom:20%;
-    left: 30%;
+    left: 10%;
   }
   &.popup {
     transform: scaleY(0.01) scaleX(0);
@@ -253,8 +236,8 @@ body {
       position: absolute;
       z-index: 1;
       bottom: 125%;
-      left: 30%;
-      margin-left: -60px;
+     left: 50%;
+     transform: translate(-50%);
       opacity: 0;
       transition: opacity 0.3s;
 

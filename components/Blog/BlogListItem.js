@@ -129,18 +129,19 @@ const BlogListItem = ({
               >
                 Share with friends
               </span>
-              <img
+              {/* <img
                 width="30"
                 height="30"
                 src="https://img.icons8.com/carbon-copy/30/000000/share.png"
-              />
+              /> */}
+              <i className="fas fa-external-link-alt"></i>
             </div>
             <div
               className={`m-2 heart ${ifLiked ? "liked is_animating" : ""}`}
               onClick={ifLiked ? cancelLike : addLike}
               id={_id}
             >
-              <em>{likeCount}</em>{" "}
+              <em style={{position:'absolute',right:'8%'}}>{likeCount}</em>{" "}
             </div>
           </div>
         </div>

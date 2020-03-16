@@ -72,7 +72,6 @@ const Index = ({ homepage, errors, logs, projects, currentUser }) => {
           copyright={` All rights reserved ©2019-2020  ${webUrl ||
             "yaobaiyang.com"} `}
           web_version={subscribe_web_version}
-          log={" Click here to see logs of updates"}
           logs_content={logs}
         />
       </div>

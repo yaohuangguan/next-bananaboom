@@ -1,7 +1,6 @@
 /* eslint-disable no-useless-escape */
 import { useState, useEffect } from "react";
 import SocialFooter from "../Footer/SocialFooter";
-import { getLoading } from "../../utils/Utils";
 import { useRouter } from "next/router";
 import "./Subscribe.scss";
 import Logs from "../Contents/Logs/Logs";
@@ -13,7 +12,6 @@ const Subscribe = ({
   info,
   copyright,
   web_version,
-  log,
   logs_content,
   likes,
   _id
@@ -117,7 +115,7 @@ const Subscribe = ({
         </form>
 
         <div className="information">
-          <Logs version={web_version} check={log} logs={logs_content}></Logs>
+          <Logs version={web_version} logs={logs_content}></Logs>
           <p className="text-dark">{copyright}</p>
         </div>
         <SocialFooter likes={likes} _id={_id}></SocialFooter>
