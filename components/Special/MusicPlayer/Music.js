@@ -6,9 +6,9 @@ const Music = () => {
     const playBtn = document.getElementById("play");
     const prevBtn = document.getElementById("prev");
     const nextBtn = document.getElementById("next");
-
     const audio = document.getElementById("audio");
     const progress = document.getElementById("progress");
+    const buffer = document.getElementById("buffer");
     const progressContainer = document.getElementById("progress-container");
     const title = document.getElementById("title");
     const cover = document.getElementById("cover");
@@ -82,11 +82,13 @@ const Music = () => {
     }
 
     // Update progress bar
-    function updateProgress(e) {
-      const { duration, currentTime } = e.srcElement;
-      const progressPercent = (currentTime / duration) * 100;
-      progress.style.width = `${progressPercent}%`;
-    }
+    const updateProgress = e => {
+      const { duration, currentTime, buffered } = e.srcElement;
+      if (duration || currentTime) {
+        const progressPercent = (currentTime / duration) * 100;
+        progress.style.width = `${progressPercent}%`;
+      }
+    };
 
     // Set progress bar
     function setProgress(e) {
@@ -124,7 +126,6 @@ const Music = () => {
       prevBtn.removeEventListener("click", prevSong);
       nextBtn.removeEventListener("click", nextSong);
 
-
       // Time/song update
       audio.removeEventListener("timeupdate", updateProgress);
 
@@ -136,33 +137,33 @@ const Music = () => {
     };
   }, []);
   return (
-
-      <div className="music-container" id="music-container">
-        <div className="music-info">
-          <h4 id="title"></h4>
-          <div className="progress-container" id="progress-container">
-            <div className="progress" id="progress"></div>
+    <div className="music-container" id="music-container">
+      <div className="music-info">
+        <h4 id="title"></h4>
+        <div className="progress-container" id="progress-container">
+          <div className="progress" id="progress">
+            <div className="buffer" id="buffer"></div>
           </div>
-        </div>
-  
-        <audio src="/music/simmer.mp3" id="audio"></audio>
-  
-        <div className="img-container">
-          <img src="/simmer.jpg" alt="music-cover" id="cover" />
-        </div>
-        <div className="navigation">
-          <button id="prev" className="action-btn">
-            <i className="fas fa-backward"></i>
-          </button>
-          <button id="play" className="action-btn action-btn-big">
-            <i className="fas fa-play"></i>
-          </button>
-          <button id="next" className="action-btn">
-            <i className="fas fa-forward"></i>
-          </button>
         </div>
       </div>
 
+      <audio src="/music/simmer.mp3" id="audio"></audio>
+
+      <div className="img-container">
+        <img src="/simmer.jpg" alt="music-cover" id="cover" />
+      </div>
+      <div className="navigation">
+        <button id="prev" className="action-btn">
+          <i className="fas fa-backward"></i>
+        </button>
+        <button id="play" className="action-btn action-btn-big">
+          <i className="fas fa-play"></i>
+        </button>
+        <button id="next" className="action-btn">
+          <i className="fas fa-forward"></i>
+        </button>
+      </div>
+    </div>
   );
 };
 

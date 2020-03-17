@@ -9,8 +9,8 @@
   display: flex;
   padding: 20px 30px;
   position: relative;
-  margin: 100px auto;
- 
+  margin: 200px auto;
+
   z-index: 10;
   max-width: 500px;
 }
@@ -110,6 +110,7 @@
   margin: 10px 0;
   height: 8px;
   width: 100%;
+
 }
 
 
@@ -119,4 +120,12 @@
   height: 100%;
   width: 0%;
   transition: width 0.1s linear;
+  z-index: 10;
+}
+.buffer{
+  background-color: #bcbcbca5;
+  border-radius: 5px;
+  width: 0%;
+  transition: width 0.1s linear;
+  z-index: 1;
 }
