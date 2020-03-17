@@ -1,13 +1,20 @@
 .subscribe-container{
+  .subscribe-footer{
+    display: flex;
+    justify-content: space-evenly;
+    @media screen and (max-width:800px) {
+      flex-direction: column;
+    }
+  }
   .subscribe-wrapper{
     display: flex;
     justify-content: space-evenly;
     flex-direction: row;
-    @media screen and (max-width:717px) {
+    @media screen and (max-width:800px) {
       flex-direction: column-reverse;
     }
     .sayhi{
-      @media screen and (max-width:717px) {
+      @media screen and (max-width:800px) {
         text-align: center;
       }
     }
@@ -29,8 +36,8 @@
           position: absolute;
           z-index: 1;
           bottom: 100%;
-          left: 30%;
-          margin-left: -50px;
+          left: 50%;
+          transform: translate(-50%);
           opacity: 0;
           transition: opacity 0.3s;
           a{
@@ -64,16 +71,16 @@
           background-color: rgb(255, 252, 252);
           border-radius: 40px;
           &:focus {
-            border: 3px solid #6a82fb;
-            border-color: #6a82fb;
-            box-shadow: none;
+            border: 2px solid #976bff;
+            border-color: #9364ff;
+            box-shadow: inset 0px 0px 5px #ad8aff;
             outline:none;
       
           }
         }
         .form-control.form-control-a {
           height: 3rem;
-          width: 70%;
+          width: 90%;
         }
       }
       

@@ -43,7 +43,7 @@ const Footer = ({ welcome, date }) => {
   // };
 
   return (
-    <div className="mx-auto purple-gradient fixed-bottom" id="footer">
+    <div className="mx-auto purple-gradient" id="footer">
       <span
         className="float-right text-white px-1 font-weight-bold"
         style={{ border: "2px solid white" }}

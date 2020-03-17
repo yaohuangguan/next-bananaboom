@@ -118,11 +118,13 @@ const Subscribe = ({
           </form>
         </div>
       </div>
-	   <SocialFooter likes={likes} _id={_id}></SocialFooter>
-      <div className="information pb-5 text-center">
-        <Logs version={web_version} logs={logs_content}></Logs>
-        <p className="white-text">{copyright}</p>
-      </div>
+	   <div className="subscribe-footer">
+		   <SocialFooter likes={likes} _id={_id}></SocialFooter>
+	         <div className="information pb-3 text-center">
+	           <Logs version={web_version} logs={logs_content}></Logs>
+	           <p className="white-text">{copyright}</p>
+	         </div>
+	   </div>
      
     </div>
   );
