@@ -6,7 +6,7 @@ import "./Subscribe.scss";
 import Logs from "../Contents/Logs/Logs";
 import Loader from "../Loader/Loader";
 import api from "../../utils/Api";
-
+import SayHi from "../Contents/Intro/SayHi";
 const Subscribe = ({
   title,
   info,
@@ -63,64 +63,68 @@ const Subscribe = ({
   };
 
   return (
-    <>
-      <div className="text-center">
-        <form
-          id="mc-embedded-subscribe-form"
-          name="mc-embedded-subscribe-form"
-          className="validate form-a"
-          onSubmit={handleSubmit}
-        >
-          <div className="subscribe-button">
-            <span className="subscribe-button-text">
-              <a
-                href="https://s3.us-east-2.amazonaws.com/www.bananaboom.space/Mailchimp%E2%80%99s+Legal+Policies.pdf"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                {info}
-              </a>
-            </span>
-
-            <label className="font-weight-bold" htmlFor="email">
-              {title}
-
-              <input
-                type="email"
-                name="EMAIL"
-                className="form-control form-control-lg form-control-a text-center "
-                id="mce-EMAIL"
-                onChange={getEmail}
-                placeholder="Please enter email address"
-                required
-              />
-            </label>
-          </div>
-
-          <div className="clear">
-            {status && status === "success" ? (
-              <div className="text-success">{result}</div>
-            ) : (
-              <div className="text-danger">{result}</div>
-            )}
-            <button
-              type="submit"
-              disabled={!send}
-              id="mc-embedded-subscribe"
-              className="btn purple-gradient"
-            >
-              {loading ? <Loader></Loader> : subscribeButton()}
-            </button>
-          </div>
-        </form>
-
-        <div className="information">
-          <Logs version={web_version} logs={logs_content}></Logs>
-          <p className="text-dark">{copyright}</p>
+    <div className='subscribe-container'>
+      <div className='subscribe-wrapper'>
+        <div className="p-2 sayhi">
+          <SayHi />
         </div>
-        <SocialFooter likes={likes} _id={_id}></SocialFooter>
+        <div className="p-2 subscribe-form">
+          <form
+            id="mc-embedded-subscribe-form"
+            name="mc-embedded-subscribe-form"
+            className="validate form-a"
+            onSubmit={handleSubmit}
+          >
+            <div className="subscribe-button">
+              <span className="subscribe-button-text">
+                <a
+                  href="https://s3.us-east-2.amazonaws.com/www.bananaboom.space/Mailchimp%E2%80%99s+Legal+Policies.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {info}
+                </a>
+              </span>
+
+              <label className="font-weight-bold" htmlFor="email">
+                {title}
+                <input
+                  type="email"
+                  name="EMAIL"
+                  className="form-control form-control-lg form-control-a text-center "
+                  id="mce-EMAIL"
+                  onChange={getEmail}
+                  placeholder="Please enter email address"
+                  required
+                />
+              </label>
+            </div>
+
+            <div className="clear">
+              {status && status === "success" ? (
+                <div className="text-success">{result}</div>
+              ) : (
+                <div className="text-danger">{result}</div>
+              )}
+              <button
+                type="submit"
+                disabled={!send}
+                id="mc-embedded-subscribe"
+                className="btn btn-hover color-3"
+              >
+                {loading ? <Loader></Loader> : subscribeButton()}
+              </button>
+            </div>
+          </form>
+        </div>
       </div>
-    </>
+	   <SocialFooter likes={likes} _id={_id}></SocialFooter>
+      <div className="information pb-5 text-center">
+        <Logs version={web_version} logs={logs_content}></Logs>
+        <p className="white-text">{copyright}</p>
+      </div>
+     
+    </div>
   );
 };
 

@@ -30,23 +30,26 @@ const SocialFooter = ({ likes, _id }) => {
     tooltip.innerHTML = handleShareText();
   };
   return (
-    <div className="mb-5">
-      <Likes likes={likes} _id={_id}></Likes>
+    <div className="white-text text-center">
       <div
-        className="share-button font-weight-bold"
+        className="share-button p-2 ml-3"
         onClick={handleCopyText}
         onMouseOut={cleanCopyText}
       >
         <span className="share-button-text" id={`share-button-tip`}>
           {handleShareText()}
         </span>
-        {handleShareText()}
-        <i className="fas fa-external-link-alt"></i>
+
+        <span className='share-text'>{handleShareText()}
+        <i className="fas fa-share"></i>
+
+        </span>
+       
       </div>
       <ul className="list-unstyled list-inline text-center">
         <li className="list-inline-item">
           <a
-            className="btn-floating"
+            className="m-2"
             href="https://www.weibo.com/u/5350193792"
             target="_blank"
             rel="noopener noreferrer"
@@ -56,7 +59,7 @@ const SocialFooter = ({ likes, _id }) => {
         </li>
         <li className="list-inline-item">
           <a
-            className="btn-floating btn-fb mx-1"
+            className="m-2"
             href="https://www.facebook.com/sam.yao.10"
             target="_blank"
             rel="noopener noreferrer"
@@ -67,7 +70,7 @@ const SocialFooter = ({ likes, _id }) => {
 
         <li className="list-inline-item">
           <a
-            className="btn-floating btn-gplus mx-1"
+            className="m-2"
             href="https://www.instagram.com/moviegoer24/?hl=en"
             target="_blank"
             rel="noopener noreferrer"
@@ -77,7 +80,7 @@ const SocialFooter = ({ likes, _id }) => {
         </li>
         <li className="list-inline-item">
           <a
-            className="btn-floating btn-li mx-1"
+            className="m-2"
             href="https://www.linkedin.com/in/baiyang-sam-y-54828a140/"
             target="_blank"
             rel="noopener noreferrer"
@@ -86,17 +89,23 @@ const SocialFooter = ({ likes, _id }) => {
           </a>
         </li>
       </ul>
+      <Likes likes={likes} _id={_id}></Likes>
+
       <style jsx>{
         `
         ul li a i{
-          color:#333333;
-          font-size:20px;
+          color:#fff;
+          font-size:25px;
         }
         ul li a i:hover{
           color:#007bff;
         }
+        .share-text{
+          font-size:20px
+        }
         `
       }</style>
+
     </div>
   );
 };

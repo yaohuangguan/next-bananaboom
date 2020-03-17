@@ -47,21 +47,23 @@ const Chinese = ({ homepage, errors, logs, projects, currentUser }) => {
         language={"chinese"}
         backgroundURL={backgroundURL}
       />
-      <div className="container mt-3">
+      <div className="mt-3 mx-4">
         <Intro
           title={intro_title_cn}
           subtitle={intro_subtitle_cn}
           intro={intro_intro_cn}
           projects={projects}
         ></Intro>
-
+      </div>
+      <div
+        className="mt-5 pt-5 white-text z-depth-1"
+        style={{ backgroundColor: "#333",marginTop:'100px' }}
+      >
         <Subscribe
           likes={likes}
           _id={_id}
-          title={"对本博客感兴趣？输入邮箱加入推送"}
-          info={
-            "Your infomation is secure."
-          }
+          title={"对本博客感兴趣？第一时间获取最新博客"}
+          info={"Your infomation is secure."}
           copyright={` All rights reserved ©2019-2020  ${webUrl ||
             "yaobaiyang.com"} `}
           web_version={subscribe_web_version_cn}

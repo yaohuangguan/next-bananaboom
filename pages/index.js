@@ -55,25 +55,28 @@ const Index = ({ homepage, errors, logs, projects, currentUser }) => {
         language={"english"}
         backgroundURL={backgroundURL}
       />
-      <div className="container mt-3">
+      <div className="mt-3 mx-4">
         <Intro
           title={intro_title}
           subtitle={intro_subtitle}
           intro={intro_intro}
           projects={projects}
         ></Intro>
-        <Subscribe
-          likes={likes}
-          _id={_id}
-          title={"Show some interests? Follow my blog here!"}
-          info={
-            " Your information will be secured."
-          }
-          copyright={` All rights reserved ©2019-2020  ${webUrl ||
-            "yaobaiyang.com"} `}
-          web_version={subscribe_web_version}
-          logs_content={logs}
-        />
+        </div>
+
+        <div className='mt-5 pt-5 white-text z-depth-1' style={{backgroundColor:'#333',marginTop:'100px'}}>
+          <Subscribe
+            likes={likes}
+            _id={_id}
+            title={"Get the lastest blogs notified!"}
+            info={
+              " Your information will be secured."
+            }
+            copyright={` All rights reserved ©2019-2020  ${webUrl ||
+              "yaobaiyang.com"} `}
+            web_version={subscribe_web_version}
+            logs_content={logs}
+          />
       </div>
 
       <Footer date={footer_date} welcome={footer_welcome}></Footer>

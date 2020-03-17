@@ -11,9 +11,8 @@ const Logs = ({ version, logs }) => {
   };
   return (
     <div>
-      <p className="text-dark">
+      <p className="white-text">
         <a
-          className="text-dark"
           onClick={openLogs}
           style={{ textDecoration: "underline" }}
         >
@@ -34,11 +33,11 @@ const Logs = ({ version, logs }) => {
                 aria-label="Close"
                 onClick={closeLogs}
               >
-                <span aria-hidden="true">&times;</span>
+                <span aria-hidden="true">X</span>
               </button>
             </div>
 
-            <div className="modal-body mb-0 text-center">
+            <div className="modal-body mb-0 text-center text-dark">
               {logs &&
                 logs.map(({ _id, ...other }) => {
                   return <LogItem key={_id} {...other}></LogItem>;

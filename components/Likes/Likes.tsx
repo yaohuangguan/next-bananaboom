@@ -43,7 +43,7 @@ const Likes = ({ likes, _id }) => {
         justifyContent: "center",
         alignItems: "center"
       }}
-      className="font-weight-bold text-dark"
+      className="font-weight-bold white-text"
     >
       <div
         className="like-button font-weight-bold d-flex"
