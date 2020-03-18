@@ -58,6 +58,8 @@ export default class MyDocument extends Document {
             sizes="16x16"
             href="/favicon-16x16.png"
           />
+          <link rel="manifest" href="/manifest.json" />
+
           <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5" />
           <meta name="msapplication-navbutton-color" content="blue" />
           <meta name="msapplication-TileColor" content="black" />
@@ -83,7 +85,6 @@ export default class MyDocument extends Document {
           <meta name="imagemode" content="force" />
 
           <meta name="screen-orientation" content="portrait" />
-          <link rel="manifest" href="/manifest.json" />
           <meta
             name="description"
             content="姚柏杨的网站，yaobaiyang's website, yaobaiyang.com"
