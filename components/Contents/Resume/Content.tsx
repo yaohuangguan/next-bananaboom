@@ -2,9 +2,8 @@ import { getBeeHexImg } from "../Background/Beehex";
 export const getChineseContent = () => {
   return (
     <div>
-    <p className="text-muted">
-      首先，这有点像简历，但我希望它更随意一些。它的主要目的是让你更多地了解我在做什么。
-    </p>
+      <h5 className='blue-text'>个人经历:</h5>
+   
       <p>迈阿密大学 公立常青藤之一</p>
       <p>交互研究 GPA:3.7</p>
       <p>主要研究方向: Web理论和技术研究</p>
@@ -40,7 +39,7 @@ export const getChineseContent = () => {
 export const getEnglishContent = () => {
   return (
     <div>
-    <p className='text-muted'>First off, this is a bit like resume, but its not. Its main purpose is to let you to know a little more about what i am doing and me as a friend.</p>
+    
       <h5 className='blue-text'>Education:</h5>
       <p>Miami University  Public Ivies</p>
       <p>Bachelor of Art in Interactive Media Studies (STEM Major) GPA:3.7</p>
