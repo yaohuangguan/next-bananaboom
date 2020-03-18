@@ -2,6 +2,11 @@ const withSass = require("@zeit/next-sass");
 const withCSS = require("@zeit/next-css");
 const withPwa = require("next-pwa");
 const nextConfig = withPwa(
+  {
+    pwa: {
+      dest: "public"
+    }
+  },
   withCSS(
     withSass({
       webpack(config, options) {

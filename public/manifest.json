@@ -1,6 +1,6 @@
 {
-  "name": "Samyao",
-  "short_name": "samyao",
+  "name": "Samyao website",
+  "short_name": "samyao website",
   "icon": [
     {
       "src": "./favicon.ico",
@@ -18,11 +18,7 @@
       "type": "image/png"
     }
   ],
-  "gcm_sender_id": "123",
-  "gcm_user_visible_only": true,
-  "start_url": "/sw.js",
-  "permissions": ["gcm"],
-  "scope": "/sw.js",
+  "start_url": "/",
   "orientation": "portrait",
   "display": "standalone",
   "theme_color": "#ffffff",

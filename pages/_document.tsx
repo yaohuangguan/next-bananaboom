@@ -71,6 +71,24 @@ export default class MyDocument extends Document {
             property="og:description"
             content="姚柏杨的网站，yaobaiyang's website, yaobaiyang.com"
           />
+          <meta name="twitter:card" content="summary" />
+          <meta name="twitter:url" content="https://www.yaobaiyang.com" />
+          <meta name="twitter:title" content="sam yao website" />
+          <meta name="twitter:description" content="sam yao website" />
+          <meta
+            name="twitter:image"
+            content="https://www.yaobaiyang.com/android-chrome-192x192.png"
+          />
+          <meta name="twitter:creator" content="Samyao" />
+          <meta property="og:type" content="website" />
+          <meta property="og:title" content="Sam yao website" />
+          <meta property="og:description" content="Sam yao website" />
+          <meta property="og:site_name" content="Bananboom" />
+          <meta property="og:url" content="https://www.yaobaiyang.com" />
+          <meta
+            property="og:image"
+            content="https://www.yaobaiyang.com/apple-touch-icon.png"
+          />
         </Head>
         <body style={{ margin: 0, backgroundColor: "white" }}>
           <Main />
