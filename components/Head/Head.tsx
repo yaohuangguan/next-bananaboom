@@ -9,7 +9,6 @@ const HeadConfig = ({ head }) => {
         {head ||
           "Sam 个人博客 博客文章 技术文章 生活文章 个人心得 Blog Posts || yaobaiyang.com"}
       </title>
-      <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       
       {/* <link rel="preconnect" href="https://i.ibb.co" crossOrigin="true" />
       <link rel="dns-prefetch" href="https://i.ibb.co" /> */}
@@ -33,10 +32,6 @@ const HeadConfig = ({ head }) => {
         href="https://cdnjs.cloudflare.com"
         crossOrigin="true"
       />
-      <meta name="msapplication-TileColor" content="#2d89ef" />
-      <meta name="theme-color" content="#ffffff" />
-      <meta name="theme-color" content="normal" />
-      <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
 
       <link
         href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css"

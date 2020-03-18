@@ -31,7 +31,10 @@ export default class MyDocument extends Document {
         <Head>
           <meta name="theme-color" content="red" />
           <meta name="mobile-web-app-capable" content="yes" />
-
+          <meta
+            name="viewport"
+            content="initial-scale=1.0, width=device-width"
+          />
           <meta name="apple-mobile-web-app-title" content="Sam web blog" />
           <meta name="apple-mobile-web-app-capable" content="yes" />
           <meta
@@ -56,11 +59,14 @@ export default class MyDocument extends Document {
             href="/favicon-16x16.png"
           />
           <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5" />
-          <meta name="msapplication-navbutton-color" content="red" />
-          <meta name="msapplication-TileColor" content="red" />
+          <meta name="msapplication-navbutton-color" content="blue" />
+          <meta name="msapplication-TileColor" content="black" />
           <meta name="msapplication-TileImage" content="mstile-150x150.png" />
           <meta name="msapplication-config" content="browserconfig.xml" />
 
+          <meta name="theme-color" content="#ffffff" />
+          <meta name="theme-color" content="normal" />
+          <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
           <meta name="application-name" content="Sam web blog" />
           <meta name="msapplication-tooltip" content="thanks for visiting" />
           <meta name="msapplication-starturl" content="/" />
