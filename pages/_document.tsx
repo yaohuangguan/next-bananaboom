@@ -38,10 +38,27 @@ export default class MyDocument extends Document {
             name="apple-mobile-web-app-status-bar-style"
             content="default"
           />
-
+          <link
+            rel="apple-touch-icon"
+            sizes="180x180"
+            href="/apple-touch-icon.png"
+          />
+          <link
+            rel="icon"
+            type="image/png"
+            sizes="32x32"
+            href="/favicon-32x32.png"
+          />
+          <link
+            rel="icon"
+            type="image/png"
+            sizes="16x16"
+            href="/favicon-16x16.png"
+          />
+          <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5" />
           <meta name="msapplication-navbutton-color" content="red" />
           <meta name="msapplication-TileColor" content="red" />
-          <meta name="msapplication-TileImage" content="ms-icon-144x144.png" />
+          <meta name="msapplication-TileImage" content="mstile-150x150.png" />
           <meta name="msapplication-config" content="browserconfig.xml" />
 
           <meta name="application-name" content="Sam web blog" />
@@ -54,8 +71,6 @@ export default class MyDocument extends Document {
           <meta name="browsermode" content="application" />
 
           <meta name="nightmode" content="enable/disable" />
-
-          <meta name="viewport" content="uc-fitscreen=yes" />
 
           <meta name="layoutmode" content="fitscreen/standard" />
 
@@ -77,7 +92,7 @@ export default class MyDocument extends Document {
           <meta name="twitter:description" content="sam yao website" />
           <meta
             name="twitter:image"
-            content="https://www.yaobaiyang.com/android-chrome-192x192.png"
+            content="https://www.yaobaiyang.com/icon-192x192.png"
           />
           <meta name="twitter:creator" content="Samyao" />
           <meta property="og:type" content="website" />

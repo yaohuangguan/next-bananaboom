@@ -10,24 +10,7 @@ const HeadConfig = ({ head }) => {
           "Sam 个人博客 博客文章 技术文章 生活文章 个人心得 Blog Posts || yaobaiyang.com"}
       </title>
       <meta name="viewport" content="initial-scale=1.0, width=device-width" />
-      <link
-        rel="apple-touch-icon"
-        sizes="180x180"
-        href="/apple-touch-icon.png"
-      />
-      <link
-        rel="icon"
-        type="image/png"
-        sizes="32x32"
-        href="/favicon-32x32.png"
-      />
-      <link
-        rel="icon"
-        type="image/png"
-        sizes="16x16"
-        href="/favicon-16x16.png"
-      />
-      <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5" />
+      
       {/* <link rel="preconnect" href="https://i.ibb.co" crossOrigin="true" />
       <link rel="dns-prefetch" href="https://i.ibb.co" /> */}
       <link
