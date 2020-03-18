@@ -27,16 +27,20 @@ const socketURL =
 
 const index = ({ currentUser, posts, errors, todos }) => {
   const router = useRouter();
-  router.beforePopState(({ url, as, option }) => {
-    // I only want to allow these two routes!
-    if (as !== "/") {
-      // Have SSR render bad routes as a 404.
-      window.location.href = '/';
-      return false;
-    }
-
-    return true;
-  });
+  if(typeof window !== 'undefined'){
+    router.beforePopState(({ url, as, option }) => {
+      // I only want to allow these two routes!
+      if (typeof url == 'undefined') {
+        // Have SSR render bad routes as a 404.
+       history.back()
+        
+        return false;
+      } 
+  
+      return true;
+    });
+  }
+  
   const [socket, setSocket] = useState(null);
   const [chatUser, setuser] = useState("");
   const [privatePosts, setprivatePosts] = useState(posts);

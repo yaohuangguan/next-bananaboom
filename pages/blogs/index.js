@@ -7,25 +7,24 @@ import BlogList from "../../components/Blog/BlogList";
 import api from "../../utils/Api";
 import SearchBox from "../../components/SearchBox/SearchBox";
 import Loader from "../../components/Loader/Loader";
-import { route } from "next/dist/next-server/server/router";
 const Blog = ({ blogs, errors, currentUser }) => {
   const router = useRouter();
   const [searchField, setsearchField] = useState("");
   const [filteredBlog, setfilteredBlog] = useState([]);
   const handleChange = e => setsearchField(e.target.value);
-  router.beforePopState(({ url, as, option }) => {
-    // I only want to allow these two routes!
-    console.log(url,as,option)
-    if (typeof url == 'undefined') {
-      // Have SSR render bad routes as a 404.
-     history.back()
-      
-      return false;
-    } 
-
-    return true;
-  });
-
+  if(typeof window !== 'undefined'){
+    router.beforePopState(({ url, as, option }) => {
+      // I only want to allow these two routes!
+      if (typeof url == 'undefined') {
+        // Have SSR render bad routes as a 404.
+       history.back()
+        
+        return false;
+      } 
+  
+      return true;
+    });
+  }
  
   useEffect(() => {
     let header = document.querySelector(".shrinkedHeader");
