@@ -64,7 +64,7 @@ const Index = ({ homepage, errors, logs, projects, currentUser }) => {
         ></Intro>
         </div>
 
-        <div className='white-text z-depth-1' style={{backgroundColor:'#333',marginTop:'100px'}}>
+        <div className='white-text z-depth-1' style={{backgroundColor:'#333',marginTop:'120px'}}>
           <Subscribe
             likes={likes}
             _id={_id}

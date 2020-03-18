@@ -56,8 +56,8 @@ const Chinese = ({ homepage, errors, logs, projects, currentUser }) => {
         ></Intro>
       </div>
       <div
-        className="pt-5 white-text z-depth-1"
-        style={{ backgroundColor: "#333",marginTop:'100px' }}
+        className="white-text z-depth-1"
+        style={{ backgroundColor: "#333",marginTop:'120px' }}
       >
         <Subscribe
           likes={likes}

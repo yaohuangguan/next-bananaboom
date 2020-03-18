@@ -67,7 +67,7 @@ const Subscribe = ({
   return (
     <div className="subscribe-container">
       <div className="brand-name">
-        {brand.split(".")[1] + "." + brand.split(".")[2]}
+        {brand && brand.split(".")[1] + "." + brand.split(".")[2]}
       </div>
       <div className="subscribe-wrapper">
         <div className="p-2 sayhi">
