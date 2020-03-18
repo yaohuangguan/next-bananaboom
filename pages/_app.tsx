@@ -47,6 +47,7 @@ class SamMainApp extends App<MyProps, MyState> {
     }
   };
   componentDidMount() {
+   
     let user = window.localStorage.getItem("token") || null;
     let refresh = localStorage.getItem("refresh");
     if (!refresh) {

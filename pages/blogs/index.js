@@ -13,7 +13,20 @@ const Blog = ({ blogs, errors, currentUser }) => {
   const [searchField, setsearchField] = useState("");
   const [filteredBlog, setfilteredBlog] = useState([]);
   const handleChange = e => setsearchField(e.target.value);
-  
+  router.beforePopState(({ url, as, option }) => {
+    // I only want to allow these two routes!
+    console.log(url,as,option)
+    if (typeof url == 'undefined') {
+      // Have SSR render bad routes as a 404.
+     history.back()
+      
+      return false;
+    } 
+
+    return true;
+  });
+
+ 
   useEffect(() => {
     let header = document.querySelector(".shrinkedHeader");
     let blog = document.querySelector(".blog");
@@ -61,28 +74,22 @@ const Blog = ({ blogs, errors, currentUser }) => {
     setfilteredBlog(result);
   }, [searchField]);
   const goBack = e => {
-    e.preventDefault()
-    router.back()
-  }
+    e.preventDefault();
+    router.back();
+  };
   return (
     <Layout
       head={"Sam 个人博客 博客文章 技术文章 生活文章 个人心得 Blog Posts"}
     >
       <div className="shrinkedHeader">
-        <a
-          className="btn draw-border-white"
-          onClick={goBack}
-        >
+        <a className="btn draw-border-white" onClick={goBack}>
           Go back
         </a>
       </div>
       <div className="blog">
         <div className="text-white text-center px-5">
           <div className="py-5">
-            <a
-              className="btn draw-border-white"
-              onClick={goBack}
-            >
+            <a className="btn draw-border-white" onClick={goBack}>
               Go back
             </a>{" "}
             <h4 className="card-title my-4 py-2" style={{ fontSize: "2.7rem" }}>
