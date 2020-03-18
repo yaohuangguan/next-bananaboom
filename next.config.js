@@ -24,6 +24,9 @@ const nextConfig = withPwa(
           }
         );
         return config;
+      },
+      pwa: {
+        dest: "public"
       }
     })
   )
