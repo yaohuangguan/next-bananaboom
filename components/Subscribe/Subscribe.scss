@@ -1,65 +1,71 @@
-.subscribe-container{
-  .subscribe-footer{
+.subscribe-container {
+  .brand-name {
+    font-family: "Sriracha", cursive;
+    font-size: 1.3em;
+    text-align: center;
+    padding: 10px 10px 10px 10px;
+    letter-spacing: 5px;
+  }
+  .subscribe-footer {
     display: flex;
     justify-content: space-evenly;
-    @media screen and (max-width:800px) {
+    @media screen and (max-width: 800px) {
       flex-direction: column;
     }
   }
-  .subscribe-wrapper{
+  .subscribe-wrapper {
     display: flex;
     justify-content: space-evenly;
     flex-direction: row;
-    @media screen and (max-width:800px) {
+    @media screen and (max-width: 800px) {
       flex-direction: column-reverse;
     }
-    .sayhi{
-      @media screen and (max-width:800px) {
+    .sayhi {
+      @media screen and (max-width: 800px) {
         text-align: center;
       }
     }
-    .subscribe-form{
+    .subscribe-form {
       text-align: center;
       .form-a {
-        .subscribe-button{
+        .subscribe-button {
           position: relative;
           display: inline-block;
           cursor: pointer;
-        .subscribe-button-text {
-          visibility: hidden;
-          width: 50%;
-          background-color:#ffff;
-          color: rgb(125, 46, 199);
-          border:2px solid rgb(125, 46, 199);
-          text-align: center;
-          padding: 3px;
-          position: absolute;
-          z-index: 1;
-          bottom: 100%;
-          left: 50%;
-          transform: translate(-50%);
-          opacity: 0;
-          transition: opacity 0.3s;
-          a{
+          .subscribe-button-text {
+            visibility: hidden;
+            width: 50%;
+            background-color: #ffff;
             color: rgb(125, 46, 199);
-      
-          }
-          &:after {
-            content: "";
+            border: 2px solid rgb(125, 46, 199);
+            text-align: center;
+            padding: 3px;
             position: absolute;
-            top: 100%;
+            z-index: 1;
+            bottom: 100%;
             left: 50%;
-            margin-left: -5px;
-            border-width: 5px;
-            border-style: solid;
-            border-color: rgb(125, 46, 199) transparent transparent transparent;
+            transform: translate(-50%);
+            opacity: 0;
+            transition: opacity 0.3s;
+            a {
+              color: rgb(125, 46, 199);
+            }
+            &:after {
+              content: "";
+              position: absolute;
+              top: 100%;
+              left: 50%;
+              margin-left: -5px;
+              border-width: 5px;
+              border-style: solid;
+              border-color: rgb(125, 46, 199) transparent transparent
+                transparent;
+            }
           }
-        }
-        &:hover .subscribe-button-text {
-          visibility: visible;
-          opacity: 1;
-        }
-        
+          &:hover .subscribe-button-text {
+            visibility: visible;
+            opacity: 1;
+          }
         }
         label {
           position: relative;
@@ -74,8 +80,7 @@
             border: 2px solid #976bff;
             border-color: #9364ff;
             box-shadow: inset 0px 0px 5px #ad8aff;
-            outline:none;
-      
+            outline: none;
           }
         }
         .form-control.form-control-a {
@@ -83,10 +88,6 @@
           width: 90%;
         }
       }
-      
-
     }
   }
 }
-
-

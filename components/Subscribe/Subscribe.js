@@ -22,6 +22,7 @@ const Subscribe = ({
   const [loading, setloading] = useState(false);
   const [result, setresult] = useState("");
   const [status, setstatus] = useState("");
+  const [brand, setbrand] = useState("");
   const validEmail = () => {
     var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     return re.test(email);
@@ -41,6 +42,7 @@ const Subscribe = ({
     setloading(false);
   };
   useEffect(() => {
+    setbrand(window.location.hostname);
     function test() {
       if (document.getElementById("mce-EMAIL").value == "") {
         setsend(false);
@@ -63,8 +65,11 @@ const Subscribe = ({
   };
 
   return (
-    <div className='subscribe-container'>
-      <div className='subscribe-wrapper'>
+    <div className="subscribe-container">
+      <div className="brand-name">
+        {brand.split(".")[1] + "." + brand.split(".")[2]}
+      </div>
+      <div className="subscribe-wrapper">
         <div className="p-2 sayhi">
           <SayHi />
         </div>
@@ -118,14 +123,13 @@ const Subscribe = ({
           </form>
         </div>
       </div>
-	   <div className="subscribe-footer">
-		   <SocialFooter likes={likes} _id={_id}></SocialFooter>
-	         <div className="information pb-3 text-center">
-	           <Logs version={web_version} logs={logs_content}></Logs>
-	           <p className="white-text">{copyright}</p>
-	         </div>
-	   </div>
-     
+      <div className="subscribe-footer">
+        <SocialFooter likes={likes} _id={_id}></SocialFooter>
+        <div className="information pb-3 text-center">
+          <Logs version={web_version} logs={logs_content}></Logs>
+          <p className="white-text">{copyright}</p>
+        </div>
+      </div>
     </div>
   );
 };
