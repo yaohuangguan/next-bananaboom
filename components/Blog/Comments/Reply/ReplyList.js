@@ -4,6 +4,7 @@ import api from "../../../../utils/Api";
 const ReplyList = ({ reply, showReply, comment_id, currentUser,handleNewReply,getNewReply}) => {
   const [replyContent, setreplyContent] = useState("");
   const [targetUser, settargetUser] = useState('')
+  const [loading, setLoading] = useState(false)
   const handleReplyChange = e => {
     setreplyContent(e.target.value);
   };
@@ -15,17 +16,23 @@ const ReplyList = ({ reply, showReply, comment_id, currentUser,handleNewReply,ge
     if (replyContent.trim() === "" || !replyContent) return;
     try {
       if(targetUser === displayName) return;
-      const response = await api.post(`/api/comments/reply/${comment_id}`, {
-        reply: replyContent,
-        targetUser,
-        photoURL,
-        user:displayName
-      });
-      const newReply = await api.get(`/api/comments/reply/${comment_id}`)
-      const data = await newReply.data[0].reply;
-      handleNewReply(data)
-      setreplyContent('');
+      if(!loading){
+        setLoading(true)
+        const response = await api.post(`/api/comments/reply/${comment_id}`, {
+          reply: replyContent,
+          targetUser,
+          photoURL,
+          user:displayName
+        });
+        const newReply = await api.get(`/api/comments/reply/${comment_id}`)
+        const data = await newReply.data[0].reply;
+        handleNewReply(data)
+        setreplyContent('');
+        setLoading(false)
+      }
+      
     } catch (error) {
+      setLoading(false)
       console.log(error);
     }
   };
@@ -38,7 +45,7 @@ const ReplyList = ({ reply, showReply, comment_id, currentUser,handleNewReply,ge
               id={id}
               key={id}
               {...otherProps}
-              comment_id={comment_id}
+              loading = {loading}
               showReply={showReply}
               replyContent={replyContent}
               handleReplyChange={handleReplyChange}

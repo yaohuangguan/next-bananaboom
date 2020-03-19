@@ -46,7 +46,7 @@ const Signup = ({ linkColor }) => {
   const handleEmail = e => {
     setemail(e.target.value);
   };
-  const handlePasswordConf = e=> {
+  const handlePasswordConf = e => {
     setpasswordConf(e.target.value);
   };
   const handlePassword = e => {
@@ -80,20 +80,22 @@ const Signup = ({ linkColor }) => {
       return seterrors(["信息不符合要求"]);
     }
     try {
-      setloading(true);
-      const response = await api.post("/api/users", {
-        displayName,
-        email,
-        password,
-        passwordConf
-      });
-      const user = await response.data;
-      window.localStorage.setItem("token", user.token);
+      if (!loading) {
+        setloading(true);
+        const response = await api.post("/api/users", {
+          displayName,
+          email,
+          password,
+          passwordConf
+        });
+        const user = await response.data;
+        window.localStorage.setItem("token", user.token);
 
-      router.reload();
+        router.reload();
 
-      clearInput();
-      closeSignup();
+        clearInput();
+        closeSignup();
+      }
     } catch (error) {
       setloading(false);
       if (error.response.data.message) {
@@ -103,8 +105,6 @@ const Signup = ({ linkColor }) => {
         const errors = error.response.data.errors.map(each => `  ${each.msg}`);
         seterrors(errors);
       }
-    } finally {
-      setloading(false);
     }
   };
   const getSignupNameOnRoutes = () =>
@@ -140,6 +140,7 @@ const Signup = ({ linkColor }) => {
               flexDirection: "column",
               justifyContent: "center"
             }}
+            onSubmit={handleUserSubmit}
           >
             <div className="signup-title">
               <h4 className="py-3 mt-3">{getSignupNameOnRoutes()} </h4>
@@ -216,7 +217,6 @@ const Signup = ({ linkColor }) => {
             <button
               className="btn btn-hover color-3 my-4 mx-0 text-white"
               type="submit"
-              onClick={handleUserSubmit}
             >
               {!loading ? getSubmitButtonOnRoutes() : <Loader></Loader>}
             </button>

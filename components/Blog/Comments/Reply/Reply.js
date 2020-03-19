@@ -1,12 +1,14 @@
 import ReplyList from "./ReplyList";
 import api from "../../../../utils/Api";
 import axios from "axios";
+import Loader from "../../../Loader/Loader";
 import { useState, useEffect } from "react";
 const Reply = ({ reply, comment_id, currentUser }) => {
   const [replyContent, setreplyContent] = useState("");
   const [replyList, setreplyList] = useState(reply);
   const [errors, seterrors] = useState("");
   const [emojiList, setemojiList] = useState("");
+  const [loading, setLoading] = useState(false);
   const handleReplyChange = async e => {
     setreplyContent(e.target.value);
     const emoji = await fetch(
@@ -25,7 +27,8 @@ const Reply = ({ reply, comment_id, currentUser }) => {
         const newReply = await response.data[0].reply;
         setreplyList(newReply);
         const emoji = await axios.get(
-          `https://emoji.getdango.com/api/emoji?q=$happy`,{
+          `https://emoji.getdango.com/api/emoji?q=$happy`,
+          {
             cancelToken: source.token
           }
         );
@@ -44,7 +47,7 @@ const Reply = ({ reply, comment_id, currentUser }) => {
   }, []);
   const showReply = e => {
     const reply = document.getElementById(comment_id);
-    if(reply){
+    if (reply) {
       reply.classList.toggle("d-none");
     }
   };
@@ -64,34 +67,39 @@ const Reply = ({ reply, comment_id, currentUser }) => {
         return seterrors("You can't post a comment more than 120 words");
       }
       const { displayName, photoURL } = currentUser;
-      const response = await api({
-        method: "post",
-        url: `/api/comments/reply/${comment_id}`,
-        data: JSON.stringify({
-          user: displayName,
-          photoURL,
-          reply: replyContent
-        })
-      });
+      if (!loading) {
+        setLoading(true);
+        const response = await api({
+          method: "post",
+          url: `/api/comments/reply/${comment_id}`,
+          data: JSON.stringify({
+            user: displayName,
+            photoURL,
+            reply: replyContent
+          })
+        });
 
-      const data = getNewReply(comment_id)
-      handleNewReply(data)
-      cleanReply();
-      showReply();
+        const data = getNewReply(comment_id);
+        handleNewReply(data);
+        cleanReply();
+        showReply();
+        setLoading(false);
+      }
     } catch (error) {
+      setLoading(false);
       console.log(error);
       cleanReply();
       showReply();
     }
   };
-  const getNewReply = async (comment_id) => {
-    const newReply = await api.get(`/api/comments/reply/${comment_id}`)
-    const data = await newReply.data[0].reply
+  const getNewReply = async comment_id => {
+    const newReply = await api.get(`/api/comments/reply/${comment_id}`);
+    const data = await newReply.data[0].reply;
     return data;
-  }
-  const handleNewReply = (newReply) => {
+  };
+  const handleNewReply = newReply => {
     setreplyList(newReply);
-  }
+  };
   const appendToComment = e => {
     setreplyContent(replyContent + e.target.textContent);
   };
@@ -122,7 +130,14 @@ const Reply = ({ reply, comment_id, currentUser }) => {
       >
         {replyList.length === 0 ? null : (
           <div style={{ justifySelf: "flex-start" }}>
-            <ReplyList reply={replyList} showReply={showReply} comment_id={comment_id} currentUser={currentUser} handleNewReply={handleNewReply} getNewReply={getNewReply}></ReplyList>
+            <ReplyList
+              reply={replyList}
+              showReply={showReply}
+              comment_id={comment_id}
+              currentUser={currentUser}
+              handleNewReply={handleNewReply}
+              getNewReply={getNewReply}
+            ></ReplyList>
           </div>
         )}
         <div style={{ justifySelf: "flex-end" }}>
@@ -151,7 +166,7 @@ const Reply = ({ reply, comment_id, currentUser }) => {
             onClick={addReply}
             style={{ alignSelf: "flex-end", borderRadius: "40px" }}
           >
-            回复
+            {!loading ? "发送" : <Loader />}
           </button>
         </div>
       </div>

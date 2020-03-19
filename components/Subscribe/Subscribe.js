@@ -29,17 +29,22 @@ const Subscribe = ({
   };
   const handleSubmit = async e => {
     e.preventDefault();
-    setloading(true);
-    try {
-      const response = await api.post("/api/auth/subscribe", { email });
-      const data = await response.data;
-      setresult(data.message);
-      setstatus(data.status);
-    } catch (error) {
-      console.log(error);
-      setresult("Error happened.");
-    }
-    setloading(false);
+    if (!loading) {
+      try {
+        setloading(true);
+        const response = await api.post("/api/auth/subscribe", { email });
+        const data = await response.data;
+        setresult(data.message);
+		setstatus(data.status);
+		setloading(false);
+		
+      } catch (error) {
+        console.log(error);
+        setloading(false);
+        setresult("Error happened.");
+      }
+	}
+	
   };
   useEffect(() => {
     setbrand(window.location.hostname);

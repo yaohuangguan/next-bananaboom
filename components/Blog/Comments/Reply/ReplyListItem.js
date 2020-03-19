@@ -1,3 +1,5 @@
+import Loader from "../../../Loader/Loader";
+
 const ReplyListItem = ({
   id,
   content,
@@ -8,14 +10,15 @@ const ReplyListItem = ({
   handleTargetUser,
   replyContent,
   handleReplyChange,
-  makeReplyReq
+  makeReplyReq,
+  loading
 }) => {
   const showReply = e => {
     const reply = document.getElementById(id);
     if (reply) {
       reply.classList.toggle("d-none");
     }
-    handleTargetUser(user)
+    handleTargetUser(user);
   };
 
   return (
@@ -39,11 +42,9 @@ const ReplyListItem = ({
           </div>
           <p className="mb-2">
             {targetUser ? (
-              <span className="bg-light">
-                @{targetUser}
-              </span>
+              <span className="bg-light">@{targetUser}</span>
             ) : null}
-              {content}
+            {content}
           </p>
         </div>
 
@@ -83,7 +84,7 @@ const ReplyListItem = ({
             className="bg-dark btn-sm text-white"
             onClick={makeReplyReq}
           >
-            发送
+            {!loading ? "发送" : <Loader />}
           </button>
         </div>
       </div>

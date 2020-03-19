@@ -7,10 +7,8 @@ import "./DropDown.scss";
 const DropDown = ({ currentUser }) => {
   const logout = async () => {
     localStorage.removeItem("token");
-
     router.reload();
-   const response =  await api.post("/api/users/logout");
-
+    return await api.post("/api/users/logout");
   };
   const getUserLogOutOnRoutes = () => {
     return router.pathname === "/" ? "Log out" : "退出登录";

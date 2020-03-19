@@ -33,25 +33,29 @@ const Login = ({ passwordReveal }) => {
 
   const handleUserSubmit = async e => {
     e.preventDefault();
+    
     if (!email || !password) {
       const shakeMessage = document.querySelector(".shake-target");
       shakeMessage.classList.toggle("shake-message");
       return seterrors(["填写完整信息(Fill all the requirements)"]);
     }
     try {
-      setloading(true);
-      const response = await api.post("/api/users/signin", {
-        email,
-        password
-      });
-      // console.log(response.data.userToSend);
-      const user = await response.data;
-
-      window.localStorage.setItem("token", user.token);
-
-      router.reload();
-      clearInput();
-      closeLogin();
+      if(!loading){
+        setloading(true);
+        const response = await api.post("/api/users/signin", {
+          email,
+          password
+        });
+        // console.log(response.data.userToSend);
+        const user = await response.data;
+  
+        window.localStorage.setItem("token", user.token);
+  
+        router.reload();
+        clearInput();
+        closeLogin();
+      }
+      
     } catch (error) {
       setloading(false);
       if (error.response.data.message) {
@@ -61,8 +65,6 @@ const Login = ({ passwordReveal }) => {
         const errors = error.response.data.errors.map(each => `  ${each.msg}`);
         seterrors(errors);
       }
-    } finally {
-      setloading(false);
     }
   };
   const handleForgetPassword = async () => {
@@ -93,6 +95,7 @@ const Login = ({ passwordReveal }) => {
               flexDirection: "column",
               justifyContent: "center"
             }}
+            onSubmit={handleUserSubmit}
           >
             <div className="signup-title">
               <h4 className="py-3 mt-3">{getLoginNameOnRoutes()}</h4>
@@ -147,7 +150,6 @@ const Login = ({ passwordReveal }) => {
             <button
               className="btn btn-hover color-3 my-4 mx-0 btn-block text-white"
               type="submit"
-              onClick={handleUserSubmit}
             >
               {!loading ? getLoginButtonOnRoutes() : <Loader></Loader>}
             </button>

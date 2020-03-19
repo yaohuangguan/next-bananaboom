@@ -3,13 +3,14 @@ import CommentList from "./CommentList";
 import api from "../../../utils/Api";
 import axios from "axios";
 import Signup from "../../Auth/Signup";
-
+import Loader from "../../Loader/Loader";
 const Comment = ({ currentUser, comments, _id }) => {
   const [commentInputField, setcommentInputField] = useState("");
   const [commentsCount, setcommentsCount] = useState(comments.length);
   const [errors, seterrors] = useState("");
   const [commentsList, setcommentsList] = useState(comments);
   const [emojiList, setemojiList] = useState("");
+  const [loading, setloading] = useState(false);
   const fetchEmoji = async () => {
     const emoji = await axios(
       `https://emoji.getdango.com/api/emoji?q=${commentInputField}`
@@ -26,12 +27,12 @@ const Comment = ({ currentUser, comments, _id }) => {
     let source = axios.CancelToken.source();
     const getNewComments = async () => {
       try {
-          const response = await api.get(`/api/comments/${_id}`, {
-            cancelToken: source.token
-          });
-          let getComments = await response.data;
-          setcommentsList(getComments);
-          setcommentsCount(getComments.length);
+        const response = await api.get(`/api/comments/${_id}`, {
+          cancelToken: source.token
+        });
+        let getComments = await response.data;
+        setcommentsList(getComments);
+        setcommentsCount(getComments.length);
       } catch (error) {
         if (axios.isCancel(error)) {
           console.log("caught cancel axios");
@@ -68,26 +69,31 @@ const Comment = ({ currentUser, comments, _id }) => {
       return seterrors("You can't post a comment more than 120 words");
     }
     const { displayName, photoURL } = currentUser;
-    
+
     try {
-      const response = await api({
-        method: "post",
-        url: `/api/comments/${_id}`,
-        headers:{
-          "x-google-auth":currentUser.ma ? currentUser.ma : null
-        },
-        data: JSON.stringify({
-          user: displayName,
-          photoURL,
-          comment: commentInputField
-        })
-      });
-      const result = await response.data;
-      console.log(result);
-      getNewComments();
-      seterrors("");
-      clearCommentField();
+      if (!loading) {
+        setloading(true);
+        const response = await api({
+          method: "post",
+          url: `/api/comments/${_id}`,
+          headers: {
+            "x-google-auth": currentUser.ma ? currentUser.ma : null
+          },
+          data: JSON.stringify({
+            user: displayName,
+            photoURL,
+            comment: commentInputField
+          })
+        });
+        const result = await response.data;
+        console.log(result);
+        getNewComments();
+        seterrors("");
+        clearCommentField();
+        setloading(false);
+      }
     } catch (error) {
+      setloading(false);
       clearCommentField();
     }
   };
@@ -163,7 +169,7 @@ const Comment = ({ currentUser, comments, _id }) => {
               className="btn bg-dark text-white mb-3 waves-effect waves-light float-right"
               onClick={submitComment}
             >
-              发送
+              {!loading ? "发送" : <Loader />}
             </button>
           </ul>
         </div>

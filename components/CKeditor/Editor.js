@@ -2,6 +2,7 @@ import { useState, useEffect, useReducer } from "react";
 import CKEditor from "ckeditor4-react";
 import { useRouter } from "next/router";
 import api from "../../utils/Api";
+import Loader from "../Loader/Loader";
 const INITIAL_STATE = {
   content: localStorage.getItem("cachedText") || "",
   author: localStorage.getItem("authorText") || "",
@@ -10,7 +11,8 @@ const INITIAL_STATE = {
   title: localStorage.getItem("titleText") || "",
   tags: localStorage.getItem("tagText") || "",
   isPrivate: false,
-  errors: ""
+  errors: "",
+  loading: false
 };
 const reducer = (state, action) => {
   switch (action.type) {
@@ -30,6 +32,8 @@ const reducer = (state, action) => {
       return { ...state, isPrivate: action.payload };
     case "ERROR":
       return { ...state, errors: action.payload };
+    case "LOADING":
+      return { ...state, loading: action.payload };
     case "RESET":
       return {
         content: "",
@@ -39,7 +43,8 @@ const reducer = (state, action) => {
         title: "",
         tags: "",
         isPrivate: false,
-        errors: ""
+        errors: "",
+        loading: false
       };
     default:
       throw new Error();
@@ -48,7 +53,17 @@ const reducer = (state, action) => {
 const Editor = () => {
   const router = useRouter();
   const [state, dispatch] = useReducer(reducer, INITIAL_STATE);
-  const { content, author, code, info, title, tags, isPrivate, errors } = state;
+  const {
+    content,
+    author,
+    code,
+    info,
+    title,
+    tags,
+    isPrivate,
+    errors,
+    loading
+  } = state;
 
   // const [blogText, setblogText] = useState("");
   // const [author, setauthor] = useState("");
@@ -103,38 +118,44 @@ const Editor = () => {
       return dispatch({ type: "ERROR", payload: "都要填的，老婆" });
     }
     try {
-      const response = await api.post("/api/posts", {
-        author,
-        info,
-        name: title,
-        tags,
-        isPrivate,
-        content,
-        code
-      });
-      const data = await response.data;
-
-      dispatch({ type: "RESET" });
-      localStorage.removeItem("cachedText");
-      localStorage.removeItem("codeText");
-      localStorage.removeItem("authorText");
-      localStorage.removeItem("infoText");
-      localStorage.removeItem("titleText");
-      localStorage.removeItem("tagText");
-      router.reload();
+      if (!loading) {
+        dispatch({ type: "LOADING", payload: true });
+        const response = await api.post("/api/posts", {
+          author,
+          info,
+          name: title,
+          tags,
+          isPrivate,
+          content,
+          code
+        });
+        const data = await response.data;
+        dispatch({ type: "RESET" });
+        localStorage.removeItem("cachedText");
+        localStorage.removeItem("codeText");
+        localStorage.removeItem("authorText");
+        localStorage.removeItem("infoText");
+        localStorage.removeItem("titleText");
+        localStorage.removeItem("tagText");
+        router.reload();
+      }
     } catch (error) {
       console.log(error);
       dispatch({ type: "ERROR", payload: "发生了错误，刷新下网页" });
+      dispatch({ type: "LOADING", payload: false });
     }
   };
   return (
     <>
-      <div id="blog-text" style={{
+      <div
+        id="blog-text"
+        style={{
           backgroundColor: "rgba(255,255,255,0.9)",
           padding: "20px",
           borderRadius: "50px",
           marginBottom: "20px"
-        }}></div>
+        }}
+      ></div>
 
       <form
         className="input-section"
@@ -221,7 +242,7 @@ const Editor = () => {
           style={{ backgroundColor: "#DFD0F0" }}
           type="submit"
         >
-          发送
+          {!loading ? "发送" : <Loader />}
         </button>
       </form>
     </>
