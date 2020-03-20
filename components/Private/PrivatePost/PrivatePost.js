@@ -23,16 +23,18 @@ const PrivatePost = () => {
       console.log("error");
     }
   };
-  emitter.subscribe("getNewPrivatePosts", () => getNewPrivatePosts());
 
   useEffect(() => {
+    emitter.subscribe("getNewPrivatePosts", () => getNewPrivatePosts());
     const config = () => {
       if (Object.prototype.toString.call(privatePosts) === "[object Object]") {
         privatePosts = [].concat(privatePosts);
       }
     };
     config();
-    return () => {};
+    return () => {
+      emitter.off("getNewPrivatePosts");
+    };
   }, []);
   useEffect(() => {
     setloading(true);
@@ -61,7 +63,7 @@ const PrivatePost = () => {
   }, []);
 
   return (
-    <div className='w-100'>
+    <div className="w-100">
       {!loading ? (
         privatePosts ? (
           privatePosts.map(({ _id, ...other }) => (

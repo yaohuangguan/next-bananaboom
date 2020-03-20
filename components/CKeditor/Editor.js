@@ -114,7 +114,8 @@ const Editor = () => {
       author.trim() == "" ||
       info.trim() == "" ||
       title.trim() == "" ||
-      tags.trim() == ""
+      tags.trim() == "" || 
+      content.trim() == ""
     ) {
       return dispatch({ type: "ERROR", payload: "都要填的，老婆" });
     }
