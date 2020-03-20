@@ -1,5 +1,5 @@
 import Reply from "./Reply/Reply";
-const CommentListItem = ({ user, comment, date, photoURL, id, reply, currentUser }) => {
+const CommentListItem = ({ user, _userid, comment, date, photoURL, id, reply, currentUser }) => {
   return (
     <div style={{display:'flex',flexDirection:'column'}}>
       {comment && (
@@ -27,7 +27,7 @@ const CommentListItem = ({ user, comment, date, photoURL, id, reply, currentUser
   
                 </div>
                 <span>{comment}</span>
-                <Reply reply={reply} comment_id={id} currentUser={currentUser} />
+                <Reply reply={reply} user_id={_userid} comment_id={id} currentUser={currentUser} />
               </div>
              
             </div>

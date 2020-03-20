@@ -1,6 +1,7 @@
 import Loader from "../../../Loader/Loader";
 
 const ReplyListItem = ({
+  //commentid
   id,
   content,
   date,
@@ -13,6 +14,7 @@ const ReplyListItem = ({
   makeReplyReq,
   loading
 }) => {
+
   const showReply = e => {
     const reply = document.getElementById(id);
     if (reply) {
@@ -80,7 +82,6 @@ const ReplyListItem = ({
           />
           <button
             type="submit"
-            style={{ borderRadius: "50px" }}
             className="bg-dark btn-sm text-white"
             onClick={makeReplyReq}
           >

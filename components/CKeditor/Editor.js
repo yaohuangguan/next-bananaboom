@@ -3,6 +3,7 @@ import CKEditor from "ckeditor4-react";
 import { useRouter } from "next/router";
 import api from "../../utils/Api";
 import Loader from "../Loader/Loader";
+import emitter from "../../utils/EventEmitter";
 const INITIAL_STATE = {
   content: localStorage.getItem("cachedText") || "",
   author: localStorage.getItem("authorText") || "",
@@ -130,6 +131,8 @@ const Editor = () => {
           code
         });
         const data = await response.data;
+        emitter.dispatch("getNewPrivatePosts", data);
+
         dispatch({ type: "RESET" });
         localStorage.removeItem("cachedText");
         localStorage.removeItem("codeText");
@@ -137,7 +140,6 @@ const Editor = () => {
         localStorage.removeItem("infoText");
         localStorage.removeItem("titleText");
         localStorage.removeItem("tagText");
-        router.reload();
       }
     } catch (error) {
       console.log(error);

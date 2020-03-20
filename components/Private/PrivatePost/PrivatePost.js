@@ -3,9 +3,28 @@ import PrivatePostItem from "./PrivatePostItem";
 import api from "../../../utils/Api";
 import axios from "axios";
 import Loader from "../../Loader/Loader";
+import emitter from "../../../utils/EventEmitter";
 const PrivatePost = () => {
   const [privatePosts, setprivatePosts] = useState("");
   const [loading, setloading] = useState(false);
+  const getNewPrivatePosts = async () => {
+    console.log("event trigger!");
+
+    try {
+      if (!loading) {
+        setloading(true);
+        const response = await api("/api/posts/private/posts");
+        let data = await response.data;
+        setprivatePosts(data);
+        setloading(false);
+      }
+    } catch (error) {
+      setloading(false);
+      console.log("error");
+    }
+  };
+  emitter.subscribe("getNewPrivatePosts", () => getNewPrivatePosts());
+
   useEffect(() => {
     const config = () => {
       if (Object.prototype.toString.call(privatePosts) === "[object Object]") {
@@ -40,8 +59,9 @@ const PrivatePost = () => {
       source.cancel();
     };
   }, []);
+
   return (
-    <>
+    <div className='w-100'>
       {!loading ? (
         privatePosts ? (
           privatePosts.map(({ _id, ...other }) => (
@@ -59,9 +79,9 @@ const PrivatePost = () => {
           ))
         ) : null
       ) : (
-        <Loader color={"text-secondary"} size={"80px"}></Loader>
+        <Loader color={"text-white"} size={"80px"}></Loader>
       )}
-    </>
+    </div>
   );
 };
 

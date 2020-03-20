@@ -26,8 +26,8 @@ const BlogListItem = ({
     heart.classList.toggle("liked");
     handleLike(!ifLiked);
     const response = await api.post(`/api/posts/likes/${id}/${action}`);
-    const newLikes = await api.get(`/api/posts/likes/${id}`);
-    return await newLikes.data;
+
+    return await response.data;
   };
   const cancelLike = async () => {
     const likesData = await likeAndUpdate(_id, "remove");
@@ -74,7 +74,7 @@ const BlogListItem = ({
               className={`lighten-2 ${randomColor(
                 colors
               )} white-text mx-2 px-2 py-1`}
-              style={{ height: "30px"}}
+              style={{ height: "30px" }}
               key={index}
             >
               <span className="font-weight-bold">{tag}</span>
@@ -84,12 +84,7 @@ const BlogListItem = ({
         <p className="dark-grey-text">{info}</p>
         {image
           ? image.map((each, index) => (
-              <img
-                src={each}
-                key={index}
-                alt="img"
-                width="100%"
-              ></img>
+              <img src={each} key={index} alt="img" width="100%"></img>
             ))
           : null}
 
@@ -141,7 +136,7 @@ const BlogListItem = ({
               onClick={ifLiked ? cancelLike : addLike}
               id={_id}
             >
-              <em style={{position:'absolute',right:'8%'}}>{likeCount}</em>{" "}
+              <em style={{ position: "absolute", right: "8%" }}>{likeCount}</em>{" "}
             </div>
           </div>
         </div>

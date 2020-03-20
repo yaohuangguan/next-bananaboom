@@ -4,6 +4,7 @@ import api from "../../../utils/Api";
 import axios from "axios";
 import Signup from "../../Auth/Signup";
 import Loader from "../../Loader/Loader";
+import { insertTextAtCursor } from "../../../utils/Utils";
 const Comment = ({ currentUser, comments, _id }) => {
   const [commentInputField, setcommentInputField] = useState("");
   const [commentsCount, setcommentsCount] = useState(comments.length);
@@ -18,9 +19,14 @@ const Comment = ({ currentUser, comments, _id }) => {
     const data = await emoji.data;
     setemojiList(data.results);
   };
-  const handleCommentChange = async e => {
+  const handleCommentChange = async (e) => {
+    if (!e) {
+      let box = document.getElementById("textarea-char-counter");
+      return setcommentInputField(box.value);
+    }
     setcommentInputField(e.target.value);
     fetchEmoji();
+
   };
 
   useEffect(() => {
@@ -52,12 +58,7 @@ const Comment = ({ currentUser, comments, _id }) => {
     textarea.value = "";
     setcommentInputField("");
   };
-  const getNewComments = async () => {
-    const response = await api.get(`/api/comments/${_id}`);
-    let getComments = await response.data;
-    setcommentsList(getComments);
-    setcommentsCount(getComments.length);
-  };
+ 
   const submitComment = async () => {
     if (!currentUser) {
       return seterrors("Please login to comment");
@@ -75,7 +76,7 @@ const Comment = ({ currentUser, comments, _id }) => {
         setloading(true);
         const response = await api({
           method: "post",
-          url: `/api/comments/${_id}`,
+          url: `/api/comments/${_id}?user_id=${currentUser._id}`,
           headers: {
             "x-google-auth": currentUser.ma ? currentUser.ma : null
           },
@@ -86,8 +87,8 @@ const Comment = ({ currentUser, comments, _id }) => {
           })
         });
         const result = await response.data;
-        console.log(result);
-        getNewComments();
+        setcommentsList(result);
+        setcommentsCount(result.length);
         seterrors("");
         clearCommentField();
         setloading(false);
@@ -97,8 +98,11 @@ const Comment = ({ currentUser, comments, _id }) => {
       clearCommentField();
     }
   };
+
   const appendToComment = e => {
-    setcommentInputField(commentInputField + e.target.textContent);
+    let box = document.getElementById("textarea-char-counter");
+    insertTextAtCursor(box, e.target.textContent);
+    handleCommentChange();
   };
   const getEmojiList = () => {
     return (

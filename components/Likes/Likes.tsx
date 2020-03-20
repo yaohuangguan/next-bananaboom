@@ -10,10 +10,10 @@ const Likes = ({ likes, _id }) => {
     const heart = document.getElementById(`${id}`);
     heart.classList.toggle("is_animating");
     heart.classList.toggle("liked");
-    handleLike(!ifLiked);
     const response = await api.post(`/api/homepage/likes/${id}/${action}`);
-    const newLikes = await api.get(`/api/homepage/likes`);
-    const likesData = await newLikes.data;
+
+    handleLike(!ifLiked);
+    const likesData = await response.data;
     return likesData;
   };
   const cancelLike = async () => {

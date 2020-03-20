@@ -3,19 +3,23 @@ import api from "../../../../utils/Api";
 import axios from "axios";
 import Loader from "../../../Loader/Loader";
 import { useState, useEffect } from "react";
-const Reply = ({ reply, comment_id, currentUser }) => {
+
+const Reply = ({ reply, comment_id, user_id, currentUser }) => {
   const [replyContent, setreplyContent] = useState("");
   const [replyList, setreplyList] = useState(reply);
   const [errors, seterrors] = useState("");
   const [emojiList, setemojiList] = useState("");
   const [loading, setLoading] = useState(false);
-  const handleReplyChange = async e => {
-    setreplyContent(e.target.value);
+  const fetchEmoji = async () => {
     const emoji = await fetch(
       `https://emoji.getdango.com/api/emoji?q=${replyContent}`
     );
     const data = await emoji.json();
     setemojiList(data.results);
+  }
+  const handleReplyChange = async e => {
+    setreplyContent(e.target.value);
+    fetchEmoji()
   };
   useEffect(() => {
     let source = axios.CancelToken.source();
@@ -79,8 +83,8 @@ const Reply = ({ reply, comment_id, currentUser }) => {
           })
         });
 
-        const data = getNewReply(comment_id);
-        handleNewReply(data);
+       const result = await response.data[0].reply;
+       setreplyList(result);
         cleanReply();
         showReply();
         setLoading(false);
@@ -92,16 +96,19 @@ const Reply = ({ reply, comment_id, currentUser }) => {
       showReply();
     }
   };
-  const getNewReply = async comment_id => {
-    const newReply = await api.get(`/api/comments/reply/${comment_id}`);
-    const data = await newReply.data[0].reply;
-    return data;
-  };
+  // const getNewReply = async comment_id => {
+  //   const newReply = await api.get(`/api/comments/reply/${comment_id}`);
+  //   const data = await newReply.data[0].reply;
+  //   return data;
+  // };
   const handleNewReply = newReply => {
     setreplyList(newReply);
   };
+  const handleError = (error) => {
+    seterrors(error)
+  }
   const appendToComment = e => {
-    setreplyContent(replyContent + e.target.textContent);
+    setreplyContent(replyContent + e.target.textContent)
   };
   const getEmojiList = () => {
     return (
@@ -134,9 +141,10 @@ const Reply = ({ reply, comment_id, currentUser }) => {
               reply={replyList}
               showReply={showReply}
               comment_id={comment_id}
+              user_id={user_id}
               currentUser={currentUser}
               handleNewReply={handleNewReply}
-              getNewReply={getNewReply}
+              handleError={handleError}
             ></ReplyList>
           </div>
         )}
@@ -164,7 +172,7 @@ const Reply = ({ reply, comment_id, currentUser }) => {
             type="submit"
             className="bg-dark btn-sm text-white"
             onClick={addReply}
-            style={{ alignSelf: "flex-end", borderRadius: "40px" }}
+            style={{ alignSelf: "flex-end"}}
           >
             {!loading ? "发送" : <Loader />}
           </button>
