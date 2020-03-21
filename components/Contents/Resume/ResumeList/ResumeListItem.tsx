@@ -5,7 +5,7 @@ const ResumeListItem = ({ _id, title, _title, info, _info, url, degree }) => {
   const router = useRouter();
   return (
     <div className="col-md-6 m-4 mx-auto">
-      <div className="bg-primary">
+      <div className="bg-info rounded">
         <a href={url} target="_blank" rel="noopener noreferrer">
           <div className="text-white">
             <div className="first-content text-center p-2">
@@ -21,7 +21,7 @@ const ResumeListItem = ({ _id, title, _title, info, _info, url, degree }) => {
         <h6 className="font-weight-bold">
           {router.asPath == "/resume/ch-cn" ? "简介" : "Details"}
         </h6>
-        <a className="badge badge-primary">{degree}</a>
+        <a className="badge badge-info">{degree}</a>
 
         <p className="black-text">
           {router.asPath == "/resume/ch-cn" ? info : _info}

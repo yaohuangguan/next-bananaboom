@@ -21,9 +21,7 @@ const Layout = ({ children, head }) => {
         console.log("App is changed to: ", url);
       }
       const urlReloadList = [
-        `/blogs/article/${Router.query.id}`,
-        "/resume/ch-cn",
-        "/resume/en-us"
+        `/blogs/article/${Router.query.id}`
       ];
       const ifReload = Promise.resolve(
         urlReloadList.some(each => {
