@@ -180,7 +180,7 @@ const Editor = () => {
           />
         </label>
         <label htmlFor="info">
-          文章简介
+          简介
           <input
             type="text"
             value={info}
@@ -207,7 +207,7 @@ const Editor = () => {
           />
         </label>
         <label htmlFor="tags">
-          文章归类
+          归类
           <input
             type="text"
             value={tags}
@@ -220,7 +220,6 @@ const Editor = () => {
           私密
           <input
             type="checkbox"
-            className="editor-input"
             id="checkbox"
             value={isPrivate || false}
             onChange={handlePrivateChange}
@@ -248,6 +247,7 @@ const Editor = () => {
           {!loading ? "发送" : <Loader />}
         </button>
       </form>
+     
     </>
   );
 };

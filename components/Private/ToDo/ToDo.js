@@ -7,13 +7,18 @@ const ToDo = () => {
   const [todos, settodos] = useState("");
   const [errors, seterrors] = useState("");
   const [loading, setloading] = useState(false);
+  const [doneloading, setDoneloading] = useState(false);
   const handleSubmit = async e => {
     e.preventDefault();
     if (!title || title.trim() == "")
       return seterrors("可以一起做的事情有很多，老婆");
-    const response = await api.post("/api/todo", { todo: title });
-    const todos = await response.data;
-    settodos(todos);
+    if (!loading) {
+      setloading(true);
+      const response = await api.post("/api/todo", { todo: title });
+      const todos = await response.data;
+      settodos(todos);
+      setloading(false);
+    }
   };
   useEffect(() => {
     setloading(true);
@@ -34,12 +39,16 @@ const ToDo = () => {
     return () => {};
   }, []);
   const handleDone = async id => {
-    if (!loading) {
-      setloading(true);
+    try {
+      setDoneloading(true);
       const response = await api.post(`/api/todo/done/${id}`);
       const todos = await response.data;
       settodos(todos);
-      setloading(false);
+      setDoneloading(false);
+    } catch (error) {
+      setDoneloading(false);
+
+      seterrors("出现了错误");
     }
   };
   const handleTitle = e => {
@@ -59,15 +68,15 @@ const ToDo = () => {
         style={{ position: "absolute", top: 0, fontSize: "20px" }}
         className="text-secondary"
       >
-        100件要一起做的事
+        差事清单
       </span>
       <form onSubmit={handleSubmit}>
         <label htmlFor="title">
           <input
             type="text"
             name="title"
+            className="todo-input"
             onChange={handleTitle}
-            style={{ borderRadius: "50px" }}
           />
         </label>
 
@@ -77,10 +86,31 @@ const ToDo = () => {
       </form>
       {errors ? <span className="text-danger">{errors}</span> : null}
       {!loading ? (
-        <ToDoList todos={todos} handleDone={handleDone}></ToDoList>
+        <ToDoList
+          todos={todos}
+          handleDone={handleDone}
+          loading={doneloading}
+        ></ToDoList>
       ) : (
         <Loader color={"text-secondary"} size={"60px"}></Loader>
       )}
+
+      <style jsx>
+        {`
+          .todo-input {
+            border-color: transparent;
+            border-bottom-color: #dfd0f0;
+            background-color: transparent;
+            outline: none;
+            width: 100%;
+            color: purple;
+            font-size: 20px;
+          }
+          .todo-input:focus {
+            border-bottom-color: rgb(158, 91, 235);
+          }
+        `}
+      </style>
     </div>
   );
 };

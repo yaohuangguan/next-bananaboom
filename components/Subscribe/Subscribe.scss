@@ -74,12 +74,14 @@
           font-size: 1.1rem;
           font-weight: 300;
           display: inline-block;
-          background-color: rgb(255, 252, 252);
-          border-radius: 40px;
+          border-color: transparent;
+          color: white;
+          border-bottom-color:white;
+          background-color: transparent;
+          outline:none;
+          box-shadow: none;
           &:focus {
-            border: 2px solid #976bff;
-            border-color: #9364ff;
-            box-shadow: inset 0px 0px 5px #ad8aff;
+            border-bottom-color:rgb(158, 91, 235);
             outline: none;
           }
         }

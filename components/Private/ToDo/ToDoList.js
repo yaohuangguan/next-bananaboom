@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from "react";
-import './todo.scss'
-const ToDoList = ({ todos, handleDone }) => {
+import Loader from "../../Loader/Loader";
+import "./todo.scss";
+const ToDoList = ({ todos, handleDone, loading }) => {
   const todoRef = useRef(null);
   const markComplete = e => {
     const id = e.target.id;
@@ -14,7 +15,7 @@ const ToDoList = ({ todos, handleDone }) => {
     return (
       <>
         {todos &&
-          todos.map(({ todo, done, _id },index) => (
+          todos.map(({ todo, done, _id }, index) => (
             <div
               key={_id}
               style={{ display: "flex", justifyContent: "space-between" }}
@@ -33,7 +34,9 @@ const ToDoList = ({ todos, handleDone }) => {
                 className="done"
                 style={{ cursor: "pointer", fontSize: "20px" }}
               >
-                {!done ? (
+                {loading ? (
+                  <Loader size={'20px'} color={'text-secondary'} />
+                ) : !done ? (
                   <span id={_id} onClick={markFail}>
                     ❌
                   </span>

@@ -15,19 +15,15 @@ const SearchBox = ({ handleChange, searchField }) => {
           font-size: 1.1rem;
           font-weight: 300;
           display: inline-block;
-          background-color: rgb(255, 252, 252);
-          border-radius: 40px;
-          border: 2px solid grey;
-          color: "rgb(142, 61, 247)";
+          border-color: transparent;
+          border-bottom-color:#DFD0F0;
+          background-color: transparent;
+          outline:none;
           box-shadow: none;
           width:50vw
         }
         .search:focus {
-          border: none;
-          outline: none;
-          border: 2px solid rgb(142, 61, 247);
-          border-color: rgb(142, 61, 247);
-          box-shadow: none;
+          border-bottom-color:rgb(158, 91, 235);
         }
       `}</style>
     </div>

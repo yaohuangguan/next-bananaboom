@@ -60,7 +60,7 @@
     .love-left-side {
       height: 100vh;
       padding: 20px;
-      max-width: 3000px;
+      max-width: 1100px;
       overflow: scroll;
       .heart-input {
         box-shadow: none;
@@ -94,23 +94,46 @@
       height: 100vh;
       padding: 20px;
       overflow: scroll;
-
+     
       .blog-container {
         border-top: 4px solid #b39be4;
         .input-section {
-          display: flex;
-          flex-wrap: wrap;
+          display:grid;
+          grid-template-columns: 10%,10%;
           label {
             margin: 10px;
           }
           .editor-input {
-            border-radius: 50px;
-            border-color: #c497ff;
+            border-color: transparent;
+            border-bottom-color:#DFD0F0;
+            background-color: transparent;
+            outline:none;
+            width: 100%;
+            color:purple;
+            font-size:20px;
+            &:focus{
+              border-bottom-color:rgb(158, 91, 235);
+            }
           }
           #checkbox {
             transform: scale(2);
             margin-left: 10px;
           }
+        }
+        &::-webkit-scrollbar {
+          width: 1em;
+          background-color: white;
+          border-radius: 30px;
+        }
+  
+        &::-webkit-scrollbar-track {
+          box-shadow: 0 0 3px #384db5;
+        }
+  
+        &::-webkit-scrollbar-thumb {
+          background-color: #cfa5ff;
+          border-radius: 30px;
+          width: 1.2em;
         }
       }
     }
