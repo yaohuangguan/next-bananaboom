@@ -41,28 +41,26 @@
         display: block;
       }
     }
-    @media screen and (min-width: 415px) and (max-width: 768px) {
+    @media screen and (min-width: 415px) and (max-width: 992px) {
       flex-direction: column;
       .scroll-friendly {
         display: block;
       }
     }
-    @media screen and (min-width: 992px) {
+    @media screen and (min-width: 993px) {
       flex-direction: row;
     }
-    @media screen and (min-width: 768px) and (max-width: 992px) {
-      flex-direction: column;
-      .scroll-friendly {
-        display: block;
-      }
-    }
+    
 
     .love-left-side {
       height: 100vh;
       padding: 20px;
-      max-width: 60%;
+      max-width: 55%;
       overflow: scroll;
       -ms-overflow-style: none;
+      @media screen and (max-width: 992px) {
+        max-width: 2000px;
+      }
       &:-webkit-scrollbar {
         display: none;
       }
