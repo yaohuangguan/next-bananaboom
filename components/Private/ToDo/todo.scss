@@ -2,20 +2,19 @@
   text-decoration-thickness: 1em;
 }
 .submit-button {
-background-color: transparent;
-border: none;
-color:rgb(195, 128, 255);
- border-radius: 20px;
- position: absolute;
- bottom: 0;
- right: 5px;
- &:hover{
-  border: 1px solid rgb(195, 128, 255);
- }
- &:focus{
- outline: transparent;
-
- }
+  background-color: transparent;
+  border: 1px solid transparent;
+  color: rgb(195, 128, 255);
+  border-radius: 20px;
+  position: absolute;
+  bottom: 0;
+  right: 5px;
+  &:hover {
+    border: 1px solid rgb(195, 128, 255);
+  }
+  &:focus {
+    outline: transparent;
+  }
 }
 .todo-input {
   border-color: transparent;
@@ -27,6 +26,5 @@ color:rgb(195, 128, 255);
   font-size: 20px;
   &:focus {
     border-bottom-color: rgb(158, 91, 235);
-    
   }
 }
