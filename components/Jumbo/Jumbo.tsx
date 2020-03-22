@@ -56,7 +56,7 @@ const Jumbo = ({ name, welcome, info, button, language, backgroundURL }) => {
           />
         </video>
       </div>
-      <div className="text-white text-center py-5 jumbo-wrapper">
+      <div className="text-white text-center py-5 px-5 jumbo-wrapper">
         <div className="jumbo">
           <h1 className="card-subtitle mb-3">{name}</h1>
           <h2 className="card-title mb-5">{welcome}</h2>
