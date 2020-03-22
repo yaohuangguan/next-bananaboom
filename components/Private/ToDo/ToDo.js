@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import ToDoList from "./ToDoList";
 import api from "../../../utils/Api";
 import Loader from "../../Loader/Loader";
+import './todo.scss'
 const ToDo = () => {
   const [title, settitle] = useState("");
   const [todos, settodos] = useState("");
@@ -28,7 +29,6 @@ const ToDo = () => {
         const todos = await response.data;
         console.log("todos", todos);
         setloading(false);
-
         settodos(todos);
       } catch (error) {
         console.log(error);
@@ -48,7 +48,7 @@ const ToDo = () => {
     } catch (error) {
       setDoneloading(false);
 
-      seterrors("出现了错误");
+      seterrors(error + "");
     }
   };
   const handleTitle = e => {
@@ -66,23 +66,24 @@ const ToDo = () => {
     >
       <span
         style={{ position: "absolute", top: 0, fontSize: "20px" }}
-        className="text-secondary"
+        className="text-secondary font-weight-bold"
       >
         差事清单
       </span>
       <form onSubmit={handleSubmit}>
-        <label htmlFor="title">
+        <label htmlFor="title" style={{position:'relative'}}>
           <input
             type="text"
             name="title"
             className="todo-input"
             onChange={handleTitle}
           />
+           <button className="submit-button" type="submit">
+          {!loading ? "添加" : <Loader size='20px' color='text-secondary'/>}
+        </button>
         </label>
 
-        <button className="btn-sm btn-secondary" type="submit">
-          添加
-        </button>
+       
       </form>
       {errors ? <span className="text-danger">{errors}</span> : null}
       {!loading ? (
@@ -94,23 +95,6 @@ const ToDo = () => {
       ) : (
         <Loader color={"text-secondary"} size={"60px"}></Loader>
       )}
-
-      <style jsx>
-        {`
-          .todo-input {
-            border-color: transparent;
-            border-bottom-color: #dfd0f0;
-            background-color: transparent;
-            outline: none;
-            width: 100%;
-            color: purple;
-            font-size: 20px;
-          }
-          .todo-input:focus {
-            border-bottom-color: rgb(158, 91, 235);
-          }
-        `}
-      </style>
     </div>
   );
 };

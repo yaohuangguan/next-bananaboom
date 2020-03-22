@@ -158,7 +158,9 @@ const Editor = () => {
           borderRadius: "50px",
           marginBottom: "20px"
         }}
-      ></div>
+      >
+        <span className='text-muted'>预览界面</span>    
+      </div>
 
       <form
         className="input-section"
@@ -171,7 +173,7 @@ const Editor = () => {
         onSubmit={handleFormSubmit}
       >
         <label htmlFor="author">
-          作者
+          作者*
           <input
             type="text"
             value={author}
@@ -180,7 +182,7 @@ const Editor = () => {
           />
         </label>
         <label htmlFor="info">
-          简介
+          简介*
           <input
             type="text"
             value={info}
@@ -198,7 +200,7 @@ const Editor = () => {
           />
         </label>
         <label htmlFor="title">
-          标题
+          标题*
           <input
             type="text"
             value={title}
@@ -207,7 +209,7 @@ const Editor = () => {
           />
         </label>
         <label htmlFor="tags">
-          归类
+          归类*
           <input
             type="text"
             value={tags}
@@ -217,7 +219,7 @@ const Editor = () => {
         </label>
         <br />
         <label htmlFor="private">
-          私密
+          私密*
           <input
             type="checkbox"
             id="checkbox"

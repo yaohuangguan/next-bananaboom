@@ -15,7 +15,7 @@ import {
   ROOM_WELCOME
 } from "../../components/Private/Chat/Events";
 import DrawingCanvas from "../../components/DrawingCanvas/Drawing";
-
+import ChrismasLight from '../../components/Private/ChrismasLight/Light'
 import "./youandme.scss";
 const CKEditor = dynamic(() => import("../../components/CKeditor/Editor"), {
   ssr: false
@@ -27,20 +27,20 @@ const socketURL =
 
 const index = ({ currentUser, posts, errors, todos }) => {
   const router = useRouter();
-  if(typeof window !== 'undefined'){
+  if (typeof window !== "undefined") {
     router.beforePopState(({ url, as, option }) => {
       // I only want to allow these two routes!
-      if (typeof url == 'undefined') {
+      if (typeof url == "undefined") {
         // Have SSR render bad routes as a 404.
-       history.back()
-        
+        history.back();
+
         return false;
-      } 
-  
+      }
+
       return true;
     });
   }
-  
+
   const [socket, setSocket] = useState(null);
   const [chatUser, setuser] = useState("");
   const [privatePosts, setprivatePosts] = useState(posts);
@@ -107,10 +107,11 @@ const index = ({ currentUser, posts, errors, todos }) => {
     </div>
   );
   return (
-    <Layout head={'Loving you'}>
+    <Layout head={`${getVip() ? "Loving you" : "404 Not Found"}`}>
       <div>
         {getVip() ? (
           <div className="row love-container">
+          <ChrismasLight></ChrismasLight>
             <DateCounting
               fromDate={"February 14 2020 00:00:00"}
               isPrivate={true}
@@ -119,7 +120,6 @@ const index = ({ currentUser, posts, errors, todos }) => {
 
             <div className="main-love-container">
               <div className="love-left-side">
-                {getChatRoom()}
                 {handleErrors()}
                 <PrivatePost></PrivatePost>
               </div>
