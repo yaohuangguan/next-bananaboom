@@ -112,12 +112,13 @@ const Reply = ({ reply, comment_id, user_id, currentUser }) => {
   };
   const getEmojiList = () => {
     return (
-      <div className="d-flex text-center w-100" style={{ overflow: "scroll" }}>
+      <div className="d-flex text-center w-100 emoji-list">
         {emojiList.map((each, index) => (
           <button
             key={index}
             className="mx-2"
-            style={{ width: "15%", borderRadius: "50px" }}
+            style={{ width: "15%", borderRadius: "20px", backgroundColor: "transparent",
+              borderColor: "#333333" }}
             id={`${index}`}
           >
             <span style={{ fontSize: "20px" }} onClick={appendToComment}>

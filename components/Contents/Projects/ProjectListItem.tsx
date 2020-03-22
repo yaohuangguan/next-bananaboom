@@ -30,7 +30,7 @@ const Project = ({
       // onMouseOver={hoverChange}
       // onMouseLeave={recover}
     >
-      <div className="text-center w-100">
+      <div className="text-center">
         <a
           href={link}
           target="_blank"

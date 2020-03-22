@@ -60,8 +60,14 @@
     .love-left-side {
       height: 100vh;
       padding: 20px;
-      max-width: 1100px;
+      max-width: 60%;
       overflow: scroll;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+
+      &:-webkit-scrollbar {
+        display: none;
+      }
       .heart-input {
         box-shadow: none;
         border: 2px solid white;
@@ -74,66 +80,41 @@
           box-shadow: none;
         }
       }
-      &::-webkit-scrollbar {
-        width: 1em;
-        background-color: white;
-        border-radius: 30px;
-      }
-
-      &::-webkit-scrollbar-track {
-        box-shadow: 0 0 3px #384db5;
-      }
-
-      &::-webkit-scrollbar-thumb {
-        background-color: #cfa5ff;
-        border-radius: 30px;
-        width: 1.2em;
-      }
     }
     .love-right-side {
       height: 100vh;
       padding: 20px;
       overflow: scroll;
-     
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+
+      &:-webkit-scrollbar {
+        display: none;
+      }
       .blog-container {
         border-top: 4px solid #b39be4;
         .input-section {
-          display:grid;
-          grid-template-columns: 10%,10%;
+          display: grid;
+          grid-template-columns: 10%, 10%;
           label {
             margin: 10px;
           }
           .editor-input {
             border-color: transparent;
-            border-bottom-color:#DFD0F0;
+            border-bottom-color: #dfd0f0;
             background-color: transparent;
-            outline:none;
+            outline: none;
             width: 100%;
-            color:purple;
-            font-size:20px;
-            &:focus{
-              border-bottom-color:rgb(158, 91, 235);
+            color: purple;
+            font-size: 20px;
+            &:focus {
+              border-bottom-color: rgb(158, 91, 235);
             }
           }
           #checkbox {
             transform: scale(2);
             margin-left: 10px;
           }
-        }
-        &::-webkit-scrollbar {
-          width: 1em;
-          background-color: white;
-          border-radius: 30px;
-        }
-  
-        &::-webkit-scrollbar-track {
-          box-shadow: 0 0 3px #384db5;
-        }
-  
-        &::-webkit-scrollbar-thumb {
-          background-color: #cfa5ff;
-          border-radius: 30px;
-          width: 1.2em;
         }
       }
     }

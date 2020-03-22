@@ -19,14 +19,13 @@ const Comment = ({ currentUser, comments, _id }) => {
     const data = await emoji.data;
     setemojiList(data.results);
   };
-  const handleCommentChange = async (e) => {
+  const handleCommentChange = async e => {
     if (!e) {
       let box = document.getElementById("textarea-char-counter");
       return setcommentInputField(box.value);
     }
     setcommentInputField(e.target.value);
     fetchEmoji();
-
   };
 
   useEffect(() => {
@@ -58,7 +57,7 @@ const Comment = ({ currentUser, comments, _id }) => {
     textarea.value = "";
     setcommentInputField("");
   };
- 
+
   const submitComment = async () => {
     if (!currentUser) {
       return seterrors("Please login to comment");
@@ -106,12 +105,17 @@ const Comment = ({ currentUser, comments, _id }) => {
   };
   const getEmojiList = () => {
     return (
-      <div className="d-flex text-center" style={{ overflow: "scroll" }}>
+      <div className="d-flex text-center emoji-list">
         {emojiList.map((each, index) => (
           <button
             key={index}
             className="mx-2"
-            style={{ width: "15%", borderRadius: "50px" }}
+            style={{
+              width: "15%",
+              borderRadius: "50px",
+              backgroundColor: "transparent",
+              borderColor: "#333333"
+            }}
             id={`${index}`}
           >
             <span style={{ fontSize: "20px" }} onClick={appendToComment}>
@@ -152,7 +156,7 @@ const Comment = ({ currentUser, comments, _id }) => {
                   <div className="errors text-danger">{errors}</div>
                 ) : null}
                 <div className="m-0">
-                  <div className="w-100">
+                  <div className="w-100 mb-2">
                     {emojiList ? getEmojiList() : null}
                   </div>
 
@@ -190,6 +194,14 @@ const Comment = ({ currentUser, comments, _id }) => {
           border: 2px solid #2eca6a;
           border-color: #2eca6a;
           box-shadow: none;
+        }
+        .emoji-list {
+          overflow: scroll;
+          scrollbar-width: none;
+          -ms-overflow-style: none;
+        }
+        .emoji-list:-webkit-scrollbar {
+          display: none;
         }
       `}</style>
     </div>
