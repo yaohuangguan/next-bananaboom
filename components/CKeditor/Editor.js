@@ -148,6 +148,9 @@ const Editor = () => {
       dispatch({ type: "LOADING", payload: false });
     }
   };
+  const showResult = () => {
+    
+  }
   return (
     <>
       <div
