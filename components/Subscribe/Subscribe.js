@@ -39,7 +39,6 @@ const Subscribe = ({
       let suggestions = result.filter(each =>
         each.includes(email.split("@")[1])
       );
-      console.log(suggestions);
 
       return suggestions.map((each, index) => (
         <div
@@ -55,7 +54,6 @@ const Subscribe = ({
       ));
     } else {
       let suggestions = emailSuggestions.map(each => `${email + each}`);
-      console.log(suggestions);
 
       return suggestions.map((each, index) => (
         <div
