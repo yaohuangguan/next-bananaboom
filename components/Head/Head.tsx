@@ -9,7 +9,7 @@ const HeadConfig = ({ head }) => {
         {head ||
           "Sam 个人博客 博客文章 技术文章 生活文章 个人心得 Blog Posts || yaobaiyang.com"}
       </title>
-      
+
       {/* <link rel="preconnect" href="https://i.ibb.co" crossOrigin="true" />
       <link rel="dns-prefetch" href="https://i.ibb.co" /> */}
       <link
@@ -43,6 +43,7 @@ const HeadConfig = ({ head }) => {
         rel="stylesheet"
       />
       <script src="/lazyload.min.js" async></script>
+    
     </Head>
   );
 };

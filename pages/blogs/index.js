@@ -7,25 +7,26 @@ import BlogList from "../../components/Blog/BlogList";
 import api from "../../utils/Api";
 import SearchBox from "../../components/SearchBox/SearchBox";
 import Loader from "../../components/Loader/Loader";
+import GitHub from "../../components/Github/Github.forkme";
 const Blog = ({ blogs, errors, currentUser }) => {
   const router = useRouter();
   const [searchField, setsearchField] = useState("");
   const [filteredBlog, setfilteredBlog] = useState([]);
   const handleChange = e => setsearchField(e.target.value);
-  if(typeof window !== 'undefined'){
+  if (typeof window !== "undefined") {
     router.beforePopState(({ url, as, option }) => {
       // I only want to allow these two routes!
-      if (typeof url == 'undefined') {
+      if (typeof url == "undefined") {
         // Have SSR render bad routes as a 404.
-       history.back()
-        
+        history.back();
+
         return false;
-      } 
-  
+      }
+
       return true;
     });
   }
- 
+
   useEffect(() => {
     let header = document.querySelector(".shrinkedHeader");
     let blog = document.querySelector(".blog");
@@ -70,16 +71,23 @@ const Blog = ({ blogs, errors, currentUser }) => {
         let temp = blog.name + blog.info + blog.tags.map(each => each);
         return temp.toLowerCase().includes(searchField.toLowerCase());
       });
+    console.log(result);
     setfilteredBlog(result);
   }, [searchField]);
   const goBack = e => {
     e.preventDefault();
     router.back();
   };
+  const searchSuggestion = e => {
+    console.log(e.target.value)
+    let value = e.target.innerText;
+    setsearchField(value);
+  };
   return (
     <Layout
       head={"Sam 个人博客 博客文章 技术文章 生活文章 个人心得 Blog Posts"}
     >
+      <GitHub fill="#fff" color="#333" />
       <div className="shrinkedHeader">
         <a className="btn draw-border-white" onClick={goBack}>
           Go back
@@ -110,6 +118,8 @@ const Blog = ({ blogs, errors, currentUser }) => {
           <SearchBox
             searchField={searchField}
             handleChange={handleChange}
+            blogs={blogs}
+            searchSuggestion={searchSuggestion}
           ></SearchBox>
           {filteredBlog.length == 0
             ? "没有找到相关文章 No result matches"

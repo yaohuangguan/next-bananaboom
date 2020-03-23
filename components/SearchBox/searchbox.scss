@@ -1,0 +1,36 @@
+.search-container {
+  width: 100%;
+  position: relative;
+  .search {
+    text-align: center;
+    font-size: 1.1rem;
+    font-weight: 300;
+    border-color: transparent;
+    border-bottom-color: #888;
+    background-color: transparent;
+    outline: none;
+    box-shadow: none;
+    &:focus {
+        border-bottom-color: rgb(158, 91, 235);
+      }
+  }
+
+
+  .suggestion-list {
+    list-style: none;
+    background-color: #333;
+    padding: 0;
+    border-radius: 50px;
+    overflow: hidden;
+  }
+  .suggestion-item {
+      background-color: transparent;
+      color:#fff;
+      padding:10px;
+      border-radius: 50px;
+  }
+  .suggestion-item:hover {
+    background-color: #999;
+    color:#fff
+  }
+}

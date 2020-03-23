@@ -1,4 +1,4 @@
-const Github = () => {
+const Github = ({fill,color}) => {
   return (
     <>
       <a
@@ -12,8 +12,8 @@ const Github = () => {
           height="80"
           viewBox="0 0 250 250"
           style={{
-            fill: " #72c7f5",
-            color: "#fff",
+            fill: `${fill}`,
+            color: `${color}`,
             position: "absolute",
             top: 0,
             border: 0,

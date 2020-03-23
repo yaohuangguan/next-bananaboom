@@ -28,8 +28,8 @@ const Resume = ({ resumeItem, errors, router }) => {
           as={`/resume/${router.asPath == "/resume/en-us" ? "ch-cn" : "en-us"}`}
         >
           <a
-            className="bg-info white-text p-1"
-            style={{ borderRadius: "20px" }}
+            className="white-text p-1 rounded"
+            style={{ backgroundColor:'#333',margin:'.375rem' }}
           >
             <img
               src={router.asPath == "/resume/en-us" ? china : uk}
@@ -47,10 +47,10 @@ const Resume = ({ resumeItem, errors, router }) => {
   };
   return (
     <Layout head={"Sam's about page 关于Sam的个人生活爱好等"}>
-      <GitHub />
+      <GitHub fill='#333333' color='#ffffff' />
       <div className="container">
         <Link href={router.asPath == "/resume/en-us" ? "/" : "/zh"}>
-          <a className="btn draw-border-blue waves-effect">
+          <a className="btn draw-border-black waves-effect">
             {router.asPath == "/resume/en-us" ? "Back" : "返回"}
           </a>
         </Link>

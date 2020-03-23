@@ -97,6 +97,7 @@ Layout.getInitialProps = ({ pathname }) => {
     //Blog
     require("../../pages/blogs/Blog.scss"),
     require("../Blog/BlogListItem.scss"),
+    require('../SearchBox/searchbox.scss'),
     //Jumbo
     require("../Jumbo/Jumbo.scss"),
     //Background

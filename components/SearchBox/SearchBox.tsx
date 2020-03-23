@@ -1,31 +1,50 @@
-const SearchBox = ({ handleChange, searchField }) => {
+import "./searchbox.scss";
+const SearchBox = ({ handleChange, searchField, blogs, searchSuggestion }) => {
+  const suggests = blogs.map(blog =>
+    [blog.name].concat([...blog.tags.map(each => each)]).concat([blog.info])
+  );
+
+  const getSuggestion = () => {
+    if (!searchField) return;
+    let arrayHasDouble = suggests
+      .map(
+        suggest =>
+          suggest.length > 0 &&
+          suggest.filter(
+            each =>
+              each.length > 0 &&
+              each.toLowerCase().startsWith(searchField.toLowerCase())
+          )
+      )
+      .join(",").split(",").filter(each => each.length > 0);
+    let set = Array.from(new Set(arrayHasDouble));
+    return (
+      <ul className="suggestion-list">
+        {set.map((each, index) => (
+          <li
+            key={index}
+            className="suggestion-item"
+            onClick={searchSuggestion}
+          >
+            {each}
+          </li>
+        ))}
+      </ul>
+    );
+  };
+
   return (
-    <div className="text-center">
+    <div className="search-container text-center px-3 py-3">
       <label htmlFor="searchBlog">
         <input
           value={searchField}
           type="search"
-          className="search px-3 py-3 my-3 text-center"
+          className="search p-3"
           placeholder="Search Blog List"
           onChange={handleChange}
         />
       </label>
-      <style jsx>{`
-        .search {
-          font-size: 1.1rem;
-          font-weight: 300;
-          display: inline-block;
-          border-color: transparent;
-          border-bottom-color:#DFD0F0;
-          background-color: transparent;
-          outline:none;
-          box-shadow: none;
-          width:50vw
-        }
-        .search:focus {
-          border-bottom-color:rgb(158, 91, 235);
-        }
-      `}</style>
+      {getSuggestion()}
     </div>
   );
 };
