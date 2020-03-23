@@ -3,7 +3,7 @@ import './light.scss'
 const Light = () => {
   return (
     <>
-      <ul class="lightrope">
+      <ul className="lightrope">
         <li></li>
         <li></li>
         <li></li>

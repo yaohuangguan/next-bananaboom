@@ -11,10 +11,9 @@
     outline: none;
     box-shadow: none;
     &:focus {
-        border-bottom-color: rgb(158, 91, 235);
-      }
+      border-bottom-color: rgb(158, 91, 235);
+    }
   }
-
 
   .suggestion-list {
     list-style: none;
@@ -22,15 +21,15 @@
     padding: 0;
     border-radius: 50px;
     overflow: hidden;
-  }
-  .suggestion-item {
+    .suggestion-item {
       background-color: transparent;
-      color:#fff;
-      padding:10px;
+      color: #fff;
+      padding: 10px;
       border-radius: 50px;
-  }
-  .suggestion-item:hover {
-    background-color: #999;
-    color:#fff
+      &:hover {
+        background-color: #999;
+        color: #fff;
+      }
+    }
   }
 }

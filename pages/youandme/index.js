@@ -1,7 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useReducer } from "react";
 import { useRouter } from "next/router";
-import dynamic from "next/dynamic";
 import api from "../../utils/Api";
+import axios from "axios";
+import dynamic from "next/dynamic";
+import emitter from "../../utils/EventEmitter";
 import ChatLogin from "../../components/Private/Chat/ChatLogin";
 import ChatContainer from "../../components/Private/Chat/ChatContainer";
 import Layout from "../../components/Layout/Layout";
@@ -15,7 +17,8 @@ import {
   ROOM_WELCOME
 } from "../../components/Private/Chat/Events";
 import DrawingCanvas from "../../components/DrawingCanvas/Drawing";
-import ChrismasLight from '../../components/Private/ChrismasLight/Light'
+import ChrismasLight from "../../components/Private/ChrismasLight/Light";
+import Loader from '../../components/Loader/Loader'
 import "./youandme.scss";
 const CKEditor = dynamic(() => import("../../components/CKeditor/Editor"), {
   ssr: false
@@ -43,7 +46,8 @@ const index = ({ currentUser, posts, errors, todos }) => {
 
   const [socket, setSocket] = useState(null);
   const [chatUser, setuser] = useState("");
-  const [privatePosts, setprivatePosts] = useState(posts);
+  const [privatePosts, setprivatePosts] = useState("");
+  const [loading, setLoading] = useState(false);
   const getVip = () =>
     currentUser ? currentUser.private_token === "ilovechenfangting" : null;
   useEffect(() => {
@@ -68,6 +72,40 @@ const index = ({ currentUser, posts, errors, todos }) => {
       document.body.style.backgroundColor = "white";
     };
   }, [currentUser]);
+
+  //subscribe event
+  emitter.subscribe("getNewPrivatePosts", data => setprivatePosts(data));
+  useEffect(() => {
+    return () => {
+      emitter.off("getNewPrivatePosts");
+    };
+  }, []);
+
+  useEffect(() => {
+    setLoading(true);
+    const source = axios.CancelToken.source();
+    const getNewPrivatePosts = async () => {
+      try {
+        const response = await api("/api/posts/private/posts", {
+          cancelToken: source.token
+        });
+        let data = await response.data;
+        console.log(data);
+        setLoading(false);
+        setprivatePosts(data);
+      } catch (error) {
+        if (axios.isCancel(error)) {
+          console.log("caught cancel axios");
+        } else {
+          setLoading(false);
+        }
+      }
+    };
+    getNewPrivatePosts();
+    return () => {
+      source.cancel();
+    };
+  }, []);
 
   const setUser = user => {
     socket.emit(USER_CONNECTED, user);
@@ -111,7 +149,7 @@ const index = ({ currentUser, posts, errors, todos }) => {
       <div>
         {getVip() ? (
           <div className="row love-container">
-          <ChrismasLight></ChrismasLight>
+            <ChrismasLight></ChrismasLight>
             <DateCounting
               fromDate={"February 14 2020 00:00:00"}
               isPrivate={true}
@@ -120,8 +158,13 @@ const index = ({ currentUser, posts, errors, todos }) => {
 
             <div className="main-love-container">
               <div className="love-left-side">
-                {handleErrors()}
-                <PrivatePost></PrivatePost>
+                {handleErrors() || loading ? (
+                 <div className='private-post-loader'>
+                   <Loader size='150px' color='text-secondary'></Loader>
+                 </div>
+                ) : (
+                  <PrivatePost privatePosts={privatePosts}></PrivatePost>
+                )}
               </div>
 
               <div className="text-center scroll-friendly bg-secondary white-text">

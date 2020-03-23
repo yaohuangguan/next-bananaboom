@@ -9,7 +9,6 @@ const getEnvironment = () =>
 const Layout = ({ children, head }) => {
   const [loading, setloading] = useState(false);
   useEffect(() => {
-    
     const routeStart = url => {
       setloading(true);
       if (getEnvironment()) {
@@ -20,9 +19,7 @@ const Layout = ({ children, head }) => {
       if (getEnvironment()) {
         console.log("App is changed to: ", url);
       }
-      const urlReloadList = [
-        `/blogs/article/${Router.query.id}`
-      ];
+      const urlReloadList = [`/blogs/article/${Router.query.id}`];
       const ifReload = Promise.resolve(
         urlReloadList.some(each => {
           return each == url;
@@ -47,7 +44,6 @@ const Layout = ({ children, head }) => {
         Router.pathname === "/blogs/article/[id]" ? null : routeEnd
       );
       Router.events.off("routeChangeError", routeError);
-
     };
   }, []);
 
@@ -75,8 +71,8 @@ const Layout = ({ children, head }) => {
 Layout.getInitialProps = ({ pathname }) => {
   if (pathname === "/youandme") {
     require("../Private/Chat/chat.scss");
-    require('../Private/ToDo/todo.scss')
-    require('../Private/ChrismasLight/light.scss')
+    require("../Private/ToDo/todo.scss");
+    require("../Private/ChrismasLight/light.scss");
     require("../../pages/youandme/youandme.scss");
     return require("../Private/CountDate/countdate.scss");
   }
@@ -97,7 +93,7 @@ Layout.getInitialProps = ({ pathname }) => {
     //Blog
     require("../../pages/blogs/Blog.scss"),
     require("../Blog/BlogListItem.scss"),
-    require('../SearchBox/searchbox.scss'),
+    require("../SearchBox/searchbox.scss"),
     //Jumbo
     require("../Jumbo/Jumbo.scss"),
     //Background

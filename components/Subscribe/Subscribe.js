@@ -7,6 +7,7 @@ import Logs from "../Contents/Logs/Logs";
 import Loader from "../Loader/Loader";
 import api from "../../utils/Api";
 import SayHi from "../Contents/Intro/SayHi";
+import EMAIL from "./EMAIL";
 const Subscribe = ({
   title,
   info,
@@ -17,12 +18,67 @@ const Subscribe = ({
   _id
 }) => {
   const router = useRouter();
-  const [email, setemail] = useState(null);
+  const [email, setemail] = useState("");
   const [send, setsend] = useState(false);
   const [loading, setloading] = useState(false);
   const [result, setresult] = useState("");
   const [status, setstatus] = useState("");
   const [brand, setbrand] = useState("");
+  const [opening, setopening] = useState(false);
+  const emailSuggestions = EMAIL;
+
+  const getSuggestion = email => {
+    if (!email) return setopening(true);
+    if (opening) {
+      setopening(false);
+    }
+    if (email.includes("@")) {
+      let result = emailSuggestions.map(
+        each => `${email.split("@")[0] + each}`
+      );
+      let suggestions = result.filter(each =>
+        each.includes(email.split("@")[1])
+      );
+      console.log(suggestions);
+
+      return suggestions.map((each, index) => (
+        <div
+          key={index}
+          className="subscribe-suggestion-item"
+          onClick={e => {
+            setemail(e.target.innerText);
+            deleteSuggestion(e);
+          }}
+        >
+          {each}
+        </div>
+      ));
+    } else {
+      let suggestions = emailSuggestions.map(each => `${email + each}`);
+      console.log(suggestions);
+
+      return suggestions.map((each, index) => (
+        <div
+          key={index}
+          className="subscribe-suggestion-item"
+          onClick={e => {
+            setemail(e.target.innerText);
+            deleteSuggestion(e);
+          }}
+        >
+          {each}
+        </div>
+      ));
+    }
+  };
+  const deleteSuggestion = e => {
+    if (!email) return;
+    setopening(true);
+    // const items = document.querySelectorAll('.subscribe-suggestion-item')
+    // while(list.lastElementChild){
+    //   list.removeChild(list.lastElementChild)
+    // }
+  };
   const validEmail = () => {
     var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     return re.test(email);
@@ -35,16 +91,14 @@ const Subscribe = ({
         const response = await api.post("/api/auth/subscribe", { email });
         const data = await response.data;
         setresult(data.message);
-		setstatus(data.status);
-		setloading(false);
-		
+        setstatus(data.status);
+        setloading(false);
       } catch (error) {
         console.log(error);
         setloading(false);
         setresult("Error happened.");
       }
-	}
-	
+    }
   };
   useEffect(() => {
     setbrand(window.location.hostname);
@@ -63,6 +117,7 @@ const Subscribe = ({
   const getEmail = e => {
     setemail(e.target.value);
     e.target.style.color = "#6a82fb";
+    getSuggestion(e.target.value);
   };
 
   const subscribeButton = () => {
@@ -103,11 +158,18 @@ const Subscribe = ({
                   name="EMAIL"
                   className="form-control form-control-a text-center "
                   id="mce-EMAIL"
+                  value={email}
                   onChange={getEmail}
                   placeholder="Please enter email address"
                   required
                 />
               </label>
+
+              {!opening ? (
+                <div className="subscribe-suggestion-list">
+                 {getSuggestion(email)}
+                </div>
+              ) : null}
             </div>
 
             <div className="clear">

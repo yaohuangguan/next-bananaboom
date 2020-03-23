@@ -13,28 +13,32 @@ const INITIAL_STATE = {
   tags: localStorage.getItem("tagText") || "",
   isPrivate: false,
   errors: "",
-  loading: false
+  loading: false,
+  result: ""
 };
 const reducer = (state, action) => {
-  switch (action.type) {
+  const { type, payload } = action;
+  switch (type) {
     case "CONTENT":
-      return { ...state, content: action.payload };
+      return { ...state, content: payload };
     case "AUTHOR":
-      return { ...state, author: action.payload };
+      return { ...state, author: payload };
     case "CODE":
-      return { ...state, code: action.payload };
+      return { ...state, code: payload };
     case "INFO":
-      return { ...state, info: action.payload };
+      return { ...state, info: payload };
     case "TITLE":
-      return { ...state, title: action.payload };
+      return { ...state, title: payload };
     case "TAG":
-      return { ...state, tags: action.payload };
+      return { ...state, tags: payload };
     case "ISPRIVATE":
-      return { ...state, isPrivate: action.payload };
+      return { ...state, isPrivate: payload };
     case "ERROR":
-      return { ...state, errors: action.payload };
+      return { ...state, errors: payload };
     case "LOADING":
-      return { ...state, loading: action.payload };
+      return { ...state, loading: payload };
+    case "RESULT":
+      return { ...state, result: payload };
     case "RESET":
       return {
         content: "",
@@ -45,7 +49,8 @@ const reducer = (state, action) => {
         tags: "",
         isPrivate: false,
         errors: "",
-        loading: false
+        loading: false,
+        result: ""
       };
     default:
       throw new Error();
@@ -63,7 +68,8 @@ const Editor = () => {
     tags,
     isPrivate,
     errors,
-    loading
+    loading,
+    result
   } = state;
 
   // const [blogText, setblogText] = useState("");
@@ -114,7 +120,7 @@ const Editor = () => {
       author.trim() == "" ||
       info.trim() == "" ||
       title.trim() == "" ||
-      tags.trim() == "" || 
+      tags.trim() == "" ||
       content.trim() == ""
     ) {
       return dispatch({ type: "ERROR", payload: "都要填的，老婆" });
@@ -133,8 +139,10 @@ const Editor = () => {
         });
         const data = await response.data;
         emitter.dispatch("getNewPrivatePosts", data);
-
-        dispatch({ type: "RESET" });
+        dispatch({ type: "RESULT", payload: "发布成功！" });
+        setTimeout(() => {
+          dispatch({ type: "RESET" });
+        }, 1000);
         localStorage.removeItem("cachedText");
         localStorage.removeItem("codeText");
         localStorage.removeItem("authorText");
@@ -148,9 +156,6 @@ const Editor = () => {
       dispatch({ type: "LOADING", payload: false });
     }
   };
-  const showResult = () => {
-    
-  }
   return (
     <>
       <div
@@ -162,9 +167,8 @@ const Editor = () => {
           marginBottom: "20px"
         }}
       >
-        <span className='text-muted'>预览界面</span>    
+        <span className="text-muted">预览界面</span>
       </div>
-
       <form
         className="input-section"
         style={{
@@ -230,8 +234,6 @@ const Editor = () => {
             onChange={handlePrivateChange}
           />
         </label>
-        {errors ? <div className="text-danger">{errors}</div> : null}
-
         <CKEditor
           data={content}
           config={{
@@ -244,6 +246,8 @@ const Editor = () => {
           onChange={handleEditorChange}
           onBeforeLoad={CKEDITOR => (CKEDITOR.disableAutoInline = true)}
         ></CKEditor>
+        {errors ? <div className="text-danger">Error: {errors}</div> : null}
+        {result ? <div className="text-success">Message: {result}</div> : null}
         <button
           className="btn-block p-3"
           style={{ backgroundColor: "#DFD0F0" }}
@@ -252,7 +256,6 @@ const Editor = () => {
           {!loading ? "发送" : <Loader />}
         </button>
       </form>
-     
     </>
   );
 };

@@ -32,6 +32,30 @@
           position: relative;
           display: inline-block;
           cursor: pointer;
+          .subscribe-suggestion-list {
+            list-style: none;
+            background-color: #999;
+            padding: 0px;
+            border-radius: 50px;
+            overflow-y: scroll;
+            height: 250px;
+            margin: 0;
+            position: absolute;
+            -ms-overflow-style: none;
+            &::-webkit-scrollbar {
+              display: none;
+            }
+            .subscribe-suggestion-item {
+              background-color: transparent;
+              color: #fff;
+              padding: 15px;
+              border-radius: 50px;
+              &:hover {
+                background-color: #333;
+                color: #fff;
+              }
+            }
+          }
           .subscribe-button-text {
             visibility: hidden;
             width: 50%;
@@ -76,12 +100,12 @@
           display: inline-block;
           border-color: transparent;
           color: white;
-          border-bottom-color:white;
+          border-bottom-color: white;
           background-color: transparent;
-          outline:none;
+          outline: none;
           box-shadow: none;
           &:focus {
-            border-bottom-color:rgb(158, 91, 235);
+            border-bottom-color: rgb(158, 91, 235);
             outline: none;
           }
         }

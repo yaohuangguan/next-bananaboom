@@ -56,14 +56,25 @@
       height: 100vh;
       padding: 20px;
       max-width: 55%;
-      overflow: scroll;
+      overflow: auto;
       -ms-overflow-style: none;
       @media screen and (max-width: 992px) {
         max-width: 2000px;
       }
-      &:-webkit-scrollbar {
-        display: none;
+      &::-webkit-scrollbar {
+        background-color: #bb8bfa;
+        width: 5px;
+      } 
+      &::-webkit-scrollbar-thumb {
+        background-color: #333;
       }
+      .private-post-loader{
+        padding:200px;
+        @media screen and (max-width: 992px) {
+          padding: 50px;
+        }
+      }
+    
       .heart-input {
         box-shadow: none;
         border: 2px solid white;
@@ -84,7 +95,7 @@
       scrollbar-width: none;
       -ms-overflow-style: none;
 
-      &:-webkit-scrollbar {
+      &::-webkit-scrollbar {
         display: none;
       }
       .blog-container {

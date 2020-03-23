@@ -12,7 +12,7 @@ const ToDo = () => {
   const handleSubmit = async e => {
     e.preventDefault();
     if (!title || title.trim() == "")
-      return seterrors("可以一起做的事情有很多，老婆");
+      return seterrors("都要填的，老婆");
     if (!loading) {
       setloading(true);
       const response = await api.post("/api/todo", { todo: title });
@@ -85,7 +85,7 @@ const ToDo = () => {
 
        
       </form>
-      {errors ? <span className="text-danger">{errors}</span> : null}
+      {errors ? <span className="text-danger">Error: {errors}</span> : null}
       {!loading ? (
         <ToDoList
           todos={todos}
