@@ -50,31 +50,29 @@
     @media screen and (min-width: 993px) {
       flex-direction: row;
     }
-    
 
     .love-left-side {
       height: 100vh;
       padding: 20px;
       max-width: 55%;
       overflow: auto;
-      -ms-overflow-style: none;
       @media screen and (max-width: 992px) {
         max-width: 2000px;
       }
       &::-webkit-scrollbar {
         background-color: #bb8bfa;
         width: 5px;
-      } 
+      }
       &::-webkit-scrollbar-thumb {
         background-color: rgb(245, 218, 83);
       }
-      .private-post-loader{
-        padding:200px;
+      .private-post-loader {
+        padding: 200px;
         @media screen and (max-width: 992px) {
           padding: 50px;
         }
       }
-    
+
       .heart-input {
         box-shadow: none;
         border: 2px solid white;
@@ -92,12 +90,14 @@
       height: 100vh;
       padding: 20px;
       overflow: scroll;
-      scrollbar-width: none;
-      -ms-overflow-style: none;
-
-      &::-webkit-scrollbar {
-        display: none;
+      @media screen and (min-width: 992px) {
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+        &::-webkit-scrollbar {
+          display: none;
+        }
       }
+
       .blog-container {
         border-top: 4px solid #b39be4;
         .input-section {
