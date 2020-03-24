@@ -126,9 +126,9 @@ const Signup = ({ linkColor }) => {
   const getSignUpMethodOnRoutes = () =>
     router.pathname === "/" ? "or sign up with:" : "或者使用以下方法注册:";
   const getAlreadyUserOnRoutes = () =>
-    router.pathname === "/" ? "I already have account" : "我已有账户";
+    router.pathname === "/" ? "I already have account,log in" : "我已有账户,去登录";
   const getLoginTextOnRoutes = () =>
-    router.pathname === "/" ? "Login/Register" : "登录/注册";
+    router.pathname === "/" ? "Login/Signup" : "免费注册";
   return (
     <>
       <div ref={SignupContainer} className="signup-container">

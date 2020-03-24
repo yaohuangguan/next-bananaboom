@@ -42,6 +42,8 @@
     .jumbo {
       width: 90vw;
       .card-subtitle {
+        letter-spacing: 1px;
+
         @media screen and (min-width: 320px) and(max-width:415px) {
           font-size: 2em;
         }
@@ -66,7 +68,8 @@
         // -webkit-background-clip: text;
         // background-clip: text;
         // -webkit-text-fill-color: transparent;
-        font-weight: bold;
+        letter-spacing: 3px;
+        font-weight: 600;
         @media screen and (min-width: 320px) and(max-width:415px) {
           font-size: 3em;
         }
@@ -87,7 +90,7 @@
         }
       }
       .card-button {
-        font-size: 1.2em;
+        font-size: 1.4em;
       }
     }
 

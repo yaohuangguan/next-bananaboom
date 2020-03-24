@@ -10,8 +10,8 @@ $blue-color: #00ffe5;
   background-color: transparent;
   transition: transform 0.5s ease-in;
   font-family: "Sriracha", "Helvetica", "Arial", cursive;
-  font-size: large;
-
+  font-size: larger;
+  text-transform: capitalize;
   .header {
     all: inherit;
     &.scrollUp {
