@@ -15,7 +15,7 @@ const Reply = ({ reply, comment_id, user_id, currentUser }) => {
       `https://emoji.getdango.com/api/emoji?q=${replyContent}`
     );
     const data = await emoji.json();
-    setemojiList(data.results);
+    setemojiList(data.results.slice(0,5));
   }
   const handleReplyChange = async e => {
     setreplyContent(e.target.value);
@@ -37,7 +37,7 @@ const Reply = ({ reply, comment_id, user_id, currentUser }) => {
           }
         );
         const data = await emoji.data;
-        setemojiList(data.results);
+        setemojiList(data.results.slice(0,5));
       } catch (error) {
         if (axios.isCancel(error)) {
           console.log("caught cancel");
@@ -108,20 +108,21 @@ const Reply = ({ reply, comment_id, user_id, currentUser }) => {
     seterrors(error)
   }
   const appendToComment = e => {
-    setreplyContent(replyContent + e.target.textContent)
+    const content = e.target.firstChild.textContent
+    setreplyContent(replyContent + content)
   };
   const getEmojiList = () => {
     return (
-      <div className="d-flex text-center w-100 emoji-list">
+      <div className="text-center emoji-list">
         {emojiList.map((each, index) => (
           <button
             key={index}
-            className="mx-2"
-            style={{ width: "15%", borderRadius: "20px", backgroundColor: "transparent",
+            style={{ width: "15%",margin:'3px', borderRadius: "20px", backgroundColor: "transparent",
               borderColor: "#333333" }}
             id={`${index}`}
+            onClick={appendToComment}
           >
-            <span style={{ fontSize: "20px" }} onClick={appendToComment}>
+            <span style={{ fontSize: "20px" }} >
               {each.text}
             </span>
           </button>

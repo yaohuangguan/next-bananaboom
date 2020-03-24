@@ -100,12 +100,13 @@ const Comment = ({ currentUser, comments, _id }) => {
 
   const appendToComment = e => {
     let box = document.getElementById("textarea-char-counter");
-    insertTextAtCursor(box, e.target.textContent);
+    const content = e.target.firstChild.textContent
+    insertTextAtCursor(box, content);
     handleCommentChange();
   };
   const getEmojiList = () => {
     return (
-      <div className="d-flex text-center emoji-list">
+      <div className="text-center emoji-list">
         {emojiList.map((each, index) => (
           <button
             key={index}
@@ -117,8 +118,9 @@ const Comment = ({ currentUser, comments, _id }) => {
               borderColor: "#333333"
             }}
             id={`${index}`}
+            onClick={appendToComment}
           >
-            <span style={{ fontSize: "20px" }} onClick={appendToComment}>
+            <span style={{ fontSize: "20px" }} >
               {each.text}
             </span>
           </button>
@@ -156,9 +158,7 @@ const Comment = ({ currentUser, comments, _id }) => {
                   <div className="errors text-danger">{errors}</div>
                 ) : null}
                 <div className="m-0">
-                  <div className="w-100 mb-2">
-                    {emojiList ? getEmojiList() : null}
-                  </div>
+                  {emojiList ? getEmojiList() : null}
 
                   <textarea
                     className="form-control my-0 comment-input text-center"
@@ -196,13 +196,9 @@ const Comment = ({ currentUser, comments, _id }) => {
           box-shadow: none;
         }
         .emoji-list {
-          overflow: scroll;
-          scrollbar-width: none;
-          -ms-overflow-style: none;
+          display:flex;
         }
-        .emoji-list:-webkit-scrollbar {
-          display: none;
-        }
+        
       `}</style>
     </div>
   );
