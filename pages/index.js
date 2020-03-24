@@ -43,7 +43,6 @@ const Index = ({ homepage, errors, logs, projects, currentUser }) => {
         blogName={"Blog"}
         resumeName={"About"}
         resumeRoute={"/resume/[query]"}
-        homeRoute={"/"}
         changeLanguageRoute={"/zh"}
         currentUser={currentUser ? currentUser : null}
       />
@@ -53,6 +52,7 @@ const Index = ({ homepage, errors, logs, projects, currentUser }) => {
         info={jumbo_info ? "" : errors}
         button={jumbo_button}
         language={"english"}
+        homeRoute={"/"}
         backgroundURL={backgroundURL}
       />
       <div className="mt-3 px-5">

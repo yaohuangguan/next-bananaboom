@@ -10,7 +10,6 @@ const Header = ({
   blogName,
   resumeName,
   resumeRoute,
-  homeRoute,
   changeLanguageRoute,
   currentUser,
   router
@@ -68,11 +67,7 @@ const Header = ({
   return (
     <div className="nav">
       <div className="header">
-        <Link href={homeRoute}>
-          <a id="logo" className="p-1">
-            <img src="/favicon.png" width="50px" height="50px" alt="s" />
-          </a>
-        </Link>
+       
         <div className="options">
           <Link href="/blogs">
             <a className="option">{blogName}</a>

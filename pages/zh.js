@@ -35,7 +35,6 @@ const Chinese = ({ homepage, errors, logs, projects, currentUser }) => {
         blogName={"博客"}
         resumeName={"介绍"}
         resumeRoute={"/resume/[query]"}
-        homeRoute={"/zh"}
         changeLanguageRoute={"/"}
         currentUser={currentUser ? currentUser : null}
       />
@@ -45,6 +44,7 @@ const Chinese = ({ homepage, errors, logs, projects, currentUser }) => {
         info={jumbo_info_cn ? "" : errors}
         button={jumbo_button_cn}
         language={"chinese"}
+        homeRoute={"/zh"}
         backgroundURL={backgroundURL}
       />
       <div className="mt-3 mx-4">

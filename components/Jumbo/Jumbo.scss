@@ -1,7 +1,25 @@
 .jumbo-section {
   font-family: "Sriracha",  "Helvetica", "Arial",cursive;
   position: relative;
-
+  #logo {
+    margin-right: auto;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 3;
+    // @media screen and (max-width: 415px) {
+    //   width: 90%;
+    // }
+    // @media screen and (min-width: 415px) and (max-width: 768px) {
+    //   width: 80%;
+    // }
+    // @media screen and (min-width: 992px) {
+    //   width: 85%;
+    // }
+    // @media screen and (min-width: 768px) and (max-width: 992px) {
+    //   width: 85%;
+    // }
+  }
   .background-video {
     @media screen and (min-width: 320px) and(max-width:415px) {
       min-width: 100%;

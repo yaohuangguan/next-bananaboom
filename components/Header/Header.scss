@@ -7,6 +7,7 @@ $blue-color: #00ffe5;
   top: 0;
   left: 0;
   z-index: 2;
+  padding: 5px;
   background-color: transparent;
   transition: transform 0.5s ease-in;
   font-family: "Sriracha", "Helvetica", "Arial", cursive;
@@ -14,6 +15,7 @@ $blue-color: #00ffe5;
   text-transform: capitalize;
   .header {
     all: inherit;
+    
     &.scrollUp {
       transform: translateY(-80px);
     }
@@ -27,30 +29,19 @@ $blue-color: #00ffe5;
     // transition: all 0.5s ease-in-out;
     // -webkit-backface-visibility: hidden;
     // backface-visibility: hidden;
-    #logo {
-      margin-right: auto;
-
-      // @media screen and (max-width: 415px) {
-      //   width: 90%;
-      // }
-      // @media screen and (min-width: 415px) and (max-width: 768px) {
-      //   width: 80%;
-      // }
-      // @media screen and (min-width: 992px) {
-      //   width: 85%;
-      // }
-      // @media screen and (min-width: 768px) and (max-width: 992px) {
-      //   width: 85%;
-      // }
-    }
+   
     .loginOption {
       display: flex;
+      @media screen and (max-width:767px){
+      margin-left: auto;
+        
+      }
       .option {
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        padding: 5px 20px 5px 20px;
+        padding: 10px 20px 10px 20px;
         cursor: pointer;
         color: white;
 
@@ -104,7 +95,8 @@ $blue-color: #00ffe5;
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        padding: 5px 20px 5px 20px;
+        padding: 10px 20px 10px 20px;
+
 
         cursor: pointer;
 

@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import "./Jumbo.scss";
-
-const Jumbo = ({ name, welcome, info, button, language, backgroundURL }) => {
+import Link from 'next/link'
+const Jumbo = ({ name, welcome, info, button, language, backgroundURL,homeRoute }) => {
   //// https://res.cloudinary.com/next-bananaboom/image/upload/v1582173503/WechatIMG11_ei3ugm.jpg
 
   const [mobile, setmobile] = useState(null);
@@ -30,9 +30,15 @@ const Jumbo = ({ name, welcome, info, button, language, backgroundURL }) => {
 
   return (
     <div className="jumbo-section">
+       <Link href={homeRoute}>
+          <a id="logo" className="p-1">
+            <img src="/favicon.png" width="70px" height="70px" alt="s" />
+          </a>
+        </Link>
       <div
         style={{ maxHeight: "100vh", maxWidth: "100vw", overflow: "hidden" }}
       >
+        
         <video
           className="background-video"
           poster={
@@ -56,6 +62,7 @@ const Jumbo = ({ name, welcome, info, button, language, backgroundURL }) => {
           />
         </video>
       </div>
+     
       <div className="text-white text-center py-5 px-5 jumbo-wrapper">
         <div className="jumbo">
           <h1 className="card-subtitle mb-3">{name}</h1>
