@@ -1,18 +1,11 @@
 import { useEffect } from "react";
-import dynamic from "next/dynamic";
 import Link from "next/link";
 import { withRouter } from "next/router";
 import "../Header/Hamburger/Hamburger.scss";
 import "./Header.scss";
-const Signup = dynamic(() => import("../Auth/Signup"), {
-  ssr: false
-});
-const Dropdown = dynamic(() => import("./DropDown/DropDown"), {
-  ssr: false
-});
-const HamburgerMenu = dynamic(() => import("./Hamburger/Hamburger"), {
-  ssr: false
-});
+import Signup from "../Auth/Signup";
+import Dropdown from "./DropDown/DropDown";
+import HamburgerMenu from "./Hamburger/Hamburger";
 const Header = ({
   blogName,
   resumeName,
@@ -35,13 +28,13 @@ const Header = ({
           navbar.classList.remove("purple-gradient");
           navbar.classList.remove("solid");
         }
-        if (c < currentScrollTop && a > 5*b) {
+        if (c < currentScrollTop && a > 5 * b) {
           navbar.classList.add("scrollUp");
         } else if (c > currentScrollTop && !(a <= b)) {
           navbar.classList.remove("scrollUp");
           navbar.classList.add("solid");
           navbar.classList.add("purple-gradient");
-        } 
+        }
         c = currentScrollTop;
       });
     };

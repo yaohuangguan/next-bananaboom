@@ -1,9 +1,10 @@
 import { useEffect, useState, useRef } from "react";
-import router from "next/router";
+import {useRouter} from "next/router";
 import firebase from "../../firebase/firebase";
 import api from "../../utils/Api";
 import Loader from "../Loader/Loader";
 const Login = ({ passwordReveal }) => {
+  const router = useRouter()
   const LoginContainer = useRef(null);
 
   const [email, setemail] = useState("");
@@ -33,14 +34,14 @@ const Login = ({ passwordReveal }) => {
 
   const handleUserSubmit = async e => {
     e.preventDefault();
-    
+
     if (!email || !password) {
       const shakeMessage = document.querySelector(".shake-target");
       shakeMessage.classList.toggle("shake-message");
       return seterrors(["填写完整信息(Fill all the requirements)"]);
     }
     try {
-      if(!loading){
+      if (!loading) {
         setloading(true);
         const response = await api.post("/api/users/signin", {
           email,
@@ -48,14 +49,14 @@ const Login = ({ passwordReveal }) => {
         });
         // console.log(response.data.userToSend);
         const user = await response.data;
-  
-        window.localStorage.setItem("token", user.token);
-  
+        if (typeof window != "undefined") {
+          window.localStorage.setItem("token", user.token);
+        }
+
         router.reload();
         clearInput();
         closeLogin();
       }
-      
     } catch (error) {
       setloading(false);
       if (error.response.data.message) {

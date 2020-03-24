@@ -17,6 +17,7 @@ body {
   left: 50%;
   transform: scale(0);
   z-index: 5;
+  display: none;
   @media screen and (max-width: 415px) {
     width: 90%;
     top: 1%;
@@ -49,7 +50,6 @@ body {
     }
     &.out {
       transform: scale(1);
-      display: block;
       animation: unfoldOut 1s 0.3s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
       .modal-background {
         .modal-inner {
@@ -67,6 +67,7 @@ body {
   left: 50%;
   transform: scale(0);
   z-index: 1;
+  display: none;
   @media screen and (max-width: 415px) {
     width: 90%;
     top: 1%;
@@ -89,6 +90,7 @@ body {
   &.popup {
     transform: scaleY(0.01) scaleX(0);
     animation: unfoldIn 1s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+    display:block;
     .modal-background {
       .modal-inner {
         transform: scale(0);

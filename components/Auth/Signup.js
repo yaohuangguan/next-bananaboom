@@ -4,9 +4,7 @@ import firebase from "../../firebase/firebase";
 import api from "../../utils/Api";
 import Loader from "../Loader/Loader";
 import dynamic from "next/dynamic";
-const Login = dynamic(() => import("./Login"), {
-  ssr: false
-});
+import Login from "./Login";
 const Signup = ({ linkColor }) => {
   const router = useRouter();
   const SignupContainer = useRef(null);
@@ -89,7 +87,9 @@ const Signup = ({ linkColor }) => {
           passwordConf
         });
         const user = await response.data;
-        window.localStorage.setItem("token", user.token);
+        if (typeof window != "undefined") {
+          window.localStorage.setItem("token", user.token);
+        }
 
         router.reload();
 
@@ -130,7 +130,7 @@ const Signup = ({ linkColor }) => {
   const getLoginTextOnRoutes = () =>
     router.pathname === "/" ? "Login/Register" : "登录/注册";
   return (
-    <div>
+    <>
       <div ref={SignupContainer} className="signup-container">
         <div className="modal-background text-dark lazy-load shake-target-signup card">
           <form
@@ -257,7 +257,7 @@ const Signup = ({ linkColor }) => {
         </a>
       </div>
       <Login passwordReveal={passwordReveal}></Login>
-    </div>
+    </>
   );
 };
 Signup.getInitialProps = () => {
