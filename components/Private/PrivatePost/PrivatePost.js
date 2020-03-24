@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import PrivatePostItem from "./PrivatePostItem";
-import api from "../../../utils/Api";
 const PrivatePost = ({ privatePosts }) => {
   useEffect(() => {
     const config = () => {

@@ -15,7 +15,7 @@ const PrivatePostItem = ({ tags, name, info, author, content, id,createdDate,cod
       <code>类型:{tags}</code> <br/>
       <code>日期:{createdDate}</code> <br/>
       <code>{code ? code : null}</code><br/>
-      <div id={id} style={{overflow:'hidden'}}></div>
+      <div id={id} style={{overflowX:'auto'}}></div>
     </>
   );
 };
