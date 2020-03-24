@@ -30,6 +30,6 @@
     "components/Subscribe/Subscribe.js",
     "components/NotFound/ErrorBoundary.js",
     "components/Auth/Login.js",
-    "components/Auth/Signup.js", "server.js", "components/Header/Hamburger/Hamburger.js", "components/Header/Header.js", "pages/blogs/index.js", "pages/zh.js", "components/Contents/Intro/English.js", "pages/blogs/article/[id].js", "components/Footer/SocialFooter.js", "pages/dashboard/[id].js", "components/Blog/BlogListItem.js", "pages/index.js", "components/Blog/Comments/Reply/ReplyListItem.js", "components/Blog/Comments/Reply/ReplyList.js"
+    "components/Auth/Signup.js", "server.js", "components/Header/Hamburger/Hamburger.js", "components/Header/Header.js", "pages/blogs/index.js", "pages/zh.js", "components/Contents/Intro/English.js", "pages/blogs/article/[id].js", "components/Footer/SocialFooter.js", "pages/dashboard/[id].js", "components/Blog/BlogListItem.js", "pages/index.js", "components/Blog/Comments/Reply/ReplyListItem.js", "components/Blog/Comments/Reply/ReplyList.js", "components/Layout/Layout.js"
   ]
 }

@@ -13,19 +13,19 @@ const Blog = ({ blogs, errors, currentUser }) => {
   const [searchField, setsearchField] = useState("");
   const [filteredBlog, setfilteredBlog] = useState([]);
   const handleChange = e => setsearchField(e.target.value);
-  if (typeof window !== "undefined") {
-    router.beforePopState(({ url, as, option }) => {
-      // I only want to allow these two routes!
-      if (typeof url == "undefined") {
-        // Have SSR render bad routes as a 404.
-        history.back();
+  // if (typeof window !== "undefined") {
+  //   router.beforePopState(({ url, as, option }) => {
+  //     // I only want to allow these two routes!
+  //     if (typeof url == "undefined") {
+  //       // Have SSR render bad routes as a 404.
+  //       history.back();
 
-        return false;
-      }
+  //       return false;
+  //     }
 
-      return true;
-    });
-  }
+  //     return true;
+  //   });
+  // }
 
   useEffect(() => {
     let header = document.querySelector(".shrinkedHeader");

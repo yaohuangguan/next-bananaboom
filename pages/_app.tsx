@@ -21,7 +21,6 @@ class SamMainApp extends App<MyProps, MyState> {
   //
   //   return { ...appProps }
   // }
-
   unsubscribeFromAuth = null;
   getUserProfile = async token => {
     if (!token) return;
@@ -34,21 +33,20 @@ class SamMainApp extends App<MyProps, MyState> {
       });
       const data = await response.data;
 
+
       this.setState(state => {
         if (token) {
           process.env.NODE_ENV === "development"
             ? console.log("user", data)
             : null;
-
           return typeof token === "string" && { currentUser: data };
         }
       });
     } catch (error) {
-      console.log('token faield')
+      console.log("token faield");
     }
   };
   componentDidMount() {
-   
     let user = window.localStorage.getItem("token") || null;
     let refresh = localStorage.getItem("refresh");
     if (!refresh) {
@@ -70,6 +68,7 @@ class SamMainApp extends App<MyProps, MyState> {
 
   componentWillUnmount() {
     this.unsubscribeFromAuth();
+
   }
   render() {
     const { Component, pageProps } = this.props;

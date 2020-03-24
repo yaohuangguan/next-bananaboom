@@ -1,9 +1,8 @@
 import React, { useState, useEffect, useReducer } from "react";
-import { useRouter } from "next/router";
 import api from "../../utils/Api";
 import axios from "axios";
 import dynamic from "next/dynamic";
-import emitter from "../../utils/EventEmitter";
+import Emitter from "../../utils/EventEmitter";
 import ChatLogin from "../../components/Private/Chat/ChatLogin";
 import ChatContainer from "../../components/Private/Chat/ChatContainer";
 import Layout from "../../components/Layout/Layout";
@@ -18,7 +17,7 @@ import {
 } from "../../components/Private/Chat/Events";
 import DrawingCanvas from "../../components/DrawingCanvas/Drawing";
 import ChrismasLight from "../../components/Private/ChrismasLight/Light";
-import Loader from '../../components/Loader/Loader'
+import Loader from "../../components/Loader/Loader";
 import "./youandme.scss";
 const CKEditor = dynamic(() => import("../../components/CKeditor/Editor"), {
   ssr: false
@@ -29,21 +28,6 @@ const socketURL =
     : "https://nextbananaboom.herokuapp.com";
 
 const index = ({ currentUser, posts, errors, todos }) => {
-  const router = useRouter();
-  if (typeof window !== "undefined") {
-    router.beforePopState(({ url, as, option }) => {
-      // I only want to allow these two routes!
-      if (typeof url == "undefined") {
-        // Have SSR render bad routes as a 404.
-        history.back();
-
-        return false;
-      }
-
-      return true;
-    });
-  }
-
   const [socket, setSocket] = useState(null);
   const [chatUser, setuser] = useState("");
   const [privatePosts, setprivatePosts] = useState("");
@@ -74,10 +58,10 @@ const index = ({ currentUser, posts, errors, todos }) => {
   }, [currentUser]);
 
   //subscribe event
-  emitter.subscribe("getNewPrivatePosts", data => setprivatePosts(data));
+  Emitter.subscribe("getNewPrivatePosts", data => setprivatePosts(data));
   useEffect(() => {
     return () => {
-      emitter.off("getNewPrivatePosts");
+      Emitter.off("getNewPrivatePosts");
     };
   }, []);
 
@@ -145,9 +129,9 @@ const index = ({ currentUser, posts, errors, todos }) => {
     </div>
   );
   return (
-    <Layout head={`${getVip() ? "Loving you" : "404 Not Found"}`}>
-      <div>
-        {getVip() ? (
+    getVip() && (
+      <Layout head={`${getVip() ? "Loving you" : "404 Not Found"}`}>
+        <div>
           <div className="row love-container">
             <ChrismasLight></ChrismasLight>
             <DateCounting
@@ -159,9 +143,9 @@ const index = ({ currentUser, posts, errors, todos }) => {
             <div className="main-love-container">
               <div className="love-left-side">
                 {handleErrors() || loading ? (
-                 <div className='private-post-loader'>
-                   <Loader size='150px' color='text-secondary'></Loader>
-                 </div>
+                  <div className="private-post-loader">
+                    <Loader size="150px" color="text-secondary"></Loader>
+                  </div>
                 ) : (
                   <PrivatePost privatePosts={privatePosts}></PrivatePost>
                 )}
@@ -179,11 +163,9 @@ const index = ({ currentUser, posts, errors, todos }) => {
               </div>
             </div>
           </div>
-        ) : (
-          "验证登录信息，如果没有反应，回主页重新登录"
-        )}
-      </div>
-    </Layout>
+        </div>
+      </Layout>
+    )
   );
 };
 

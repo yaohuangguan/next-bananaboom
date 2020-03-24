@@ -8,6 +8,20 @@ const getEnvironment = () =>
   process.env.NODE_ENV === "development" ? true : false;
 const Layout = ({ children, head }) => {
   const [loading, setloading] = useState(false);
+
+  if (typeof window !== "undefined") {
+    Router.beforePopState(({ url, as, option }) => {
+      // I only want to allow these two routes!
+      if (typeof url == "undefined") {
+        // Have SSR render bad routes as a 404.
+        history.back();
+
+        return false;
+      }
+
+      return true;
+    });
+  }
   useEffect(() => {
     const routeStart = url => {
       setloading(true);
@@ -34,15 +48,19 @@ const Layout = ({ children, head }) => {
         }
       }
     };
+
     Router.events.on("routeChangeError", routeError);
     Router.events.on("routeChangeStart", routeStart);
     Router.events.on("routeChangeComplete", routeEnd);
+
     return () => {
       Router.events.off("routeChangeStart", routeStart);
       Router.events.off(
         "routeChangeComplete",
         Router.pathname === "/blogs/article/[id]" ? null : routeEnd
       );
+
+
       Router.events.off("routeChangeError", routeError);
     };
   }, []);
