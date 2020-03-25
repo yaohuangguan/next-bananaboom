@@ -94,6 +94,8 @@ const Comment = ({ currentUser, comments, _id }) => {
       }
     } catch (error) {
       setloading(false);
+      seterrors("Something went wrong please try again!");
+
       clearCommentField();
     }
   };
@@ -115,7 +117,8 @@ const Comment = ({ currentUser, comments, _id }) => {
               width: "15%",
               borderRadius: "50px",
               backgroundColor: "transparent",
-              borderColor: "#333333"
+              borderColor: "#333333",
+              outline:'none'
             }}
             id={`${index}`}
             onClick={appendToComment}

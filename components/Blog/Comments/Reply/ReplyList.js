@@ -20,10 +20,11 @@ const ReplyList = ({
     settargetUser(user);
   };
   const makeReplyReq = async () => {
+    if(!currentUser) return handleError("You need to login to reply");
     const { photoURL, displayName, _id } = currentUser;
 
     if (replyContent.trim() === "" || !replyContent)
-      return handleError("reply cannot be empty");
+      return handleError("Reply cannot be empty");
     try {
       if (targetUser === displayName)
         return handleError("You cannot reply to yourself");

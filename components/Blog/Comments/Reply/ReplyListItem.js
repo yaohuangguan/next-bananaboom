@@ -14,7 +14,6 @@ const ReplyListItem = ({
   makeReplyReq,
   loading
 }) => {
-
   const showReply = e => {
     const reply = document.getElementById(id);
     if (reply) {
@@ -57,32 +56,18 @@ const ReplyListItem = ({
         >
           回复
         </a>
-        <div
-          className="w-100 m-0 d-none reply form-group"
-          style={{ position: "relative" }}
-          id={id}
-        >
-          <a
-            className="bg-success white-text"
-            style={{
-              position: "absolute",
-              left: 0,
-              top: "-25px",
-              borderRadius: "30px"
-            }}
-          >
-            @{user}
-          </a>
+        <div className="w-100 d-none reply form-group" id={id}>
+          <a className="bg-success white-text reply-target">@{user}</a>
           <input
             type="text"
             className="form-control reply-field"
-            placeholder="Enter your public reply here..."
+            placeholder={`Reply to ${user}...`}
             value={replyContent}
             onChange={handleReplyChange}
           />
           <button
             type="submit"
-            className="bg-dark btn-sm text-white"
+            className="btn-sm text-white reply-button"
             onClick={makeReplyReq}
           >
             {!loading ? "发送" : <Loader />}
@@ -90,6 +75,15 @@ const ReplyListItem = ({
         </div>
       </div>
       <style jsx>{`
+        .reply {
+          position: relative;
+        }
+        .reply-target {
+          position: absolute;
+          left: 0;
+          top: -25px;
+          border-radius: 30px;
+        }
         .reply-field {
           box-shadow: none;
           border: 2px solid #333;
@@ -101,6 +95,21 @@ const ReplyListItem = ({
           border: 2px solid #2eca6a;
           border-color: #2eca6a;
           box-shadow: none;
+        }
+        .reply-field:focus + .reply-button{
+          border: 1px solid #2eca6a;
+          background-color:#2eca6a;
+        }
+        .reply-button {
+          position: absolute;
+          background-color:#333333;
+          top: 0;
+          right: 0px;
+          padding: 7px;
+          border-radius: 0px 50px 50px 0px;
+          border: 1px solid #333;
+          outline: none;
+          transition:background-color .3s ease,border .3s ease;
         }
       `}</style>
     </div>

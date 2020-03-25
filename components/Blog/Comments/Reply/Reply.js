@@ -15,11 +15,11 @@ const Reply = ({ reply, comment_id, user_id, currentUser }) => {
       `https://emoji.getdango.com/api/emoji?q=${replyContent}`
     );
     const data = await emoji.json();
-    setemojiList(data.results.slice(0,5));
-  }
+    setemojiList(data.results.slice(0, 5));
+  };
   const handleReplyChange = async e => {
     setreplyContent(e.target.value);
-    fetchEmoji()
+    fetchEmoji();
   };
   useEffect(() => {
     let source = axios.CancelToken.source();
@@ -37,7 +37,7 @@ const Reply = ({ reply, comment_id, user_id, currentUser }) => {
           }
         );
         const data = await emoji.data;
-        setemojiList(data.results.slice(0,5));
+        setemojiList(data.results.slice(0, 5));
       } catch (error) {
         if (axios.isCancel(error)) {
           console.log("caught cancel");
@@ -83,15 +83,17 @@ const Reply = ({ reply, comment_id, user_id, currentUser }) => {
           })
         });
 
-       const result = await response.data[0].reply;
-       setreplyList(result);
+        const result = await response.data[0].reply;
+        setreplyList(result);
         cleanReply();
         showReply();
         setLoading(false);
+        seterrors('')
       }
     } catch (error) {
       setLoading(false);
       console.log(error);
+      seterrors('Something wrong please try again!')
       cleanReply();
       showReply();
     }
@@ -104,12 +106,12 @@ const Reply = ({ reply, comment_id, user_id, currentUser }) => {
   const handleNewReply = newReply => {
     setreplyList(newReply);
   };
-  const handleError = (error) => {
-    seterrors(error)
-  }
+  const handleError = error => {
+    seterrors(error);
+  };
   const appendToComment = e => {
-    const content = e.target.firstChild.textContent
-    setreplyContent(replyContent + content)
+    const content = e.target.firstChild.textContent;
+    setreplyContent(replyContent + content);
   };
   const getEmojiList = () => {
     return (
@@ -117,14 +119,18 @@ const Reply = ({ reply, comment_id, user_id, currentUser }) => {
         {emojiList.map((each, index) => (
           <button
             key={index}
-            style={{ width: "15%",margin:'3px', borderRadius: "20px", backgroundColor: "transparent",
-              borderColor: "#333333" }}
+            style={{
+              width: "15%",
+              margin: "3px",
+              borderRadius: "20px",
+              backgroundColor: "transparent",
+              borderColor: "#333333",
+              outline:'none'
+            }}
             id={`${index}`}
             onClick={appendToComment}
           >
-            <span style={{ fontSize: "20px" }} >
-              {each.text}
-            </span>
+            <span style={{ fontSize: "20px" }}>{each.text}</span>
           </button>
         ))}
       </div>
@@ -162,19 +168,18 @@ const Reply = ({ reply, comment_id, user_id, currentUser }) => {
       <div className="d-none m-0 reply col-md-6" id={comment_id}>
         {emojiList ? getEmojiList() : null}
 
-        <div style={{ display: "flex", flexDirection: "column" }}>
+        <div className="reply-wrapper">
           <input
             type="text"
             className="form-control reply-field"
-            placeholder="Enter your public reply here..."
+            placeholder={`Reply...`}
             onChange={handleReplyChange}
             value={replyContent}
           />
           <button
             type="submit"
-            className="bg-dark btn-sm text-white"
+            className="btn-sm text-white reply-button"
             onClick={addReply}
-            style={{ alignSelf: "flex-end"}}
           >
             {!loading ? "发送" : <Loader />}
           </button>
@@ -182,6 +187,9 @@ const Reply = ({ reply, comment_id, user_id, currentUser }) => {
       </div>
 
       <style jsx>{`
+        .reply-wrapper {
+          position: relative;
+        }
         .reply-field {
           box-shadow: none;
           border: 2px solid #333;
@@ -193,6 +201,21 @@ const Reply = ({ reply, comment_id, user_id, currentUser }) => {
           border: 2px solid #2eca6a;
           border-color: #2eca6a;
           box-shadow: none;
+        }
+        .reply-field:focus + .reply-button{
+          border: 1px solid #2eca6a;
+          background-color:#2eca6a;
+        }
+        .reply-button {
+          position: absolute;
+          background-color:#333333;
+          transition:background-color .3s ease, border .3s ease;
+          top: 0;
+          right: 0px;
+          padding:7px;
+          border-radius:0px 50px 50px 0px;
+          border:1px solid #333;
+          outline:none;
         }
       `}</style>
     </div>
