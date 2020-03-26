@@ -17,13 +17,13 @@ const ResumeListItem = ({ _id, title, _title, info, _info, url, degree }) => {
         </a>
       </div>
 
-      <div className="black-text">
+      <div className="">
         <h6 className="font-weight-bold">
           {router.asPath == "/resume/ch-cn" ? "简介" : "Details"}
         </h6>
         <a className="badge badge-info">{degree}</a>
 
-        <p className="black-text">
+        <p className="">
           {router.asPath == "/resume/ch-cn" ? info : _info}
         </p>
         <a href={url} target="_blank" rel="noopener noreferrer" className="">

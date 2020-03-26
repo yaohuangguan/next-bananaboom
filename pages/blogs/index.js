@@ -8,7 +8,7 @@ import api from "../../utils/Api";
 import SearchBox from "../../components/SearchBox/SearchBox";
 import Loader from "../../components/Loader/Loader";
 import GitHub from "../../components/Github/Github.forkme";
-const Blog = ({ blogs, errors, currentUser }) => {
+const Blog = ({ blogs, errors, currentUser, handleTheme }) => {
   const router = useRouter();
   const [searchField, setsearchField] = useState("");
   const [filteredBlog, setfilteredBlog] = useState([]);
@@ -26,7 +26,6 @@ const Blog = ({ blogs, errors, currentUser }) => {
   //     return true;
   //   });
   // }
-
   useEffect(() => {
     let header = document.querySelector(".shrinkedHeader");
     let blog = document.querySelector(".blog");
@@ -120,12 +119,13 @@ const Blog = ({ blogs, errors, currentUser }) => {
             handleChange={handleChange}
             blogs={blogs}
             searchSuggestion={searchSuggestion}
+            theme={handleTheme}
           ></SearchBox>
           {filteredBlog.length == 0
             ? "没有找到相关文章 No result matches"
             : null}
 
-          <BlogList blogs={filteredBlog} />
+          <BlogList blogs={filteredBlog} handleTheme={handleTheme} />
         </div>
       ) : (
         <Loader color={"text-secondary"}></Loader>

@@ -10,8 +10,18 @@ import Animation from "../utils/Animation";
 import consolelog from "../utils/Console.log";
 import BrowserTest from "../utils/BrowserTest";
 
-const Index = ({ homepage, errors, logs, projects, currentUser }) => {
+const Index = ({
+  homepage,
+  errors,
+  logs,
+  projects,
+  currentUser,
+  handleTheme,
+  lightTheme,
+  darkTheme
+}) => {
   const [webUrl, SetWebUrl] = useState("");
+
   useEffect(() => {
     Animation();
     if (process.env.NODE_ENV === "production") {
@@ -19,7 +29,6 @@ const Index = ({ homepage, errors, logs, projects, currentUser }) => {
     }
     SetWebUrl(window.location.hostname);
   }, []);
-
   const {
     _id,
     jumbo_name,
@@ -62,21 +71,25 @@ const Index = ({ homepage, errors, logs, projects, currentUser }) => {
           intro={intro_intro}
           projects={projects}
         ></Intro>
-        </div>
+      </div>
 
-        <div className='white-text z-depth-1' style={{backgroundColor:'#333',marginTop:'120px'}}>
-          <Subscribe
-            likes={likes}
-            _id={_id}
-            title={"Get the lastest blogs notified!"}
-            info={
-              " Your information will be secured."
-            }
-            copyright={` All rights reserved ©2019-2020  ${webUrl ||
-              "yaobaiyang.com"} `}
-            web_version={subscribe_web_version}
-            logs_content={logs}
-          />
+      <div
+        className="white-text z-depth-1"
+        style={{ backgroundColor: "#333", marginTop: "120px" }}
+      >
+        <Subscribe
+          likes={likes}
+          _id={_id}
+          title={"Get the lastest blogs notified!"}
+          info={" Your information will be secured."}
+          copyright={` All rights reserved ©2019-2020  ${webUrl ||
+            "yaobaiyang.com"} `}
+          web_version={subscribe_web_version}
+          logs_content={logs}
+          handleTheme={handleTheme}
+          light={lightTheme}
+          dark={darkTheme}
+        />
       </div>
 
       <Footer date={footer_date} welcome={footer_welcome}></Footer>

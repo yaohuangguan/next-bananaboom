@@ -8,6 +8,7 @@ import Loader from "../Loader/Loader";
 import api from "../../utils/Api";
 import SayHi from "../Contents/Intro/SayHi";
 import EMAIL from "./EMAIL";
+import Darkmode from '../Darkmode/Darkmode'
 const Subscribe = ({
   title,
   info,
@@ -15,7 +16,10 @@ const Subscribe = ({
   web_version,
   logs_content,
   likes,
-  _id
+  _id,
+  handleTheme,
+  light,
+  dark
 }) => {
   const router = useRouter();
   const [email, setemail] = useState("");
@@ -193,6 +197,7 @@ const Subscribe = ({
         <div className="information pb-3 text-center">
           <Logs version={web_version} logs={logs_content}></Logs>
           <p className="white-text">{copyright}</p>
+          <Darkmode light={light} dark={dark} handleTheme={handleTheme}></Darkmode>
         </div>
       </div>
     </div>

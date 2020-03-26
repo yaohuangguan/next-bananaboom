@@ -52,6 +52,7 @@ const index = ({ currentUser, posts, errors, todos }) => {
   }, [socketURL]);
   useEffect(() => {
     document.body.style.backgroundColor = "#E5CCFF";
+    document.body.style.color = "#333";
     return () => {
       document.body.style.backgroundColor = "white";
     };

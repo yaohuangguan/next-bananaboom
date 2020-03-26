@@ -16,7 +16,8 @@ const BlogListItem = ({
   createdDate,
   _id,
   image,
-  url
+  url,
+  handleTheme
 }) => {
   const [likeCount, setCount] = useState(likes);
   const [ifLiked, handleLike] = useState(false);
@@ -81,7 +82,7 @@ const BlogListItem = ({
             </a>
           ))}
         </div>
-        <p className="dark-grey-text">{info}</p>
+        <p className="">{info}</p>
         {image
           ? image.map((each, index) => (
               <img src={each} key={index} alt="img" width="100%"></img>
@@ -99,7 +100,12 @@ const BlogListItem = ({
             as={`/blogs/article/${_id}`}
             replace
           >
-            <a className="btn draw-border-black" style={{ height: "50px" }}>
+            <a
+              className={`btn ${
+                handleTheme() === "night" ? "draw-border-white" : "draw-border-black"
+              }`}
+              style={{ height: "50px" }}
+            >
               {button || "View details"}
             </a>
           </Link>

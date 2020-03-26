@@ -1,15 +1,9 @@
 import App from "next/app";
 import firebase from "../firebase/firebase";
 import api from "../utils/Api";
+import { getCookie, setCookie, themeProvider } from "../utils/Cookie";
 
-interface MyProps {
-  Component: any;
-  pageProps: any;
-}
-interface MyState {
-  currentUser: "";
-}
-class SamMainApp extends App<MyProps, MyState> {
+class SamMainApp extends App {
   // Only uncomment this method if you have blocking data requirements for
   // every single page in your application. This disables the ability to
   // perform automatic static optimization, causing every page in your app to
@@ -21,6 +15,9 @@ class SamMainApp extends App<MyProps, MyState> {
   //
   //   return { ...appProps }
   // }
+  state = {
+    currentUser: ""
+  };
   unsubscribeFromAuth = null;
   getUserProfile = async token => {
     if (!token) return;
@@ -32,7 +29,6 @@ class SamMainApp extends App<MyProps, MyState> {
         }
       });
       const data = await response.data;
-
 
       this.setState(state => {
         if (token) {
@@ -46,9 +42,41 @@ class SamMainApp extends App<MyProps, MyState> {
       console.log("token faield");
     }
   };
+
+  handleTheme = () => {
+    if (typeof window !== "undefined") {
+      if (getCookie("theme") === "day") {
+        document.body.style.backgroundColor = "#fff";
+        document.body.style.color = "#333";
+        return "day";
+      } else if (getCookie("theme") === "night") {
+        document.body.style.backgroundColor = "#333";
+        document.body.style.color = "#fff";
+        return "night";
+      }
+    }
+  };
+
+  lightTheme = () => {
+    setCookie("theme", "day", 30);
+    console.log("day");
+    if (typeof window !== "undefined") {
+      document.body.style.backgroundColor = "#fff";
+      document.body.style.color = "#333";
+    }
+  };
+  darkTheme = () => {
+    setCookie("theme", "night", 30);
+    console.log("night");
+    if (typeof window !== "undefined") {
+      document.body.style.backgroundColor = "#333";
+      document.body.style.color = "#fff";
+    }
+  };
   componentDidMount() {
     let user = window.localStorage.getItem("token") || null;
     let refresh = localStorage.getItem("refresh");
+    this.handleTheme();
     if (!refresh) {
       this.getUserProfile(user);
     }
@@ -68,12 +96,18 @@ class SamMainApp extends App<MyProps, MyState> {
 
   componentWillUnmount() {
     this.unsubscribeFromAuth();
-
   }
   render() {
     const { Component, pageProps } = this.props;
-
-    return <Component {...this.state} {...pageProps}></Component>;
+    return (
+      <Component
+        {...this.state}
+        {...pageProps}
+        lightTheme={this.lightTheme}
+        darkTheme={this.darkTheme}
+        handleTheme={this.handleTheme}
+      ></Component>
+    );
   }
 }
 

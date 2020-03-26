@@ -1,9 +1,15 @@
 import "./searchbox.scss";
-const SearchBox = ({ handleChange, searchField, blogs, searchSuggestion }) => {
+const SearchBox = ({
+  handleChange,
+  searchField,
+  blogs,
+  searchSuggestion,
+  theme
+}) => {
   const suggests = blogs.map(blog =>
     [blog.name].concat([...blog.tags.map(each => each)]).concat([blog.info])
   );
-
+  let color = theme();
   const getSuggestion = () => {
     if (!searchField) return;
     let arrayHasDouble = suggests
@@ -16,7 +22,9 @@ const SearchBox = ({ handleChange, searchField, blogs, searchSuggestion }) => {
               each.toLowerCase().startsWith(searchField.toLowerCase())
           )
       )
-      .join(",").split(",").filter(each => each.length > 0);
+      .join(",")
+      .split(",")
+      .filter(each => each.length > 0);
     let set = Array.from(new Set(arrayHasDouble));
     return (
       <ul className="suggestion-list">
@@ -42,6 +50,7 @@ const SearchBox = ({ handleChange, searchField, blogs, searchSuggestion }) => {
           className="search p-3"
           placeholder="Search Blog List"
           onChange={handleChange}
+          style={{ color: `${color == "night" ? "#fff" : "#333"}` }}
         />
       </label>
       {getSuggestion()}

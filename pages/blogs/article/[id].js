@@ -3,33 +3,42 @@ import { withRouter } from "next/router";
 import dynamic from "next/dynamic";
 import api from "../../../utils/Api";
 import { useEffect, useState } from "react";
-import SpecialWrapper from '../../../components/Special/SpecialWrapper/Wrapper'
-import Pay from '../../../components/Blog/Pay/Pay'
+import SpecialWrapper from "../../../components/Special/SpecialWrapper/Wrapper";
+import Pay from "../../../components/Blog/Pay/Pay";
 const Comment = dynamic(() =>
   import("../../../components/Blog/Comments/Comments")
 );
 
-const blog = ({ posts, comments, currentUser, router }) => {
+const blog = ({ posts, comments, currentUser, router, handleTheme }) => {
+  const { name, content, code, code2, _id, project_id } = posts;
+  const [theme, setTheme] = useState('')
 
-  const { name, content, code, code2, _id , project_id } = posts;
-
+ function handleThemeBeforeServer(){
+  if(typeof window !== 'undefined'){
+    let theme = handleTheme()
+   return setTheme(theme)
+  }
+ }
+ function renderEditorContent(){
+  const contentDiv = document.getElementById("content-field");
+  if (typeof content === "string") {
+    // const temp = document.createElement("div");
+    // const textNode = document.createTextNode(temp)
+    // temp.appendChild(textNode)
+    contentDiv.innerHTML = content;
+  }
+ }
   useEffect(() => {
     document.title = name;
+    handleThemeBeforeServer()
     require("../../../utils/prism");
-    const contentDiv = document.getElementById("content-field");
-    if (typeof content === "string") {
-      // const temp = document.createElement("div");
-      // const textNode = document.createTextNode(temp)
-      // temp.appendChild(textNode)
-      contentDiv.innerHTML = content;
-
-    } 
+    renderEditorContent()
   }, []);
   // console.log(typeof content)
   // console.log(project_id)
   return (
     <Layout head={`${name} | Sam 个人博客 yaobaiyang.com`}>
-      {content ? null : <SpecialWrapper project={project_id} ></SpecialWrapper>}
+      {content ? null : <SpecialWrapper project={project_id}></SpecialWrapper>}
 
       <div className="container">
         <a
@@ -38,16 +47,25 @@ const blog = ({ posts, comments, currentUser, router }) => {
             e.preventDefault();
             router.replace("/blogs");
           }}
-          className="btn draw-border-black"
+          className={`btn ${
+            theme === "night"
+              ? "draw-border-white"
+              : "draw-border-black"
+          }`}
         >
-          <span className='text-dark'>Go Back</span>
+          <span className={`${theme === "night"
+              ? "white-text"
+              : "black-text"}`}>Go Back</span>
         </a>
 
         <section className="my-5 px-4 article">
           <h2 className="h1-responsive font-weight-bold text-center my-5">
             {name}
           </h2>
-          <div style={{ lineHeight: "40px",wordWrap:'break-word' }} id="content-field"></div>
+          <div
+            style={{ lineHeight: "40px", wordWrap: "break-word" }}
+            id="content-field"
+          ></div>
 
           {code ? (
             <div>
@@ -66,7 +84,7 @@ const blog = ({ posts, comments, currentUser, router }) => {
             </div>
           ) : null}
         </section>
-            <Pay></Pay>
+        <Pay></Pay>
         <Comment
           comments={comments}
           _id={_id}

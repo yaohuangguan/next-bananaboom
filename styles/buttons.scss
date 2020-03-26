@@ -51,6 +51,7 @@
 
     &::before {
       transition-delay: 0s, 0s, $duration;
+      
     }
 
     &::after {
@@ -68,7 +69,6 @@
 .draw-border-black {
   @include btn-border-drawing(#2d2d2d, #5cabff, 2px, top, left);
 }
-
 
 .btn {
   text-transform: none;
@@ -136,8 +136,4 @@
     );
     box-shadow: 0 5px 15px rgba(242, 97, 103, 0.4);
   }
-  
 }
-
-
-

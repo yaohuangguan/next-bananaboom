@@ -1,0 +1,13 @@
+.darkmode-container {
+  .toggle {
+    left: 50%;
+    transform: translate(-50%);
+    position: absolute;
+    cursor: pointer;
+    transition: all .5s ease;
+    padding: 10px;
+    .fa-lg{
+        font-size: 25px;
+    }
+  }
+}

@@ -12,7 +12,7 @@ import {
   getEnglishContent,
   getChineseContent
 } from "../../components/Contents/Resume/Content";
-const Resume = ({ resumeItem, errors, router }) => {
+const Resume = ({ resumeItem, errors, router, handleTheme }) => {
   const flipFlag = () => {
     const flag = document.querySelector(".flag");
     flag.classList.add("animated", "rotateIn");
@@ -29,7 +29,7 @@ const Resume = ({ resumeItem, errors, router }) => {
         >
           <a
             className="white-text p-1 rounded"
-            style={{ backgroundColor:'#333',margin:'.375rem' }}
+            style={{ backgroundColor: "#333", margin: ".375rem" }}
           >
             <img
               src={router.asPath == "/resume/en-us" ? china : uk}
@@ -47,10 +47,16 @@ const Resume = ({ resumeItem, errors, router }) => {
   };
   return (
     <Layout head={"Sam's about page 关于Sam的个人生活爱好等"}>
-      <GitHub fill='#333333' color='#ffffff' />
+      <GitHub fill="#333333" color="#ffffff" />
       <div className="container">
         <Link href={router.asPath == "/resume/en-us" ? "/" : "/zh"}>
-          <a className="btn draw-border-black waves-effect">
+          <a
+            className={`btn ${
+              handleTheme() === "night"
+                ? "draw-border-white"
+                : "draw-border-black"
+            } waves-effect`}
+          >
             {router.asPath == "/resume/en-us" ? "Back" : "返回"}
           </a>
         </Link>

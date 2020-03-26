@@ -102,7 +102,7 @@ const Comment = ({ currentUser, comments, _id }) => {
 
   const appendToComment = e => {
     let box = document.getElementById("textarea-char-counter");
-    const content = e.target.firstChild.textContent
+    const content = e.target.firstChild.textContent;
     insertTextAtCursor(box, content);
     handleCommentChange();
   };
@@ -118,14 +118,13 @@ const Comment = ({ currentUser, comments, _id }) => {
               borderRadius: "50px",
               backgroundColor: "transparent",
               borderColor: "#333333",
-              outline:'none'
+              outline: "none",
+              textAlign: "center"
             }}
             id={`${index}`}
             onClick={appendToComment}
           >
-            <span style={{ fontSize: "20px" }} >
-              {each.text}
-            </span>
+            <span style={{ fontSize: "20px" }}>{each.text}</span>
           </button>
         ))}
       </div>
@@ -199,9 +198,8 @@ const Comment = ({ currentUser, comments, _id }) => {
           box-shadow: none;
         }
         .emoji-list {
-          display:flex;
+          display: flex;
         }
-        
       `}</style>
     </div>
   );

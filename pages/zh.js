@@ -7,13 +7,24 @@ import Intro from "../components/Contents/Intro/English";
 import Subscribe from "../components/Subscribe/Subscribe";
 import Footer from "../components/Footer/Footer";
 import Animation from "../utils/Animation";
-
-const Chinese = ({ homepage, errors, logs, projects, currentUser }) => {
+import { setCookie, getCookie } from "../utils/Cookie";
+const Chinese = ({
+  homepage,
+  errors,
+  logs,
+  projects,
+  currentUser,
+  handleTheme,
+  lightTheme,
+  darkTheme
+}) => {
   const [webUrl, setwebUrl] = useState("");
+
   useEffect(() => {
     Animation();
     setwebUrl(window.location.hostname);
   }, []);
+
   const {
     _id,
     jumbo_name_cn,
@@ -57,7 +68,7 @@ const Chinese = ({ homepage, errors, logs, projects, currentUser }) => {
       </div>
       <div
         className="white-text z-depth-1"
-        style={{ backgroundColor: "#333",marginTop:'120px' }}
+        style={{ backgroundColor: "#333", marginTop: "120px" }}
       >
         <Subscribe
           likes={likes}
@@ -68,6 +79,9 @@ const Chinese = ({ homepage, errors, logs, projects, currentUser }) => {
             "yaobaiyang.com"} `}
           web_version={subscribe_web_version_cn}
           logs_content={logs}
+          handleTheme={handleTheme}
+          light={lightTheme}
+          dark={darkTheme}
         />
       </div>
 

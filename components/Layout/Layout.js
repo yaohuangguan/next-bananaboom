@@ -100,6 +100,7 @@ Layout.getInitialProps = ({ pathname }) => {
     require("../../styles/animation.scss"),
     require("../../styles/buttons.scss"),
     require("../../styles/text.scss"),
+    require('../Darkmode/darkmode.scss'),
     //layout
     require("./Layout.scss"),
     //Header

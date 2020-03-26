@@ -88,12 +88,12 @@ const Reply = ({ reply, comment_id, user_id, currentUser }) => {
         cleanReply();
         showReply();
         setLoading(false);
-        seterrors('')
+        seterrors("");
       }
     } catch (error) {
       setLoading(false);
       console.log(error);
-      seterrors('Something wrong please try again!')
+      seterrors("Something wrong please try again!");
       cleanReply();
       showReply();
     }
@@ -125,7 +125,8 @@ const Reply = ({ reply, comment_id, user_id, currentUser }) => {
               borderRadius: "20px",
               backgroundColor: "transparent",
               borderColor: "#333333",
-              outline:'none'
+              outline: "none",
+              textAlign: "center"
             }}
             id={`${index}`}
             onClick={appendToComment}
@@ -202,20 +203,20 @@ const Reply = ({ reply, comment_id, user_id, currentUser }) => {
           border-color: #2eca6a;
           box-shadow: none;
         }
-        .reply-field:focus + .reply-button{
+        .reply-field:focus + .reply-button {
           border: 1px solid #2eca6a;
-          background-color:#2eca6a;
+          background-color: #2eca6a;
         }
         .reply-button {
           position: absolute;
-          background-color:#333333;
-          transition:background-color .3s ease, border .3s ease;
+          background-color: #333333;
+          transition: background-color 0.3s ease, border 0.3s ease;
           top: 0;
           right: 0px;
-          padding:7px;
-          border-radius:0px 50px 50px 0px;
-          border:1px solid #333;
-          outline:none;
+          padding: 7px;
+          border-radius: 0px 50px 50px 0px;
+          border: 1px solid #333;
+          outline: none;
         }
       `}</style>
     </div>

@@ -73,7 +73,7 @@ const Jumbo = ({ name, welcome, info, button, language, backgroundURL,homeRoute 
             className="btn-hover color-3 btn jumbowave-effects card-button"
             href="#content"
           >
-            &#9992; {button}
+            <i className="fas fa-rocket"></i> {button}
           </a>
         </div>
       </div>
