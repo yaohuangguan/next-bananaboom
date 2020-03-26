@@ -1,20 +1,20 @@
 $green-color: #2eca6a;
 $blue-color: #00ffe5;
 .nav {
-  width: 100%;
-  display: flex;
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 2;
-  padding: 5px;
-  background-color: transparent;
-  transition: transform 0.5s ease-in;
-  font-family: "Sriracha", "Helvetica", "Arial", cursive;
-  font-size: larger;
-  text-transform: capitalize;
+  
   .header {
-    all: inherit;
+    width: 100%;
+    display: flex;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    padding: 5px;
+    background-color: transparent;
+    transition: transform 0.5s ease-in;
+    font-family: "Sriracha", "Helvetica", "Arial", cursive;
+    font-size: large;
+    text-transform: capitalize;
     
     &.scrollUp {
       transform: translateY(-80px);

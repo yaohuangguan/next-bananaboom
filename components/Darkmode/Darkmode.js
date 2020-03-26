@@ -41,6 +41,7 @@ const Darkmode = ({ light, dark, handleTheme }) => {
           onClick={handleLight}
         ></i>
       </div>
+      <br/><br/>
     </div>
   );
 };
