@@ -11,7 +11,8 @@
     font-weight: 500;
     border: 2px solid rgb(110, 93, 126);
     text-transform: none;
-    right: 10px;
+    left: 50%;
+    transform: translate(-50%);
     display: none;
     position: absolute;
     width: 150px;
