@@ -70,7 +70,6 @@ const Blog = ({ blogs, errors, currentUser, handleTheme }) => {
         let temp = blog.name + blog.info + blog.tags.map(each => each);
         return temp.toLowerCase().includes(searchField.toLowerCase());
       });
-    console.log(result);
     setfilteredBlog(result);
   }, [searchField]);
   const goBack = e => {
@@ -78,7 +77,6 @@ const Blog = ({ blogs, errors, currentUser, handleTheme }) => {
     router.back();
   };
   const searchSuggestion = e => {
-    console.log(e.target.value)
     let value = e.target.innerText;
     setsearchField(value);
   };
