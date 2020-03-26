@@ -6,13 +6,17 @@ import "./Header.scss";
 import Signup from "../Auth/Signup";
 import Dropdown from "./DropDown/DropDown";
 import HamburgerMenu from "./Hamburger/Hamburger";
+import Darkmode from '../Darkmode/Darkmode'
 const Header = ({
   blogName,
   resumeName,
   resumeRoute,
   changeLanguageRoute,
   currentUser,
-  router
+  router,
+  handleTheme,
+  light,
+  dark
 }) => {
   useEffect(() => {
     const headerChange = () => {
@@ -67,7 +71,6 @@ const Header = ({
   return (
     <div className="nav">
       <div className="header">
-       
         <div className="options">
           <Link href="/blogs">
             <a className="option">{blogName}</a>
@@ -93,6 +96,9 @@ const Header = ({
               <Signup></Signup>
             </div>
           )}
+          <div className="option">
+            <Darkmode light={light} dark={dark} handleTheme={handleTheme}></Darkmode>
+          </div>
 
           <div className="option hamburger" onClick={turnOnDropDown}>
             <span>{getMenuRoute()}</span>

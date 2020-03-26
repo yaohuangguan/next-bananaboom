@@ -80,7 +80,7 @@ const Login = ({ passwordReveal }) => {
   const getLoginButtonOnRoutes = () =>
     router.pathname == "/" ? "Login" : "确定";
   const getSignUpOnRoutes = () =>
-    router.pathname == "/" ? "I don't have an account,sign me up" : "我要注册";
+    router.pathname == "/" ? "I don't have an account" : "我要注册";
   const getLoginMethodOnRoutes = () =>
     router.pathname == "/" ? "or log in with:" : "或者使用以下方法登录:";
   const getForgetPasswordOnRoutes = () =>
@@ -100,7 +100,7 @@ const Login = ({ passwordReveal }) => {
           >
             <div className="signup-title">
               <h4 className="py-3 mt-3">{getLoginNameOnRoutes()}</h4>
-              <span style={{ fontSize: "30px" }} onClick={closeLogin}>
+              <span style={{ fontSize: "30px",cursor:'pointer' }} onClick={closeLogin}>
                 &#10005;
               </span>
             </div>

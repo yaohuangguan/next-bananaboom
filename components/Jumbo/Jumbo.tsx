@@ -32,7 +32,7 @@ const Jumbo = ({ name, welcome, info, button, language, backgroundURL,homeRoute 
     <div className="jumbo-section">
        <Link href={homeRoute}>
           <a id="logo" className="p-1">
-            <img src="/favicon.png" width="70px" height="70px" alt="s" />
+            <img src="/favicon.png" width="55px" height="55px" alt="sam logo" />
           </a>
         </Link>
       <div

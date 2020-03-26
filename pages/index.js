@@ -54,6 +54,9 @@ const Index = ({
         resumeRoute={"/resume/[query]"}
         changeLanguageRoute={"/zh"}
         currentUser={currentUser ? currentUser : null}
+        handleTheme={handleTheme}
+        light={lightTheme}
+        dark={darkTheme}
       />
       <Jumbo
         name={jumbo_name}
@@ -86,9 +89,6 @@ const Index = ({
             "yaobaiyang.com"} `}
           web_version={subscribe_web_version}
           logs_content={logs}
-          handleTheme={handleTheme}
-          light={lightTheme}
-          dark={darkTheme}
         />
       </div>
 

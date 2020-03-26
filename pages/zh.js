@@ -48,6 +48,9 @@ const Chinese = ({
         resumeRoute={"/resume/[query]"}
         changeLanguageRoute={"/"}
         currentUser={currentUser ? currentUser : null}
+        handleTheme={handleTheme}
+        light={lightTheme}
+        dark={darkTheme}
       />
       <Jumbo
         name={jumbo_name_cn}
@@ -79,9 +82,6 @@ const Chinese = ({
             "yaobaiyang.com"} `}
           web_version={subscribe_web_version_cn}
           logs_content={logs}
-          handleTheme={handleTheme}
-          light={lightTheme}
-          dark={darkTheme}
         />
       </div>
 

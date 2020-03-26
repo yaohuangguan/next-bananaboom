@@ -126,13 +126,13 @@ const Signup = ({ linkColor }) => {
   const getSignUpMethodOnRoutes = () =>
     router.pathname === "/" ? "or sign up with:" : "或者使用以下方法注册:";
   const getAlreadyUserOnRoutes = () =>
-    router.pathname === "/" ? "I already have an account,log me in" : "我已有账户,去登录";
+    router.pathname === "/" ? "I already have an account" : "我已有账户,去登录";
   const getLoginTextOnRoutes = () =>
     router.pathname === "/" ? "Login/Signup" : "免费注册";
   return (
     <>
       <div ref={SignupContainer} className="signup-container">
-        <div className="modal-background text-dark lazy-load shake-target-signup card">
+        <div className="modal-background text-dark lazy-load shake-target-signup ">
           <form
             className="modal-inner px-5 py-1 form-auth"
             style={{
@@ -144,7 +144,7 @@ const Signup = ({ linkColor }) => {
           >
             <div className="signup-title">
               <h4 className="py-3 mt-3">{getSignupNameOnRoutes()} </h4>
-              <span style={{ fontSize: "30px" }} onClick={closeSignup}>
+              <span style={{ fontSize: "30px",cursor:'pointer' }} onClick={closeSignup}>
                 &#10005;
               </span>
             </div>

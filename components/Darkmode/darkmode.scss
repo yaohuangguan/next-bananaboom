@@ -1,11 +1,12 @@
 .darkmode-container {
   .toggle {
-    left: 50%;
-    transform: translate(-50%);
-    position: absolute;
+    
     cursor: pointer;
-    transition: all .5s ease;
+    transition: all .3s ease;
     padding: 10px;
+    &:hover{
+        transform: scale(1.4);
+    }
     .fa-lg{
         font-size: 25px;
     }

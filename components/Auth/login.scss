@@ -13,11 +13,13 @@ body {
   font-family: "Poppins", sans-serif;
   position: fixed;
   width: 40%;
-  top: 1%;
+  top: 10%;
   left: 50%;
   transform: scale(0);
   z-index: 5;
   display: none;
+  height: 650px;
+
   @media screen and (max-width: 415px) {
     width: 90%;
     top: 1%;
@@ -63,11 +65,12 @@ body {
   font-family: "Poppins", sans-serif;
   position: fixed;
   width: 40%;
-  top: 1%;
+  top: 10%;
   left: 50%;
   transform: scale(0);
   z-index: 1;
   display: none;
+  height: 550px;
   @media screen and (max-width: 415px) {
     width: 90%;
     top: 1%;
@@ -113,10 +116,13 @@ body {
   background-color: #fff;
   background-size: cover;
   background-position: center;
+  max-height: 100%;
   .modal-inner {
+    overflow: auto;
     cursor: default;
     display: flex;
     position: relative;
+    font-size: 10px;
     .signup-title {
       display: flex;
       justify-content: space-between;
@@ -126,15 +132,6 @@ body {
       position: absolute;
       left: 90%;
       top: 20%;
-    }
-    h2 {
-      font-size: 25px;
-      line-height: 25px;
-      margin-bottom: 15px;
-    }
-    p {
-      font-size: 18px;
-      line-height: 22px;
     }
   }
 }
