@@ -90,7 +90,7 @@ body {
   &.popup {
     transform: scaleY(0.01) scaleX(0);
     animation: unfoldIn 1s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
-    display:block;
+    display: block;
     .modal-background {
       .modal-inner {
         transform: scale(0);
@@ -117,7 +117,7 @@ body {
     cursor: default;
     display: flex;
     position: relative;
-    .signup-title{
+    .signup-title {
       display: flex;
       justify-content: space-between;
     }
@@ -214,11 +214,12 @@ body {
   .form-control {
     font-size: 1.1rem;
     font-weight: 300;
-    border-radius: 50px;
-    display: inline-block;
+    background-color: transparent;
+    border: none;
+    border-bottom: 2px solid transparent;
+    border-bottom-color: #999;
     &:focus {
-      border: 2px solid #333;
-      border-color: #333;
+      border-bottom: 2px solid #333;
       box-shadow: none;
       outline: none;
     }
@@ -232,14 +233,14 @@ body {
       width: 250px;
       background-color: #ffff;
       color: black;
-      border:2px solid black;
+      border: 2px solid black;
       text-align: center;
       padding: 5px 0;
       position: absolute;
       z-index: 1;
       bottom: 125%;
-     left: 50%;
-     transform: translate(-50%);
+      left: 50%;
+      transform: translate(-50%);
       opacity: 0;
       transition: opacity 0.3s;
 
