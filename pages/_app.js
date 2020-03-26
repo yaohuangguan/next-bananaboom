@@ -53,6 +53,9 @@ class SamMainApp extends App {
         document.body.style.backgroundColor = "#333";
         document.body.style.color = "#fff";
         return "night";
+      } else {
+        document.body.style.backgroundColor = "#fff";
+        document.body.style.color = "#333";
       }
     }
   };

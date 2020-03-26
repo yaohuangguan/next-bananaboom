@@ -1,7 +1,18 @@
 import { useState, useEffect } from "react";
 import "./darkmode.scss";
 const Darkmode = ({ light, dark, handleTheme }) => {
-  const [theme, setTheme] = useState(handleTheme());
+  const [theme, setTheme] = useState("");
+  function handleThemeBeforeServer() {
+    if (typeof window !== "undefined") {
+      let theme = handleTheme();
+      return setTheme(theme);
+    }
+  }
+  useEffect(() => {
+    handleThemeBeforeServer();
+
+    return () => {};
+  }, []);
   const handleLight = () => {
     light();
     setTheme("day");
