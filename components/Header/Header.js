@@ -6,7 +6,7 @@ import "./Header.scss";
 import Signup from "../Auth/Signup";
 import Dropdown from "./DropDown/DropDown";
 import HamburgerMenu from "./Hamburger/Hamburger";
-import Darkmode from '../Darkmode/Darkmode'
+import Darkmode from "../Darkmode/Darkmode";
 const Header = ({
   blogName,
   resumeName,
@@ -31,7 +31,7 @@ const Header = ({
           navbar.classList.remove("purple-gradient");
           navbar.classList.remove("solid");
         }
-        if (c < currentScrollTop && a > 5 * b) {
+        if (c < currentScrollTop && a > 2 * b) {
           navbar.classList.add("scrollUp");
         } else if (c > currentScrollTop && !(a <= b)) {
           navbar.classList.remove("scrollUp");
@@ -97,7 +97,11 @@ const Header = ({
             </div>
           )}
           <div className="option">
-            <Darkmode light={light} dark={dark} handleTheme={handleTheme}></Darkmode>
+            <Darkmode
+              light={light}
+              dark={dark}
+              handleTheme={handleTheme}
+            ></Darkmode>
           </div>
 
           <div className="option hamburger" onClick={turnOnDropDown}>

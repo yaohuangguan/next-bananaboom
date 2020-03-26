@@ -11,13 +11,13 @@ $blue-color: #00ffe5;
     z-index: 2;
     padding: 5px;
     background-color: transparent;
-    transition: transform 0.5s ease-in;
+    transition: all 0.5s ease-in;
     font-family: "Sriracha", "Helvetica", "Arial", cursive;
     font-size: large;
     text-transform: capitalize;
     
     &.scrollUp {
-      transform: translateY(-80px);
+      transform: translateY(-120px);
     }
     // width: 100%;
     // display: flex;
