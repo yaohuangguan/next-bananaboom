@@ -61,7 +61,7 @@ class SamMainApp extends App {
   };
 
   lightTheme = () => {
-    setCookie("theme", "day", 30);
+    setCookie("theme", "day", 365);
     console.log("day");
     if (typeof window !== "undefined") {
       document.body.style.backgroundColor = "#fff";
@@ -69,7 +69,7 @@ class SamMainApp extends App {
     }
   };
   darkTheme = () => {
-    setCookie("theme", "night", 30);
+    setCookie("theme", "night", 365);
     console.log("night");
     if (typeof window !== "undefined") {
       document.body.style.backgroundColor = "#333";

@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import Background from "../../components/Contents/Background/Background";
 import china from "../../public/china.png";
@@ -13,6 +14,17 @@ import {
   getChineseContent
 } from "../../components/Contents/Resume/Content";
 const Resume = ({ resumeItem, errors, router, handleTheme }) => {
+  const [theme, setTheme] = useState("");
+  function handleThemeBeforeServer() {
+    if (typeof window !== "undefined") {
+      let theme = handleTheme();
+      return setTheme(theme);
+    }
+  }
+  useEffect(() => {
+    handleThemeBeforeServer();
+    return () => {};
+  }, []);
   const flipFlag = () => {
     const flag = document.querySelector(".flag");
     flag.classList.add("animated", "rotateIn");
@@ -52,7 +64,7 @@ const Resume = ({ resumeItem, errors, router, handleTheme }) => {
         <Link href={router.asPath == "/resume/en-us" ? "/" : "/zh"}>
           <a
             className={`btn ${
-              handleTheme() === "night"
+              theme === "night"
                 ? "draw-border-white"
                 : "draw-border-black"
             } waves-effect`}
