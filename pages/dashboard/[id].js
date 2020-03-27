@@ -71,7 +71,7 @@ const dashboard = ({ currentUser, handleTheme }) => {
             }
             .change-name-field {
               border-radius: 30px 0px 0px 30px;
-              width: 55%;
+              width: 55.5%;
               height:30px;
               border-color:#333;
             }
