@@ -99,7 +99,7 @@ const Login = ({ passwordReveal }) => {
             onSubmit={handleUserSubmit}
           >
             <div className="signup-title">
-              <h4 className="py-3 mt-3">{getLoginNameOnRoutes()}</h4>
+              <h5 className="py-3 mt-3">{getLoginNameOnRoutes()}</h5>
               <span style={{ fontSize: "30px",cursor:'pointer' }} onClick={closeLogin}>
                 &#10005;
               </span>
@@ -158,17 +158,13 @@ const Login = ({ passwordReveal }) => {
             <p className="text-center">{getLoginMethodOnRoutes()}</p>
             <div className="login-list">
               <div onClick={firebase.signInWithGoogle}>
-                <img
-                  src="https://img.icons8.com/color/30/000000/google-logo.png"
-                  className="px-1"
-                  alt="googlesignin"
-                />
+              <i className="fab fa-google fa-lg"></i>
               </div>
-              <img
+              {/* <img
                 src="https://img.icons8.com/color/30/000000/weixing.png"
                 className="px-1"
                 alt="weixinsignin"
-              />
+              /> */}
             </div>
             <br />
             <p

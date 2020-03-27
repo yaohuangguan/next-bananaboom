@@ -8,6 +8,13 @@ body {
   display: flex;
   justify-content: center;
   cursor: pointer;
+  .fa-google{
+    font-size: 25px;
+    color: #333;
+    &:hover{
+      color:rgb(6, 139, 255);
+    }
+  }
 }
 .signup-container {
   font-family: "Poppins", sans-serif;

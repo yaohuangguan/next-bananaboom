@@ -9,11 +9,12 @@
   }
   .dropdown-submenu {
     font-weight: 500;
-    border: 2px solid rgb(110, 93, 126);
     text-transform: none;
     left: 50%;
     transform: translate(-50%);
     display: none;
+    border-radius: 30px;
+    border: none;
     position: absolute;
     width: 150px;
     background-color: #fff;
@@ -22,7 +23,7 @@
       padding: 0;
       .dropdown-list-item {
         span{
-          color: rgb(125, 46, 199);
+          color: rgb(44, 121, 255);
         }
         &:hover {
           background: rgba(#000, 0.1);
