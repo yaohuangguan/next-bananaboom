@@ -105,7 +105,7 @@ const Header = ({
           </div>
 
           <div className="option hamburger" onClick={turnOnDropDown}>
-            <span>{getMenuRoute()}</span>
+            <span style={{fontSize:'10px'}}>{getMenuRoute()}</span>
             <HamburgerMenu
               currentUser={currentUser}
               blogName={blogName}

@@ -52,10 +52,12 @@ $blue-color: #00ffe5;
         &.hamburger {
           margin-left: auto;
           height: 30px;
-          margin-top: 30px;
-          margin-right: 13px;
+          padding: 5px 23px ;
+          margin-top: 20px;
+          margin-right: 18px;
           border: 2px solid white;
-          border-radius: 50px;
+          border-radius: 30px;
+          position: relative;
           @media screen and (max-width: 415px) {
             display: flex;
           }
