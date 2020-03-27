@@ -67,7 +67,7 @@ const ReplyListItem = ({
           />
           <button
             type="submit"
-            className="btn-sm text-white reply-button"
+            className="text-white reply-button"
             onClick={makeReplyReq}
           >
             {!loading ? "发送" : <Loader />}
@@ -88,7 +88,8 @@ const ReplyListItem = ({
           box-shadow: none;
           border: 2px solid #333;
           border-radius: 30px 0px 0px 30px;
-          width:82%
+          width:82%;
+          height:40px
         }
         .reply-field:focus {
           border: none;
@@ -103,6 +104,7 @@ const ReplyListItem = ({
         }
         .reply-button {
           position: absolute;
+          height:40px;
           background-color:#333333;
           top: 0;
           right: 0px;

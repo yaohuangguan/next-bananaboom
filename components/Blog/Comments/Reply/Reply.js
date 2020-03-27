@@ -179,7 +179,7 @@ const Reply = ({ reply, comment_id, user_id, currentUser }) => {
           />
           <button
             type="submit"
-            className="btn-sm text-white reply-button"
+            className="text-white reply-button"
             onClick={addReply}
           >
             {!loading ? "发送" : <Loader />}
@@ -195,7 +195,8 @@ const Reply = ({ reply, comment_id, user_id, currentUser }) => {
           box-shadow: none;
           border: 2px solid #333;
           border-radius: 30px 0px 0px 30px;
-          width:92%
+          width:92%;
+          height:40px
         }
         .reply-field:focus {
           border: none;
@@ -210,6 +211,7 @@ const Reply = ({ reply, comment_id, user_id, currentUser }) => {
         }
         .reply-button {
           position: absolute;
+          height:40px;
           background-color: #333333;
           transition: background-color 0.3s ease, border 0.3s ease;
           top: 0;

@@ -52,7 +52,7 @@ const dashboard = ({ currentUser, handleTheme }) => {
                 onChange={handleChange}
               />
               <button
-                className={`btn-sm change-name-button ${theme === 'night' ? 'white' : ''}`}
+                className={`change-name-button ${theme === 'night' ? 'white' : ''}`}
                 onClick={changeDisplayName}
               >
                 修改用户名
