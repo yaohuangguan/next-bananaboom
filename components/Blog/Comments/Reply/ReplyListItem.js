@@ -32,8 +32,8 @@ const ReplyListItem = ({
         className="avatar rounded-circle mt-3"
       />
       <div
-        className="mb-1 w-100"
-        style={{ display: "flex", flexFlow: "column wrap" }}
+        className="mb-1"
+        style={{ display: "flex", flexFlow: "column wrap",width:'70%' }}
       >
         <div className="p-3">
           <div className="mb-2">
@@ -52,12 +52,12 @@ const ReplyListItem = ({
         <a
           onClick={showReply}
           className="text-primary"
-          style={{ alignSelf: "flex-end" }}
+          style={{ alignSelf: "flex-start" }}
         >
           回复
         </a>
-        <div className="w-100 d-none reply form-group" id={id}>
-          <a className="bg-success white-text reply-target">@{user}</a>
+        <div className="d-none reply form-group" id={id}>
+          <a className="bg-warning white-text reply-target ml-5">@{user}</a>
           <input
             type="text"
             className="form-control reply-field"
@@ -88,7 +88,7 @@ const ReplyListItem = ({
           box-shadow: none;
           border: 2px solid #333;
           border-radius: 30px 0px 0px 30px;
-          width:82%;
+          width:92%;
           height:40px
         }
         .reply-field:focus {

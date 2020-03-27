@@ -49,7 +49,7 @@ const ReplyList = ({
     }
   };
   return (
-    <div>
+    <>
       {reply &&
         reply.map(({ id, ...otherProps }) => {
           return (
@@ -65,7 +65,7 @@ const ReplyList = ({
             ></ReplyListItem>
           );
         })}
-    </div>
+    </>
   );
 };
 

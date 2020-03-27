@@ -145,7 +145,7 @@ const Reply = ({ reply, comment_id, user_id, currentUser }) => {
         style={{ display: "flex", justifyContent: "space-between" }}
       >
         {replyList.length === 0 ? null : (
-          <div style={{ justifySelf: "flex-start" }}>
+          <div style={{ justifySelf: "flex-start", width:'90%'}}>
             <ReplyList
               reply={replyList}
               showReply={showReply}
