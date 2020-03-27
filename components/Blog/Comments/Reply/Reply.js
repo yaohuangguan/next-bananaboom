@@ -195,7 +195,7 @@ const Reply = ({ reply, comment_id, user_id, currentUser }) => {
           box-shadow: none;
           border: 2px solid #333;
           border-radius: 30px 0px 0px 30px;
-          width:90%
+          width:92%
         }
         .reply-field:focus {
           border: none;

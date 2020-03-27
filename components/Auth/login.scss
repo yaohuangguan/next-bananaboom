@@ -129,10 +129,13 @@ body {
     cursor: default;
     display: flex;
     position: relative;
-    font-size: 10px;
     .signup-title {
       display: flex;
       justify-content: space-between;
+    }
+    label{
+      font-size: 15px;
+
     }
     .password-show {
       justify-self: flex-end;
