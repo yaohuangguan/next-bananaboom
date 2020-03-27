@@ -71,9 +71,9 @@ const dashboard = ({ currentUser, handleTheme }) => {
             }
             .change-name-field {
               border-radius: 30px 0px 0px 30px;
+              border:2px solid #333;
               width: 55.5%;
               height:30px;
-              border-color:#333;
             }
             .change-name-field:focus {
               border: none;
@@ -83,7 +83,7 @@ const dashboard = ({ currentUser, handleTheme }) => {
               box-shadow: none;
             }
             .change-name-field:focus + .change-name-button {
-              border: 1px solid #2eca6a !important;
+              border: 2px solid #2eca6a !important;
               background-color: #2eca6a !important;
             }
             .change-name-button {
@@ -92,7 +92,7 @@ const dashboard = ({ currentUser, handleTheme }) => {
               background-color: #333333;
               transition: background-color 0.3s ease, border 0.3s ease;
               top: 0;
-              border: 1px solid #333;
+              border: 2px solid #333;
               right: 0px;
               border-radius:0px 30px 30px 0px;
               outline: none;
@@ -101,7 +101,7 @@ const dashboard = ({ currentUser, handleTheme }) => {
             .white{
               background-color: #2eca6a !important;
               color:#fff;
-              border: 1px solid #2eca6a;
+              border: 2px solid #2eca6a;
             }
             .white-border{
               border-color:#fff;
