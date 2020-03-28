@@ -68,7 +68,7 @@ const ToDo = () => {
         style={{ position: "absolute", top: 0, fontSize: "20px" }}
         className="text-secondary font-weight-bold"
       >
-        差事清单
+        Todo List
       </span>
       <form onSubmit={handleSubmit}>
         <label htmlFor="title" style={{position:'relative'}}>
