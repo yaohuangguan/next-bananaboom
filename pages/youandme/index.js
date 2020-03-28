@@ -134,7 +134,7 @@ const index = ({ currentUser, posts, errors, todos }) => {
       <Layout head={`${getVip() ? "Loving you" : "404 Not Found"}`}>
         <div>
           <div className="row love-container">
-            <ChrismasLight></ChrismasLight>
+            {/* <ChrismasLight></ChrismasLight> */}
             <DateCounting
               fromDate={"February 14 2020 00:00:00"}
               isPrivate={true}

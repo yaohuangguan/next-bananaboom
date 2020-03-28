@@ -123,7 +123,7 @@ const Editor = () => {
       tags.trim() == "" ||
       content.trim() == ""
     ) {
-      return dispatch({ type: "ERROR", payload: "都要填的，老婆" });
+      return dispatch({ type: "ERROR", payload: "未填写完整" });
     }
     try {
       if (!loading) {

@@ -12,7 +12,7 @@ const ToDo = () => {
   const handleSubmit = async e => {
     e.preventDefault();
     if (!title || title.trim() == "")
-      return seterrors("都要填的，老婆");
+      return seterrors("不能为空");
     if (!loading) {
       setloading(true);
       const response = await api.post("/api/todo", { todo: title });
