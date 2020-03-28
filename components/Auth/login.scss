@@ -10,7 +10,7 @@ body {
   cursor: pointer;
   .fa-google{
     font-size: 25px;
-    color: #333;
+    color: rgb(0, 179, 255);
     &:hover{
       color:rgb(6, 139, 255);
     }
@@ -223,8 +223,8 @@ body {
     font-weight: 300;
     background-color: transparent;
     border: none;
-    border-bottom: 2px solid transparent;
-    border-bottom-color: #999;
+    border-bottom: 2px solid #999;
+    border-radius: 0;
     &:focus {
       border-bottom: 2px solid #333;
       box-shadow: none;
