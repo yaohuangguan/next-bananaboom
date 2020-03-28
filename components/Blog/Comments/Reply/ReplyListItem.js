@@ -88,7 +88,7 @@ const ReplyListItem = ({
           box-shadow: none;
           border: 2px solid #333;
           border-radius: 30px 0px 0px 30px;
-          width:92%;
+          width:94.5%;
           height:40px
         }
         .reply-field:focus {
