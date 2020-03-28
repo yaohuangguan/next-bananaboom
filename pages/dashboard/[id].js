@@ -2,7 +2,8 @@ import { useRouter } from "next/router";
 import Layout from "../../components/Layout/Layout";
 import { useState, useEffect } from "react";
 import api from "../../utils/Api";
-const dashboard = ({ currentUser, handleTheme }) => {
+import Link from 'next/link'
+const dashboard = ({ currentUser, handleTheme,getUserProfile }) => {
   const router = useRouter();
   const [theme, setTheme] = useState('')
   function handleThemeBeforeServer() {
@@ -17,7 +18,8 @@ const dashboard = ({ currentUser, handleTheme }) => {
   }, []);
   const [newDisplayName, setdisplayName] = useState("");
   const [result, setresult] = useState("");
-  const changeDisplayName = async () => {
+  const changeDisplayName = async (e) => {
+    e.preventDefault();
     if (!newDisplayName || newDisplayName.trim() == "") {
       return setresult("要修改的用户名不能为空");
     }
@@ -30,6 +32,8 @@ const dashboard = ({ currentUser, handleTheme }) => {
     });
     const result = await response.data;
     setresult(result.message);
+    getUserProfile();
+    setdisplayName('')
   };
   const handleChange = e => {
     setdisplayName(e.target.value);
@@ -40,7 +44,8 @@ const dashboard = ({ currentUser, handleTheme }) => {
       <div>
         {currentUser ? (
           <div className="text-center">
-            此页面正在开发中...
+         
+            此页面其他功能正在开发中...
             <div>
               用户名:{currentUser.displayName} => {newDisplayName}{" "}
             </div>

@@ -63,12 +63,12 @@ const Reply = ({ reply, comment_id, user_id, currentUser }) => {
   };
   const addReply = async () => {
     try {
-      if (!currentUser) return seterrors("Login to reply");
+      if (!currentUser) return seterrors("登录后才能回复评论。 Please Login to reply.");
       if (replyContent.trim() == "") {
-        return seterrors("reply can not be empty");
+        return seterrors("回复不能为空。 Reply Cannot be empty.");
       }
       if (replyContent.trim().length > 120) {
-        return seterrors("You can't post a comment more than 120 words");
+        return seterrors("最大字符限制：120字  You can't post a comment more than 120 words");
       }
       const { displayName, photoURL } = currentUser;
       if (!loading) {

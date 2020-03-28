@@ -20,15 +20,15 @@ const ReplyList = ({
     settargetUser(user);
   };
   const makeReplyReq = async () => {
-    if(!currentUser) return handleError("You need to login to reply");
+    if(!currentUser) return handleError("需要登录后才可回复。 You need to login to reply");
     const { photoURL, displayName, _id } = currentUser;
 
     if (replyContent.trim() === "" || !replyContent)
-      return handleError("Reply cannot be empty");
+      return handleError("回复不能为空。 Reply Cannot be empty");
     try {
       if (targetUser === displayName)
-        return handleError("You cannot reply to yourself");
-      if (user_id === _id) return handleError("You cannot reply to yourself");
+        return handleError("你不能回复自己。 Sorry, You cannot reply to yourself");
+      if (user_id === _id) return handleError("你不能回复自己。 Sorry, You cannot reply to yourself");
       if (!loading) {
         setLoading(true);
         const response = await api.post(`/api/comments/reply/${comment_id}`, {

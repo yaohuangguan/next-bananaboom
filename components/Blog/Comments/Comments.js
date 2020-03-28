@@ -60,13 +60,13 @@ const Comment = ({ currentUser, comments, _id }) => {
 
   const submitComment = async () => {
     if (!currentUser) {
-      return seterrors("Please login to comment");
+      return seterrors("登录后才可评论。 Please login to comment");
     }
     if (commentInputField.trim() == "") {
-      return seterrors("comment can not be empty");
+      return seterrors("评论不能为空。 Comment can not be empty");
     }
     if (commentInputField.trim().length > 120) {
-      return seterrors("You can't post a comment more than 120 words");
+      return seterrors("最大字符限制：120字。 You can't post a comment more than 120 words");
     }
     const { displayName, photoURL } = currentUser;
 
@@ -94,7 +94,7 @@ const Comment = ({ currentUser, comments, _id }) => {
       }
     } catch (error) {
       setloading(false);
-      seterrors("Something went wrong please try again!");
+      seterrors("出错了，请重新试试。 Something went wrong please try again!");
 
       clearCommentField();
     }
