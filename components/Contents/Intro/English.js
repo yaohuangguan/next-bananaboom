@@ -15,7 +15,7 @@ const EnglishIntro = ({ title, subtitle, intro, projects}) => {
             <h3 className="linkTag">{title}</h3>
             <p>{subtitle}</p>
 
-            <p style={{ lineHeight: "35px" }}>{intro}</p>
+            <p style={{ lineHeight: "35px",fontSize:'17px' }}>{intro}</p>
             <br />
             <br />
             <br />

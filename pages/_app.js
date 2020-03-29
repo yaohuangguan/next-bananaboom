@@ -55,7 +55,7 @@ class SamMainApp extends App {
         return "day";
       } else if (getCookie("theme") === "night") {
         document.body.style.backgroundColor = "#333";
-        document.body.style.color = "#fff";
+        document.body.style.color = "#f1f7f5";
         return "night";
       } else {
         document.body.style.backgroundColor = "#fff";

@@ -32,6 +32,11 @@
   position: relative;
   display: inline-block;
   cursor: pointer;
+  .fa-lg{
+    &:hover{
+      color:rgb(125, 46, 199);
+    }
+  }
 .share-button-text {
   visibility: hidden;
   width: 200px;
@@ -42,7 +47,7 @@
   padding: 3px;
   position: absolute;
   z-index: 1;
-  bottom: 100%;
+  bottom: 120%;
   left: 50%;
   transform: translate(-50%);
   opacity: 0;
