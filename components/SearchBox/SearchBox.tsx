@@ -48,7 +48,7 @@ const SearchBox = ({
           value={searchField}
           type="search"
           className="search p-3"
-          placeholder="Search Blog List"
+          placeholder="通过关键词搜索"
           onChange={handleChange}
           style={{ color: `${color == "night" ? "#fff" : "#333"}` }}
         />

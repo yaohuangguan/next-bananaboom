@@ -119,9 +119,12 @@ const Blog = ({ blogs, errors, currentUser, handleTheme }) => {
             searchSuggestion={searchSuggestion}
             theme={handleTheme}
           ></SearchBox>
-          {filteredBlog.length == 0
-            ? "没有找到相关文章 No result matches"
-            : null}
+          {filteredBlog.length == 0 ? (
+            <span>
+              <i className="fas fa-frown-open"></i>没有找到相关文章 No result
+              matches
+            </span>
+          ) : null}
 
           <BlogList blogs={filteredBlog} handleTheme={handleTheme} />
         </div>
