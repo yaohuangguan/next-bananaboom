@@ -135,7 +135,7 @@ const BlogListItem = ({
                 height="30"
                 src="https://img.icons8.com/carbon-copy/30/000000/share.png"
               /> */}
-              <i className="fas fa-external-link-alt"></i>
+              <i className="fas fa-paper-plane fa-lg"></i>
             </div>
             <div
               className={`m-2 heart ${ifLiked ? "liked is_animating" : ""}`}

@@ -65,7 +65,7 @@ const CountDate = ({ fromDate, isPrivate, fromWhat }) => {
         </div>
         <div className="time">
           <h2 id="minutes">❤</h2>
-          <small>分钟</small>
+          <small>分</small>
         </div>
         <div className="time">
           <h2 id="seconds">❤</h2>

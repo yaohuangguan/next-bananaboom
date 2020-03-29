@@ -250,10 +250,10 @@ const Editor = () => {
         {result ? <div className="text-success">Message: {result}</div> : null}
         <button
           className="btn-block p-3"
-          style={{ backgroundColor: "#DFD0F0" }}
+          style={{ backgroundColor: "#DFD0F0",outline:'none' }}
           type="submit"
         >
-          {!loading ? "发送" : <Loader />}
+          {!loading ? (<i className="fas fa-paper-plane fa-lg white-text"></i>) : <Loader />}
         </button>
       </form>
     </>

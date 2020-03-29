@@ -3,14 +3,13 @@
 }
 .submit-button {
   background-color: transparent;
-  border: 1px solid transparent;
+  border: none;
   color: rgb(195, 128, 255);
-  border-radius: 20px;
   position: absolute;
   bottom: 0;
   right: 5px;
   &:hover {
-    border: 1px solid rgb(195, 128, 255);
+    color: rgb(155, 41, 255);;
   }
   &:focus {
     outline: transparent;

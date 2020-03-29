@@ -79,7 +79,7 @@ const ToDo = () => {
             onChange={handleTitle}
           />
            <button className="submit-button" type="submit">
-          {!loading ? "添加" : <Loader size='20px' color='text-secondary'/>}
+          {!loading ? (<i className="fas fa-plus fa-lg"></i>) : <Loader size='20px' color='text-secondary'/>}
         </button>
         </label>
 
