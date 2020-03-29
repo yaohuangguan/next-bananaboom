@@ -16,15 +16,15 @@ const Signup = ({ linkColor }) => {
   const openSignup = e => {
     SignupContainer.current.classList.remove("out");
     SignupContainer.current.classList.add("popup");
-    const loginContainer = document.querySelector('.login-container')
-    closeLogin(loginContainer)
+    const loginContainer = document.querySelector(".login-container");
+    closeLogin(loginContainer);
   };
 
   const closeSignup = () => {
     SignupContainer.current.classList.add("out");
   };
   const closeLogin = container => {
-    return container.current
+    container.current
       ? container.current.classList.add("out")
       : container.classList.add("out");
   };
@@ -84,13 +84,19 @@ const Signup = ({ linkColor }) => {
     }
     if (!validPassword()) {
       const error =
-        router.pathname === "/zh" ? "信息不符合要求" : "Bad Password.";
+        router.pathname === "/zh" ? "不符合要求" : "Bad Password.";
       return seterrors([error]);
     }
     if (!validEmail()) {
       const error =
         router.pathname === "/zh" ? "提供有效邮箱" : "Email not valid.";
       return seterrors([error]);
+    }
+    if(password !== passwordConf) {
+      const error =
+      router.pathname === "/zh" ? "密码输入不相符" : "Password don't match";
+      return seterrors([error]);
+
     }
     try {
       if (!loading) {

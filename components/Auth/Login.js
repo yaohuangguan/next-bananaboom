@@ -22,6 +22,7 @@ const Login = ({ passwordReveal, closeLogin }) => {
     setpassword("");
     seterrors([]);
   };
+  const handleCloseLogin = () => closeLogin(LoginContainer)
   const handleEmail = e => {
     setemail(e.target.value);
   };
@@ -109,7 +110,7 @@ const Login = ({ passwordReveal, closeLogin }) => {
               <h5 className="py-3 mt-3">{getLoginNameOnRoutes()}</h5>
               <span
                 style={{ fontSize: "30px", cursor: "pointer" }}
-                onClick={closeLogin}
+                onClick={handleCloseLogin}
               >
                 &#10005;
               </span>
