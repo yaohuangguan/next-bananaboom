@@ -1,21 +1,18 @@
 import { useEffect, useState, useRef } from "react";
-import {useRouter} from "next/router";
+import { useRouter } from "next/router";
 import firebase from "../../firebase/firebase";
 import api from "../../utils/Api";
 import Loader from "../Loader/Loader";
-const Login = ({ passwordReveal }) => {
-  const router = useRouter()
+const Login = ({ passwordReveal, closeLogin }) => {
+  const router = useRouter();
   const LoginContainer = useRef(null);
-
   const [email, setemail] = useState("");
   const [password, setpassword] = useState("");
   const [errors, seterrors] = useState([]);
   const [loading, setloading] = useState(false);
-  const closeLogin = () => {
-    LoginContainer.current.classList.add("out");
-  };
+
   const openSignup = e => {
-    closeLogin();
+    closeLogin(LoginContainer);
     const modalContainer = document.querySelector(".signup-container");
     modalContainer.classList.remove("out");
     modalContainer.classList.add("popup");
@@ -38,7 +35,10 @@ const Login = ({ passwordReveal }) => {
     if (!email || !password) {
       const shakeMessage = document.querySelector(".shake-target");
       shakeMessage.classList.toggle("shake-message");
-      let error = router.pathname === '/zh' ? '填写全部信息':'Fill all the requirements'
+      const error =
+        router.pathname === "/zh"
+          ? "填写全部信息"
+          : "Fill all the requirements";
 
       return seterrors([error]);
     }
@@ -57,16 +57,21 @@ const Login = ({ passwordReveal }) => {
 
         router.reload();
         clearInput();
-        closeLogin();
+        closeLogin(LoginContainer);
       }
     } catch (error) {
       setloading(false);
-      if (error.response.data.message) {
-        seterrors(error.response.data.message);
+      console.log(error.response.data);
+      if (error.response.data) {
+        const _error =
+          router.pathname === "/"
+            ? error.response.data.message
+            : error.response.data.message_cn;
+        seterrors(_error);
       }
       if (error.response.data.errors) {
-        const errors = error.response.data.errors.map(each => `  ${each.msg}`);
-        seterrors(errors);
+        const _error = error.response.data.errors.map(each => `  ${each.msg}`);
+        seterrors(_error);
       }
     }
   };
@@ -88,7 +93,7 @@ const Login = ({ passwordReveal }) => {
   const getForgetPasswordOnRoutes = () =>
     router.pathname === "/" ? "Forget Password?" : "忘记密码?";
   return (
-    <div>
+    <>
       <div ref={LoginContainer} className="login-container">
         <div className="modal-background text-dark lazy-load shake-target card">
           <form
@@ -102,11 +107,16 @@ const Login = ({ passwordReveal }) => {
           >
             <div className="signup-title">
               <h5 className="py-3 mt-3">{getLoginNameOnRoutes()}</h5>
-              <span style={{ fontSize: "30px",cursor:'pointer' }} onClick={closeLogin}>
+              <span
+                style={{ fontSize: "30px", cursor: "pointer" }}
+                onClick={closeLogin}
+              >
                 &#10005;
               </span>
             </div>
-            {errors ? <span className="text-danger error-div">{errors}</span> : null}
+            {errors ? (
+              <span className="text-danger error-div">{errors}</span>
+            ) : null}
             <label htmlFor="login-email" className="m-0 text-dark">
               {getEmailOnRoutes()}
             </label>
@@ -160,7 +170,7 @@ const Login = ({ passwordReveal }) => {
             <p className="text-center">{getLoginMethodOnRoutes()}</p>
             <div className="login-list">
               <div onClick={firebase.signInWithGoogle}>
-              <i className="fab fa-google fa-lg"></i>
+                <i className="fab fa-google fa-lg"></i>
               </div>
               {/* <img
                 src="https://img.icons8.com/color/30/000000/weixing.png"
@@ -182,7 +192,7 @@ const Login = ({ passwordReveal }) => {
           </form>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 Login.getInitialProps = () => {

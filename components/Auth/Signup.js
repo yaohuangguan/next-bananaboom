@@ -3,7 +3,6 @@ import { useRouter } from "next/router";
 import firebase from "../../firebase/firebase";
 import api from "../../utils/Api";
 import Loader from "../Loader/Loader";
-import dynamic from "next/dynamic";
 import Login from "./Login";
 const Signup = ({ linkColor }) => {
   const router = useRouter();
@@ -17,9 +16,17 @@ const Signup = ({ linkColor }) => {
   const openSignup = e => {
     SignupContainer.current.classList.remove("out");
     SignupContainer.current.classList.add("popup");
+    const loginContainer = document.querySelector('.login-container')
+    closeLogin(loginContainer)
   };
+
   const closeSignup = () => {
     SignupContainer.current.classList.add("out");
+  };
+  const closeLogin = container => {
+    return container.current
+      ? container.current.classList.add("out")
+      : container.classList.add("out");
   };
   const passwordReveal = e => {
     let x = document.querySelectorAll(".password");
@@ -57,11 +64,11 @@ const Signup = ({ linkColor }) => {
     modalContainer.classList.add("popup");
   };
   const validEmail = () => {
-    let re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     return re.test(email);
   };
   const validPassword = () => {
-    let re = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
+    const re = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
     return re.test(password);
   };
   const handleUserSubmit = async e => {
@@ -69,15 +76,20 @@ const Signup = ({ linkColor }) => {
     if (!displayName || !email || !password || !passwordConf) {
       const shakeMessage = document.querySelector(".shake-target-signup");
       shakeMessage.classList.toggle("shake-message");
-      let error = router.pathname === '/zh' ? '填写全部信息':'Fill all the requirements'
+      const error =
+        router.pathname === "/zh"
+          ? "填写全部信息"
+          : "Fill all the requirements";
       return seterrors([error]);
     }
     if (!validPassword()) {
-      let error = router.pathname === '/zh' ? '信息不符合要求':'Bad Password.'
+      const error =
+        router.pathname === "/zh" ? "信息不符合要求" : "Bad Password.";
       return seterrors([error]);
     }
     if (!validEmail()) {
-      let error = router.pathname === '/zh' ? '提供有效邮箱':'Email not valid.'
+      const error =
+        router.pathname === "/zh" ? "提供有效邮箱" : "Email not valid.";
       return seterrors([error]);
     }
     try {
@@ -101,12 +113,16 @@ const Signup = ({ linkColor }) => {
       }
     } catch (error) {
       setloading(false);
-      if (error.response.data.message) {
-        seterrors(error.response.data.message);
+      if (error.response.data) {
+        const _error =
+          router.pathname === "/"
+            ? error.response.data.message
+            : error.response.data.message_cn;
+        seterrors(_error);
       }
       if (error.response.data.errors) {
-        const errors = error.response.data.errors.map(each => `  ${each.msg}`);
-        seterrors(errors);
+        const _error = error.response.data.errors.map(each => `  ${each.msg}`);
+        seterrors(_error);
       }
     }
   };
@@ -147,11 +163,16 @@ const Signup = ({ linkColor }) => {
           >
             <div className="signup-title">
               <h5 className="py-3 mt-3">{getSignupNameOnRoutes()} </h5>
-              <span style={{ fontSize: "30px",cursor:'pointer' }} onClick={closeSignup}>
+              <span
+                style={{ fontSize: "30px", cursor: "pointer" }}
+                onClick={closeSignup}
+              >
                 &#10005;
               </span>
             </div>
-            {errors ? <span className="text-danger error-div">{errors}</span> : null}
+            {errors ? (
+              <span className="text-danger error-div">{errors}</span>
+            ) : null}
             <label htmlFor="signup-displayName" className="m-0 text-dark">
               {getUserOnRoutes()}
             </label>
@@ -227,7 +248,7 @@ const Signup = ({ linkColor }) => {
             <p className="text-center">{getSignUpMethodOnRoutes()}</p>
             <div className="login-list">
               <div onClick={firebase.signInWithGoogle}>
-              <i className="fab fa-google fa-lg"></i>
+                <i className="fab fa-google fa-lg"></i>
               </div>
               {/* <img
                 src="https://img.icons8.com/color/30/000000/weixing.png"
@@ -254,7 +275,7 @@ const Signup = ({ linkColor }) => {
           {getLoginTextOnRoutes()}
         </a>
       </div>
-      <Login passwordReveal={passwordReveal}></Login>
+      <Login passwordReveal={passwordReveal} closeLogin={closeLogin}></Login>
     </>
   );
 };
