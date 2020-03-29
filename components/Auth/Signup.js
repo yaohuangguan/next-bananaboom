@@ -69,13 +69,16 @@ const Signup = ({ linkColor }) => {
     if (!displayName || !email || !password || !passwordConf) {
       const shakeMessage = document.querySelector(".shake-target-signup");
       shakeMessage.classList.toggle("shake-message");
-      return seterrors(["填写完整信息(Fill all the requirements)"]);
+      let error = router.pathname === '/zh' ? '填写全部信息':'Fill all the requirements'
+      return seterrors([error]);
     }
     if (!validPassword()) {
-      return seterrors(["信息不符合要求"]);
+      let error = router.pathname === '/zh' ? '信息不符合要求':'Bad Password.'
+      return seterrors([error]);
     }
     if (!validEmail()) {
-      return seterrors(["信息不符合要求"]);
+      let error = router.pathname === '/zh' ? '提供有效邮箱':'Email not valid.'
+      return seterrors([error]);
     }
     try {
       if (!loading) {
@@ -148,7 +151,7 @@ const Signup = ({ linkColor }) => {
                 &#10005;
               </span>
             </div>
-            {errors ? <div className="text-danger">{errors}</div> : null}
+            {errors ? <span className="text-danger error-div">{errors}</span> : null}
             <label htmlFor="signup-displayName" className="m-0 text-dark">
               {getUserOnRoutes()}
             </label>
@@ -232,7 +235,6 @@ const Signup = ({ linkColor }) => {
                 alt="weixinsignin"
               /> */}
             </div>
-            <br />
             <p
               style={{
                 alignSelf: "flex-end",

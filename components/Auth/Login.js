@@ -38,7 +38,9 @@ const Login = ({ passwordReveal }) => {
     if (!email || !password) {
       const shakeMessage = document.querySelector(".shake-target");
       shakeMessage.classList.toggle("shake-message");
-      return seterrors(["填写完整信息(Fill all the requirements)"]);
+      let error = router.pathname === '/zh' ? '填写全部信息':'Fill all the requirements'
+
+      return seterrors([error]);
     }
     try {
       if (!loading) {
@@ -104,7 +106,7 @@ const Login = ({ passwordReveal }) => {
                 &#10005;
               </span>
             </div>
-            {errors ? <div className="text-danger">{errors}</div> : null}
+            {errors ? <span className="text-danger error-div">{errors}</span> : null}
             <label htmlFor="login-email" className="m-0 text-dark">
               {getEmailOnRoutes()}
             </label>
@@ -166,7 +168,6 @@ const Login = ({ passwordReveal }) => {
                 alt="weixinsignin"
               /> */}
             </div>
-            <br />
             <p
               style={{
                 alignSelf: "flex-end",
