@@ -91,7 +91,8 @@ const Subscribe = ({
         setloading(true);
         const response = await api.post("/api/auth/subscribe", { email });
         const data = await response.data;
-        setresult(data.message);
+        let result = router.pathname === '/' ? data.message : data.message_cn
+        setresult(result);
         setstatus(data.status);
         setloading(false);
       } catch (error) {
