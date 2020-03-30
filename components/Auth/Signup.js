@@ -84,7 +84,7 @@ const Signup = ({ linkColor }) => {
     }
     if (!validPassword()) {
       const error =
-        router.pathname === "/zh" ? "不符合要求" : "Bad Password.";
+        router.pathname === "/zh" ? "密码不符合要求" : "Bad Password.";
       return seterrors([error]);
     }
     if (!validEmail()) {
