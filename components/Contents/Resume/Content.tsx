@@ -10,7 +10,7 @@ export const getChineseContent = () => {
       <p>相关技能: Web应用编程, Web交互编程, HCI理论和可用性, 网络安全, 电子商务</p>
       <br />
 
-      <h5 className='blue-text'>前端开发工程师 at BeeHex </h5>
+      <h5 className='blue-text'>前端开发工程师</h5>
       <div className='d-flex row'>
         <div className="col-md-12">{getBeeHexImg()}</div>
         <div className="col-md-12 mt-3">
@@ -50,7 +50,7 @@ export const getEnglishContent = () => {
       </p>
       <br />
 
-      <h5 className='blue-text'>Software Engineer at BeeHex </h5>
+      <h5 className='blue-text'>Front end Engineer</h5>
       <div className="d-flex row">
         <div className="col-md-12">{getBeeHexImg()}</div>
 

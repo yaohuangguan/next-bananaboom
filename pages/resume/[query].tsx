@@ -64,9 +64,7 @@ const Resume = ({ resumeItem, errors, router, handleTheme }) => {
         <Link href={router.asPath == "/resume/en-us" ? "/" : "/zh"}>
           <a
             className={`btn ${
-              theme === "night"
-                ? "draw-border-white"
-                : "draw-border-black"
+              theme === "night" ? "draw-border-white" : "draw-border-black"
             } waves-effect`}
           >
             {router.asPath == "/resume/en-us" ? "Back" : "返回"}
@@ -80,7 +78,9 @@ const Resume = ({ resumeItem, errors, router, handleTheme }) => {
           : getChineseContent()}
 
         <br />
-        <h5 className="text-primary">Projects</h5>
+        <h5 className="text-primary">
+          {router.asPath === "/resume/en-us" ? "Projects" : "项目"}
+        </h5>
         {resumeItem ? <ResumeList items={resumeItem} /> : errors}
 
         <p>More in Github...</p>
@@ -105,12 +105,12 @@ const Resume = ({ resumeItem, errors, router, handleTheme }) => {
               <br />
               <h5 className="blue-text">Tools,Honors</h5>
               <p>
-                Git, HTML, CSS, Sass, Linux, JavaScript, Vue.js, React,
-                Bootstrap, Node.js, Express.js, Postman, Python, PostgreSQL,
-                MongoDB, Knowing how HTTP, TCP/IP, DNS and Web Server work
+                Git, HTML, CSS, Sass, Linux, JavaScript, Python, Vue.js,
+                React.js, Next.js, Bootstrap, Node.js, Express.js, GraphQL,
+                Docker, Postman, PostgreSQL, MongoDB, Redis, Knowing how HTTP,
+                TCP/IP, DNS and Web Server work
               </p>
               <p>
-                Honor:
                 <a
                   href="https://meritpages.com/samyao"
                   target="_blank"
@@ -143,9 +143,10 @@ const Resume = ({ resumeItem, errors, router, handleTheme }) => {
               <br />
               <h5 className="blue-text">技能，荣誉</h5>
               <p>
-                Git, HTML, CSS, Sass, Linux, JavaScript, Vue.js, React,
-                Bootstrap, Node.js, Express.js, Python, Postman, PostgreSQL,
-                MongoDB, Knowing how HTTP, TCP/IP, DNS and Web Server work
+                Git, HTML, CSS, Sass, Linux, JavaScript, Python, Vue.js,
+                React.js, Next.js, Bootstrap, Node.js, Express.js, GraphQL,
+                Docker, Postman, PostgreSQL, MongoDB, Redis, Knowing how HTTP,
+                TCP/IP, DNS and Web Server work
               </p>
               <p>
                 <a

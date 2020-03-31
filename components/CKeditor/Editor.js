@@ -216,7 +216,7 @@ const Editor = () => {
           />
         </label>
         <label htmlFor="tags">
-          归类*
+          归类* <span className='text-muted'>(空格分隔多个标签)</span>
           <input
             type="text"
             value={tags}
