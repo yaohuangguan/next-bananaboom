@@ -1,5 +1,5 @@
 import dynamic from "next/dynamic";
-const BlogListItem = dynamic(() => import("../Blog/BlogListItem"), {
+const BlogListItem = dynamic(() => import("./BlogListItem"), {
   ssr: false
 });
 const BlogList = ({handleTheme,blogs}) => {
