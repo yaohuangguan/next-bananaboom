@@ -1,5 +1,16 @@
 import React, { useEffect } from "react";
 import "./countdate.scss";
+const Surprise = () => {
+  const handleClick = () =>
+    alert(
+      "哈哈哈，竟然被你发现了！我隐藏在这个地方，透明的看不到的啊！既然被你发现了，那就告诉你，我爱你哦！"
+    );
+  return (
+    <div onClick={handleClick} className="p-5" style={{ opacity: 0 }}>
+      HAHAHAHAHAHHAHHAHAHAHHAHA
+    </div>
+  );
+};
 const CountDate = ({ fromDate, isPrivate, fromWhat }) => {
   useEffect(() => {
     const days = document.getElementById("days");
@@ -50,8 +61,9 @@ const CountDate = ({ fromDate, isPrivate, fromWhat }) => {
           isPrivate ? "countdown-private" : ""
         }`}
       >
+        <Surprise />
         <div>{fromWhat}</div>
-        <div className="time" style={{color:'#FF69B4'}}>
+        <div className="time" style={{ color: "#FF69B4" }}>
           <h2 id="year">❤</h2>
           <small>年</small>
         </div>

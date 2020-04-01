@@ -2,7 +2,7 @@ import App from "next/app";
 import firebase from "../firebase/firebase";
 import api from "../utils/Api";
 import { getCookie, setCookie, themeProvider } from "../utils/Cookie";
-
+import Router from 'next/router'
 class SamMainApp extends App {
   // Only uncomment this method if you have blocking data requirements for
   // every single page in your application. This disables the ability to
@@ -44,6 +44,9 @@ class SamMainApp extends App {
       });
     } catch (error) {
       console.log("token faield");
+      if(error){
+        Router.reload()
+      }
     }
   };
 

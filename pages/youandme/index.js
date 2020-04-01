@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useReducer } from "react";
+import {useRouter} from 'next/router'
 import api from "../../utils/Api";
 import axios from "axios";
 import dynamic from "next/dynamic";
@@ -28,6 +29,7 @@ const socketURL =
     : "https://nextbananaboom.herokuapp.com";
 
 const index = ({ currentUser, posts, errors, todos }) => {
+  const router = useRouter()
   const [socket, setSocket] = useState(null);
   const [chatUser, setuser] = useState("");
   const [privatePosts, setprivatePosts] = useState("");
@@ -75,13 +77,17 @@ const index = ({ currentUser, posts, errors, todos }) => {
           cancelToken: source.token
         });
         let data = await response.data;
-        console.log(data);
+        console.log('data here',data);
         setLoading(false);
         setprivatePosts(data);
       } catch (error) {
         if (axios.isCancel(error)) {
           console.log("caught cancel axios");
         } else {
+          console.log(error)
+          if(error){
+            router.push('/')
+          }
           setLoading(false);
         }
       }
