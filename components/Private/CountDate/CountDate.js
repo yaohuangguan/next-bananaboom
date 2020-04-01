@@ -3,10 +3,10 @@ import "./countdate.scss";
 const Surprise = () => {
   const handleClick = () =>
     alert(
-      "哈哈哈，竟然被你发现了！我隐藏在这个地方，透明的看不到的啊！既然被你发现了，那就告诉你，我爱你哦！"
+      "被你发现了哈哈，老婆，我爱你哦"
     );
   return (
-    <div onClick={handleClick} className="p-5" style={{ opacity: 0 }}>
+    <div onClick={handleClick} className="p-5 position-absolute" style={{ opacity: 0 }}>
       HAHAHAHAHAHHAHHAHAHAHHAHA
     </div>
   );
