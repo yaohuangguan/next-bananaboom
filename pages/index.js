@@ -46,7 +46,7 @@ const Index = ({
   } = homepage[0];
 
   return (
-    <Layout head={"Sam 个人博客 博客文章 技术文章 生活文章 个人心得"}>
+    <Layout head={"Sam的博客 || www.yaobaiyang.com"}>
       <BrowserTest></BrowserTest>
       <Header
         blogName={"Blog"}

@@ -7,9 +7,17 @@ const HeadConfig = ({ head }) => {
       <link rel="icon" href="/favicon.ico" />
       <title>
         {head ||
-          "Sam 个人博客 博客文章 技术文章 生活文章 个人心得 Blog Posts || yaobaiyang.com"}
+          "Sam的博客|| yaobaiyang.com"}
       </title>
+      <link
+        href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css"
+        rel="stylesheet"
+      />
 
+      <link
+        href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.10/css/mdb.min.css"
+        rel="stylesheet"
+      />
       {/* <link rel="preconnect" href="https://i.ibb.co" crossOrigin="true" />
       <link rel="dns-prefetch" href="https://i.ibb.co" /> */}
       <link
@@ -33,17 +41,7 @@ const HeadConfig = ({ head }) => {
         crossOrigin="true"
       />
 
-      <link
-        href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css"
-        rel="stylesheet"
-      />
-
-      <link
-        href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.10/css/mdb.min.css"
-        rel="stylesheet"
-      />
-      <script src="/lazyload.min.js" async></script>
-    
+      <script src="/lazyload.min.js" defer></script>
     </Head>
   );
 };

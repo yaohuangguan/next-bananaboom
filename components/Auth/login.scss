@@ -3,29 +3,30 @@ body {
     overflow: hidden;
   }
 }
-.error-div{
-
+.error-div {
 }
 .login-list {
   display: flex;
   justify-content: center;
   cursor: pointer;
-  .fa-google{
+  .fa-google {
     font-size: 25px;
     color: rgb(0, 179, 255);
-    &:hover{
-      color:rgb(6, 139, 255);
+    &:hover {
+      color: rgb(6, 139, 255);
     }
   }
 }
 .signup-container {
-  font-family: "Sen","Helvetica","Arial", sans-serif;
+  font-family: "Sen", "Helvetica", "Arial", sans-serif;
   font-weight: normal;
   position: fixed;
   width: 40%;
   top: 10%;
   left: 50%;
   transform: scale(0);
+  -moz-transform: scale(0);
+  -webkit-transform: scale(0);
   z-index: 5;
   display: none;
   height: 650px;
@@ -51,17 +52,23 @@ body {
   }
   &.popup {
     transform: scaleY(0.01) scaleX(0);
+    -moz-transform: scale(0.01) scaleY(0);
+    -webkit-transform: scale(0.01) scaleY(0);
     animation: unfoldIn 1s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
     display: block;
 
     .modal-background {
       .modal-inner {
         transform: scale(0);
+        -moz-transform: scale(0);
+        -webkit-transform: scale(0);
         animation: zoomIn 0.5s 0.8s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
       }
     }
     &.out {
       transform: scale(1);
+      -moz-transform: scale(1);
+      -webkit-transform: scale(1);
       animation: unfoldOut 1s 0.3s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
       .modal-background {
         .modal-inner {
@@ -72,13 +79,15 @@ body {
   }
 }
 .login-container {
-  font-family: "Sen","Helvetica","Arial", sans-serif;
+  font-family: "Sen", "Helvetica", "Arial", sans-serif;
   font-weight: normal;
   position: fixed;
   width: 40%;
   top: 10%;
   left: 50%;
   transform: scale(0);
+  -moz-transform: scale(0);
+  -webkit-transform: scale(0);
   z-index: 1;
   display: none;
   height: 550px;
@@ -103,16 +112,22 @@ body {
   }
   &.popup {
     transform: scaleY(0.01) scaleX(0);
+    -moz-transform: scaleY(0.01) scaleX(0);
+    -webkit-transform: scaleY(0.01) scaleX(0);
     animation: unfoldIn 1s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
     display: block;
     .modal-background {
       .modal-inner {
         transform: scale(0);
+        -moz-transform: scale(0);
+        -webkit-transform: scale(0);
         animation: zoomIn 0.5s 0.8s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
       }
     }
     &.out {
       transform: scale(1);
+      -moz-transform: scale(1);
+      -webkit-transform: scale(1);
       animation: unfoldOut 1s 0.3s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
       .modal-background {
         .modal-inner {
@@ -137,9 +152,8 @@ body {
       display: flex;
       justify-content: space-between;
     }
-    label{
+    label {
       font-size: 15px;
-
     }
     .password-show {
       justify-self: flex-end;
