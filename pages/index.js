@@ -47,7 +47,7 @@ const Index = ({
 
   return (
     <Layout head={"Sam的博客 || www.yaobaiyang.com"}>
-      <BrowserTest></BrowserTest>
+      <BrowserTest />
       <Header
         blogName={"Blog"}
         resumeName={"About"}
