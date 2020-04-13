@@ -25,6 +25,10 @@
         {
           "key": "Cache-Control",
           "value": "s-maxage=1, stale-while-revalidate"
+        },
+        {
+          "key": "Content-Security-Policy",
+          "value": "default-src 'self'; img-src *; media-src 'self'; script-src 'self'; style-src *; font-src *; frame-src 'self'; "
         }
       ]
     }

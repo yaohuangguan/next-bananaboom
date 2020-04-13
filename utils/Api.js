@@ -1,9 +1,8 @@
 import axios from "axios";
-// const baseURL = "https://nextbananaboom.herokuapp.com";
 const baseURL =
   process.env.NODE_ENV === "production"
     ? "https://nextbananaboom.herokuapp.com"
-    : "localhost:5000";
+    : "http://localhost:5000";
 
 const _api = axios.create({
   baseURL: baseURL,
