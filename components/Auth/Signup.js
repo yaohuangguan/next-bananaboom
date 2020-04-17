@@ -157,7 +157,7 @@ const Signup = ({ linkColor }) => {
   return (
     <>
       <div ref={SignupContainer} className="signup-container">
-        <div className="modal-background text-dark lazy-load shake-target-signup ">
+        <div className="modal-background text-dark lazy-load shake-target-signup card">
           <form
             className="modal-inner px-5 py-1 form-auth"
             style={{

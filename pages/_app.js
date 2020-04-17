@@ -33,7 +33,7 @@ class SamMainApp extends App {
         }
       });
       const data = await response.data;
-
+      
       this.setState(state => {
         if (token) {
           process.env.NODE_ENV === "development"
