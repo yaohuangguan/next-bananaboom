@@ -1,25 +1,25 @@
 import axios from "axios";
-import Router from "next/router";
 const baseURL =
   process.env.NODE_ENV === "production"
     ? "https://nextbananaboom.herokuapp.com"
     : "http://localhost:5000";
+
 const _api = axios.create({
   baseURL: baseURL,
   headers: {
     Accept: "application/json",
-    "Content-Type": "application/json"
-  }
+    "Content-Type": "application/json",
+  },
 });
-
+_api.defaults.timeout = 10000;
 _api.interceptors.request.use(
-  config => {
+  (config) => {
     _api.defaults.headers.common["X-XSS-Protection"] = 1;
     _api.defaults.headers.common["X-Content-Type-Options"] = "nosniff";
     _api.defaults.headers.common["Referrer-Policy"] = "same-origin";
     _api.defaults.headers.common["X-Frame-Options"] = "Deny";
     if (typeof window !== "undefined") {
-      localStorage.removeItem('refresh')
+      localStorage.removeItem("refresh");
       let token = localStorage.getItem("token");
       if (token) {
         _api.defaults.headers.common["x-auth-token"] = token;
@@ -29,21 +29,21 @@ _api.interceptors.request.use(
     return config;
   },
 
-  error => Promise.reject(error)
+  (error) => Promise.reject(error)
 );
 
 _api.interceptors.response.use(
-  response => {
+  (response) => {
     return response;
   },
-  error => {
+  (error) => {
     if (error.response) {
       switch (error.response.status) {
         case 401:
           console.log("401 error");
 
           localStorage.setItem("refresh", true);
-          
+
           throw error;
         case 400:
           throw error;

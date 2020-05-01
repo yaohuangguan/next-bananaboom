@@ -1,15 +1,8 @@
 import { useRouter } from "next/router";
+import { useEffect } from "react";
+import Loader from "../../Loader/Loader";
 import "./Project.scss";
-const Project = ({
-  _id,
-  link,
-  image,
-  name,
-  _name,
-  info,
-  _info,
-  
-}) => {
+const Project = ({ _id, link, image, name, _name, info, _info }) => {
   // const hoverChange = () => {
   //   const div = document.querySelectorAll(".hover");
   //   div.forEach(element => {
@@ -23,7 +16,11 @@ const Project = ({
   //   });
   // };
   const router = useRouter();
-
+  useEffect(() => {
+    const lazyLoadImage = document.querySelector(".lazyload");
+    console.log(lazyLoadImage);
+    return () => {};
+  }, []);
   return (
     <div
       className="col-md-6 hover"
@@ -41,11 +38,9 @@ const Project = ({
             data-src={image}
             className="lazyload"
             alt={router.pathname == "/zh" ? name : _name}
-            width='60%'
+            width="60%"
           />
-          <p className="linkTag">
-            {router.pathname == "/zh" ? name : _name}
-          </p>
+          <p className="linkTag">{router.pathname == "/zh" ? name : _name}</p>
         </a>
       </div>
       <p>{router.pathname == "/zh" ? info : _info}</p>

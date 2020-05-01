@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState, useRef, useMemo } from "react";
 import { useRouter } from "next/router";
 import firebase from "../../firebase/firebase";
 import api from "../../utils/Api";
@@ -11,7 +11,7 @@ const Login = ({ passwordReveal, closeLogin }) => {
   const [errors, seterrors] = useState([]);
   const [loading, setloading] = useState(false);
 
-  const openSignup = e => {
+  const openSignup = (e) => {
     closeLogin(LoginContainer);
     const modalContainer = document.querySelector(".signup-container");
     modalContainer.classList.remove("out");
@@ -22,15 +22,15 @@ const Login = ({ passwordReveal, closeLogin }) => {
     setpassword("");
     seterrors([]);
   };
-  const handleCloseLogin = () => closeLogin(LoginContainer)
-  const handleEmail = e => {
+  const handleCloseLogin = () => closeLogin(LoginContainer);
+  const handleEmail = (e) => {
     setemail(e.target.value);
   };
-  const handlePassword = e => {
+  const handlePassword = (e) => {
     setpassword(e.target.value);
   };
 
-  const handleUserSubmit = async e => {
+  const handleUserSubmit = async (e) => {
     e.preventDefault();
 
     if (!email || !password) {
@@ -48,7 +48,7 @@ const Login = ({ passwordReveal, closeLogin }) => {
         setloading(true);
         const response = await api.post("/api/users/signin", {
           email,
-          password
+          password,
         });
         // console.log(response.data.userToSend);
         const user = await response.data;
@@ -71,7 +71,9 @@ const Login = ({ passwordReveal, closeLogin }) => {
         seterrors(_error);
       }
       if (error.response.data.errors) {
-        const _error = error.response.data.errors.map(each => `  ${each.msg}`);
+        const _error = error.response.data.errors.map(
+          (each) => `  ${each.msg}`
+        );
         seterrors(_error);
       }
     }
@@ -79,20 +81,35 @@ const Login = ({ passwordReveal, closeLogin }) => {
   const handleForgetPassword = async () => {
     console.log("forget pasword");
   };
-  const getLoginNameOnRoutes = () =>
-    router.pathname == "/" ? "Log into your account" : "登录";
-  const getEmailOnRoutes = () =>
-    router.pathname === "/" ? "Email" : "邮箱地址";
-  const getPasswordOnRoutes = () =>
-    router.pathname === "/" ? "Password" : "密码";
-  const getLoginButtonOnRoutes = () =>
-    router.pathname == "/" ? "Login" : "确定";
-  const getSignUpOnRoutes = () =>
-    router.pathname == "/" ? "I don't have an account" : "我要注册";
-  const getLoginMethodOnRoutes = () =>
-    router.pathname == "/" ? "or log in with:" : "或者使用以下方法登录:";
-  const getForgetPasswordOnRoutes = () =>
-    router.pathname === "/" ? "Forget Password?" : "忘记密码?";
+  const getLoginNameOnRoutes = useMemo(
+    () => (router.pathname == "/" ? "Log into your account" : "登录"),
+    [router.pathname]
+  );
+  const getEmailOnRoutes = useMemo(
+    () => (router.pathname === "/" ? "Email" : "邮箱地址"),
+    [router.pathname]
+  );
+  const getPasswordOnRoutes = useMemo(
+    () => (router.pathname === "/" ? "Password" : "密码"),
+    [router.pathname]
+  );
+  const getLoginButtonOnRoutes = useMemo(
+    () => (router.pathname == "/" ? "Login" : "确定"),
+    [router.pathname]
+  );
+  const getSignUpOnRoutes = useMemo(
+    () => (router.pathname == "/" ? "I don't have an account" : "我要注册"),
+    [router.pathname]
+  );
+  const getLoginMethodOnRoutes = useMemo(
+    () =>
+      router.pathname == "/" ? "or log in with:" : "或者使用以下方法登录:",
+    [router.pathname]
+  );
+  const getForgetPasswordOnRoutes = useMemo(
+    () => (router.pathname === "/" ? "Forget Password?" : "忘记密码?"),
+    [router.pathname]
+  );
   return (
     <>
       <div ref={LoginContainer} className="login-container">
@@ -102,12 +119,12 @@ const Login = ({ passwordReveal, closeLogin }) => {
             style={{
               display: "flex",
               flexDirection: "column",
-              justifyContent: "center"
+              justifyContent: "center",
             }}
             onSubmit={handleUserSubmit}
           >
             <div className="signup-title">
-              <h5 className="py-3 mt-3">{getLoginNameOnRoutes()}</h5>
+              <h5 className="py-3 mt-3">{getLoginNameOnRoutes}</h5>
               <span
                 style={{ fontSize: "30px", cursor: "pointer" }}
                 onClick={handleCloseLogin}
@@ -119,7 +136,7 @@ const Login = ({ passwordReveal, closeLogin }) => {
               <span className="text-danger error-div">{errors}</span>
             ) : null}
             <label htmlFor="login-email" className="m-0 text-dark">
-              {getEmailOnRoutes()}
+              {getEmailOnRoutes}
             </label>
             <input
               type="email"
@@ -128,10 +145,10 @@ const Login = ({ passwordReveal, closeLogin }) => {
               autoComplete="email"
               value={email}
               onChange={handleEmail}
-              placeholder={getEmailOnRoutes()}
+              placeholder={getEmailOnRoutes}
             />
             <label htmlFor="login-password" className="m-0 text-dark">
-              {getPasswordOnRoutes()}
+              {getPasswordOnRoutes}
             </label>
             <div style={{ position: "relative", width: "100%" }}>
               <input
@@ -141,7 +158,7 @@ const Login = ({ passwordReveal, closeLogin }) => {
                 autoComplete="current-password"
                 value={password}
                 onChange={handlePassword}
-                placeholder={getPasswordOnRoutes()}
+                placeholder={getPasswordOnRoutes}
               />
               <div onClick={passwordReveal} className="password-show">
                 <img
@@ -155,20 +172,20 @@ const Login = ({ passwordReveal, closeLogin }) => {
                 alignSelf: "flex-end",
                 textDecoration: "underline",
                 cursor: "pointer",
-                color: "blue"
+                color: "blue",
               }}
               onClick={handleForgetPassword}
             >
-              {/* {getForgetPasswordOnRoutes()} */}
+              {/* {getForgetPasswordOnRoutes} */}
             </span>
             <button
               className="btn btn-hover color-3 my-4 mx-0 btn-block text-white"
               type="submit"
             >
-              {!loading ? getLoginButtonOnRoutes() : <Loader></Loader>}
+              {!loading ? getLoginButtonOnRoutes : <Loader></Loader>}
             </button>
 
-            <p className="text-center">{getLoginMethodOnRoutes()}</p>
+            <p className="text-center">{getLoginMethodOnRoutes}</p>
             <div className="login-list">
               <div onClick={firebase.signInWithGoogle}>
                 <i className="fab fa-google fa-lg"></i>
@@ -184,11 +201,11 @@ const Login = ({ passwordReveal, closeLogin }) => {
                 alignSelf: "flex-end",
                 textDecoration: "underline",
                 cursor: "pointer",
-                color: "blue"
+                color: "blue",
               }}
               onClick={openSignup}
             >
-              {getSignUpOnRoutes()}
+              {getSignUpOnRoutes}
             </p>
           </form>
         </div>
