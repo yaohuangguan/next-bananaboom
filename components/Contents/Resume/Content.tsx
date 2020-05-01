@@ -2,15 +2,24 @@ import { getBeeHexImg } from "../Background/Beehex";
 export const getChineseContent = () => {
   return (
     <div>
-      <h5 className='blue-text'>个人经历:</h5>
+      <h5 className='blue-text'>学习经历:</h5>
    
       <p>迈阿密大学 公立常青藤之一</p>
       <p>交互研究 GPA:3.7</p>
       <p>主要研究方向: Web理论和技术研究</p>
       <p>相关技能: Web应用编程, Web交互编程, HCI理论和可用性, 网络安全, 电子商务</p>
       <br />
-
-      <h5 className='blue-text'>前端开发工程师</h5>
+      <h5 className='blue-text'>腾讯云<i className="fab fa-qq"></i> - 前端开发工程师</h5>
+      <div className='d-flex row'>
+        <div className="col-md-12 mt-3">
+          <p>
+          目前负责腾讯云 Coding OA 版本的前端开发，Coding OA 版的目标是服务好腾讯云内部的代码研发体系建设、DevOps工具链建设，包含 CI/CD、自动化工具、项目管理、过程管理、制品管理、EP 度量等
+          </p>
+        </div>
+       
+       
+      </div>
+      <h5 className='blue-text'> BeeHex - 前端开发工程师</h5>
       <div className='d-flex row'>
         <div className="col-md-12">{getBeeHexImg()}</div>
         <div className="col-md-12 mt-3">
@@ -40,7 +49,7 @@ export const getEnglishContent = () => {
   return (
     <div>
     
-      <h5 className='blue-text'>Education:</h5>
+      <h5 className='blue-text'>Learning Experience:</h5>
       <p>Miami University  Public Ivies</p>
       <p>Bachelor of Art in Interactive Media Studies (STEM Major) GPA:3.7</p>
       <p>Major Concentration: Website Technology</p>
@@ -49,8 +58,17 @@ export const getEnglishContent = () => {
         Programming, HCI theory and usability, Cyber Security, Digital Marketing
       </p>
       <br />
-
-      <h5 className='blue-text'>Front end Engineer</h5>
+      <h5 className='blue-text'>Tencent Cloud<i className="fab fa-qq"></i> - Front end Engineer</h5>
+      <div className='d-flex row'>
+        <div className="col-md-12 mt-3">
+          <p>
+          Working towards the Tencent Cloud Coding OA version, the goal of Coding OA version is to serve Tencent Cloud's internal research and development system, DevOps toolchain construction, including CI/CD, automation tools, project management, process management, product management, EP metrics, etc.
+          </p>
+        </div>
+       
+       
+      </div>
+      <h5 className='blue-text'>BeeHex - Front end Engineer</h5>
       <div className="d-flex row">
         <div className="col-md-12">{getBeeHexImg()}</div>
 

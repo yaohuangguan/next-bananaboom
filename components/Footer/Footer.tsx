@@ -1,11 +1,10 @@
-
 import "./Footer.scss";
 
 const Footer = ({ welcome, date }) => {
   // const [closed, setClosed] = useState(false);
   // const explain = useRef(null)
   // useEffect(() => {
-    
+
   //   let setOpen;
   //   if (!closed) {
   //     setOpen = setTimeout(openModal, 1000);
@@ -48,14 +47,11 @@ const Footer = ({ welcome, date }) => {
         className="float-right text-white px-1 font-weight-bold"
         style={{ border: "2px solid white" }}
         id="close"
-       
       >
         X
       </span>
       <div className="text-center">
-        <span className="text-white">
-          {date}
-        </span>
+        <span className="text-white">{date}</span>
       </div>
 
       {/* <div ref={explain} className="container text-center" id="explain">

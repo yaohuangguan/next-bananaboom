@@ -17,11 +17,12 @@ class ErrorBoundary extends React.Component {
   }
 
   render() {
+    const { error } = this.state;
     if (this.state.hasError) {
       // 你可以自定义降级后的 UI 并渲染
       return (
         <div className="d-flex justify-content-center container">
-          {this.state.error ? this.state.error : null}
+          {error ? error : null}
           <h1>
             页面发生了错误，请返回主页。 Something went wrong. Please click{" "}
             <Link href="/">

@@ -11,28 +11,28 @@ const Comment = dynamic(() =>
 
 const blog = ({ posts, comments, currentUser, router, handleTheme }) => {
   const { name, content, code, code2, _id, project_id } = posts;
-  const [theme, setTheme] = useState('')
+  const [theme, setTheme] = useState("");
 
- function handleThemeBeforeServer(){
-  if(typeof window !== 'undefined'){
-    let theme = handleTheme()
-   return setTheme(theme)
+  function handleThemeBeforeServer() {
+    if (typeof window !== "undefined") {
+      let theme = handleTheme();
+      return setTheme(theme);
+    }
   }
- }
- function renderEditorContent(){
-  const contentDiv = document.getElementById("content-field");
-  if (typeof content === "string") {
-    // const temp = document.createElement("div");
-    // const textNode = document.createTextNode(temp)
-    // temp.appendChild(textNode)
-    contentDiv.innerHTML = content;
+  function renderEditorContent() {
+    const contentDiv = document.getElementById("content-field");
+    if (typeof content === "string") {
+      // const temp = document.createElement("div");
+      // const textNode = document.createTextNode(temp)
+      // temp.appendChild(textNode)
+      contentDiv.innerHTML = content;
+    }
   }
- }
   useEffect(() => {
     document.title = name;
-    handleThemeBeforeServer()
+    handleThemeBeforeServer();
     require("../../../utils/prism");
-    renderEditorContent()
+    renderEditorContent();
   }, []);
   // console.log(typeof content)
   // console.log(project_id)
@@ -43,19 +43,19 @@ const blog = ({ posts, comments, currentUser, router, handleTheme }) => {
       <div className="container">
         <a
           title="Go Back"
-          onClick={e => {
+          onClick={(e) => {
             e.preventDefault();
             router.replace("/blogs");
           }}
           className={`btn ${
-            theme === "night"
-              ? "draw-border-white"
-              : "draw-border-black"
+            theme === "night" ? "draw-border-white" : "draw-border-black"
           }`}
         >
-          <span className={`${theme === "night"
-              ? "white-text"
-              : "black-text"}`}>Go Back</span>
+          <span
+            className={`${theme === "night" ? "white-text" : "black-text"}`}
+          >
+            Go Back
+          </span>
         </a>
 
         <section className="my-5 px-4 article">
@@ -67,14 +67,20 @@ const blog = ({ posts, comments, currentUser, router, handleTheme }) => {
             id="content-field"
           ></div>
 
-          {code ? (
+          {!Array.isArray(code) ? (
             <div>
               源码
               <pre>
                 <code className="language-javascript">{code}</code>
               </pre>
             </div>
-          ) : null}
+          ) : (
+            code.map((param) => (
+              <pre>
+                <code className="language-javascript">{param}</code>
+              </pre>
+            ))
+          )}
           {code2 ? (
             <div>
               {"Method 2"}
@@ -98,14 +104,14 @@ const blog = ({ posts, comments, currentUser, router, handleTheme }) => {
 blog.getInitialProps = async ({ query }) => {
   const { id } = query;
   const urls = [`/api/posts/${id}`, `/api/comments/${id}`];
-  const mapUrls = urls.map(async url => {
+  const mapUrls = urls.map(async (url) => {
     const response = await api.get(url);
     return await response.data;
   });
   const [posts, comments] = await Promise.all(mapUrls);
   return {
     posts: posts[0],
-    comments
+    comments,
   };
 };
 
