@@ -9,6 +9,7 @@ import Footer from "../components/Footer/Footer";
 import Animation from "../utils/Animation";
 import consolelog from "../utils/Console.log";
 import BrowserTest from "../utils/BrowserTest";
+import "../styles/index.scss";
 export interface IIndexProps {
   homepage: [] | any;
   errors: string;
@@ -20,19 +21,19 @@ export interface IIndexProps {
   darkTheme: () => {};
 }
 export interface IHomepageDataProps {
-  _id:string
-  jumbo_name:string
-  jumbo_welcome:string
-  jumbo_info:string
-  jumbo_button:string
-  intro_title:string
-  intro_subtitle:string
-  intro_intro:string
-  subscribe_web_version:string
-  footer_date:string
-  footer_welcome:string
-  likes:number
-  backgroundURL?:string
+  _id: string;
+  jumbo_name: string;
+  jumbo_welcome: string;
+  jumbo_info: string;
+  jumbo_button: string;
+  intro_title: string;
+  intro_subtitle: string;
+  intro_intro: string;
+  subscribe_web_version: string;
+  footer_date: string;
+  footer_welcome: string;
+  likes: number;
+  backgroundURL?: string;
 }
 const Index = ({
   homepage,
@@ -43,7 +44,7 @@ const Index = ({
   handleTheme,
   lightTheme,
   darkTheme,
-}:IIndexProps) => {
+}: IIndexProps) => {
   const [webUrl, SetWebUrl] = useState("");
 
   useEffect(() => {
@@ -52,6 +53,13 @@ const Index = ({
       consolelog();
     }
     SetWebUrl(window.location.hostname);
+    let timeout = setTimeout(() => {
+      const node: any = document.querySelector(".web-service-entrance");
+      node.style.display = "none";
+    }, 8000);
+    return () => {
+      clearTimeout(timeout);
+    };
   }, []);
   const {
     _id,
@@ -67,10 +75,28 @@ const Index = ({
     footer_welcome,
     likes,
     backgroundURL,
-  }:IHomepageDataProps = homepage[0];
-
+  }: IHomepageDataProps = homepage[0];
+  const mapWebServiceComponent = () => <div className="web-service-entrance">
+  <span
+    style={{ marginRight: "20px" }}
+    onClick={() => {
+      const node: any = document.querySelector(".web-service-entrance");
+      node.style.display = "none";
+    }}
+  >
+    X
+  </span>
+  <a
+    href="https://web.yaobaiyang.com"
+    style={{ color: "aliceblue", textDecoration: "underline" }}
+  >
+    https://web.yaobaiyang.com
+  </a>
+  现开通Atlas网站搭建服务,让任何人都能拥有自己的网站!
+</div>
   return (
     <Layout head={"Sam的博客 || www.yaobaiyang.com"}>
+      {mapWebServiceComponent()}
       <BrowserTest />
       <Header
         blogName={"Blog"}

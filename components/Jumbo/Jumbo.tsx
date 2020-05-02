@@ -46,6 +46,8 @@ const Jumbo = ({
   }, [checkMobile]);
 
   return (
+    <>
+    
     <div className="jumbo-section">
       <Link href={homeRoute}>
         <a id="logo" className="p-1">
@@ -94,6 +96,7 @@ const Jumbo = ({
         </div>
       </div>
     </div>
+    </>
   );
 };
 

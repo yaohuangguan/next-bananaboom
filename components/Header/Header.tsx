@@ -81,7 +81,9 @@ const Header = ({
   };
   return (
     <div className="nav">
+     
       <div className="header">
+
         <div className="options">
           <Link href="/blogs">
             <a className="option">{blogName}</a>
