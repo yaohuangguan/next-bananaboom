@@ -1,8 +1,23 @@
 import { useRouter } from "next/router";
-import { useEffect } from "react";
-import Loader from "../../Loader/Loader";
 import "./Project.scss";
-const Project = ({ _id, link, image, name, _name, info, _info }) => {
+export interface IProjectListItemProps {
+  _id: string;
+  link: string;
+  image: string;
+  name: string;
+  _name: string;
+  info: string;
+  _info: string;
+}
+const Project = ({
+  _id,
+  link,
+  image,
+  name,
+  _name,
+  info,
+  _info,
+}: IProjectListItemProps) => {
   // const hoverChange = () => {
   //   const div = document.querySelectorAll(".hover");
   //   div.forEach(element => {
@@ -16,11 +31,6 @@ const Project = ({ _id, link, image, name, _name, info, _info }) => {
   //   });
   // };
   const router = useRouter();
-  useEffect(() => {
-    const lazyLoadImage = document.querySelector(".lazyload");
-    console.log(lazyLoadImage);
-    return () => {};
-  }, []);
   return (
     <div
       className="col-md-6 hover"

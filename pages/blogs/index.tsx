@@ -8,11 +8,22 @@ import api from "../../utils/Api";
 import SearchBox from "../../components/SearchBox/SearchBox";
 import Loader from "../../components/Loader/Loader";
 import GitHub from "../../components/Github/Github.forkme";
-const Blog = ({ blogs, errors, currentUser, handleTheme }) => {
+
+const Blog = ({
+  blogs,
+  errors,
+  currentUser,
+  handleTheme,
+}: {
+  blogs: any;
+  errors: string;
+  currentUser: any;
+  handleTheme: () => {};
+}) => {
   const router = useRouter();
   const [searchField, setsearchField] = useState("");
   const [filteredBlog, setfilteredBlog] = useState([]);
-  const handleChange = e => setsearchField(e.target.value);
+  const handleChange = (e: any) => setsearchField(e.target.value);
   // if (typeof window !== "undefined") {
   //   router.beforePopState(({ url, as, option }) => {
   //     // I only want to allow these two routes!
@@ -66,17 +77,17 @@ const Blog = ({ blogs, errors, currentUser, handleTheme }) => {
     // }
     const result =
       blogs &&
-      blogs.filter(blog => {
-        let temp = blog.name + blog.info + blog.tags.map(each => each);
+      blogs.filter((blog: { name: string; info: string; tags: string[] }) => {
+        let temp = blog.name + blog.info + blog.tags.map((each) => each);
         return temp.toLowerCase().includes(searchField.toLowerCase());
       });
     setfilteredBlog(result);
   }, [searchField]);
-  const goBack = e => {
+  const goBack = (e: any) => {
     e.preventDefault();
     router.back();
   };
-  const searchSuggestion = e => {
+  const searchSuggestion = (e: any) => {
     let value = e.target.innerText;
     setsearchField(value);
   };
@@ -136,8 +147,8 @@ const Blog = ({ blogs, errors, currentUser, handleTheme }) => {
 };
 
 Blog.getInitialProps = async () => {
-  let posts;
-  let errors;
+  let posts: any;
+  let errors: string;
   try {
     const response = await api.get("/api/posts");
     posts = await response.data;
@@ -149,7 +160,7 @@ Blog.getInitialProps = async () => {
   return {
     blogs: posts,
     errors: errors,
-    loading: true
+    loading: true,
   };
 };
 

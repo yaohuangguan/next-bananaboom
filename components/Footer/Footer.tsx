@@ -1,6 +1,6 @@
 import "./Footer.scss";
 
-const Footer = ({ welcome, date }) => {
+const Footer = ({ welcome, date }: { welcome: string; date: any }) => {
   // const [closed, setClosed] = useState(false);
   // const explain = useRef(null)
   // useEffect(() => {

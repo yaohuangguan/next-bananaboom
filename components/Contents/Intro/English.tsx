@@ -1,7 +1,17 @@
-
 import { useRouter } from "next/router";
 import ProjectList from "../Projects/ProjectList";
-const EnglishIntro = ({ title, subtitle, intro, projects}) => {
+export interface IEnglishProjectProps {
+  title: string;
+  subtitle: string;
+  intro: string;
+  projects: [];
+}
+const EnglishIntro = ({
+  title,
+  subtitle,
+  intro,
+  projects,
+}: IEnglishProjectProps) => {
   const router = useRouter();
   const projectTitle = () =>
     router.pathname === "/"
@@ -15,7 +25,7 @@ const EnglishIntro = ({ title, subtitle, intro, projects}) => {
             <h3 className="linkTag">{title}</h3>
             <p>{subtitle}</p>
 
-            <p style={{ lineHeight: "35px",fontSize:'17px' }}>{intro}</p>
+            <p style={{ lineHeight: "35px", fontSize: "17px" }}>{intro}</p>
             <br />
             <br />
             <br />

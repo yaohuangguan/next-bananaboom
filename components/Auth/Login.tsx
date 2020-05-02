@@ -1,9 +1,15 @@
-import { useEffect, useState, useRef, useMemo } from "react";
+import { useState, useRef, useMemo } from "react";
 import { useRouter } from "next/router";
 import firebase from "../../firebase/firebase";
 import api from "../../utils/Api";
 import Loader from "../Loader/Loader";
-const Login = ({ passwordReveal, closeLogin }) => {
+const Login = ({
+  passwordReveal,
+  closeLogin,
+}: {
+  passwordReveal: any;
+  closeLogin: (e: any) => {};
+}) => {
   const router = useRouter();
   const LoginContainer = useRef(null);
   const [email, setemail] = useState("");
@@ -11,7 +17,7 @@ const Login = ({ passwordReveal, closeLogin }) => {
   const [errors, seterrors] = useState([]);
   const [loading, setloading] = useState(false);
 
-  const openSignup = (e) => {
+  const openSignup = (_e: any) => {
     closeLogin(LoginContainer);
     const modalContainer = document.querySelector(".signup-container");
     modalContainer.classList.remove("out");
@@ -23,14 +29,14 @@ const Login = ({ passwordReveal, closeLogin }) => {
     seterrors([]);
   };
   const handleCloseLogin = () => closeLogin(LoginContainer);
-  const handleEmail = (e) => {
+  const handleEmail = (e: any) => {
     setemail(e.target.value);
   };
-  const handlePassword = (e) => {
+  const handlePassword = (e: any) => {
     setpassword(e.target.value);
   };
 
-  const handleUserSubmit = async (e) => {
+  const handleUserSubmit = async (e: any) => {
     e.preventDefault();
 
     if (!email || !password) {

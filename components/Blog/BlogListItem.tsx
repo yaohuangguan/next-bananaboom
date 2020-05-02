@@ -4,8 +4,20 @@ import api from "../../utils/Api";
 import { useState } from "react";
 import { randomColor } from "../../utils/Utils";
 
-const colors = [`blue`, `orange`, `cyan`, `indigo`, `green`];
-
+const colors: string[] = [`blue`, `orange`, `cyan`, `indigo`, `green`];
+export interface IBlogListItemProps {
+  name: string;
+  info: string;
+  author: string;
+  likes: number;
+  tags: string[];
+  button: string;
+  createdDate: string;
+  _id: any;
+  image: string[];
+  url: string;
+  handleTheme: any;
+}
 const BlogListItem = ({
   name,
   info,
@@ -17,11 +29,12 @@ const BlogListItem = ({
   _id,
   image,
   url,
-  handleTheme
-}) => {
-  const [likeCount, setCount] = useState(likes);
-  const [ifLiked, handleLike] = useState(false);
-  const likeAndUpdate = async (id, action) => {
+  handleTheme,
+}: IBlogListItemProps) => {
+  const [likeCount, setCount] = useState<number>(likes);
+  const [ifLiked, handleLike] = useState<boolean>(false);
+  //@ts-ignore
+  const likeAndUpdate = async (id: any, action: string) => {
     const heart = document.getElementById(`${id}`);
     heart.classList.toggle("is_animating");
     heart.classList.toggle("liked");
@@ -67,7 +80,7 @@ const BlogListItem = ({
           style={{
             display: "flex",
             justifyContent: "flex-start",
-            alignItems: "center"
+            alignItems: "center",
           }}
         >
           {tags.map((tag, index) => (
@@ -83,11 +96,10 @@ const BlogListItem = ({
           ))}
         </div>
         <p className="">{info}</p>
-        {image
-          ? image.map((each, index) => (
-              <img src={each} key={index} alt="img" width="100%"></img>
-            ))
-          : null}
+        {image &&
+          image.map((each, index) => (
+            <img src={each} key={index} alt="img" width="100%"></img>
+          ))}
 
         <span>
           作者:
@@ -102,7 +114,9 @@ const BlogListItem = ({
           >
             <a
               className={`btn ${
-                handleTheme() === "night" ? "draw-border-white" : "draw-border-black"
+                handleTheme() === "night"
+                  ? "draw-border-white"
+                  : "draw-border-black"
               }`}
               style={{ height: "50px" }}
             >
@@ -115,7 +129,7 @@ const BlogListItem = ({
             style={{
               display: "flex",
               justifyContent: "center",
-              alignItems: "center"
+              alignItems: "center",
             }}
           >
             <div
@@ -130,11 +144,6 @@ const BlogListItem = ({
               >
                 Share with friends
               </span>
-              {/* <img
-                width="30"
-                height="30"
-                src="https://img.icons8.com/carbon-copy/30/000000/share.png"
-              /> */}
               <i className="fas fa-paper-plane fa-lg"></i>
             </div>
             <div

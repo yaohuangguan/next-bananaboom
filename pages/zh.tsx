@@ -7,10 +7,9 @@ import Intro from "../components/Contents/Intro/English";
 import Subscribe from "../components/Subscribe/Subscribe";
 import Footer from "../components/Footer/Footer";
 import Animation from "../utils/Animation";
-import consolelog from "../utils/Console.log";
-import BrowserTest from "../utils/BrowserTest";
+import {IIndexProps} from './index'
 
-const Index = ({
+const Chinese = ({
   homepage,
   errors,
   logs,
@@ -19,63 +18,58 @@ const Index = ({
   handleTheme,
   lightTheme,
   darkTheme
-}) => {
-  const [webUrl, SetWebUrl] = useState("");
+}:IIndexProps) => {
+  const [webUrl, setwebUrl] = useState("");
 
   useEffect(() => {
     Animation();
-    if (process.env.NODE_ENV === "production") {
-      consolelog();
-    }
-    SetWebUrl(window.location.hostname);
+    setwebUrl(window.location.hostname);
   }, []);
+
   const {
     _id,
-    jumbo_name,
-    jumbo_welcome,
-    jumbo_info,
-    jumbo_button,
-    intro_title,
-    intro_subtitle,
-    intro_intro,
-    subscribe_web_version,
-    footer_date,
-    footer_welcome,
+    jumbo_name_cn,
+    jumbo_welcome_cn,
+    jumbo_info_cn,
+    jumbo_button_cn,
+    intro_title_cn,
+    intro_subtitle_cn,
+    intro_intro_cn,
+    subscribe_web_version_cn,
+    footer_date_cn,
+    footer_welcome_cn,
     likes,
     backgroundURL
   } = homepage[0];
-
   return (
-    <Layout head={"Sam的博客 || www.yaobaiyang.com"}>
-      <BrowserTest />
+    <Layout head={"Sam 个人博客 博客文章 技术文章 生活文章 个人心得"}>
       <Header
-        blogName={"Blog"}
-        resumeName={"About"}
+        blogName={"博客"}
+        resumeName={"介绍"}
         resumeRoute={"/resume/[query]"}
-        changeLanguageRoute={"/zh"}
+        changeLanguageRoute={"/"}
         currentUser={currentUser ? currentUser : null}
         handleTheme={handleTheme}
         light={lightTheme}
         dark={darkTheme}
       />
       <Jumbo
-        name={jumbo_name}
-        welcome={jumbo_welcome}
-        info={jumbo_info ? "" : errors}
-        button={jumbo_button}
-        language={"english"}
-        homeRoute={"/"}
+        name={jumbo_name_cn}
+        welcome={jumbo_welcome_cn}
+        info={jumbo_info_cn ? "" : errors}
+        button={jumbo_button_cn}
+        language={"chinese"}
+        homeRoute={"/zh"}
         backgroundURL={backgroundURL}
       />
-      <div className="mt-3 px-5">
+      <div className="mt-3 mx-4">
         <Intro
-          title={intro_title}
-          subtitle={intro_subtitle}
-          intro={intro_intro}
+          title={intro_title_cn}
+          subtitle={intro_subtitle_cn}
+          intro={intro_intro_cn}
           projects={projects}
         ></Intro>
       </div>
-
       <div
         className="white-text z-depth-1"
         style={{ backgroundColor: "#333", marginTop: "120px" }}
@@ -83,22 +77,21 @@ const Index = ({
         <Subscribe
           likes={likes}
           _id={_id}
-          title={"Get the lastest blogs notified!"}
-          info={" Your information will be secured."}
+          title={"对本博客感兴趣？第一时间获取最新博客"}
+          info={"Your infomation is secure."}
           copyright={` All rights reserved ©2019-2020  ${webUrl ||
             "yaobaiyang.com"} `}
-          web_version={subscribe_web_version}
+          web_version={subscribe_web_version_cn}
           logs_content={logs}
         />
       </div>
 
-      <Footer date={footer_date} welcome={footer_welcome}></Footer>
+      <Footer date={footer_date_cn} welcome={footer_welcome_cn}></Footer>
     </Layout>
   );
 };
-Index.getInitialProps = async () => {
-  let errors;
-
+Chinese.getInitialProps = async () => {
+  let errors: string;
   try {
     const urls = [
       "/api/homepage",
@@ -111,18 +104,17 @@ Index.getInitialProps = async () => {
       return data;
     });
     const [homepage, logs, projects] = await Promise.all(getData);
-
     return {
       homepage,
       logs,
       projects
     };
   } catch (error) {
-    errors = `Sorry, 404. It shows incomplete pages，for the up to date contents，please refresh the page.`;
-    return {
-      errors
-    };
+    errors = `抱歉, 404. 这是一个错误. 现在的页面并不完整，为了保证最新的内容，请检查网络连接是否正常并尝试刷新页面`;
   }
-};
 
-export default Index;
+  return {
+    errors
+  };
+};
+export default Chinese;

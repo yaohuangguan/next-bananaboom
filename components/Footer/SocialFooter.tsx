@@ -4,7 +4,7 @@ import { useRouter } from "next/router";
 import Likes from "../Likes/Likes";
 import "../Blog/BlogListItem.scss";
 import "./Footer.scss";
-const SocialFooter = ({ likes, _id }) => {
+const SocialFooter = ({ likes, _id }: { likes: number; _id: string }) => {
   const router = useRouter();
   const handleShareText = () => {
     return router.pathname === "/" ? "Share with friends" : "分享本站";
@@ -40,11 +40,10 @@ const SocialFooter = ({ likes, _id }) => {
           {handleShareText()}
         </span>
 
-        <span className='share-text'>{handleShareText()}
-        <i className="fas fa-share"></i>
-
+        <span className="share-text">
+          {handleShareText()}
+          <i className="fas fa-share"></i>
         </span>
-       
       </div>
       <ul className="list-unstyled list-inline text-center">
         <li className="list-inline-item">
@@ -75,7 +74,7 @@ const SocialFooter = ({ likes, _id }) => {
             target="_blank"
             rel="noopener noreferrer"
           >
-           <i className="fab fa-instagram"></i>
+            <i className="fab fa-instagram"></i>
           </a>
         </li>
         <li className="list-inline-item">
@@ -91,21 +90,18 @@ const SocialFooter = ({ likes, _id }) => {
       </ul>
       <Likes likes={likes} _id={_id}></Likes>
 
-      <style jsx>{
-        `
-        ul li a i{
-          color:#fff;
-          font-size:25px;
+      <style jsx>{`
+        ul li a i {
+          color: #fff;
+          font-size: 25px;
         }
-        ul li a i:hover{
-          color:#007bff;
+        ul li a i:hover {
+          color: #007bff;
         }
-        .share-text{
-          font-size:20px
+        .share-text {
+          font-size: 20px;
         }
-        `
-      }</style>
-
+      `}</style>
     </div>
   );
 };

@@ -1,30 +1,39 @@
 import "./searchbox.scss";
+export interface ISearchBoxProps {
+  handleChange: any;
+  searchField: string;
+  blogs: any[];
+  searchSuggestion: any;
+  theme: any;
+}
 const SearchBox = ({
   handleChange,
   searchField,
   blogs,
   searchSuggestion,
-  theme
-}) => {
-  const suggests = blogs.map(blog =>
-    [blog.name].concat([...blog.tags.map(each => each)]).concat([blog.info])
+  theme,
+}: ISearchBoxProps) => {
+  const suggests = blogs.map((blog) =>
+    [blog.name]
+      .concat([...blog.tags.map((each: any) => each)])
+      .concat([blog.info])
   );
   let color = theme();
   const getSuggestion = () => {
     if (!searchField) return;
     let arrayHasDouble = suggests
       .map(
-        suggest =>
+        (suggest) =>
           suggest.length > 0 &&
           suggest.filter(
-            each =>
+            (each) =>
               each.length > 0 &&
               each.toLowerCase().startsWith(searchField.toLowerCase())
           )
       )
       .join(",")
       .split(",")
-      .filter(each => each.length > 0);
+      .filter((each) => each.length > 0);
     let set = Array.from(new Set(arrayHasDouble));
     return (
       <ul className="suggestion-list">
