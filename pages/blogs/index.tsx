@@ -93,7 +93,7 @@ const Blog = ({
   };
   return (
     <Layout
-      head={"Sam 个人博客 博客文章 技术文章 生活文章 个人心得 Blog Posts"}
+      head={"Sam 博客主页"}
     >
       <GitHub fill="#fff" color="#333" />
       <div className="shrinkedHeader">

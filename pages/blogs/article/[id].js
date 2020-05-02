@@ -37,7 +37,7 @@ const blog = ({ posts, comments, currentUser, router, handleTheme }) => {
   // console.log(typeof content)
   // console.log(project_id)
   return (
-    <Layout head={`${name} | Sam 个人博客 yaobaiyang.com`}>
+    <Layout head={`${name}`}>
       {content ? null : <SpecialWrapper project={project_id}></SpecialWrapper>}
 
       <div className="container">

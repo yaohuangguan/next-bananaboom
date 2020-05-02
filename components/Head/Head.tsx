@@ -7,7 +7,7 @@ const HeadConfig = ({ head }) => {
       <link rel="icon" href="/favicon.ico" />
       <title>
         {head ||
-          "Sam的博客|| yaobaiyang.com"}
+          "Sam Yao"}
       </title>
       <link
         href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css"
