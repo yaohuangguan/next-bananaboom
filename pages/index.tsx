@@ -56,7 +56,7 @@ const Index = ({
     let timeout = setTimeout(() => {
       const node: any = document.querySelector(".web-service-entrance");
       node.style.display = "none";
-    }, 8000);
+    }, 40000);
     return () => {
       clearTimeout(timeout);
     };
