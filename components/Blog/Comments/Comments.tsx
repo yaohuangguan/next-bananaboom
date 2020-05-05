@@ -114,7 +114,8 @@ const Comment = ({
     let box = document.getElementById("textarea-char-counter");
     const content = e.target.firstChild.textContent;
     insertTextAtCursor(box, content);
-    handleCommentChange(e);
+    //@ts-ignore
+    handleCommentChange();
   };
   const getEmojiList = () => {
     return (
