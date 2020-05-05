@@ -1,30 +1,37 @@
+import { useMemo } from "react";
 import "./searchbox.scss";
 const SearchBox = ({
   handleChange,
   searchField,
   blogs,
   searchSuggestion,
-  theme
+  theme,
 }) => {
-  const suggests = blogs.map(blog =>
-    [blog.name].concat([...blog.tags.map(each => each)]).concat([blog.info])
+  const suggests = useMemo(
+    () =>
+      blogs.map((blog) =>
+        [blog.name]
+          .concat([...blog.tags.map((each) => each)])
+          .concat([blog.info])
+      ),
+    [blogs]
   );
   let color = theme();
   const getSuggestion = () => {
     if (!searchField) return;
     let arrayHasDouble = suggests
       .map(
-        suggest =>
+        (suggest) =>
           suggest.length > 0 &&
           suggest.filter(
-            each =>
+            (each) =>
               each.length > 0 &&
               each.toLowerCase().startsWith(searchField.toLowerCase())
           )
       )
       .join(",")
       .split(",")
-      .filter(each => each.length > 0);
+      .filter((each) => each.length > 0);
     let set = Array.from(new Set(arrayHasDouble));
     return (
       <ul className="suggestion-list">

@@ -1,6 +1,6 @@
 /* eslint-disable react/style-prop-object */
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useMemo } from "react";
 import Layout from "../../components/Layout/Layout";
 import { useRouter } from "next/router";
 import BlogList from "../../components/Blog/BlogList";
@@ -12,7 +12,7 @@ const Blog = ({ blogs, errors, currentUser, handleTheme }) => {
   const router = useRouter();
   const [searchField, setsearchField] = useState("");
   const [filteredBlog, setfilteredBlog] = useState([]);
-  const handleChange = e => setsearchField(e.target.value);
+  const handleChange = (e) => setsearchField(e.target.value);
   // if (typeof window !== "undefined") {
   //   router.beforePopState(({ url, as, option }) => {
   //     // I only want to allow these two routes!
@@ -65,18 +65,18 @@ const Blog = ({ blogs, errors, currentUser, handleTheme }) => {
     //   worker.postMessage({ blogs, searchField });
     // }
     const result =
-      blogs &&
-      blogs.filter(blog => {
-        let temp = blog.name + blog.info + blog.tags.map(each => each);
-        return temp.toLowerCase().includes(searchField.toLowerCase());
-      });
+        blogs &&
+        blogs.filter((blog) => {
+          let temp = blog.name + blog.info + blog.tags.map((each) => each);
+          return temp.toLowerCase().includes(searchField.toLowerCase());
+        })
     setfilteredBlog(result);
   }, [searchField]);
-  const goBack = e => {
+  const goBack = (e) => {
     e.preventDefault();
     router.back();
   };
-  const searchSuggestion = e => {
+  const searchSuggestion = (e) => {
     let value = e.target.innerText;
     setsearchField(value);
   };
@@ -149,7 +149,7 @@ Blog.getInitialProps = async () => {
   return {
     blogs: posts,
     errors: errors,
-    loading: true
+    loading: true,
   };
 };
 
