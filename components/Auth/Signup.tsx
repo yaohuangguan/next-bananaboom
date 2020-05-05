@@ -1,10 +1,10 @@
-import { useEffect, useState, useRef, useMemo } from "react";
+import { useState, useRef, useMemo } from "react";
 import { useRouter } from "next/router";
 import firebase from "../../firebase/firebase";
 import api from "../../utils/Api";
 import Loader from "../Loader/Loader";
 import Login from "./Login";
-const Signup = ({ linkColor }) => {
+const Signup = ({ linkColor }: { linkColor?: string }) => {
   const router = useRouter();
   const SignupContainer = useRef(null);
   const [email, setemail] = useState("");
@@ -13,24 +13,24 @@ const Signup = ({ linkColor }) => {
   const [passwordConf, setpasswordConf] = useState("");
   const [errors, seterrors] = useState([]);
   const [loading, setloading] = useState(false);
-  const openSignup = (e) => {
+  const openSignup = (_e: any) => {
     SignupContainer.current.classList.remove("out");
     SignupContainer.current.classList.add("popup");
-    const loginContainer = document.querySelector(".login-container");
+    const loginContainer: any = document.querySelector(".login-container");
     closeLogin(loginContainer);
   };
 
   const closeSignup = () => {
     SignupContainer.current.classList.add("out");
   };
-  const closeLogin = (container) => {
+  const closeLogin = (container: { current: any; classList: any }): any => {
     container.current
       ? container.current.classList.add("out")
       : container.classList.add("out");
   };
-  const passwordReveal = (e) => {
+  const passwordReveal = (_e: any) => {
     let x = document.querySelectorAll(".password");
-    x.forEach((each) => {
+    x.forEach((each: any) => {
       if (each.type === "password") {
         each.type = "text";
       } else {
@@ -45,16 +45,16 @@ const Signup = ({ linkColor }) => {
     seterrors([]);
     setpasswordConf("");
   };
-  const handleDisplayName = (e) => {
+  const handleDisplayName = (e: any) => {
     setdisplayName(e.target.value);
   };
-  const handleEmail = (e) => {
+  const handleEmail = (e: any) => {
     setemail(e.target.value);
   };
-  const handlePasswordConf = (e) => {
+  const handlePasswordConf = (e: any) => {
     setpasswordConf(e.target.value);
   };
-  const handlePassword = (e) => {
+  const handlePassword = (e: any) => {
     setpassword(e.target.value);
   };
   const openLogin = () => {
@@ -127,7 +127,7 @@ const Signup = ({ linkColor }) => {
       }
       if (error.response.data.errors) {
         const _error = error.response.data.errors.map(
-          (each) => `  ${each.msg}`
+          (each: any) => `  ${each.msg}`
         );
         seterrors(_error);
       }

@@ -1,20 +1,23 @@
-import { useMemo } from "react";
+
 import "./searchbox.scss";
+export interface ISearchBoxProps {
+  handleChange: any;
+  searchField: string;
+  blogs: any[];
+  searchSuggestion: any;
+  theme: any;
+}
 const SearchBox = ({
   handleChange,
   searchField,
   blogs,
   searchSuggestion,
   theme,
-}) => {
-  const suggests = useMemo(
-    () =>
-      blogs.map((blog) =>
-        [blog.name]
-          .concat([...blog.tags.map((each) => each)])
-          .concat([blog.info])
-      ),
-    [blogs]
+}: ISearchBoxProps) => {
+  const suggests = blogs.map((blog) =>
+    [blog.name]
+      .concat([...blog.tags.map((each: any) => each)])
+      .concat([blog.info])
   );
   let color = theme();
   const getSuggestion = () => {

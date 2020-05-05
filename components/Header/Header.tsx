@@ -7,6 +7,17 @@ import Signup from "../Auth/Signup";
 import Dropdown from "./DropDown/DropDown";
 import HamburgerMenu from "./Hamburger/Hamburger";
 import Darkmode from "../Darkmode/Darkmode";
+export interface IHeaderProps {
+  blogName:string;
+  resumeName:string;
+  resumeRoute:string;
+  changeLanguageRoute:string;
+  currentUser:any;
+  router:any;
+  handleTheme:() => {};
+  light:any;
+  dark:any
+}
 const Header = ({
   blogName,
   resumeName,
@@ -17,12 +28,12 @@ const Header = ({
   handleTheme,
   light,
   dark
-}) => {
+}:IHeaderProps) => {
   useEffect(() => {
     const headerChange = () => {
       let c = 0;
       let currentScrollTop = 0;
-      let navbar = document.querySelector(".header");
+      const navbar:any = document.querySelector(".header");
       window.addEventListener("scroll", () => {
         let a = scrollY;
         let b = navbar.clientHeight;
@@ -45,7 +56,7 @@ const Header = ({
   });
 
   const turnOnDropDown = () => {
-    let dropdown = document.querySelector(".dropdown-mobile-submenu");
+    let dropdown:any = document.querySelector(".dropdown-mobile-submenu");
     if (dropdown.style.display !== "block") {
       dropdown.classList.toggle("dropdown-hide");
     }
@@ -70,7 +81,9 @@ const Header = ({
   };
   return (
     <div className="nav">
+     
       <div className="header">
+
         <div className="options">
           <Link href="/blogs">
             <a className="option">{blogName}</a>

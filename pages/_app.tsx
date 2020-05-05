@@ -1,8 +1,8 @@
 import App from "next/app";
 import firebase from "../firebase/firebase";
 import api from "../utils/Api";
-import { getCookie, setCookie, themeProvider } from "../utils/Cookie";
-import Router from 'next/router'
+import { getCookie, setCookie } from "../utils/Cookie";
+import Router from "next/router";
 class SamMainApp extends App {
   // Only uncomment this method if you have blocking data requirements for
   // every single page in your application. This disables the ability to
@@ -16,10 +16,10 @@ class SamMainApp extends App {
   //   return { ...appProps }
   // }
   state = {
-    currentUser: ""
+    currentUser: "",
   };
   unsubscribeFromAuth = null;
-  getUserProfile = async token => {
+  getUserProfile = async (token:string) => {
     if (typeof window !== "undefined") {
       token = localStorage.getItem("token") || null;
     }
@@ -29,12 +29,12 @@ class SamMainApp extends App {
     try {
       const response = await api.get("/api/users/profile", {
         headers: {
-          "x-auth-token": token
-        }
+          "x-auth-token": token,
+        },
       });
       const data = await response.data;
-      
-      this.setState(state => {
+
+      this.setState((_state) => {
         if (token) {
           process.env.NODE_ENV === "development"
             ? console.log("user", data)
@@ -44,8 +44,8 @@ class SamMainApp extends App {
       });
     } catch (error) {
       console.log("token faield");
-      if(error){
-        Router.reload()
+      if (error) {
+        Router.reload();
       }
     }
   };
@@ -69,7 +69,6 @@ class SamMainApp extends App {
 
   lightTheme = () => {
     setCookie("theme", "day", 365);
-    console.log("day");
     if (typeof window !== "undefined") {
       document.body.style.backgroundColor = "#fff";
       document.body.style.color = "#333";
@@ -77,7 +76,6 @@ class SamMainApp extends App {
   };
   darkTheme = () => {
     setCookie("theme", "night", 365);
-    console.log("night");
     if (typeof window !== "undefined") {
       document.body.style.backgroundColor = "#333";
       document.body.style.color = "#fff";
@@ -90,11 +88,11 @@ class SamMainApp extends App {
     if (!refresh) {
       this.getUserProfile(user);
     }
-    this.unsubscribeFromAuth = firebase.auth.onAuthStateChanged(user => {
+    this.unsubscribeFromAuth = firebase.auth.onAuthStateChanged((user) => {
       if (user) {
-        this.setState(state => {
+        this.setState((_state) => {
           return {
-            currentUser: user
+            currentUser: user,
           };
         });
       }

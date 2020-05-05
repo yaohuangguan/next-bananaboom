@@ -4,7 +4,7 @@ import Link from "next/link";
 import api from "../../../utils/Api";
 import firebase from "../../../firebase/firebase";
 import "./DropDown.scss";
-const DropDown = ({ currentUser }) => {
+const DropDown = ({ currentUser }:any) => {
   const router = useRouter();
   const logout = async () => {
     if (typeof window != "undefined") {

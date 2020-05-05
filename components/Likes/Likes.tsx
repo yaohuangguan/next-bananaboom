@@ -1,12 +1,12 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import api from "../../utils/Api";
 import { useRouter } from "next/router";
 import "../Footer/Footer.scss";
-const Likes = ({ likes, _id }) => {
+const Likes = ({ likes, _id }: { likes: number; _id: string }) => {
   const [likeCount, setCount] = useState(likes);
   const [ifLiked, handleLike] = useState(false);
   const router = useRouter();
-  const likeAndUpdate = async (id, action) => {
+  const likeAndUpdate = async (id: string, action: string) => {
     const heart = document.getElementById(`${id}`);
     heart.classList.toggle("is_animating");
     heart.classList.toggle("liked");
@@ -41,7 +41,7 @@ const Likes = ({ likes, _id }) => {
       style={{
         display: "flex",
         justifyContent: "center",
-        alignItems: "center"
+        alignItems: "center",
       }}
       className="font-weight-bold white-text"
     >

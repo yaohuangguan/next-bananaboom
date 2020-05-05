@@ -1,3 +1,4 @@
+$share-button-color:rgb(2, 148, 216);
 .heart {
   cursor: pointer;
   height: 70px;
@@ -34,15 +35,15 @@
   cursor: pointer;
   .fa-lg{
     &:hover{
-      color:rgb(125, 46, 199);
+      color:$share-button-color;
     }
   }
 .share-button-text {
   visibility: hidden;
   width: 200px;
   background-color:#ffff;
-  color: rgb(125, 46, 199);
-  border:2px solid rgb(125, 46, 199);
+  color: $share-button-color;
+  border:2px solid $share-button-color;
   text-align: center;
   padding: 3px;
   position: absolute;
@@ -60,7 +61,7 @@
     margin-left: -5px;
     border-width: 5px;
     border-style: solid;
-    border-color: rgb(125, 46, 199) transparent transparent transparent;
+    border-color: $share-button-color transparent transparent transparent;
   }
 }
 &:hover .share-button-text {

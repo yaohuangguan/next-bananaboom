@@ -1,7 +1,24 @@
 import { useState, useEffect } from "react";
 import "./Jumbo.scss";
-import Link from 'next/link'
-const Jumbo = ({ name, welcome, info, button, language, backgroundURL,homeRoute }) => {
+import Link from "next/link";
+export interface IJumboProps {
+  name: string;
+  welcome: string;
+  info: string;
+  button: string;
+  language: string;
+  backgroundURL?: string;
+  homeRoute: string;
+}
+const Jumbo = ({
+  name,
+  welcome,
+  info,
+  button,
+  language,
+  backgroundURL,
+  homeRoute,
+}: IJumboProps) => {
   //// https://res.cloudinary.com/next-bananaboom/image/upload/v1582173503/WechatIMG11_ei3ugm.jpg
 
   const [mobile, setmobile] = useState(null);
@@ -20,7 +37,7 @@ const Jumbo = ({ name, welcome, info, button, language, backgroundURL,homeRoute 
   useEffect(() => {
     const SmoothScroll = require("smooth-scroll");
     let scroll = new SmoothScroll('a[href*="#"]', {
-      speed: 1200
+      speed: 1200,
     });
     checkMobile();
     return () => {
@@ -29,16 +46,17 @@ const Jumbo = ({ name, welcome, info, button, language, backgroundURL,homeRoute 
   }, [checkMobile]);
 
   return (
+    <>
+    
     <div className="jumbo-section">
-       <Link href={homeRoute}>
-          <a id="logo" className="p-1">
-            <img src="/favicon.png" width="55px" height="55px" alt="sam logo" />
-          </a>
-        </Link>
+      <Link href={homeRoute}>
+        <a id="logo" className="p-1">
+          <img src="/favicon.png" width="55px" height="55px" alt="sam logo" />
+        </a>
+      </Link>
       <div
         style={{ maxHeight: "100vh", maxWidth: "100vw", overflow: "hidden" }}
       >
-        
         <video
           className="background-video"
           poster={
@@ -62,7 +80,7 @@ const Jumbo = ({ name, welcome, info, button, language, backgroundURL,homeRoute 
           />
         </video>
       </div>
-     
+
       <div className="text-white text-center py-5 px-5 jumbo-wrapper">
         <div className="jumbo">
           <h1 className="card-subtitle mb-3">{name}</h1>
@@ -78,6 +96,7 @@ const Jumbo = ({ name, welcome, info, button, language, backgroundURL,homeRoute 
         </div>
       </div>
     </div>
+    </>
   );
 };
 

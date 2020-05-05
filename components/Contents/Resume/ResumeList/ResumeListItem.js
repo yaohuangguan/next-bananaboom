@@ -1,11 +1,13 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import { useRouter } from "next/router";
+import { randomColor } from "../../../../utils/Utils";
 
+const colors = [`blue`, `orange`, `cyan`, `indigo`, `green`];
 const ResumeListItem = ({ _id, title, _title, info, _info, url, degrees }) => {
   const router = useRouter();
   return (
     <div className="col-md-6 m-4 mx-auto">
-      <div className="bg-info rounded">
+      <div className={`lighten-2 cyan rounded`}>
         <a href={url} target="_blank" rel="noopener noreferrer">
           <div className="text-white">
             <div className="first-content text-center p-2">
@@ -21,7 +23,9 @@ const ResumeListItem = ({ _id, title, _title, info, _info, url, degrees }) => {
         <div className="tool-badges mb-3 mt-1">
           {degrees &&
             degrees.map((each, index) => (
-              <a key={index} className="badge badge-info mr-3">
+              <a key={index} className={`badge lighten-2 ${randomColor(
+                colors
+              )} white-text mr-3`}>
                 {each}
               </a>
             ))}

@@ -8,11 +8,22 @@ import api from "../../utils/Api";
 import SearchBox from "../../components/SearchBox/SearchBox";
 import Loader from "../../components/Loader/Loader";
 import GitHub from "../../components/Github/Github.forkme";
-const Blog = ({ blogs, errors, currentUser, handleTheme }) => {
+
+const Blog = ({
+  blogs,
+  errors,
+  currentUser,
+  handleTheme,
+}: {
+  blogs: any;
+  errors: string;
+  currentUser: any;
+  handleTheme: () => {};
+}) => {
   const router = useRouter();
   const [searchField, setsearchField] = useState("");
   const [filteredBlog, setfilteredBlog] = useState([]);
-  const handleChange = (e) => setsearchField(e.target.value);
+  const handleChange = (e: any) => setsearchField(e.target.value);
   // if (typeof window !== "undefined") {
   //   router.beforePopState(({ url, as, option }) => {
   //     // I only want to allow these two routes!
@@ -65,24 +76,24 @@ const Blog = ({ blogs, errors, currentUser, handleTheme }) => {
     //   worker.postMessage({ blogs, searchField });
     // }
     const result =
-        blogs &&
-        blogs.filter((blog) => {
-          let temp = blog.name + blog.info + blog.tags.map((each) => each);
-          return temp.toLowerCase().includes(searchField.toLowerCase());
-        })
+      blogs &&
+      blogs.filter((blog: { name: string; info: string; tags: string[] }) => {
+        let temp = blog.name + blog.info + blog.tags.map((each) => each);
+        return temp.toLowerCase().includes(searchField.toLowerCase());
+      });
     setfilteredBlog(result);
   }, [searchField]);
-  const goBack = (e) => {
+  const goBack = (e: any) => {
     e.preventDefault();
     router.back();
   };
-  const searchSuggestion = (e) => {
+  const searchSuggestion = (e: any) => {
     let value = e.target.innerText;
     setsearchField(value);
   };
   return (
     <Layout
-      head={"Sam 个人博客 博客文章 技术文章 生活文章 个人心得 Blog Posts"}
+      head={"Sam 博客主页"}
     >
       <GitHub fill="#fff" color="#333" />
       <div className="shrinkedHeader">
@@ -136,8 +147,8 @@ const Blog = ({ blogs, errors, currentUser, handleTheme }) => {
 };
 
 Blog.getInitialProps = async () => {
-  let posts;
-  let errors;
+  let posts: any;
+  let errors: string;
   try {
     const response = await api.get("/api/posts");
     posts = await response.data;

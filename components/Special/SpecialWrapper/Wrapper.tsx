@@ -3,7 +3,7 @@ import dynamic from "next/dynamic";
 const Meteor = dynamic(() => import("../Meteor/Meteor"));
 const Music = dynamic(() => import("../MusicPlayer/Music"));
 
-const Wrapper = ({ project }) => {
+const Wrapper = ({ project }: any) => {
   console.log(project);
   function wrap() {
     switch (project) {
@@ -12,7 +12,7 @@ const Wrapper = ({ project }) => {
       case "meteor":
         return <Meteor></Meteor>;
       default:
-        return 'Something wrong' ;
+        return "Something wrong";
     }
   }
   return <>{wrap()}</>;

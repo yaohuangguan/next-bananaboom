@@ -199,6 +199,8 @@ const Editor = () => {
         </label>
         <label htmlFor="code">
           代码
+          <span className='text-muted'>
+          [数组](用;隔开多个)</span>
           <input
             type="text"
             value={code}

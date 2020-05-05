@@ -40,7 +40,7 @@ const dashboard = ({ currentUser, handleTheme,getUserProfile }) => {
   };
 
   return (
-    <Layout head={"用户中心 User Control || yaobaiyang.com"}>
+    <Layout head={"用户中心 User Control"}>
       <div>
         {currentUser ? (
           <div className="text-center">

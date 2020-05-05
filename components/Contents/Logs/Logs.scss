@@ -12,7 +12,12 @@
   }
   transform: scale(0);
   z-index: 3;
-  overflow: scroll;
+  overflow-y: scroll;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
   &.popup {
     transform: scaleY(0.01) scaleX(0);
     animation: unfoldIn 1s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;

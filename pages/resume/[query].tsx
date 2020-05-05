@@ -58,7 +58,7 @@ const Resume = ({ resumeItem, errors, router, handleTheme }) => {
     );
   };
   return (
-    <Layout head={"Sam's about page 关于Sam的个人生活爱好等"}>
+    <Layout head={"关于"}>
       <GitHub fill="#333333" color="#ffffff" />
       <div className="container">
         <Link href={router.asPath == "/resume/en-us" ? "/" : "/zh"}>
