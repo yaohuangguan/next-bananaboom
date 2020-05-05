@@ -1,5 +1,15 @@
 import Reply from "./Reply/Reply";
-const CommentListItem = ({ user, _userid, comment, date, photoURL, id, reply, currentUser }) => {
+export interface ICommentListItemProps {
+  user:string;
+  _userid:string;
+  comment:string;
+  date:string;
+  photoURL:string;
+  id:string;
+  reply:string;
+  currentUser:any
+}
+const CommentListItem = ({ user, _userid, comment, date, photoURL, id, reply, currentUser }:ICommentListItemProps) => {
   return (
     <div style={{display:'flex',flexDirection:'column'}}>
       {comment && (

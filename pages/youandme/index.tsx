@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useReducer, useMemo } from "react";
-import {useRouter} from 'next/router'
+import { useRouter } from "next/router";
 import api from "../../utils/Api";
 import axios from "axios";
 import dynamic from "next/dynamic";
@@ -8,34 +8,50 @@ import ChatLogin from "../../components/Private/Chat/ChatLogin";
 import ChatContainer from "../../components/Private/Chat/ChatContainer";
 import Layout from "../../components/Layout/Layout";
 import io from "../../utils/Socket";
-import PrivatePost from "../../components/Private/PrivatePost/PrivatePost.js";
+import PrivatePost from "../../components/Private/PrivatePost/PrivatePost";
 import DateCounting from "../../components/Private/CountDate/CountDate";
 import ToDo from "../../components/Private/ToDo/ToDo";
 import {
   USER_CONNECTED,
   LOGOUT,
-  ROOM_WELCOME
+  ROOM_WELCOME,
 } from "../../components/Private/Chat/Events";
 import DrawingCanvas from "../../components/DrawingCanvas/Drawing";
 import ChrismasLight from "../../components/Private/ChrismasLight/Light";
 import Loader from "../../components/Loader/Loader";
 import "./youandme.scss";
 const CKEditor = dynamic(() => import("../../components/CKeditor/Editor"), {
-  ssr: false
+  ssr: false,
 });
 const socketURL =
   process.env.NODE_ENV === "development"
     ? "http://localhost:5000"
     : "https://nextbananaboom.herokuapp.com";
-
-const index = ({ currentUser, posts, errors, todos }) => {
-  const router = useRouter()
+export interface IYouAndMeProps {
+  currentUser: {
+    date: string;
+    displayName: string;
+    email: string;
+    photoURL: string;
+    private_token?: string;
+    vip: boolean;
+    _id: string;
+  };
+  posts?: any;
+  errors: string;
+  todos?: any;
+}
+const index = ({ currentUser, posts, errors, todos }: IYouAndMeProps) => {
+  const router = useRouter();
   const [socket, setSocket] = useState(null);
   const [chatUser, setuser] = useState("");
   const [privatePosts, setprivatePosts] = useState("");
   const [loading, setLoading] = useState(false);
-  const getVip = useMemo(() =>
-    currentUser ? currentUser.private_token === "ilovechenfangting" : null,[currentUser])
+  const getVip = useMemo(
+    () =>
+      currentUser ? currentUser.private_token === "ilovechenfangting" : null,
+    [currentUser]
+  );
   useEffect(() => {
     const socket = io(socketURL);
     const connectSocket = () => {
@@ -44,7 +60,7 @@ const index = ({ currentUser, posts, errors, todos }) => {
       });
       setSocket(socket);
     };
-    socket.on(ROOM_WELCOME, data => console.log(data));
+    socket.on(ROOM_WELCOME, (data) => console.log(data));
 
     connectSocket();
     return () => {
@@ -61,7 +77,7 @@ const index = ({ currentUser, posts, errors, todos }) => {
   }, [currentUser]);
 
   //subscribe event
-  Emitter.subscribe("getNewPrivatePosts", data => setprivatePosts(data));
+  Emitter.subscribe("getNewPrivatePosts", (data:any) => setprivatePosts(data));
   useEffect(() => {
     return () => {
       Emitter.off("getNewPrivatePosts");
@@ -74,19 +90,19 @@ const index = ({ currentUser, posts, errors, todos }) => {
     const getNewPrivatePosts = async () => {
       try {
         const response = await api("/api/posts/private/posts", {
-          cancelToken: source.token
+          cancelToken: source.token,
         });
         let data = await response.data;
-        console.log('data here',data);
+        console.log("data here", data);
         setLoading(false);
         setprivatePosts(data);
       } catch (error) {
         if (axios.isCancel(error)) {
           console.log("caught cancel axios");
         } else {
-          console.log(error)
-          if(error){
-            router.push('/')
+          console.log(error);
+          if (error) {
+            router.push("/");
           }
           setLoading(false);
         }
@@ -98,7 +114,7 @@ const index = ({ currentUser, posts, errors, todos }) => {
     };
   }, []);
 
-  const setUser = user => {
+  const setUser = (user: any) => {
     socket.emit(USER_CONNECTED, user);
     console.log("user", user);
     setuser(user);
@@ -153,7 +169,7 @@ const index = ({ currentUser, posts, errors, todos }) => {
                     <Loader size="150px" color="text-secondary"></Loader>
                   </div>
                 ) : (
-                  <PrivatePost privatePosts={privatePosts}></PrivatePost>
+                  <PrivatePost privatePosts={privatePosts} currentUser={currentUser} ></PrivatePost>
                 )}
               </div>
 
@@ -162,7 +178,7 @@ const index = ({ currentUser, posts, errors, todos }) => {
               </div>
 
               <div className="love-right-side">
-                <ToDo todos={todos}></ToDo>
+                <ToDo></ToDo>
                 <div className="blog-container">
                   <CKEditor></CKEditor>
                 </div>

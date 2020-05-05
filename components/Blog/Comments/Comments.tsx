@@ -5,12 +5,20 @@ import axios from "axios";
 import Signup from "../../Auth/Signup";
 import Loader from "../../Loader/Loader";
 import { insertTextAtCursor } from "../../../utils/Utils";
-const Comment = ({ currentUser, comments, _id }) => {
+const Comment = ({
+  currentUser,
+  comments,
+  _id,
+}: {
+  currentUser: any;
+  comments: any[];
+  _id: string;
+}) => {
   const [commentInputField, setcommentInputField] = useState("");
   const [commentsCount, setcommentsCount] = useState(comments.length);
   const [errors, seterrors] = useState("");
   const [commentsList, setcommentsList] = useState(comments);
-  const [emojiList, setemojiList] = useState("");
+  const [emojiList, setemojiList] = useState([]);
   const [loading, setloading] = useState(false);
   const fetchEmoji = async () => {
     const emoji = await axios(
@@ -19,9 +27,9 @@ const Comment = ({ currentUser, comments, _id }) => {
     const data = await emoji.data;
     setemojiList(data.results);
   };
-  const handleCommentChange = async e => {
+  const handleCommentChange = async (e: any) => {
     if (!e) {
-      let box = document.getElementById("textarea-char-counter");
+      let box: any = document.getElementById("textarea-char-counter");
       return setcommentInputField(box.value);
     }
     setcommentInputField(e.target.value);
@@ -33,7 +41,7 @@ const Comment = ({ currentUser, comments, _id }) => {
     const getNewComments = async () => {
       try {
         const response = await api.get(`/api/comments/${_id}`, {
-          cancelToken: source.token
+          cancelToken: source.token,
         });
         let getComments = await response.data;
         setcommentsList(getComments);
@@ -53,7 +61,7 @@ const Comment = ({ currentUser, comments, _id }) => {
     };
   }, []);
   const clearCommentField = () => {
-    const textarea = document.querySelector(".comment-input");
+    const textarea: any = document.querySelector(".comment-input");
     textarea.value = "";
     setcommentInputField("");
   };
@@ -66,7 +74,9 @@ const Comment = ({ currentUser, comments, _id }) => {
       return seterrors("评论不能为空。 Comment can not be empty");
     }
     if (commentInputField.trim().length > 120) {
-      return seterrors("最大字符限制：120字。 You can't post a comment more than 120 words");
+      return seterrors(
+        "最大字符限制：120字。 You can't post a comment more than 120 words"
+      );
     }
     const { displayName, photoURL } = currentUser;
 
@@ -77,13 +87,13 @@ const Comment = ({ currentUser, comments, _id }) => {
           method: "post",
           url: `/api/comments/${_id}?user_id=${currentUser._id}`,
           headers: {
-            "x-google-auth": currentUser.ma ? currentUser.ma : null
+            "x-google-auth": currentUser.ma ? currentUser.ma : null,
           },
           data: JSON.stringify({
             user: displayName,
             photoURL,
-            comment: commentInputField
-          })
+            comment: commentInputField,
+          }),
         });
         const result = await response.data;
         setcommentsList(result);
@@ -100,16 +110,16 @@ const Comment = ({ currentUser, comments, _id }) => {
     }
   };
 
-  const appendToComment = e => {
+  const appendToComment = (e: any) => {
     let box = document.getElementById("textarea-char-counter");
     const content = e.target.firstChild.textContent;
     insertTextAtCursor(box, content);
-    handleCommentChange();
+    handleCommentChange(e);
   };
   const getEmojiList = () => {
     return (
       <div className="text-center emoji-list">
-        {emojiList.map((each, index) => (
+        {emojiList.map((each: any, index: number) => (
           <button
             key={index}
             className="mx-2"
@@ -119,7 +129,7 @@ const Comment = ({ currentUser, comments, _id }) => {
               backgroundColor: "transparent",
               borderColor: "#333333",
               outline: "none",
-              textAlign: "center"
+              textAlign: "center",
             }}
             id={`${index}`}
             onClick={appendToComment}
@@ -166,7 +176,6 @@ const Comment = ({ currentUser, comments, _id }) => {
                     className="form-control my-0 comment-input text-center"
                     rows={3}
                     id="textarea-char-counter"
-                    length="120"
                     value={commentInputField}
                     onChange={handleCommentChange}
                   ></textarea>
@@ -176,7 +185,8 @@ const Comment = ({ currentUser, comments, _id }) => {
             </div>
             <button
               type="button"
-              className="btn bg-dark text-white mb-3 waves-effect waves-light float-right"
+              className="btn bg-secondary text-white waves-effect waves-light float-right"
+              style={{marginTop:'-20px'}}
               onClick={submitComment}
             >
               {!loading ? "发送" : <Loader />}
@@ -188,13 +198,13 @@ const Comment = ({ currentUser, comments, _id }) => {
         .comment-input {
           box-shadow: none;
           border: 2px solid #333;
-          border-radius: 30px;
+          border-radius: 10px;
         }
         .comment-input:focus {
           border: none;
           outline: none;
-          border: 2px solid #2eca6a;
-          border-color: #2eca6a;
+          border: 2px solid #aa66cc;
+          border-color: #aa66cc;
           box-shadow: none;
         }
         .emoji-list {

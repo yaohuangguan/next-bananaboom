@@ -8,14 +8,33 @@ import Pay from "../../../components/Blog/Pay/Pay";
 const Comment = dynamic(() =>
   import("../../../components/Blog/Comments/Comments")
 );
-
-const blog = ({ posts, comments, currentUser, router, handleTheme }) => {
+interface IBlogProps {
+  posts: {
+    name: string;
+    content?: string;
+    code?: string;
+    code2?: string;
+    _id: string;
+    project_id?: string;
+  };
+  comments: any;
+  currentUser: any;
+  router: any;
+  handleTheme: () => {};
+}
+const blog = ({
+  posts,
+  comments,
+  currentUser,
+  router,
+  handleTheme,
+}: IBlogProps) => {
   const { name, content, code, code2, _id, project_id } = posts;
   const [theme, setTheme] = useState("");
 
   function handleThemeBeforeServer() {
     if (typeof window !== "undefined") {
-      let theme = handleTheme();
+      let theme: any = handleTheme();
       return setTheme(theme);
     }
   }

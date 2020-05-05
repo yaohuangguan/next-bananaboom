@@ -1,29 +1,38 @@
 import React, { useEffect } from "react";
 import "./countdate.scss";
 const Surprise = () => {
-  const handleClick = () =>
-    alert(
-      "被你发现了哈哈，老婆，我爱你哦"
-    );
+  const handleClick = () => alert("老婆，我爱你哦");
   return (
-    <div onClick={handleClick} className="p-5 position-absolute" style={{ opacity: 0 }}>
+    <div
+      onClick={handleClick}
+      className="p-5 position-absolute"
+      style={{ opacity: 0 }}
+    >
       HAHAHAHAHAHHAHHAHAHAHHAHA
     </div>
   );
 };
-const CountDate = ({ fromDate, isPrivate, fromWhat }) => {
+const CountDate = ({
+  fromDate,
+  isPrivate,
+  fromWhat,
+}: {
+  fromDate?: string;
+  isPrivate: boolean;
+  fromWhat?: string;
+}) => {
   useEffect(() => {
-    const days = document.getElementById("days");
-    const hours = document.getElementById("hours");
-    const minutes = document.getElementById("minutes");
-    const seconds = document.getElementById("seconds");
-    const countdown = document.getElementById("countdown");
-    const year = document.getElementById("year");
+    const days: any = document.getElementById("days");
+    const hours: any = document.getElementById("hours");
+    const minutes: any = document.getElementById("minutes");
+    const seconds: any = document.getElementById("seconds");
+    const countdown: any = document.getElementById("countdown");
+    const year: any = document.getElementById("year");
 
-    const fromTime = new Date(fromDate);
+    const fromTime: any = new Date(fromDate);
 
     function updateCountdown() {
-      const currentTime = new Date();
+      const currentTime: any = new Date();
       const diff = currentTime - fromTime;
 
       const d = Math.floor(diff / 1000 / 60 / 60 / 24);

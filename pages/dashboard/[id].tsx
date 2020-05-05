@@ -1,10 +1,8 @@
-import { useRouter } from "next/router";
+
 import Layout from "../../components/Layout/Layout";
 import { useState, useEffect } from "react";
 import api from "../../utils/Api";
-import Link from 'next/link'
-const dashboard = ({ currentUser, handleTheme,getUserProfile }) => {
-  const router = useRouter();
+const dashboard = ({ currentUser, handleTheme,getUserProfile }:any) => {
   const [theme, setTheme] = useState('')
   function handleThemeBeforeServer() {
     if (typeof window !== "undefined") {

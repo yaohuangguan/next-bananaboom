@@ -1,5 +1,17 @@
 import Loader from "../../../Loader/Loader";
-
+interface IReplyListItemProps {
+  id: string;
+  content: string;
+  date: string;
+  photoURL: string;
+  user: string;
+  targetUser: string;
+  handleTargetUser: any;
+  replyContent: string;
+  handleReplyChange: any;
+  makeReplyReq: any;
+  loading: boolean;
+}
 const ReplyListItem = ({
   //commentid
   id,
@@ -12,9 +24,9 @@ const ReplyListItem = ({
   replyContent,
   handleReplyChange,
   makeReplyReq,
-  loading
-}) => {
-  const showReply = e => {
+  loading,
+}: IReplyListItemProps) => {
+  const showReply = () => {
     const reply = document.getElementById(id);
     if (reply) {
       reply.classList.toggle("d-none");
@@ -33,7 +45,7 @@ const ReplyListItem = ({
       />
       <div
         className="mb-1"
-        style={{ display: "flex", flexFlow: "column wrap",width:'70%' }}
+        style={{ display: "flex", flexFlow: "column wrap", width: "70%" }}
       >
         <div className="p-3">
           <div className="mb-2">
@@ -88,8 +100,8 @@ const ReplyListItem = ({
           box-shadow: none;
           border: 2px solid #333;
           border-radius: 30px 0px 0px 30px;
-          width:94.5%;
-          height:40px
+          width: 94.5%;
+          height: 40px;
         }
         .reply-field:focus {
           border: none;
@@ -98,21 +110,21 @@ const ReplyListItem = ({
           border-color: #2eca6a;
           box-shadow: none;
         }
-        .reply-field:focus + .reply-button{
+        .reply-field:focus + .reply-button {
           border: 1px solid #2eca6a;
-          background-color:#2eca6a;
+          background-color: #2eca6a;
         }
         .reply-button {
           position: absolute;
-          height:40px;
-          background-color:#333333;
+          height: 40px;
+          background-color: #333333;
           top: 0;
           right: 0px;
           padding: 7px;
           border-radius: 0px 50px 50px 0px;
           border: 1px solid #333;
           outline: none;
-          transition:background-color .3s ease,border .3s ease;
+          transition: background-color 0.3s ease, border 0.3s ease;
         }
       `}</style>
     </div>
