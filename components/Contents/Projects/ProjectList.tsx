@@ -2,8 +2,8 @@ import ProjectListItem from "./ProjectListItem";
 const ProjectList = (props: { items: [] }) => {
   const { items } = props;
   return (
-    <>
-      <div className="row">
+    <div className='project-row'>
+      <div className="row project-list">
         {items &&
           items.map(
             ({
@@ -20,7 +20,7 @@ const ProjectList = (props: { items: [] }) => {
             }) => <ProjectListItem key={_id} _id={_id} {...otherProps} />
           )}
       </div>
-    </>
+    </div>
   );
 };
 
