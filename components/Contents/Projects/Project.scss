@@ -8,3 +8,10 @@
     box-shadow: 15px 10px 0px -2px rgba(200, 199, 245, 1);
   }
 }
+.project-row{
+  display: flex;
+  .project-list{
+    display: flex;
+    justify-content: center;
+  }
+}

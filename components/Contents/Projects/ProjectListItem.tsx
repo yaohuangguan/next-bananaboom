@@ -33,7 +33,7 @@ const Project = ({
   const router = useRouter();
   return (
     <div
-      className="col-md-6 hover"
+      className="col-md-4 hover p-3"
       // onMouseOver={hoverChange}
       // onMouseLeave={recover}
     >

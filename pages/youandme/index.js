@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useReducer } from "react";
+import React, { useState, useEffect, useReducer, useMemo } from "react";
 import {useRouter} from 'next/router'
 import api from "../../utils/Api";
 import axios from "axios";
@@ -34,8 +34,8 @@ const index = ({ currentUser, posts, errors, todos }) => {
   const [chatUser, setuser] = useState("");
   const [privatePosts, setprivatePosts] = useState("");
   const [loading, setLoading] = useState(false);
-  const getVip = () =>
-    currentUser ? currentUser.private_token === "ilovechenfangting" : null;
+  const getVip = useMemo(() =>
+    currentUser ? currentUser.private_token === "ilovechenfangting" : null,[currentUser])
   useEffect(() => {
     const socket = io(socketURL);
     const connectSocket = () => {
@@ -118,7 +118,6 @@ const index = ({ currentUser, posts, errors, todos }) => {
       ></ChatContainer>
     );
   };
-
   const handleErrors = () =>
     errors ? <div className="text-danger">{errors}</div> : null;
   const getLoveTitle = () => (
@@ -136,8 +135,8 @@ const index = ({ currentUser, posts, errors, todos }) => {
     </div>
   );
   return (
-    getVip() && (
-      <Layout head={`${getVip() ? "Loving you" : "404 Not Found"}`}>
+    getVip && (
+      <Layout head={`${getVip ? "Loving you" : "404 Not Found"}`}>
         <div>
           <div className="row love-container">
             {/* <ChrismasLight></ChrismasLight> */}

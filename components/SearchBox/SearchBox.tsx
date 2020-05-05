@@ -1,3 +1,4 @@
+
 import "./searchbox.scss";
 export interface ISearchBoxProps {
   handleChange: any;
