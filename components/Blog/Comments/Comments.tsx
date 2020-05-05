@@ -189,7 +189,7 @@ const Comment = ({
               style={{marginTop:'-20px'}}
               onClick={submitComment}
             >
-              {!loading ? "发送" : <Loader />}
+              {!loading ? "发送" : <Loader size='20px' />}
             </button>
           </ul>
         </div>
