@@ -2,17 +2,16 @@ import React, { useState, useEffect } from "react";
 import ToDoList from "./ToDoList";
 import api from "../../../utils/Api";
 import Loader from "../../Loader/Loader";
-import './todo.scss'
+import "./todo.scss";
 const ToDo = () => {
   const [title, settitle] = useState("");
-  const [todos, settodos] = useState("");
+  const [todos, settodos] = useState([]);
   const [errors, seterrors] = useState("");
   const [loading, setloading] = useState(false);
   const [doneloading, setDoneloading] = useState(false);
-  const handleSubmit = async e => {
+  const handleSubmit = async (e: any) => {
     e.preventDefault();
-    if (!title || title.trim() == "")
-      return seterrors("不能为空");
+    if (!title || title.trim() == "") return seterrors("不能为空");
     if (!loading) {
       setloading(true);
       const response = await api.post("/api/todo", { todo: title });
@@ -38,7 +37,7 @@ const ToDo = () => {
     getTodo();
     return () => {};
   }, []);
-  const handleDone = async id => {
+  const handleDone = async (id: string) => {
     try {
       setDoneloading(true);
       const response = await api.post(`/api/todo/done/${id}`);
@@ -51,7 +50,7 @@ const ToDo = () => {
       seterrors(error + "");
     }
   };
-  const handleTitle = e => {
+  const handleTitle = (e: any) => {
     return settitle(e.target.value);
   };
   return (
@@ -61,7 +60,7 @@ const ToDo = () => {
         padding: "40px",
         borderRadius: "50px",
         marginBottom: "20px",
-        position: "relative"
+        position: "relative",
       }}
     >
       <span
@@ -71,19 +70,21 @@ const ToDo = () => {
         Todo List
       </span>
       <form onSubmit={handleSubmit}>
-        <label htmlFor="title" style={{position:'relative'}}>
+        <label htmlFor="title" style={{ position: "relative" }}>
           <input
             type="text"
             name="title"
             className="todo-input"
             onChange={handleTitle}
           />
-           <button className="submit-button" type="submit">
-          {!loading ? (<i className="fas fa-plus fa-lg"></i>) : <Loader size='20px' color='text-secondary'/>}
-        </button>
+          <button className="submit-button" type="submit">
+            {!loading ? (
+              <i className="fas fa-plus fa-lg"></i>
+            ) : (
+              <Loader size="20px" color="text-secondary" />
+            )}
+          </button>
         </label>
-
-       
       </form>
       {errors ? <span className="text-danger">Error: {errors}</span> : null}
       {!loading ? (

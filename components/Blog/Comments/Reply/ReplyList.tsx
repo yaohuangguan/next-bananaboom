@@ -1,6 +1,15 @@
 import ReplyListItem from "./ReplyListItem";
 import { useState } from "react";
 import api from "../../../../utils/Api";
+interface IReplyListProps {
+  reply:any[];
+  user_id:string;
+  showReply:any;
+  comment_id:string;
+  currentUser:any;
+  handleNewReply:any;
+  handleError:any
+}
 const ReplyList = ({
   reply,
   user_id,
@@ -9,14 +18,14 @@ const ReplyList = ({
   currentUser,
   handleNewReply,
   handleError
-}) => {
+}:IReplyListProps) => {
   const [replyContent, setreplyContent] = useState("");
   const [targetUser, settargetUser] = useState("");
   const [loading, setLoading] = useState(false);
-  const handleReplyChange = e => {
+  const handleReplyChange = (e:any) => {
     setreplyContent(e.target.value);
   };
-  const handleTargetUser = user => {
+  const handleTargetUser = (user:any) => {
     settargetUser(user);
   };
   const makeReplyReq = async () => {

@@ -4,11 +4,11 @@ import axios from "axios";
 import Loader from "../../../Loader/Loader";
 import { useState, useEffect } from "react";
 
-const Reply = ({ reply, comment_id, user_id, currentUser }) => {
+const Reply = ({ reply, comment_id, user_id, currentUser }:any) => {
   const [replyContent, setreplyContent] = useState("");
   const [replyList, setreplyList] = useState(reply);
   const [errors, seterrors] = useState("");
-  const [emojiList, setemojiList] = useState("");
+  const [emojiList, setemojiList] = useState([]);
   const [loading, setLoading] = useState(false);
   const fetchEmoji = async () => {
     const emoji = await fetch(
@@ -49,7 +49,7 @@ const Reply = ({ reply, comment_id, user_id, currentUser }) => {
       source.cancel();
     };
   }, []);
-  const showReply = e => {
+  const showReply = () => {
     const reply = document.getElementById(comment_id);
     if (reply) {
       reply.classList.toggle("d-none");
@@ -57,7 +57,7 @@ const Reply = ({ reply, comment_id, user_id, currentUser }) => {
   };
 
   const cleanReply = () => {
-    let reply = document.querySelector(".reply-field");
+    let reply:any = document.querySelector(".reply-field");
     reply.value = "";
     setreplyContent("");
   };
@@ -103,20 +103,20 @@ const Reply = ({ reply, comment_id, user_id, currentUser }) => {
   //   const data = await newReply.data[0].reply;
   //   return data;
   // };
-  const handleNewReply = newReply => {
+  const handleNewReply = (newReply: any) => {
     setreplyList(newReply);
   };
   const handleError = error => {
     seterrors(error);
   };
-  const appendToComment = e => {
+  const appendToComment = (e: any) => {
     const content = e.target.firstChild.textContent;
     setreplyContent(replyContent + content);
   };
   const getEmojiList = () => {
     return (
       <div className="text-center emoji-list">
-        {emojiList.map((each, index) => (
+        {emojiList.map((each:any, index:number) => (
           <button
             key={index}
             style={{
