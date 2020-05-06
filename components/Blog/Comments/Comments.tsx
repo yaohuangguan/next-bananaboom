@@ -174,7 +174,7 @@ const Comment = ({
                   {emojiList ? getEmojiList() : null}
 
                   <textarea
-                    className="form-control my-0 comment-input text-center"
+                    className="form-control my-0 comment-input"
                     rows={3}
                     id="textarea-char-counter"
                     value={commentInputField}
@@ -186,7 +186,7 @@ const Comment = ({
             </div>
             <button
               type="button"
-              className="btn bg-secondary text-white waves-effect waves-light float-right"
+              className="btn bg-dark text-white waves-effect waves-light float-right"
               style={{marginTop:'-20px'}}
               onClick={submitComment}
             >

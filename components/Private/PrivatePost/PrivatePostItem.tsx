@@ -52,7 +52,7 @@ const PrivatePostItem = (props: IPrivatePostItemProps) => {
       <br />
       <div id={id} style={{ overflowX: "auto" }}></div>
       <div
-        className="btn btn-sm bg-secondary text-white"
+        className="btn btn-sm bg-light text-dark"
         onClick={() => setTriggerComment(!triggerComment)}
       >
         评论
