@@ -121,6 +121,17 @@
               border-bottom-color: rgb(158, 91, 235);
             }
           }
+          .editor-textarea {
+            border:2px solid  #dfd0f0;
+            background-color: transparent;
+            outline: none;
+            width: 100%;
+            color: purple;
+            font-size: 20px;
+            &:focus {
+              border-color: rgb(158, 91, 235);
+            }
+          }
           #checkbox {
             transform: scale(2);
             margin-left: 10px;

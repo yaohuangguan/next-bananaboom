@@ -197,17 +197,7 @@ const Editor = () => {
             onChange={handleInfoChange}
           />
         </label>
-        <label htmlFor="code">
-          代码
-          <span className='text-muted'>
-          [数组](用;隔开多个)</span>
-          <input
-            type="text"
-            value={code}
-            className="editor-input"
-            onChange={handleCodeChange}
-          />
-        </label>
+       
         <label htmlFor="title">
           标题*
           <input
@@ -224,6 +214,17 @@ const Editor = () => {
             value={tags}
             className="editor-input"
             onChange={handleTagsChange}
+          />
+        </label>
+        <label htmlFor="code">
+          代码
+          <span className='text-muted'>
+          [数组](用;隔开多个)</span>
+          <textarea
+            type="text"
+            value={code}
+            className="editor-textarea"
+            onChange={handleCodeChange}
           />
         </label>
         <br />
