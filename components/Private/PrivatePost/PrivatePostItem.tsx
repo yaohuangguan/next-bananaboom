@@ -55,7 +55,7 @@ const PrivatePostItem = (props: IPrivatePostItemProps) => {
         className="btn btn-sm bg-light text-dark"
         onClick={() => setTriggerComment(!triggerComment)}
       >
-        评论
+        评论{`(${comments.length})`}
       </div>
       {triggerComment && (
         <Comment comments={comments} _id={id} currentUser={currentUser} />
