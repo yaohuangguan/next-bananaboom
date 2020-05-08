@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import api from "../../../utils/Api";
 import Comment from "../../Blog/Comments/Comments";
-import axios from 'axios'
+import axios from "axios";
 export interface IPrivatePostItemProps {
   tags?: string[];
   name?: string;
@@ -38,7 +38,7 @@ const PrivatePostItem = (props: IPrivatePostItemProps) => {
 
     const fetchCommentList = async () => {
       try {
-        const response = await api(`/api/comments/${id}`,{
+        const response = await api(`/api/comments/${id}`, {
           cancelToken: source.token,
         });
         const data = await response.data;
@@ -50,12 +50,10 @@ const PrivatePostItem = (props: IPrivatePostItemProps) => {
           console.log(error);
         }
       }
-    
     };
     fetchCommentList();
     return () => {
       source.cancel();
-
     };
   }, []);
   return (
@@ -72,10 +70,6 @@ const PrivatePostItem = (props: IPrivatePostItemProps) => {
         className="btn btn-sm bg-light text-dark"
         onClick={() => setTriggerComment(!triggerComment)}
       >
-       
-        
-          <i className="fas fa-angle-down"></i>
-        
         评论{`(${comments.length})`}
       </div>
       {triggerComment && (
