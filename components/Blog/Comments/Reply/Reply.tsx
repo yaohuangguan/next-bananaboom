@@ -162,14 +162,7 @@ const Reply = ({ reply, comment_id, user_id, currentUser }: any) => {
         )}
         <div style={{ justifySelf: "flex-end" }}>
           <a onClick={showReply} className="text-primary">
-            {typeof window !== "undefined" &&
-            !!document
-              .getElementById(comment_id)
-              .classList.contains("d-none") ? (
-              <i className="fas fa-angle-right"></i>
-            ) : (
-              <i className="fas fa-angle-down"></i>
-            )}{" "}
+          <i className="fas fa-angle-down"></i>
             回复
           </a>
 
