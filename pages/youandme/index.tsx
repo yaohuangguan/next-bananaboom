@@ -92,7 +92,7 @@ const index = ({ currentUser, posts, errors, todos }: IYouAndMeProps) => {
         const response = await api("/api/posts/private/posts", {
           cancelToken: source.token,
         });
-        let data = await response.data;
+        const data = await response.data;
         console.log("data here", data);
         setLoading(false);
         setprivatePosts(data);
@@ -102,7 +102,7 @@ const index = ({ currentUser, posts, errors, todos }: IYouAndMeProps) => {
         } else {
           console.log(error);
           if (error) {
-            router.push("/");
+            // router.push("/");
           }
           setLoading(false);
         }

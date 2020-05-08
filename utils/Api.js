@@ -50,7 +50,7 @@ _api.interceptors.response.use(
         case 403:
           throw error;
         case 404:
-          console.log("the resources you requested does not exist");
+          console.log("Interceptor 404 the resources you requested does not exist");
           break;
         default:
           throw error;

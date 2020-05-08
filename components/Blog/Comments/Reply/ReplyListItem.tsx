@@ -66,7 +66,7 @@ const ReplyListItem = ({
           className="text-primary"
           style={{ alignSelf: "flex-start" }}
         >
-          回复
+          <i className="fas fa-angle-down"></i> 回复
         </a>
         <div className="d-none reply form-group" id={id}>
           <a className="bg-warning white-text reply-target ml-5">@{user}</a>
