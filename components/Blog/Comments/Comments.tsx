@@ -150,11 +150,15 @@ const Comment = ({
       <div className=" mt-2">
         <div className="chat-message w-100">
           <ul className="list-unstyled chat">
-            <CommentList
-              comments={commentsList}
-              currentUser={currentUser}
-              article_id={_id}
-            ></CommentList>
+            {loading ? (
+              <Loader />
+            ) : (
+              <CommentList
+                comments={commentsList}
+                currentUser={currentUser}
+                article_id={_id}
+              />
+            )}
             <div className="textarea-whole">
               <h5>发布评论</h5>
               {currentUser ? null : (
@@ -187,10 +191,10 @@ const Comment = ({
             <button
               type="button"
               className="btn bg-dark text-white waves-effect waves-light float-right"
-              style={{marginTop:'-20px'}}
+              style={{ marginTop: "-20px" }}
               onClick={submitComment}
             >
-              {!loading ? "发送" : <Loader size='20px' />}
+              {!loading ? "发送" : <Loader size="20px" />}
             </button>
           </ul>
         </div>

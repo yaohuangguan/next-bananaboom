@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import api from "../../../utils/Api";
 import Comment from "../../Blog/Comments/Comments";
+import Loader from '../../Loader/Loader'
 import axios from "axios";
 export interface IPrivatePostItemProps {
   tags?: string[];
@@ -26,6 +27,7 @@ const PrivatePostItem = (props: IPrivatePostItemProps) => {
     currentUser,
   } = props;
   const [comments, setComments] = useState([]);
+  const [loading, setLoading] = useState(false);
   const [triggerComment, setTriggerComment] = useState(false);
   useEffect(() => {
     const contentDiv = document.getElementById(id);
@@ -37,6 +39,7 @@ const PrivatePostItem = (props: IPrivatePostItemProps) => {
     const source = axios.CancelToken.source();
 
     const fetchCommentList = async () => {
+      setLoading(true);
       try {
         const response = await api(`/api/comments/${id}`, {
           cancelToken: source.token,
@@ -49,6 +52,8 @@ const PrivatePostItem = (props: IPrivatePostItemProps) => {
         } else {
           console.log(error);
         }
+      } finally {
+        setLoading(false);
       }
     };
     fetchCommentList();
@@ -70,7 +75,7 @@ const PrivatePostItem = (props: IPrivatePostItemProps) => {
         className="btn btn-sm bg-light text-dark"
         onClick={() => setTriggerComment(!triggerComment)}
       >
-        评论{`(${comments.length})`}
+        {loading ? (<Loader/>) : `评论(${comments.length})`}
       </div>
       {triggerComment && (
         <Comment comments={comments} _id={id} currentUser={currentUser} />

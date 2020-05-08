@@ -11,7 +11,7 @@ const _api = axios.create({
     "Content-Type": "application/json",
   },
 });
-_api.defaults.timeout = 10000;
+_api.defaults.timeout = 20000;
 _api.interceptors.request.use(
   (config) => {
     _api.defaults.headers.common["X-XSS-Protection"] = 1;
