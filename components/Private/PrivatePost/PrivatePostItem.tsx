@@ -46,7 +46,7 @@ const PrivatePostItem = (props: IPrivatePostItemProps) => {
       <h3 style={{ color: "#FF69B4" }}>{name}</h3>
       <code>{info}</code> <br />
       <code>作者:{author}</code> <br />
-      <code>类型:{tags.map((tag) => tag + ";")}</code> <br />
+      <code>类别:{tags.map((tag) => tag + ";")}</code> <br />
       <code>日期:{createdDate}</code> <br />
       <code>{code ? code : null}</code>
       <br />
