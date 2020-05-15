@@ -11,7 +11,7 @@ const _api = axios.create({
     "Content-Type": "application/json",
   },
 });
-_api.defaults.timeout = 10000;
+_api.defaults.timeout = 20000;
 _api.interceptors.request.use(
   (config) => {
     _api.defaults.headers.common["X-XSS-Protection"] = 1;
@@ -50,7 +50,7 @@ _api.interceptors.response.use(
         case 403:
           throw error;
         case 404:
-          console.log("the resources you requested does not exist");
+          console.log("Interceptor 404 the resources you requested does not exist");
           break;
         default:
           throw error;

@@ -4,7 +4,7 @@ import axios from "axios";
 import Loader from "../../../Loader/Loader";
 import { useState, useEffect } from "react";
 
-const Reply = ({ reply, comment_id, user_id, currentUser }:any) => {
+const Reply = ({ reply, comment_id, user_id, currentUser }: any) => {
   const [replyContent, setreplyContent] = useState("");
   const [replyList, setreplyList] = useState(reply);
   const [errors, seterrors] = useState("");
@@ -17,7 +17,7 @@ const Reply = ({ reply, comment_id, user_id, currentUser }:any) => {
     const data = await emoji.json();
     setemojiList(data.results.slice(0, 5));
   };
-  const handleReplyChange = async e => {
+  const handleReplyChange = async (e) => {
     setreplyContent(e.target.value);
     fetchEmoji();
   };
@@ -26,14 +26,14 @@ const Reply = ({ reply, comment_id, user_id, currentUser }:any) => {
     const getNewReply = async () => {
       try {
         const response = await api.get(`/api/comments/reply/${comment_id}`, {
-          cancelToken: source.token
+          cancelToken: source.token,
         });
         const newReply = await response.data[0].reply;
         setreplyList(newReply);
         const emoji = await axios.get(
           `https://emoji.getdango.com/api/emoji?q=$happy`,
           {
-            cancelToken: source.token
+            cancelToken: source.token,
           }
         );
         const data = await emoji.data;
@@ -57,18 +57,21 @@ const Reply = ({ reply, comment_id, user_id, currentUser }:any) => {
   };
 
   const cleanReply = () => {
-    let reply:any = document.querySelector(".reply-field");
+    let reply: any = document.querySelector(".reply-field");
     reply.value = "";
     setreplyContent("");
   };
   const addReply = async () => {
     try {
-      if (!currentUser) return seterrors("登录后才能回复评论。 Please Login to reply.");
+      if (!currentUser)
+        return seterrors("登录后才能回复评论。 Please Login to reply.");
       if (replyContent.trim() == "") {
         return seterrors("回复不能为空。 Reply Cannot be empty.");
       }
       if (replyContent.trim().length > 120) {
-        return seterrors("最大字符限制：120字  You can't post a comment more than 120 words");
+        return seterrors(
+          "最大字符限制：120字  You can't post a comment more than 120 words"
+        );
       }
       const { displayName, photoURL } = currentUser;
       if (!loading) {
@@ -79,8 +82,8 @@ const Reply = ({ reply, comment_id, user_id, currentUser }:any) => {
           data: JSON.stringify({
             user: displayName,
             photoURL,
-            reply: replyContent
-          })
+            reply: replyContent,
+          }),
         });
 
         const result = await response.data[0].reply;
@@ -106,7 +109,7 @@ const Reply = ({ reply, comment_id, user_id, currentUser }:any) => {
   const handleNewReply = (newReply: any) => {
     setreplyList(newReply);
   };
-  const handleError = error => {
+  const handleError = (error) => {
     seterrors(error);
   };
   const appendToComment = (e: any) => {
@@ -116,7 +119,7 @@ const Reply = ({ reply, comment_id, user_id, currentUser }:any) => {
   const getEmojiList = () => {
     return (
       <div className="text-center emoji-list">
-        {emojiList.map((each:any, index:number) => (
+        {emojiList.map((each: any, index: number) => (
           <button
             key={index}
             style={{
@@ -126,7 +129,7 @@ const Reply = ({ reply, comment_id, user_id, currentUser }:any) => {
               backgroundColor: "transparent",
               borderColor: "#333333",
               outline: "none",
-              textAlign: "center"
+              textAlign: "center",
             }}
             id={`${index}`}
             onClick={appendToComment}
@@ -145,7 +148,7 @@ const Reply = ({ reply, comment_id, user_id, currentUser }:any) => {
         style={{ display: "flex", justifyContent: "space-between" }}
       >
         {replyList.length === 0 ? null : (
-          <div style={{ justifySelf: "flex-start", width:'90%'}}>
+          <div style={{ justifySelf: "flex-start", width: "90%" }}>
             <ReplyList
               reply={replyList}
               showReply={showReply}
@@ -159,6 +162,7 @@ const Reply = ({ reply, comment_id, user_id, currentUser }:any) => {
         )}
         <div style={{ justifySelf: "flex-end" }}>
           <a onClick={showReply} className="text-primary">
+          <i className="fas fa-angle-down"></i>
             回复
           </a>
 
@@ -195,8 +199,8 @@ const Reply = ({ reply, comment_id, user_id, currentUser }:any) => {
           box-shadow: none;
           border: 2px solid #333;
           border-radius: 30px 0px 0px 30px;
-          width:92%;
-          height:40px
+          width: 92%;
+          height: 40px;
         }
         .reply-field:focus {
           border: none;
@@ -211,7 +215,7 @@ const Reply = ({ reply, comment_id, user_id, currentUser }:any) => {
         }
         .reply-button {
           position: absolute;
-          height:40px;
+          height: 40px;
           background-color: #333333;
           transition: background-color 0.3s ease, border 0.3s ease;
           top: 0;
