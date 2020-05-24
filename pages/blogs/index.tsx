@@ -4,11 +4,10 @@ import { useState, useEffect, useRef, useMemo } from "react";
 import Layout from "../../components/Layout/Layout";
 import { useRouter } from "next/router";
 import BlogList from "../../components/Blog/BlogList";
-import api from "../../utils/Api";
 import SearchBox from "../../components/SearchBox/SearchBox";
 import Loader from "../../components/Loader/Loader";
 import GitHub from "../../components/Github/Github.forkme";
-
+import {getBlogList} from '../../service'
 const Blog = ({
   blogs,
   errors,
@@ -150,7 +149,7 @@ Blog.getInitialProps = async () => {
   let posts: any;
   let errors: string;
   try {
-    const response = await api.get("/api/posts");
+    const response = await getBlogList();
     posts = await response.data;
   } catch (error) {
     errors = `Sorry, network issue happened, please check your internet or come back later! Thank you. \n

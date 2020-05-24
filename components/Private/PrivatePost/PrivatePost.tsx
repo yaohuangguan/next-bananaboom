@@ -19,7 +19,7 @@ const PrivatePost = ({
   return (
     <div className="private-post-list">
       {privatePosts &&
-        privatePosts.map(({ _id, ...other }) => (
+        privatePosts.map(({ _id, ...other },index) => (
           <div
             key={_id}
             style={{
@@ -32,6 +32,8 @@ const PrivatePost = ({
             <PrivatePostItem
               id={_id}
               currentUser={currentUser}
+              index={index}
+              length={privatePosts.length}
               {...other}
             ></PrivatePostItem>
           </div>

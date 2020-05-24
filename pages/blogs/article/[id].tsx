@@ -1,10 +1,10 @@
 import Layout from "../../../components/Layout/Layout";
 import { withRouter } from "next/router";
 import dynamic from "next/dynamic";
-import api from "../../../utils/Api";
 import { useEffect, useState } from "react";
 import SpecialWrapper from "../../../components/Special/SpecialWrapper/Wrapper";
 import Pay from "../../../components/Blog/Pay/Pay";
+import {getBlogContent,getCommentList} from '../../../service'
 const Comment = dynamic(() =>
   import("../../../components/Blog/Comments/Comments")
 );
@@ -122,9 +122,9 @@ const blog = ({
 
 blog.getInitialProps = async ({ query }) => {
   const { id } = query;
-  const urls = [`/api/posts/${id}`, `/api/comments/${id}`];
-  const mapUrls = urls.map(async (url) => {
-    const response = await api.get(url);
+  const urls = [getBlogContent, getCommentList];
+  const mapUrls = urls.map(async (cb) => {
+    const response = await cb(id);
     return await response.data;
   });
   const [posts, comments] = await Promise.all(mapUrls);

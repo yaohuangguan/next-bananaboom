@@ -1,7 +1,7 @@
 
 import Layout from "../../components/Layout/Layout";
 import { useState, useEffect } from "react";
-import api from "../../utils/Api";
+import {changeUserName} from '../../service'
 const dashboard = ({ currentUser, handleTheme,getUserProfile }:any) => {
   const [theme, setTheme] = useState('')
   function handleThemeBeforeServer() {
@@ -25,7 +25,7 @@ const dashboard = ({ currentUser, handleTheme,getUserProfile }:any) => {
       return setresult("Google账户类型暂不支持名称更改");
     }
     const id = currentUser._id;
-    const response = await api.post(`/api/users/changeusername/${id}`, {
+    const response = await changeUserName(id, {
       newDisplayName
     });
     const result = await response.data;
