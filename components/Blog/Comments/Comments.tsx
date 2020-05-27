@@ -20,9 +20,9 @@ const Comment = ({
   const [commentsList, setcommentsList] = useState(comments);
   const [emojiList, setemojiList] = useState([]);
   const [loading, setloading] = useState(false);
-  const fetchEmoji = async () => {
+  const fetchEmoji = async (e:any) => {
     const emoji = await axios(
-      `https://emoji.getdango.com/api/emoji?q=${commentInputField}`
+      `https://emoji.getdango.com/api/emoji?q=${e}`
     );
     const data = await emoji.data;
     setemojiList(data.results);
@@ -33,7 +33,7 @@ const Comment = ({
       return setcommentInputField(box.value);
     }
     setcommentInputField(e.target.value);
-    fetchEmoji();
+    fetchEmoji(e.target.value);
   };
 
   useEffect(() => {

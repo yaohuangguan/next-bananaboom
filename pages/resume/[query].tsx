@@ -5,7 +5,6 @@ import china from "../../public/china.png";
 import uk from "../../public/uk.png";
 import ResumeList from "../../components/Contents/Resume/ResumeList/ResumeList";
 import Layout from "../../components/Layout/Layout";
-import api from "../../utils/Api";
 import { withRouter } from "next/router";
 import shuffle from "../../utils/Shuffle";
 import GitHub from "../../components/Github/Github.forkme";
@@ -13,6 +12,7 @@ import {
   getEnglishContent,
   getChineseContent
 } from "../../components/Contents/Resume/Content";
+import { getResumeList } from "../../service";
 const Resume = ({ resumeItem, errors, router, handleTheme }) => {
   const [theme, setTheme] = useState("");
   function handleThemeBeforeServer() {
@@ -172,11 +172,11 @@ const Resume = ({ resumeItem, errors, router, handleTheme }) => {
   );
 };
 Resume.getInitialProps = async () => {
-  let data;
-  let shuffled;
-  let errors;
+  let data: any;
+  let shuffled: any;
+  let errors: string;
   try {
-    const response = await api.get("/api/resume");
+    const response = await getResumeList();
     data = await response.data;
     shuffled = shuffle(data);
   } catch (error) {
