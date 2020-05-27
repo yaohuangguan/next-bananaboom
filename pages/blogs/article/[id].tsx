@@ -12,8 +12,8 @@ interface IBlogProps {
   posts: {
     name: string;
     content?: string;
-    code?: string;
-    code2?: string;
+    code?: string | [];
+    code2?: string | [];
     _id: string;
     project_id?: string;
   };
@@ -86,7 +86,7 @@ const blog = ({
             id="content-field"
           ></div>
 
-          {!Array.isArray(code) ? (
+          {code && !Array.isArray(code) ? (
             <div>
               源码
               <pre>
