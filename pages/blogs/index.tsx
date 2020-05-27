@@ -146,19 +146,19 @@ const Blog = ({
 };
 
 Blog.getInitialProps = async () => {
-  let posts: any;
+  let blogs: any;
   let errors: string;
   try {
     const response = await getBlogList();
-    posts = await response.data;
+    blogs = response
   } catch (error) {
     errors = `Sorry, network issue happened, please check your internet or come back later! Thank you. \n
     `;
   }
 
   return {
-    blogs: posts,
-    errors: errors,
+    blogs,
+    errors,
     loading: true,
   };
 };

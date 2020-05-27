@@ -1,6 +1,5 @@
-import React, { useState, useEffect, useReducer, useMemo } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import { useRouter } from "next/router";
-import api from "../../utils/Api";
 import axios from "axios";
 import dynamic from "next/dynamic";
 import Emitter from "../../utils/EventEmitter";
@@ -16,8 +15,9 @@ import {
   LOGOUT,
   ROOM_WELCOME,
 } from "../../components/Private/Chat/Events";
-import DrawingCanvas from "../../components/DrawingCanvas/Drawing";
-import ChrismasLight from "../../components/Private/ChrismasLight/Light";
+// import DrawingCanvas from "../../components/DrawingCanvas/Drawing";
+// import ChrismasLight from "../../components/Private/ChrismasLight/Light";
+import {getPrivatePosts} from '../../service'
 import Loader from "../../components/Loader/Loader";
 import "./youandme.scss";
 const CKEditor = dynamic(() => import("../../components/CKeditor/Editor"), {
@@ -89,10 +89,7 @@ const index = ({ currentUser, posts, errors, todos }: IYouAndMeProps) => {
     const source = axios.CancelToken.source();
     const getNewPrivatePosts = async () => {
       try {
-        const response = await api("/api/posts/private/posts", {
-          cancelToken: source.token,
-        });
-        const data = await response.data;
+        const data = await getPrivatePosts();
         console.log("data here", data);
         setLoading(false);
         setprivatePosts(data);

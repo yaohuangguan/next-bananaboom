@@ -165,20 +165,18 @@ const Resume = ({ resumeItem, errors, router, handleTheme }) => {
             </div>
           )}
         </div>
-        <Background></Background>
+        <Background />
         <br />
       </div>
     </Layout>
   );
 };
 Resume.getInitialProps = async () => {
-  let data: any;
   let shuffled: any;
   let errors: string;
   try {
     const response = await getResumeList();
-    data = await response.data;
-    shuffled = shuffle(data);
+    shuffled = shuffle(response);
   } catch (error) {
     errors = `Something wrong with the server or check your network connect and try again later.`;
   }
