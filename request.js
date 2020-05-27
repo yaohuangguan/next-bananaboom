@@ -11,9 +11,9 @@ export const get = (url, data = "", headers = {}) =>
     cancelToken: cancelToken.token,
     data,
     method: "GET",
-  })
+  }).then((res) => res.data)
     .catch((err) => Promise.reject(err))
-    .then((res) => res.data);
+    
 
 export const post = (url, data = "", headers = {}) =>
   api(url, {
@@ -21,7 +21,8 @@ export const post = (url, data = "", headers = {}) =>
       ...headers,
     },
     cancelToken: cancelToken.token,
-    data,
+    data: JSON.stringify(data),
+
     method: "POST",
   })
     .then((res) => res.data)
@@ -32,7 +33,8 @@ export const put = (url, data = "", headers = {}) =>
     headers: {
       ...headers,
     },
-    data,
+    data: JSON.stringify(data),
+
     cancelToken: cancelToken.token,
     method: "PUT",
   })
@@ -43,7 +45,8 @@ export const del = (url, data = "", headers = {}) =>
     headers: {
       ...headers,
     },
-    data,
+    data: JSON.stringify(data),
+
     cancelToken: cancelToken.token,
     method: "DELETE",
   })

@@ -1,7 +1,7 @@
 import { useState, useRef, useMemo } from "react";
 import { useRouter } from "next/router";
 import firebase from "../../firebase/firebase";
-import api from "../../utils/Api";
+import {signUp} from '../../service'
 import Loader from "../Loader/Loader";
 import Login from "./Login";
 const Signup = ({ linkColor }: { linkColor?: string }) => {
@@ -100,13 +100,12 @@ const Signup = ({ linkColor }: { linkColor?: string }) => {
     try {
       if (!loading) {
         setloading(true);
-        const response = await api.post("/api/users", {
+        const user = await signUp({
           displayName,
           email,
           password,
           passwordConf,
         });
-        const user = await response.data;
         if (typeof window != "undefined") {
           window.localStorage.setItem("token", user.token);
         }

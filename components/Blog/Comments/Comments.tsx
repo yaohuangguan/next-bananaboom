@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from "react";
 import CommentList from "./CommentList";
-import api from "../../../utils/Api";
+import {
+  getNewComments,
+  postNewComments,
+  getEmojiList,
+} from "../../../service";
 import axios from "axios";
 import Signup from "../../Auth/Signup";
 import Loader from "../../Loader/Loader";
@@ -20,11 +24,8 @@ const Comment = ({
   const [commentsList, setcommentsList] = useState(comments);
   const [emojiList, setemojiList] = useState([]);
   const [loading, setloading] = useState(false);
-  const fetchEmoji = async (e:any) => {
-    const emoji = await axios(
-      `https://emoji.getdango.com/api/emoji?q=${e}`
-    );
-    const data = await emoji.data;
+  const fetchEmoji = async (e: any) => {
+    const data = await getEmojiList(e);
     setemojiList(data.results);
   };
   const handleCommentChange = async (e: any) => {
@@ -38,14 +39,11 @@ const Comment = ({
 
   useEffect(() => {
     let source = axios.CancelToken.source();
-    const getNewComments = async () => {
+    const getNewComment = async () => {
       try {
-        const response = await api.get(`/api/comments/${_id}`, {
-          cancelToken: source.token,
-        });
-        let getComments = await response.data;
-        setcommentsList(getComments);
-        setcommentsCount(getComments.length);
+        const data = await getNewComments(_id);
+        setcommentsList(data);
+        setcommentsCount(data.length);
       } catch (error) {
         if (axios.isCancel(error)) {
           console.log("caught cancel axios");
@@ -54,7 +52,7 @@ const Comment = ({
         }
       }
     };
-    getNewComments();
+    getNewComment();
     return () => {
       console.log("unmounting");
       source.cancel();
@@ -83,19 +81,18 @@ const Comment = ({
     try {
       if (!loading) {
         setloading(true);
-        const response = await api({
-          method: "post",
-          url: `/api/comments/${_id}?user_id=${currentUser._id}`,
-          headers: {
-            "x-google-auth": currentUser.ma ? currentUser.ma : null,
-          },
-          data: JSON.stringify({
+        const result = await postNewComments(
+          _id,
+          currentUser,
+          {
             user: displayName,
             photoURL,
             comment: commentInputField,
-          }),
-        });
-        const result = await response.data;
+          },
+          {
+            "x-google-auth": currentUser.ma ? currentUser.ma : null,
+          }
+        );
         setcommentsList(result);
         setcommentsCount(result.length);
         seterrors("");
@@ -117,7 +114,7 @@ const Comment = ({
     //@ts-ignore
     handleCommentChange();
   };
-  const getEmojiList = () => {
+  const displayEmojiList = () => {
     return (
       <div className="text-center emoji-list">
         {emojiList.map((each: any, index: number) => (
@@ -175,7 +172,7 @@ const Comment = ({
                   <div className="errors text-danger">{errors}</div>
                 ) : null}
                 <div className="m-0">
-                  {emojiList ? getEmojiList() : null}
+                  {emojiList ? displayEmojiList() : null}
 
                   <textarea
                     className="form-control my-0 comment-input"
