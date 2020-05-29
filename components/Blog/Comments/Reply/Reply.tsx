@@ -1,5 +1,5 @@
 import ReplyList from "./ReplyList";
-import api from "../../../../utils/Api";
+import {getEmojiList,getCommentReply,postCommentReply} from '../../../../service'
 import axios from "axios";
 import Loader from "../../../Loader/Loader";
 import { useState, useEffect } from "react";
@@ -10,33 +10,22 @@ const Reply = ({ reply, comment_id, user_id, currentUser }: any) => {
   const [errors, seterrors] = useState("");
   const [emojiList, setemojiList] = useState([]);
   const [loading, setLoading] = useState(false);
-  const fetchEmoji = async () => {
-    const emoji = await fetch(
-      `https://emoji.getdango.com/api/emoji?q=${replyContent}`
-    );
-    const data = await emoji.json();
+  const fetchEmoji = async (e) => {
+    const data = await getEmojiList(e);
     setemojiList(data.results.slice(0, 5));
   };
   const handleReplyChange = async (e) => {
     setreplyContent(e.target.value);
-    fetchEmoji();
+    fetchEmoji(e.target.value);
   };
   useEffect(() => {
     let source = axios.CancelToken.source();
     const getNewReply = async () => {
       try {
-        const response = await api.get(`/api/comments/reply/${comment_id}`, {
-          cancelToken: source.token,
-        });
-        const newReply = await response.data[0].reply;
+        const response = await getCommentReply(comment_id);
+        const newReply = await response[0].reply;
         setreplyList(newReply);
-        const emoji = await axios.get(
-          `https://emoji.getdango.com/api/emoji?q=$happy`,
-          {
-            cancelToken: source.token,
-          }
-        );
-        const data = await emoji.data;
+        const data = await getEmojiList('happy')
         setemojiList(data.results.slice(0, 5));
       } catch (error) {
         if (axios.isCancel(error)) {
@@ -76,17 +65,13 @@ const Reply = ({ reply, comment_id, user_id, currentUser }: any) => {
       const { displayName, photoURL } = currentUser;
       if (!loading) {
         setLoading(true);
-        const response = await api({
-          method: "post",
-          url: `/api/comments/reply/${comment_id}`,
-          data: JSON.stringify({
-            user: displayName,
-            photoURL,
-            reply: replyContent,
-          }),
+        const response = await postCommentReply(comment_id,{
+          user: displayName,
+          photoURL,
+          reply: replyContent,
         });
 
-        const result = await response.data[0].reply;
+        const result = await response[0].reply;
         setreplyList(result);
         cleanReply();
         showReply();
@@ -116,7 +101,7 @@ const Reply = ({ reply, comment_id, user_id, currentUser }: any) => {
     const content = e.target.firstChild.textContent;
     setreplyContent(replyContent + content);
   };
-  const getEmojiList = () => {
+  const displayEmojiList = () => {
     return (
       <div className="text-center emoji-list">
         {emojiList.map((each: any, index: number) => (
@@ -171,7 +156,7 @@ const Reply = ({ reply, comment_id, user_id, currentUser }: any) => {
       </div>
 
       <div className="d-none m-0 reply col-md-6" id={comment_id}>
-        {emojiList ? getEmojiList() : null}
+        {emojiList ? displayEmojiList() : null}
 
         <div className="reply-wrapper">
           <input

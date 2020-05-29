@@ -9,6 +9,7 @@ import Footer from "../components/Footer/Footer";
 import Animation from "../utils/Animation";
 import consolelog from "../utils/Console.log";
 import BrowserTest from "../utils/BrowserTest";
+import { getHomepage, getLogs, getProjects } from "../service";
 import "../styles/index.scss";
 export interface IIndexProps {
   homepage: [] | any;
@@ -76,24 +77,26 @@ const Index = ({
     likes,
     backgroundURL,
   }: IHomepageDataProps = homepage[0];
-  const mapWebServiceComponent = () => <div className="web-service-entrance">
-  <span
-    style={{ marginRight: "20px" }}
-    onClick={() => {
-      const node: any = document.querySelector(".web-service-entrance");
-      node.style.display = "none";
-    }}
-  >
-    X
-  </span>
-  <a
-    href="https://web.yaobaiyang.com"
-    style={{ color: "aliceblue", textDecoration: "underline" }}
-  >
-    https://web.yaobaiyang.com
-  </a>
-  现开通Atlas网站搭建服务,让任何人都能拥有自己的网站!
-</div>
+  const mapWebServiceComponent = () => (
+    <div className="web-service-entrance">
+      <span
+        style={{ marginRight: "20px" }}
+        onClick={() => {
+          const node: any = document.querySelector(".web-service-entrance");
+          node.style.display = "none";
+        }}
+      >
+        X
+      </span>
+      <a
+        href="https://web.yaobaiyang.com"
+        style={{ color: "aliceblue", textDecoration: "underline" }}
+      >
+        https://web.yaobaiyang.com
+      </a>
+      现开通Atlas网站搭建服务,让任何人都能拥有自己的网站!
+    </div>
+  );
   return (
     <Layout head={"Sam的博客 || www.yaobaiyang.com"}>
       {mapWebServiceComponent()}
@@ -151,16 +154,8 @@ Index.getInitialProps = async () => {
   let errors: string;
 
   try {
-    const urls = [
-      "/api/homepage",
-      "/api/homepage/logs",
-      "/api/homepage/projects",
-    ];
-    const getData = urls.map(async (url) => {
-      const response = await api.get(url);
-      const data = await response.data;
-      return data;
-    });
+    const urls = [getHomepage, getLogs, getProjects];
+    const getData = urls.map(async (cb) => await cb());
     const [homepage, logs, projects] = await Promise.all(getData);
 
     return {

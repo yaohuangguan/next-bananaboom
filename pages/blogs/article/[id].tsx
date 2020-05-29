@@ -4,7 +4,7 @@ import dynamic from "next/dynamic";
 import { useEffect, useState } from "react";
 import SpecialWrapper from "../../../components/Special/SpecialWrapper/Wrapper";
 import Pay from "../../../components/Blog/Pay/Pay";
-import {getBlogContent,getCommentList} from '../../../service'
+import { getBlogContent, getCommentList } from "../../../service";
 const Comment = dynamic(() =>
   import("../../../components/Blog/Comments/Comments")
 );
@@ -12,8 +12,8 @@ interface IBlogProps {
   posts: {
     name: string;
     content?: string;
-    code?: string;
-    code2?: string;
+    code?: string | [];
+    code2?: string | [];
     _id: string;
     project_id?: string;
   };
@@ -86,20 +86,20 @@ const blog = ({
             id="content-field"
           ></div>
 
-          {!Array.isArray(code) ? (
+          {code &&  
             <div>
               源码
               <pre>
                 <code className="language-javascript">{code}</code>
               </pre>
-            </div>
-          ) : (
-            code.map((param) => (
-              <pre>
-                <code className="language-javascript">{param}</code>
-              </pre>
-            ))
-          )}
+            </div>}
+          {/* // ) : (
+          //   code.map((param) => (
+          //     <pre>
+          //       <code className="language-javascript">{param}</code>
+          //     </pre>
+          //   ))
+          // )} */}
           {code2 ? (
             <div>
               {"Method 2"}
@@ -123,10 +123,7 @@ const blog = ({
 blog.getInitialProps = async ({ query }) => {
   const { id } = query;
   const urls = [getBlogContent, getCommentList];
-  const mapUrls = urls.map(async (cb) => {
-    const response = await cb(id);
-    return await response.data;
-  });
+  const mapUrls = urls.map(async (cb) => await cb(id));
   const [posts, comments] = await Promise.all(mapUrls);
   return {
     posts: posts[0],

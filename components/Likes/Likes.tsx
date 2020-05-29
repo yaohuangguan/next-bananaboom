@@ -1,5 +1,5 @@
 import { useState } from "react";
-import api from "../../utils/Api";
+import {likeHomepage} from '../../service'
 import { useRouter } from "next/router";
 import "../Footer/Footer.scss";
 const Likes = ({ likes, _id }: { likes: number; _id: string }) => {
@@ -10,11 +10,10 @@ const Likes = ({ likes, _id }: { likes: number; _id: string }) => {
     const heart = document.getElementById(`${id}`);
     heart.classList.toggle("is_animating");
     heart.classList.toggle("liked");
-    const response = await api.post(`/api/homepage/likes/${id}/${action}`);
+    const response = await likeHomepage(id,action);
 
     handleLike(!ifLiked);
-    const likesData = await response.data;
-    return likesData;
+    return response;
   };
   const cancelLike = async () => {
     const likesData = await likeAndUpdate(_id, "remove");

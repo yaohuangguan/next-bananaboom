@@ -28,8 +28,7 @@ const dashboard = ({ currentUser, handleTheme,getUserProfile }:any) => {
     const response = await changeUserName(id, {
       newDisplayName
     });
-    const result = await response.data;
-    setresult(result.message);
+    setresult(response.message);
     getUserProfile();
     setdisplayName('')
   };

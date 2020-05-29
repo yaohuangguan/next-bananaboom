@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import ToDoList from "./ToDoList";
-import api from "../../../utils/Api";
+import { addNewTodo, getTodo ,finishTodo} from "../../../service";
 import Loader from "../../Loader/Loader";
 import "./todo.scss";
 const ToDo = () => {
@@ -14,18 +14,16 @@ const ToDo = () => {
     if (!title || title.trim() == "") return seterrors("不能为空");
     if (!loading) {
       setloading(true);
-      const response = await api.post("/api/todo", { todo: title });
-      const todos = await response.data;
+      const todos = await addNewTodo({ todo: title });
       settodos(todos);
       setloading(false);
     }
   };
   useEffect(() => {
     setloading(true);
-    const getTodo = async () => {
+    const refreshTodo = async () => {
       try {
-        const response = await api.get("/api/todo");
-        const todos = await response.data;
+        const todos = await getTodo();
         console.log("todos", todos);
         setloading(false);
         settodos(todos);
@@ -34,14 +32,13 @@ const ToDo = () => {
         setloading(false);
       }
     };
-    getTodo();
+    refreshTodo();
     return () => {};
   }, []);
   const handleDone = async (id: string) => {
     try {
       setDoneloading(true);
-      const response = await api.post(`/api/todo/done/${id}`);
-      const todos = await response.data;
+      const todos = await finishTodo(id);
       settodos(todos);
       setDoneloading(false);
     } catch (error) {

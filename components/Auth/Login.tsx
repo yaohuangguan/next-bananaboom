@@ -1,7 +1,7 @@
 import { useState, useRef, useMemo } from "react";
 import { useRouter } from "next/router";
 import firebase from "../../firebase/firebase";
-import api from "../../utils/Api";
+import {signIn} from '../../service'
 import Loader from "../Loader/Loader";
 const Login = ({
   passwordReveal,
@@ -52,12 +52,11 @@ const Login = ({
     try {
       if (!loading) {
         setloading(true);
-        const response = await api.post("/api/users/signin", {
+        const user = await signIn ({
           email,
           password,
         });
         // console.log(response.data.userToSend);
-        const user = await response.data;
         if (typeof window != "undefined") {
           window.localStorage.setItem("token", user.token);
         }

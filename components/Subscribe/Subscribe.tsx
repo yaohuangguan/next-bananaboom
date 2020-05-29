@@ -5,8 +5,8 @@ import { useRouter } from "next/router";
 import "./Subscribe.scss";
 import Logs from "../Contents/Logs/Logs";
 import Loader from "../Loader/Loader";
-import api from "../../utils/Api";
 import SayHi from "../Contents/Intro/SayHi";
+import {subscribeNewUser} from '../../service'
 import EMAIL from "./EMAIL";
 export interface ISubscribeProps {
   title: string;
@@ -27,10 +27,7 @@ const Subscribe = ({
   web_version,
   logs_content,
   likes,
-  _id,
-  handleTheme,
-  light,
-  dark,
+  _id
 }: ISubscribeProps) => {
   const router = useRouter();
   const [email, setemail] = useState("");
@@ -84,7 +81,7 @@ const Subscribe = ({
       ));
     }
   };
-  const deleteSuggestion = (e) => {
+  const deleteSuggestion = (_e) => {
     if (!email) return;
     setopening(true);
     // const items = document.querySelectorAll('.subscribe-suggestion-item')
@@ -96,13 +93,12 @@ const Subscribe = ({
     var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     return re.test(email);
   };
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: { preventDefault: () => void; }) => {
     e.preventDefault();
     if (!loading) {
       try {
         setloading(true);
-        const response = await api.post("/api/auth/subscribe", { email });
-        const data = await response.data;
+        const data = await subscribeNewUser({ email });
         let result = router.pathname === "/" ? data.message : data.message_cn;
         setresult(result);
         setstatus(data.status);
