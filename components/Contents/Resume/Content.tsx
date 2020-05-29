@@ -13,7 +13,7 @@ export const getChineseContent = () => {
       <div className='d-flex row'>
         <div className="col-md-12 mt-3">
           <p>
-          目前负责腾讯云 Coding OA 版本的前端开发，Coding OA 版的目标是服务好腾讯云内部的代码研发体系建设、DevOps工具链建设，包含 CI/CD、自动化工具、项目管理、过程管理、制品管理、EP 度量等
+          目前负责腾讯云 Coding OA 版本的前端开发，Coding OA 版的目标是服务好腾讯云内部的代码研发体系建设、DevOps工具链建设，包含 CI/CD、自动化测试、代码托管、代码检查、制品管理、EP度量等, 主要技术栈为React以及其生态内的各种工具.
           </p>
         </div>
        
@@ -62,7 +62,7 @@ export const getEnglishContent = () => {
       <div className='d-flex row'>
         <div className="col-md-12 mt-3">
           <p>
-          Working towards the Tencent Cloud Coding OA version, the goal of Coding OA version is to serve Tencent Cloud's internal research and development system, DevOps toolchain construction, including CI/CD, automation tools, project management, process management, product management, EP metrics, etc.
+          We are Tencent Cloud DevOps Team, we are Working towards the Tencent Cloud Coding OA version, the goal of Coding OA version is to serve Tencent Cloud's internal research and development system, DevOps toolchain construction, including CI/CD, automation tools, project management, process management, product management, EP metrics, etc. 
           </p>
         </div>
        
