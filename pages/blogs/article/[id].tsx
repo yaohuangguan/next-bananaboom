@@ -16,6 +16,7 @@ interface IBlogProps {
     code2?: string | [];
     _id: string;
     project_id?: string;
+    codeGroup?:[]
   };
   comments: any;
   currentUser: any;
@@ -29,7 +30,7 @@ const blog = ({
   router,
   handleTheme,
 }: IBlogProps) => {
-  const { name, content, code, code2, _id, project_id } = posts;
+  const { name, content, code, code2, _id, project_id, codeGroup } = posts;
   const [theme, setTheme] = useState("");
 
   function handleThemeBeforeServer() {
@@ -85,14 +86,23 @@ const blog = ({
             style={{ lineHeight: "40px", wordWrap: "break-word" }}
             id="content-field"
           ></div>
-
-          {code &&  
+          {codeGroup &&
+            codeGroup.length > 0 &&
+            codeGroup.map((code) => (
+              <div className="my-2">
+                <pre>
+                  <code className="language-javascript">{code}</code>
+                </pre>
+              </div>
+            ))}
+          {code && (
             <div>
               源码
               <pre>
                 <code className="language-javascript">{code}</code>
               </pre>
-            </div>}
+            </div>
+          )}
           {/* // ) : (
           //   code.map((param) => (
           //     <pre>

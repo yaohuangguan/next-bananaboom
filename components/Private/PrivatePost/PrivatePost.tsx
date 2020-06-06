@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import PrivatePostItem from "./PrivatePostItem";
 const PrivatePost = ({
   privatePosts,
@@ -9,7 +9,7 @@ const PrivatePost = ({
 }) => {
   useEffect(() => {
     const config = () => {
-      if (Object.prototype.toString.call(privatePosts) === "[object Object]") {
+      if (!Array.isArray(privatePosts)) {
         privatePosts = [].concat(privatePosts);
       }
     };
@@ -19,7 +19,7 @@ const PrivatePost = ({
   return (
     <div className="private-post-list">
       {privatePosts &&
-        privatePosts.map(({ _id, ...other },index) => (
+        privatePosts.map(({ _id, ...other }, index) => (
           <div
             key={_id}
             style={{

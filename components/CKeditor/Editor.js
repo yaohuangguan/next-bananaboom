@@ -4,6 +4,7 @@ import { useRouter } from "next/router";
 import api from "../../utils/Api";
 import Loader from "../Loader/Loader";
 import Emitter from "../../utils/EventEmitter";
+import { CreateNewPost } from "../../service";
 const INITIAL_STATE = {
   content: localStorage.getItem("cachedText") || "",
   author: localStorage.getItem("authorText") || "",
@@ -14,7 +15,7 @@ const INITIAL_STATE = {
   isPrivate: false,
   errors: "",
   loading: false,
-  result: ""
+  result: "",
 };
 const reducer = (state, action) => {
   const { type, payload } = action;
@@ -50,7 +51,7 @@ const reducer = (state, action) => {
         isPrivate: false,
         errors: "",
         loading: false,
-        result: ""
+        result: "",
       };
     default:
       throw new Error();
@@ -69,7 +70,7 @@ const Editor = () => {
     isPrivate,
     errors,
     loading,
-    result
+    result,
   } = state;
 
   // const [blogText, setblogText] = useState("");
@@ -81,7 +82,7 @@ const Editor = () => {
   // const [isPrivate, setisPrivate] = useState(false);
   // const [content, setcontent] = useState("");
   // const [errors, seterrors] = useState("");
-  const handleEditorChange = evt => {
+  const handleEditorChange = (evt) => {
     // console.log( evt.editor.document.getBody().getText() )
     const data = evt.editor.getData();
     localStorage.setItem("cachedText", data);
@@ -90,31 +91,31 @@ const Editor = () => {
     blog.innerHTML = data || localStorage.getItem("cachedText");
     dispatch({ type: "CONTENT", payload: data });
   };
-  const handleAuthorChange = e => {
+  const handleAuthorChange = (e) => {
     localStorage.setItem("authorText", e.target.value);
     dispatch({ type: "AUTHOR", payload: e.target.value });
   };
-  const handleCodeChange = e => {
+  const handleCodeChange = (e) => {
     localStorage.setItem("codeText", e.target.value);
     dispatch({ type: "CODE", payload: e.target.value });
   };
-  const handleInfoChange = e => {
+  const handleInfoChange = (e) => {
     localStorage.setItem("infoText", e.target.value);
     dispatch({ type: "INFO", payload: e.target.value });
   };
-  const handleTitleChange = e => {
+  const handleTitleChange = (e) => {
     localStorage.setItem("titleText", e.target.value);
     dispatch({ type: "TITLE", payload: e.target.value });
   };
-  const handleTagsChange = e => {
+  const handleTagsChange = (e) => {
     localStorage.setItem("tagText", e.target.value);
     dispatch({ type: "TAG", payload: e.target.value });
   };
-  const handlePrivateChange = e => {
+  const handlePrivateChange = (e) => {
     console.log(e.target.checked);
     dispatch({ type: "ISPRIVATE", payload: e.target.checked });
   };
-  const handleFormSubmit = async e => {
+  const handleFormSubmit = async (e) => {
     e.preventDefault();
     if (
       author.trim() == "" ||
@@ -128,14 +129,16 @@ const Editor = () => {
     try {
       if (!loading) {
         dispatch({ type: "LOADING", payload: true });
-        const response = await api.post("/api/posts", {
+        const codeGroup = code.split('分割');
+        if(!code.includes('分割')) return dispatch({ type: "ERROR", payload: "使用'分割'汉字分割代码" });
+        const response = await CreateNewPost({
           author,
           info,
           name: title,
           tags,
           isPrivate,
           content,
-          code
+          codeGroup,
         });
         const data = await response.data;
         Emitter.dispatch("getNewPrivatePosts", data);
@@ -164,7 +167,7 @@ const Editor = () => {
           backgroundColor: "rgba(255,255,255,0.9)",
           padding: "20px",
           borderRadius: "50px",
-          marginBottom: "20px"
+          marginBottom: "20px",
         }}
       >
         <span className="text-muted">预览界面</span>
@@ -175,7 +178,7 @@ const Editor = () => {
           backgroundColor: "rgba(255,255,255,0.9)",
           padding: "20px",
           borderRadius: "50px",
-          marginBottom: "20px"
+          marginBottom: "20px",
         }}
         onSubmit={handleFormSubmit}
       >
@@ -197,7 +200,7 @@ const Editor = () => {
             onChange={handleInfoChange}
           />
         </label>
-       
+
         <label htmlFor="title">
           标题*
           <input
@@ -208,7 +211,7 @@ const Editor = () => {
           />
         </label>
         <label htmlFor="tags">
-          归类* <span className='text-muted'>(空格分隔多个标签)</span>
+          归类* <span className="text-muted">(空格分隔多个标签)</span>
           <input
             type="text"
             value={tags}
@@ -218,8 +221,7 @@ const Editor = () => {
         </label>
         <label htmlFor="code">
           代码
-          <span className='text-muted'>
-          [数组](用;隔开多个)</span>
+          <span className="text-muted">[数组](用'分割'隔开多个)</span>
           <textarea
             type="text"
             value={code}
@@ -244,19 +246,23 @@ const Editor = () => {
             height: "40em",
             uiColor: "#DFD0F0",
             extraPlugins:
-              "colorbutton,colordialog,iframe,font,smiley,preview,templates"
+              "colorbutton,colordialog,iframe,font,smiley,preview,templates",
           }}
           onChange={handleEditorChange}
-          onBeforeLoad={CKEDITOR => (CKEDITOR.disableAutoInline = true)}
+          onBeforeLoad={(CKEDITOR) => (CKEDITOR.disableAutoInline = true)}
         ></CKEditor>
         {errors ? <div className="text-danger">Error: {errors}</div> : null}
         {result ? <div className="text-success">Message: {result}</div> : null}
         <button
           className="btn-block p-3"
-          style={{ backgroundColor: "#DFD0F0",outline:'none' }}
+          style={{ backgroundColor: "#DFD0F0", outline: "none" }}
           type="submit"
         >
-          {!loading ? (<i className="fas fa-paper-plane fa-lg white-text"></i>) : <Loader />}
+          {!loading ? (
+            <i className="fas fa-paper-plane fa-lg white-text"></i>
+          ) : (
+            <Loader />
+          )}
         </button>
       </form>
     </>
