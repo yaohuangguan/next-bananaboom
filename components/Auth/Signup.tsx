@@ -237,7 +237,6 @@ const Signup = ({ linkColor }: { linkColor?: string }) => {
             </label>
             <div
               className="tooltips"
-              style={{ position: "relative", width: "100%" }}
             >
               <input
                 type="password"

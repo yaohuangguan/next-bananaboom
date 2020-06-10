@@ -253,6 +253,8 @@ body {
     height: 3rem;
   }
   .tooltips {
+    position: relative; 
+    width: 100%;
     .tooltiptext {
       visibility: hidden;
       width: 250px;
