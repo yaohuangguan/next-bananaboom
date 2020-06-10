@@ -1,0 +1,13 @@
+export default {
+    CONTENT:'CONTENT',
+    AUTHOR:'AUTHOR',
+    CODE:'CODE',
+    INFO:'INFO',
+    TITLE:'TITLE',
+    TAG:'TAG',
+    ISPRIVATE:'ISPRIVATE',
+    ERROR:'ERROR',
+    LOADING:'LOADING',
+    RESULT:'RESULT',
+    RESET:'RESET'
+}

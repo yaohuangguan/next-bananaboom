@@ -1,10 +1,10 @@
 import { useState, useEffect, useReducer } from "react";
 import CKEditor from "ckeditor4-react";
 import { useRouter } from "next/router";
-import api from "../../utils/Api";
 import Loader from "../Loader/Loader";
 import Emitter from "../../utils/EventEmitter";
 import { CreateNewPost } from "../../service";
+import C from './constants'
 const INITIAL_STATE = {
   content: localStorage.getItem("cachedText") || "",
   author: localStorage.getItem("authorText") || "",
@@ -20,27 +20,27 @@ const INITIAL_STATE = {
 const reducer = (state, action) => {
   const { type, payload } = action;
   switch (type) {
-    case "CONTENT":
+    case C.CONTENT:
       return { ...state, content: payload };
-    case "AUTHOR":
+    case C.AUTHOR:
       return { ...state, author: payload };
-    case "CODE":
+    case C.CODE:
       return { ...state, code: payload };
-    case "INFO":
+    case C.INFO:
       return { ...state, info: payload };
-    case "TITLE":
+    case C.TITLE:
       return { ...state, title: payload };
-    case "TAG":
+    case C.TAG:
       return { ...state, tags: payload };
-    case "ISPRIVATE":
+    case C.ISPRIVATE:
       return { ...state, isPrivate: payload };
-    case "ERROR":
+    case C.ERROR:
       return { ...state, errors: payload };
-    case "LOADING":
+    case C.LOADING:
       return { ...state, loading: payload };
-    case "RESULT":
+    case C.RESULT:
       return { ...state, result: payload };
-    case "RESET":
+    case C.RESET:
       return {
         content: "",
         author: "",
@@ -89,31 +89,31 @@ const Editor = () => {
 
     const blog = document.getElementById("blog-text");
     blog.innerHTML = data || localStorage.getItem("cachedText");
-    dispatch({ type: "CONTENT", payload: data });
+    dispatch({ type: C.CONTENT, payload: data });
   };
   const handleAuthorChange = (e) => {
     localStorage.setItem("authorText", e.target.value);
-    dispatch({ type: "AUTHOR", payload: e.target.value });
+    dispatch({ type: C.AUTHOR, payload: e.target.value });
   };
   const handleCodeChange = (e) => {
     localStorage.setItem("codeText", e.target.value);
-    dispatch({ type: "CODE", payload: e.target.value });
+    dispatch({ type: C.CODE, payload: e.target.value });
   };
   const handleInfoChange = (e) => {
     localStorage.setItem("infoText", e.target.value);
-    dispatch({ type: "INFO", payload: e.target.value });
+    dispatch({ type: C.INFO, payload: e.target.value });
   };
   const handleTitleChange = (e) => {
     localStorage.setItem("titleText", e.target.value);
-    dispatch({ type: "TITLE", payload: e.target.value });
+    dispatch({ type: C.TITLE, payload: e.target.value });
   };
   const handleTagsChange = (e) => {
     localStorage.setItem("tagText", e.target.value);
-    dispatch({ type: "TAG", payload: e.target.value });
+    dispatch({ type: C.TAG, payload: e.target.value });
   };
   const handlePrivateChange = (e) => {
     console.log(e.target.checked);
-    dispatch({ type: "ISPRIVATE", payload: e.target.checked });
+    dispatch({ type: C.ISPRIVATE, payload: e.target.checked });
   };
   const handleFormSubmit = async (e) => {
     e.preventDefault();
@@ -124,12 +124,12 @@ const Editor = () => {
       tags.trim() == "" ||
       content.trim() == ""
     ) {
-      return dispatch({ type: "ERROR", payload: "未填写完整" });
+      return dispatch({ type: C.ERROR, payload: "未填写完整" });
     }
+    let codeGroup;
     try {
       if (!loading) {
-        dispatch({ type: "LOADING", payload: true });
-        const codeGroup;
+        dispatch({ type: C.LOADING, payload: true });
         if(code && code.includes('分割')) {
           codeGroup = code.split('分割');
         } else {
@@ -147,9 +147,9 @@ const Editor = () => {
         });
         const data = await response.data;
         Emitter.dispatch("getNewPrivatePosts", data);
-        dispatch({ type: "RESULT", payload: "发布成功！" });
+        dispatch({ type: C.RESULT, payload: "发布成功！" });
         setTimeout(() => {
-          dispatch({ type: "RESET" });
+          dispatch({ type: C.RESET });
         }, 1000);
         localStorage.removeItem("cachedText");
         localStorage.removeItem("codeText");
@@ -160,8 +160,8 @@ const Editor = () => {
       }
     } catch (error) {
       console.log(error);
-      dispatch({ type: "ERROR", payload: "发生了错误，刷新下网页" });
-      dispatch({ type: "LOADING", payload: false });
+      dispatch({ type: C.ERROR, payload: "发生了错误，刷新下网页" });
+      dispatch({ type: C.LOADING, payload: false });
     }
   };
   return (
