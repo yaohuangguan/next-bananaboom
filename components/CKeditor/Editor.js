@@ -129,8 +129,13 @@ const Editor = () => {
     try {
       if (!loading) {
         dispatch({ type: "LOADING", payload: true });
-        if(code && !code.includes('分割')) return dispatch({ type: "ERROR", payload: "使用'分割'汉字分割代码" });
-        const codeGroup = code.split('分割');
+        const codeGroup;
+        if(code && code.includes('分割')) {
+          codeGroup = code.split('分割');
+        } else {
+          codeGroup = code
+        }
+
         const response = await CreateNewPost({
           author,
           info,
