@@ -1,5 +1,5 @@
 const email = [
-  "@google.com",
+  "@gmail.com",
   "@hotmail.com",
   "@qq.com",
   "@163.com",
