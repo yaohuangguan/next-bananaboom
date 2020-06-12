@@ -3,9 +3,8 @@ import CommentList from "./CommentList";
 import {
   getNewComments,
   postNewComments,
-  getEmojiList,
 } from "../../../service";
-import axios from "axios";
+import api from '../../../utils/Api'
 import Signup from "../../Auth/Signup";
 import Loader from "../../Loader/Loader";
 import { insertTextAtCursor } from "../../../utils/Utils";
@@ -25,8 +24,9 @@ const Comment = ({
   const [emojiList, setemojiList] = useState([]);
   const [loading, setloading] = useState(false);
   const fetchEmoji = async (e: any) => {
-    const data = await getEmojiList(e);
-    setemojiList(data.results);
+    // const data = await api(`https://emoji.getdango.com/api/emoji?q=${e}`)
+    // const response = await data.data
+    // setemojiList(response.results);
   };
   const handleCommentChange = async (e: any) => {
     if (!e) {
@@ -38,24 +38,18 @@ const Comment = ({
   };
 
   useEffect(() => {
-    let source = axios.CancelToken.source();
     const getNewComment = async () => {
       try {
         const data = await getNewComments(_id);
         setcommentsList(data);
         setcommentsCount(data.length);
       } catch (error) {
-        if (axios.isCancel(error)) {
-          console.log("caught cancel axios");
-        } else {
-          seterrors(error);
-        }
+        seterrors(error);
       }
     };
     getNewComment();
     return () => {
       console.log("unmounting");
-      source.cancel();
     };
   }, []);
   const clearCommentField = () => {

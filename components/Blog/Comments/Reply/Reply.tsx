@@ -11,8 +11,8 @@ const Reply = ({ reply, comment_id, user_id, currentUser }: any) => {
   const [emojiList, setemojiList] = useState([]);
   const [loading, setLoading] = useState(false);
   const fetchEmoji = async (e) => {
-    const data = await getEmojiList(e);
-    setemojiList(data.results.slice(0, 5));
+    // const data = await getEmojiList(e);
+    // setemojiList(data.results.slice(0, 5));
   };
   const handleReplyChange = async (e) => {
     setreplyContent(e.target.value);

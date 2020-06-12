@@ -86,29 +86,17 @@ const index = ({ currentUser, posts, errors, todos }: IYouAndMeProps) => {
 
   useEffect(() => {
     setLoading(true);
-    const source = axios.CancelToken.source();
     const getNewPrivatePosts = async () => {
       try {
         const data = await getPrivatePosts();
-        console.log("data here", data);
         setLoading(false);
         setprivatePosts(data);
       } catch (error) {
-        if (axios.isCancel(error)) {
-          console.log("caught cancel axios");
-        } else {
-          console.log(error);
-          if (error) {
-            // router.push("/");
-          }
           setLoading(false);
         }
-      }
+      
     };
     getNewPrivatePosts();
-    return () => {
-      source.cancel();
-    };
   }, []);
 
   const setUser = (user: any) => {

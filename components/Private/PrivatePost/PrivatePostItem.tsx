@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
-import api from "../../../utils/Api";
 import Comment from "../../Blog/Comments/Comments";
 import Loader from "../../Loader/Loader";
-import axios from "axios";
+import { getCommentList, deletePost } from "../../../service";
+import EventEmitter from "../../../utils/EventEmitter";
 export interface IPrivatePostItemProps {
   tags?: string[];
   name?: string;
@@ -40,31 +40,27 @@ const PrivatePostItem = (props: IPrivatePostItemProps) => {
     return () => {};
   }, []);
   useEffect(() => {
-    const source = axios.CancelToken.source();
-
     const fetchCommentList = async () => {
       setLoading(true);
       try {
-        const response = await api(`/api/comments/${id}`, {
-          cancelToken: source.token,
-        });
-        const data = await response.data;
-        setComments(data);
+        const response = await getCommentList(id);
+        setComments(response);
       } catch (error) {
-        if (axios.isCancel(error)) {
-          console.log("caught cancel axios");
-        } else {
-          console.log(error);
-        }
+        console.log(error);
       } finally {
         setLoading(false);
       }
     };
     fetchCommentList();
-    return () => {
-      source.cancel();
-    };
   }, []);
+  const handleDeletePost = async () => {
+    const res = confirm("are you sure");
+    if (!res) return;
+    if(currentUser.email !== 'yaob@miamioh.edu') return alert('老婆无权限操作')
+    const response = await deletePost(id);
+    console.log(response);
+    EventEmitter.dispatch("getNewPrivatePosts", response);
+  };
   return (
     <>
       <div style={{ display: "flex", justifyContent: "space-between" }}>
@@ -72,7 +68,19 @@ const PrivatePostItem = (props: IPrivatePostItemProps) => {
         <span style={{ fontSize: "15px" }}>
           第<code>{length - index}</code>/{length}篇
         </span>
+        <span
+          style={{
+            padding: "5px",
+            fontSize: "30px",
+            color: "red",
+            cursor: "pointer",
+          }}
+          onClick={handleDeletePost}
+        >
+          X
+        </span>
       </div>
+
       <div
         style={{
           display: "flex",

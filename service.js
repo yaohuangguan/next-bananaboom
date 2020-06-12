@@ -7,6 +7,7 @@ export const changeUserName = (id, data) =>
 export const getResumeList = () => get("/api/resume");
 export const getPrivatePosts = (data) => get("/api/posts/private/posts", data);
 export const CreateNewPost = (data) => post(`/api/posts`, data);
+export const deletePost = id => del(`/api/posts/${id}`)
 export const getHomepage = () => get("/api/homepage");
 export const getLogs = () => get("/api/homepage/logs");
 export const getProjects = () => get("/api/homepage/projects");

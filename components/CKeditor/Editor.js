@@ -1,4 +1,4 @@
-import { useState, useEffect, useReducer } from "react";
+import { useReducer } from "react";
 import CKEditor from "ckeditor4-react";
 import { useRouter } from "next/router";
 import Loader from "../Loader/Loader";
@@ -58,7 +58,6 @@ const reducer = (state, action) => {
   }
 };
 const Editor = () => {
-  const router = useRouter();
   const [state, dispatch] = useReducer(reducer, INITIAL_STATE);
   const {
     content,
@@ -145,8 +144,7 @@ const Editor = () => {
           content,
           codeGroup,
         });
-        const data = await response.data;
-        Emitter.dispatch("getNewPrivatePosts", data);
+        Emitter.dispatch("getNewPrivatePosts", response);
         dispatch({ type: C.RESULT, payload: "发布成功！" });
         setTimeout(() => {
           dispatch({ type: C.RESET });

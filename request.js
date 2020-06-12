@@ -11,9 +11,11 @@ export const get = (url, data = "", headers = {}) =>
     cancelToken: cancelToken.token,
     data,
     method: "GET",
-  }).then((res) => res.data)
+  })
     .catch((err) => Promise.reject(err))
-    
+    .then((res) => {
+      return res.status === 200 ? res.data : Promise.reject("status !== 200");
+    });
 
 export const post = (url, data = "", headers = {}) =>
   api(url, {
@@ -21,34 +23,35 @@ export const post = (url, data = "", headers = {}) =>
       ...headers,
     },
     cancelToken: cancelToken.token,
-    data: JSON.stringify(data),
+    data: data && JSON.stringify(data),
 
     method: "POST",
   })
-    .then((res) => res.data)
-    .catch((err) => Promise.reject(err));
+    .catch((err) => Promise.reject(err))
+    .then((res) => res.data);
 
 export const put = (url, data = "", headers = {}) =>
   api(url, {
     headers: {
       ...headers,
     },
-    data: JSON.stringify(data),
+    data: data && JSON.stringify(data),
 
     cancelToken: cancelToken.token,
     method: "PUT",
   })
-    .then((res) => res.data)
-    .catch((err) => Promise.reject(err));
+    .catch((err) => Promise.reject(err))
+    .then((res) => res.data);
+
 export const del = (url, data = "", headers = {}) =>
   api(url, {
     headers: {
       ...headers,
     },
-    data: JSON.stringify(data),
+    data: data && JSON.stringify(data),
 
     cancelToken: cancelToken.token,
     method: "DELETE",
   })
-    .then((res) => res.data)
-    .catch((err) => Promise.reject(err));
+    .catch((err) => Promise.reject(err))
+    .then((res) => res.data);
