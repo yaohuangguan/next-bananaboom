@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "push": "git add . && git commit -m regular-push && git push origin master && next dev",
-    "prod": "next build && next start"
+    "prod": "next build && next start",
+    "test": "jest"
   },
   "dependencies": {
     "@zeit/next-sass": "^1.0.1",
@@ -16,11 +17,14 @@
     "babel-plugin-styled-components": "^1.10.6",
     "ckeditor4-react": "^1.0.1",
     "firebase": "^7.6.1",
+    "jest": "^26.0.1",
     "next": "^9.3.2",
     "next-pwa": "^2.2.0",
     "node-sass": "^4.13.0",
     "prismjs": "^1.17.1",
+    "puppeteer": "^3.3.0",
     "react": "^16.13.1",
+    "react-dispatch": "^1.0.3",
     "react-dom": "^16.13.1",
     "smooth-scroll": "^16.1.0",
     "styled-components": "^4.4.1",

@@ -54,13 +54,7 @@ const Index = ({
       consolelog();
     }
     SetWebUrl(window.location.hostname);
-    let timeout = setTimeout(() => {
-      const node: any = document.querySelector(".web-service-entrance");
-      node.style.display = "none";
-    }, 40000);
-    return () => {
-      clearTimeout(timeout);
-    };
+
   }, []);
   const {
     _id,
@@ -77,29 +71,29 @@ const Index = ({
     likes,
     backgroundURL,
   }: IHomepageDataProps = homepage[0];
-  const mapWebServiceComponent = () => (
-    <div className="web-service-entrance">
-      <span
-        style={{ marginRight: "20px" }}
-        onClick={() => {
-          const node: any = document.querySelector(".web-service-entrance");
-          node.style.display = "none";
-        }}
-      >
-        X
-      </span>
-      <a
-        href="https://web.yaobaiyang.com"
-        style={{ color: "aliceblue", textDecoration: "underline" }}
-      >
-        https://web.yaobaiyang.com
-      </a>
-      现开通Atlas网站搭建服务,让任何人都能拥有自己的网站!
-    </div>
-  );
+  // const mapWebServiceComponent = () => (
+  //   <div className="web-service-entrance">
+  //     <span
+  //       style={{ marginRight: "20px" }}
+  //       onClick={() => {
+  //         const node: any = document.querySelector(".web-service-entrance");
+  //         node.style.display = "none";
+  //       }}
+  //     >
+  //       X
+  //     </span>
+  //     <a
+  //       href="https://web.yaobaiyang.com"
+  //       style={{ color: "aliceblue", textDecoration: "underline" }}
+  //     >
+  //       https://web.yaobaiyang.com
+  //     </a>
+  //     现开通Atlas网站搭建服务,让任何人都能拥有自己的网站!
+  //   </div>
+  // );
   return (
     <Layout head={"Sam的博客 || www.yaobaiyang.com"}>
-      {mapWebServiceComponent()}
+      {/* {mapWebServiceComponent()} */}
       <BrowserTest />
       <Header
         blogName={"Blog"}
