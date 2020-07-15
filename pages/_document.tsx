@@ -88,11 +88,11 @@ export default class MyDocument extends Document {
           <meta name="screen-orientation" content="portrait" />
           <meta
             name="description"
-            content="姚柏杨的网站，yaobaiyang's website, yaobaiyang.com"
+            content="SamYao's official page"
           />
           <meta
             property="og:description"
-            content="姚柏杨的网站，yaobaiyang's website, yaobaiyang.com"
+            content="SamYao's official page"
           />
           <meta name="twitter:card" content="summary" />
           <meta name="twitter:url" content="https://www.yaobaiyang.com" />
