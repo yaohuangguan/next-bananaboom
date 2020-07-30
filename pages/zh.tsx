@@ -42,7 +42,7 @@ const Chinese = ({
     backgroundURL
   } = homepage[0];
   return (
-    <Layout head={"Sam 个人博客 博客文章 技术文章 生活文章 个人心得"}>
+    <Layout head={"Sam 个人博客"}>
       <Header
         blogName={"博客"}
         resumeName={"介绍"}

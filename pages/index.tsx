@@ -92,7 +92,7 @@ const Index = ({
   //   </div>
   // );
   return (
-    <Layout head={"Sam的博客 || www.yaobaiyang.com"}>
+    <Layout head={"Sam的博客"}>
       {/* {mapWebServiceComponent()} */}
       <BrowserTest />
       <Header
