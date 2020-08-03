@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useMemo } from "react";
 import { useRouter } from "next/router";
-import axios from "axios";
 import dynamic from "next/dynamic";
 import Emitter from "../../utils/EventEmitter";
 import ChatLogin from "../../components/Private/Chat/ChatLogin";
@@ -15,11 +14,9 @@ import {
   LOGOUT,
   ROOM_WELCOME,
 } from "../../components/Private/Chat/Events";
-// import DrawingCanvas from "../../components/DrawingCanvas/Drawing";
-// import ChrismasLight from "../../components/Private/ChrismasLight/Light";
 import {getPrivatePosts} from '../../service'
 import Loader from "../../components/Loader/Loader";
-import "./youandme.scss";
+import "./edit.scss";
 const CKEditor = dynamic(() => import("../../components/CKeditor/Editor"), {
   ssr: false,
 });

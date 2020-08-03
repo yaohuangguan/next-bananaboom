@@ -87,11 +87,11 @@ const Layout = ({ children, head }) => {
   );
 };
 Layout.getInitialProps = ({ pathname }) => {
-  if (pathname === "/youandme") {
+  if (pathname === "/edit") {
     require("../Private/Chat/chat.scss");
     require("../Private/ToDo/todo.scss");
     require("../Private/ChrismasLight/light.scss");
-    require("../../pages/youandme/youandme.scss");
+    require("../../pages/edit/edit.scss");
     return require("../Private/CountDate/countdate.scss");
   }
   return (

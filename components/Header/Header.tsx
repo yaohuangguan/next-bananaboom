@@ -61,12 +61,12 @@ const Header = ({
       dropdown.classList.toggle("dropdown-hide");
     }
   };
-  const getYouAndMe = () => {
+  const getEditPage = () => {
     if (currentUser) {
       if (currentUser.private_token === "ilovechenfangting") {
         return (
-          <Link href="/youandme">
-            <span>Only We Know</span>
+          <Link href="/edit">
+            <span>New Post</span>
           </Link>
         );
       }
@@ -102,7 +102,7 @@ const Header = ({
           {currentUser ? (
             <a className="option">
               <Dropdown currentUser={currentUser}></Dropdown>
-              {getYouAndMe()}
+              {getEditPage()}
             </a>
           ) : (
             <div className="option">
