@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": " PORT=${PORT} next dev",
     "build": "next build",
     "start": "next start",
     "push": "git add . && git commit -m ${COMMIT} && git push origin master && next dev",
@@ -24,7 +24,7 @@
     "prismjs": "^1.17.1",
     "puppeteer": "^3.3.0",
     "react": "^16.13.1",
-    "react-dispatch": "^1.0.3",
+    "react-dispatch": "^1.2.0",
     "react-dom": "^16.13.1",
     "smooth-scroll": "^16.1.0",
     "styled-components": "^4.4.1",

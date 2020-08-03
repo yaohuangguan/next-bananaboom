@@ -8530,10 +8530,10 @@ rc@^1.2.7:
     minimist "^1.2.0"
     strip-json-comments "~2.0.1"
 
-react-dispatch@^1.0.3:
-  version "1.0.3"
-  resolved "https://registry.yarnpkg.com/react-dispatch/-/react-dispatch-1.0.3.tgz#b36f24569fe2172f081bc1d33eea91f66c2b0500"
-  integrity sha512-hHKR5/SHQRf9ZoiXywJoYhsEtU1i83LMLFrVTViLDctZrPRHXCY37BUHiHJUYUEuwD/UsghWB5tJ0KZsCIUMUw==
+react-dispatch@^1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/react-dispatch/-/react-dispatch-1.2.0.tgz#d1baac37443e4d2e3136169aebd9fb74f3142633"
+  integrity sha512-yyWAG78PlUOO4FWNTWaEfNiFIyvjTiQPSy6SvRO+JvTurrLZdR7kPLwwnyq6ZbgtCdtOIGdfDyOjHLEIoLFLHA==
 
 react-dom@^16.13.1:
   version "16.13.1"

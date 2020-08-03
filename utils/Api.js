@@ -2,8 +2,10 @@ import axios from "axios";
 const baseURL =
   process.env.NODE_ENV === "production"
     ? "https://nextbananaboom.herokuapp.com"
+    : process.env.API_HOST === "remote"
+    ? "https://nextbananaboom.herokuapp.com"
     : "http://localhost:5000";
-
+console.log("process.env", process.env);
 const _api = axios.create({
   baseURL: baseURL,
   headers: {
@@ -50,7 +52,9 @@ _api.interceptors.response.use(
         case 403:
           throw error;
         case 404:
-          console.log("Interceptor 404 the resources you requested does not exist");
+          console.log(
+            "Interceptor 404 the resources you requested does not exist"
+          );
           break;
         default:
           throw error;
