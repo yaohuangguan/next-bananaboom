@@ -1,6 +1,6 @@
 const withSASS = require("@zeit/next-sass");
 const withCSS = require("@zeit/next-css");
-// const withPwa = require("next-pwa");
+const withPwa = require("next-pwa");
 const nextConfig = withCSS(
   withSASS({
     webpack(config, options) {
@@ -33,7 +33,7 @@ const nextConfig = withCSS(
   })
 );
 
-// module.exports =
-//   process.env.NODE_ENV === "production" ? withPwa(nextConfig) : nextConfig;
+module.exports =
+  process.env.NODE_ENV === "production" ? withPwa(nextConfig) : nextConfig;
 
-module.exports = nextConfig;
+// module.exports = nextConfig;
