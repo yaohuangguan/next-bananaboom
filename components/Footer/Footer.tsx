@@ -1,6 +1,6 @@
 import "./Footer.scss";
 
-const Footer = ({ welcome, date }: { welcome: string; date: any }) => {
+const Footer = () => {
   // const [closed, setClosed] = useState(false);
   // const explain = useRef(null)
   // useEffect(() => {
@@ -51,7 +51,7 @@ const Footer = ({ welcome, date }: { welcome: string; date: any }) => {
         X
       </span>
       <div className="text-center">
-        <span className="text-white">{date}</span>
+        <span className="text-white">{process.env.LAST_UPDATE_TIME}</span>
       </div>
 
       {/* <div ref={explain} className="container text-center" id="explain">
