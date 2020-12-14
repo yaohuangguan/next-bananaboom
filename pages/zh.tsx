@@ -86,7 +86,7 @@ const Chinese = ({
         />
       </div>
 
-      <Footer date={footer_date_cn} welcome={footer_welcome_cn}></Footer>
+      <Footer />
     </Layout>
   );
 };

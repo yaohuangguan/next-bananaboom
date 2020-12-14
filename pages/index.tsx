@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import api from "../utils/Api";
 import Layout from "../components/Layout/Layout";
 import Header from "../components/Header/Header";
 import Jumbo from "../components/Jumbo/Jumbo";
@@ -66,8 +65,6 @@ const Index = ({
     intro_subtitle,
     intro_intro,
     subscribe_web_version,
-    footer_date,
-    footer_welcome,
     likes,
     backgroundURL,
   }: IHomepageDataProps = homepage[0];
@@ -140,7 +137,7 @@ const Index = ({
         />
       </div>
 
-      <Footer date={footer_date} welcome={footer_welcome}></Footer>
+      <Footer />
     </Layout>
   );
 };
