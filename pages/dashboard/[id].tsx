@@ -44,7 +44,7 @@ const dashboard = ({ currentUser, handleTheme,getUserProfile }:any) => {
          
             此页面其他功能正在开发中...
             <div>
-              用户名:{currentUser.displayName} => {newDisplayName}{" "}
+              用户名:{currentUser.displayName} 更改为 {newDisplayName}{" "}
             </div>
             <div className="change-name">
               <input

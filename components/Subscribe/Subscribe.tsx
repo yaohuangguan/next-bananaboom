@@ -195,16 +195,16 @@ const Subscribe = ({
                 id="mc-embedded-subscribe"
                 className="btn btn-hover color-3"
               >
-                {loading ? <Loader></Loader> : subscribeButton()}
+                {loading ? <Loader /> : subscribeButton()}
               </button>
             </div>
           </form>
         </div>
       </div>
       <div className="subscribe-footer">
-        <SocialFooter likes={likes} _id={_id}></SocialFooter>
+        <SocialFooter likes={likes} _id={_id} />
         <div className="information pb-3 text-center">
-          <Logs version={web_version} logs={logs_content}></Logs>
+          <Logs version={web_version} logs={logs_content}/>
           <p className="white-text">{copyright}</p>
         </div>
       </div>

@@ -9,7 +9,7 @@ export const getChineseContent = () => {
       <p>主要研究方向: Web理论和技术研究</p>
       <p>相关技能: Web应用编程, Web交互编程, HCI理论和可用性, 网络安全, 电子商务</p>
       <br />
-      <h5 className='blue-text'>腾讯云<i className="fab fa-qq"></i> - 前端开发工程师</h5>
+      <h5 className='blue-text'>腾讯云 - 前端开发工程师</h5>
       <div className='d-flex row'>
         <div className="col-md-12 mt-3">
           <p>
@@ -58,7 +58,7 @@ export const getEnglishContent = () => {
         Programming, HCI theory and usability, Cyber Security, Digital Marketing
       </p>
       <br />
-      <h5 className='blue-text'>Tencent Cloud<i className="fab fa-qq"></i> - Front end Engineer</h5>
+      <h5 className='blue-text'>Tencent Cloud - Front end Engineer</h5>
       <div className='d-flex row'>
         <div className="col-md-12 mt-3">
           <p>

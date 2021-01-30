@@ -58,7 +58,7 @@ const blog = ({
   // console.log(project_id)
   return (
     <Layout head={`${name}`}>
-      {content ? null : <SpecialWrapper project={project_id}></SpecialWrapper>}
+      {content ? null : <SpecialWrapper project={project_id} />}
 
       <div className="container">
         <a
@@ -119,12 +119,12 @@ const blog = ({
             </div>
           ) : null}
         </section>
-        <Pay></Pay>
+        <Pay />
         <Comment
           comments={comments}
           _id={_id}
           currentUser={currentUser}
-        ></Comment>
+        />
       </div>
     </Layout>
   );

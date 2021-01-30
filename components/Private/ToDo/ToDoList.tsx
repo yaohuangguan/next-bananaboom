@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import Loader from "../../Loader/Loader";
 import "./todo.scss";
 export interface ITodoListItemProps {
@@ -28,6 +28,16 @@ const ToDoListItem = ({
   markFail,
   todoRef,
 }: ITodoListItemProps) => {
+  const [isDone, setIsDone] = useState(false);
+  const [itemLoading, setItemLoading] = useState(false);
+  useEffect(() => {
+    setIsDone(done);
+  }, [done]);
+
+  useEffect(() => {
+    setItemLoading(loading);
+  }, [loading]);
+
   return (
     <div style={{ display: "flex", justifyContent: "space-between" }}>
       <div>
@@ -38,8 +48,8 @@ const ToDoListItem = ({
       </div>
 
       <span className="done" style={{ cursor: "pointer", fontSize: "20px" }}>
-        {!loading ? (
-          !done ? (
+        {!itemLoading ? (
+          !isDone ? (
             <span id={_id} onClick={markFail}>
               ❌
             </span>
@@ -55,13 +65,13 @@ const ToDoListItem = ({
     </div>
   );
 };
-const ToDoList = ({ todos, handleDone, loading }:ITodoListProps) => {
+const ToDoList = ({ todos, handleDone, loading }: ITodoListProps) => {
   const todoRef = useRef(null);
-  const markComplete = (e:any) => {
+  const markComplete = (e: any) => {
     const id = e.target.id;
     handleDone(id);
   };
-  const markFail = (e:any) => {
+  const markFail = (e: any) => {
     const id = e.target.id;
     handleDone(id);
   };

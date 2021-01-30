@@ -2,10 +2,8 @@ import axios from "axios";
 const baseURL =
   process.env.NODE_ENV === "production"
     ? "https://nextbananaboom.herokuapp.com"
-    : process.env.API_HOST === "remote"
-    ? "https://nextbananaboom.herokuapp.com"
-    : "http://localhost:5000";
-console.log("process.env", process.env);
+    : "https://nextbananaboom.herokuapp.com";
+
 const _api = axios.create({
   baseURL: baseURL,
   headers: {

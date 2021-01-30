@@ -128,7 +128,7 @@ const Blog = ({
             blogs={blogs}
             searchSuggestion={searchSuggestion}
             theme={handleTheme}
-          ></SearchBox>
+          />
           {filteredBlog.length == 0 ? (
             <span>
               <i className="fas fa-frown-open"></i>没有找到相关文章 No result
@@ -139,7 +139,7 @@ const Blog = ({
           <BlogList blogs={filteredBlog} handleTheme={handleTheme} />
         </div>
       ) : (
-        <Loader color={"text-secondary"}></Loader>
+        <Loader color={"text-secondary"}/>
       )}
     </Layout>
   );

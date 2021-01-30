@@ -89,9 +89,9 @@ const ToDo = () => {
           todos={todos}
           handleDone={handleDone}
           loading={doneloading}
-        ></ToDoList>
+        />
       ) : (
-        <Loader color={"text-secondary"} size={"60px"}></Loader>
+        <Loader color={"text-secondary"} size={"60px"}/>
       )}
     </div>
   );
