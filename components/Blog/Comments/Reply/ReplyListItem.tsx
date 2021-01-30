@@ -1,4 +1,5 @@
 import Loader from "../../../Loader/Loader";
+import Image from 'next/image'
 interface IReplyListItemProps {
   id: string;
   content: string;
@@ -36,7 +37,7 @@ const ReplyListItem = ({
 
   return (
     <div style={{ display: "flex" }}>
-      <img
+      <Image
         src={photoURL}
         alt="avatar"
         width="40px"

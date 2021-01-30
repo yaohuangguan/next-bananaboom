@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import "./Jumbo.scss";
 import Link from "next/link";
+import Image from 'next/image'
 export interface IJumboProps {
   name: string;
   welcome: string;
@@ -51,7 +52,7 @@ const Jumbo = ({
     <div className="jumbo-section">
       <Link href={homeRoute}>
         <a id="logo" className="p-1">
-          <img src="/favicon.png" width="55px" height="55px" alt="sam logo" />
+          <Image src="/favicon.png" width="55px" height="55px" alt="sam logo" />
         </a>
       </Link>
       <div

@@ -1,6 +1,7 @@
 import React from "react";
 import Layout from "../components/Layout/Layout";
 import Link from "next/link";
+import Image from 'next/image'
 function Error({ statusCode }) {
   return (
     <Layout head={'页面发生了错误，请刷新页面然后尝试 | yaobaiyang.com'}>
@@ -15,7 +16,7 @@ function Error({ statusCode }) {
 
             <br />
               <a>
-                <img
+                <Image
                   src="https://res.cloudinary.com/next-bananaboom/image/upload/v1582125657/%E8%80%81%E5%A9%86%E7%9A%84%E7%88%B1_fxvtnv.gif"
                   style={{ marginLeft: "10%" }}
                   width="90%"

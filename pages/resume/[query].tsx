@@ -8,6 +8,7 @@ import Layout from "../../components/Layout/Layout";
 import { withRouter } from "next/router";
 import shuffle from "../../utils/Shuffle";
 import GitHub from "../../components/Github/Github.forkme";
+import Image from 'next/image'
 import {
   getEnglishContent,
   getChineseContent
@@ -43,7 +44,7 @@ const Resume = ({ resumeItem, errors, router, handleTheme }) => {
             className="white-text p-1 rounded"
             style={{ backgroundColor: "#333", margin: ".375rem" }}
           >
-            <img
+            <Image
               src={router.asPath == "/resume/en-us" ? china : uk}
               alt="language-flag"
               width="25px"

@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import "./music.css";
+import Image from 'next/image'
 const Music = () => {
   useEffect(() => {
     const musicContainer = document.getElementById("music-container");
@@ -150,7 +151,7 @@ const Music = () => {
       <audio src="/music/simmer.mp3" id="audio"></audio>
 
       <div className="img-container">
-        <img src="/simmer.jpg" alt="music-cover" id="cover" />
+        <Image src="/simmer.jpg" alt="music-cover" id="cover" />
       </div>
       <div className="navigation">
         <button id="prev" className="action-btn">

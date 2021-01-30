@@ -1,6 +1,7 @@
 import { useState, useRef, useMemo } from "react";
 import { useRouter } from "next/router";
 import firebase from "../../firebase/firebase";
+import Image from 'next/image'
 import {signIn} from '../../service'
 import Loader from "../Loader/Loader";
 const Login = ({
@@ -166,7 +167,7 @@ const Login = ({
                 placeholder={getPasswordOnRoutes}
               />
               <div onClick={passwordReveal} className="password-show">
-                <img
+                <Image
                   src="https://img.icons8.com/ios-glyphs/20/000000/visible.png"
                   alt="icon"
                 />{" "}
@@ -187,7 +188,7 @@ const Login = ({
               className="btn btn-hover color-3 my-4 mx-0 btn-block text-white"
               type="submit"
             >
-              {!loading ? getLoginButtonOnRoutes : <Loader></Loader>}
+              {!loading ? getLoginButtonOnRoutes : <Loader />}
             </button>
 
             <p className="text-center">{getLoginMethodOnRoutes}</p>

@@ -1,3 +1,4 @@
+import Image from 'next/image'
 const Background = () => {
   return (
     <div className="text-center row py-2">
@@ -19,8 +20,8 @@ const Background = () => {
         </div>
       </div> */}
       <div className="col-md-6 overlay zoom view my-2">
-        <img
-          data-src="https://res.cloudinary.com/next-bananaboom/image/upload/v1582172681/WechatIMG5_trpzmw.jpg"
+        <Image
+          data-src="https://res.cloudinary.com/next-bananaboom/image/upload/v1582172681/WechatImage5_trpzmw.jpg"
           className="z-depth-2 lazyload"
           width="100%"
           alt="my daily photos"
@@ -30,7 +31,7 @@ const Background = () => {
         </div>
       </div>
       <div className="col-md-6 overlay zoom view my-2">
-        <img
+        <Image
           data-src="https://res.cloudinary.com/next-bananaboom/image/upload/v1582172681/WechatIMG6_fvqhbm.jpg"
           className="z-depth-2 lazyload"
           width="100%"

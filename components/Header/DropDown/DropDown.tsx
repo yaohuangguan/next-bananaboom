@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import Link from "next/link";
 import api from "../../../utils/Api";
 import firebase from "../../../firebase/firebase";
+import Image from 'next/image'
 import "./DropDown.scss";
 const DropDown = ({ currentUser }:any) => {
   const router = useRouter();
@@ -37,7 +38,7 @@ const DropDown = ({ currentUser }:any) => {
   return (
     <>
       <div className="dropdown">
-        <img src={photoURL} width="40px" height="40px" alt="userprofileimg" />
+        <Image src={photoURL} width="40px" height="40px" alt="userprofileimg" />
 
         <div className="dropdown-submenu py-1">
           <ul className="dropdown-list text-center">

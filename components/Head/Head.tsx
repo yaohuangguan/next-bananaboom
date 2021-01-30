@@ -40,8 +40,6 @@ const HeadConfig = ({ head }) => {
         href="https://cdnjs.cloudflare.com"
         crossOrigin="true"
       />
-
-      <script src="/lazyload.min.js" defer></script>
     </Head>
   );
 };

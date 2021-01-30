@@ -3,7 +3,7 @@ import "./BlogListItem.scss";
 import api from "../../utils/Api";
 import { useState } from "react";
 import { randomColor } from "../../utils/Utils";
-
+import Image from 'next/image'
 const colors: string[] = [`blue`, `orange`, `cyan`, `indigo`, `green`];
 export interface IBlogListItemProps {
   name: string;
@@ -98,7 +98,7 @@ const BlogListItem = ({
         <p className="">{info}</p>
         {image &&
           image.map((each, index) => (
-            <img src={each} key={index} alt="img" width="100%"></img>
+            <Image src={each} key={index} alt="img" width="100%"></Image>
           ))}
 
         <span>

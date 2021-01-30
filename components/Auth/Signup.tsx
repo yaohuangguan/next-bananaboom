@@ -4,6 +4,8 @@ import firebase from "../../firebase/firebase";
 import {signUp} from '../../service'
 import Loader from "../Loader/Loader";
 import Login from "./Login";
+import Image from 'next/image'
+
 const Signup = ({ linkColor }: { linkColor?: string }) => {
   const router = useRouter();
   const SignupContainer = useRef(null);
@@ -251,7 +253,7 @@ const Signup = ({ linkColor }: { linkColor?: string }) => {
               <span className="tooltiptext">{getPasswordTipOnRoutes}</span>
 
               <div onClick={passwordReveal} className="password-show">
-                <img
+                <Image
                   src="https://img.icons8.com/ios-glyphs/20/000000/visible.png"
                   alt="icon"
                 />

@@ -1,5 +1,6 @@
 import { useRouter } from "next/router";
 import "./Project.scss";
+import Image from 'next/image'
 export interface IProjectListItemProps {
   _id: string;
   link: string;
@@ -44,7 +45,7 @@ const Project = ({
           rel="noopener noreferrer"
           title="会打开外部链接 this will open external link"
         >
-          <img
+          <Image
             data-src={image}
             className="lazyload"
             alt={router.pathname == "/zh" ? name : _name}

@@ -1,4 +1,5 @@
 import Reply from "./Reply/Reply";
+import Image from 'next/image'
 export interface ICommentListItemProps {
   user:string;
   _userid:string;
@@ -15,7 +16,7 @@ const CommentListItem = ({ user, _userid, comment, date, photoURL, id, reply, cu
       {comment && (
         <div style={{ display: "flex",flexDirection:'column' }}>
           <div className='image-and-comment' style={{display:'flex'}}>
-            <img
+            <Image
               src={
                 photoURL
               }
