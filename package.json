@@ -28,7 +28,8 @@
     "react-dom": "^17.0.0",
     "smooth-scroll": "^16.1.0",
     "styled-components": "^4.4.1",
-    "url-loader": "^3.0.0"
+    "url-loader": "^3.0.0",
+    "webpack": "^5.19.0"
   },
   "devDependencies": {
     "@types/compression": "^1.0.1",
