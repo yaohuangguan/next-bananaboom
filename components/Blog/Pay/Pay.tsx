@@ -1,5 +1,6 @@
 import React, { useRef } from "react";
-import Image from 'next/image'
+import Image from "next/image";
+// tslint:disable
 const Pay = () => {
   const pay = useRef(null);
   const dashang = useRef(null);
@@ -15,9 +16,9 @@ const Pay = () => {
           flexDirection: "column",
           justifyContent: "center",
           alignItems: "center",
-          position: "relative"
+          position: "relative",
         }}
-        className='text-center'
+        className="text-center"
         onClick={handleChange}
       >
         <div ref={dashang}>
@@ -33,7 +34,7 @@ const Pay = () => {
           ref={pay}
           style={{
             position: "absolute",
-            visibility: "hidden"
+            visibility: "hidden",
           }}
         >
           <Image src="/pay.jpeg" alt="wechat pay" width="35%" />

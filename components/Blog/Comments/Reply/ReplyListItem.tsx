@@ -1,5 +1,6 @@
 import Loader from "../../../Loader/Loader";
-import Image from 'next/image'
+import Image from "next/image";
+// tslint:disable
 interface IReplyListItemProps {
   id: string;
   content: string;

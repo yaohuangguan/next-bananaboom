@@ -4,6 +4,7 @@ import firebase from "../../firebase/firebase";
 import Image from 'next/image'
 import {signIn} from '../../service'
 import Loader from "../Loader/Loader";
+// tslint:disable
 const Login = ({
   passwordReveal,
   closeLogin,

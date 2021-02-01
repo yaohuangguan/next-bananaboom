@@ -1,10 +1,11 @@
 import "./Background.scss";
 import Image from 'next/image'
+// tslint:disable
 export const getBeeHexImg = () => {
   return (
     <div className="view overlay text-center zoom z-depth-1">
       <Image
-        data-src="https://res.cloudinary.com/next-bananaboom/image/upload/v1582172681/WechatIMG7_o8oktj.jpg" 
+        src="https://res.cloudinary.com/next-bananaboom/image/upload/v1582172681/WechatIMG7_o8oktj.jpg" 
         alt="my team at BeeHex."
         className="lazyload"
         width="100%"

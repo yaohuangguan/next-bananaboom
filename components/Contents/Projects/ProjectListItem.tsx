@@ -1,6 +1,8 @@
 import { useRouter } from "next/router";
 import "./Project.scss";
-import Image from 'next/image'
+import Image from "next/image";
+// tslint:disable
+
 export interface IProjectListItemProps {
   _id: string;
   link: string;

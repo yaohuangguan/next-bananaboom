@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import "./Jumbo.scss";
 import Link from "next/link";
 import Image from 'next/image'
+// tslint:disable
 export interface IJumboProps {
   name: string;
   welcome: string;

@@ -3,9 +3,12 @@ import { useRouter } from "next/router";
 import Link from "next/link";
 import api from "../../../utils/Api";
 import firebase from "../../../firebase/firebase";
-import Image from 'next/image'
+import Image from "next/image";
 import "./DropDown.scss";
-const DropDown = ({ currentUser }:any) => {
+
+// tslint:disable
+
+const DropDown = ({ currentUser }: any) => {
   const router = useRouter();
   const logout = async () => {
     if (typeof window != "undefined") {
@@ -24,7 +27,11 @@ const DropDown = ({ currentUser }:any) => {
   const getGreeting = () => {
     const hour = new Date().getHours();
     const greeting =
-      hour < 12 ? "Good Morning" : hour < 18 ? "Good Afternoon" : "Good Evening";
+      hour < 12
+        ? "Good Morning"
+        : hour < 18
+        ? "Good Afternoon"
+        : "Good Evening";
     const greeting_cn = hour < 12 ? "早上好" : hour < 18 ? "下午好" : "晚上好";
     return router.pathname == "/"
       ? `${greeting},${displayName}.`

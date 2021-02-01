@@ -8,12 +8,14 @@ import Layout from "../../components/Layout/Layout";
 import { withRouter } from "next/router";
 import shuffle from "../../utils/Shuffle";
 import GitHub from "../../components/Github/Github.forkme";
-import Image from 'next/image'
+import Image from "next/image";
 import {
   getEnglishContent,
-  getChineseContent
+  getChineseContent,
 } from "../../components/Contents/Resume/Content";
 import { getResumeList } from "../../service";
+// tslint:disable
+
 const Resume = ({ resumeItem, errors, router, handleTheme }) => {
   const [theme, setTheme] = useState("");
   function handleThemeBeforeServer() {
@@ -183,7 +185,7 @@ Resume.getInitialProps = async () => {
   }
   return {
     resumeItem: shuffled,
-    errors: errors
+    errors: errors,
   };
 };
 

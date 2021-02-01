@@ -1,5 +1,6 @@
 import Reply from "./Reply/Reply";
 import Image from 'next/image'
+// tslint:disable
 export interface ICommentListItemProps {
   user:string;
   _userid:string;

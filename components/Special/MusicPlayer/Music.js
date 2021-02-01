@@ -1,6 +1,8 @@
 import React, { useEffect } from "react";
 import "./music.css";
-import Image from 'next/image'
+import Image from "next/image";
+// tslint:disable
+
 const Music = () => {
   useEffect(() => {
     const musicContainer = document.getElementById("music-container");
@@ -83,7 +85,7 @@ const Music = () => {
     }
 
     // Update progress bar
-    const updateProgress = e => {
+    const updateProgress = (e) => {
       const { duration, currentTime, buffered } = e.srcElement;
       if (duration || currentTime) {
         const progressPercent = (currentTime / duration) * 100;

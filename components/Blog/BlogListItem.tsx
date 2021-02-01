@@ -5,6 +5,7 @@ import { useState } from "react";
 import { randomColor } from "../../utils/Utils";
 import Image from 'next/image'
 const colors: string[] = [`blue`, `orange`, `cyan`, `indigo`, `green`];
+// tslint:disable
 export interface IBlogListItemProps {
   name: string;
   info: string;
