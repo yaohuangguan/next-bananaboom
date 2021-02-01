@@ -8,7 +8,7 @@ import Layout from "../../components/Layout/Layout";
 import { withRouter } from "next/router";
 import shuffle from "../../utils/Shuffle";
 import GitHub from "../../components/Github/Github.forkme";
-import Image from "next/image";
+import Image from "../../public/image";
 import {
   getEnglishContent,
   getChineseContent,

@@ -1,5 +1,5 @@
 import React, { useRef } from "react";
-import Image from "next/image";
+import Image from "../../../public/image";
 // tslint:disable
 const Pay = () => {
   const pay = useRef(null);

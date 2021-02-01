@@ -1,5 +1,5 @@
 import "./Background.scss";
-import Image from 'next/image'
+import Image from "../../../public/image"
 // tslint:disable
 export const getBeeHexImg = () => {
   return (

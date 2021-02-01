@@ -1,7 +1,7 @@
 import React from "react";
 import Layout from "../components/Layout/Layout";
 import Link from "next/link";
-import Image from "next/image";
+import Image from "../public/image";
 // tslint:disable
 
 function Error({ statusCode }) {
@@ -20,7 +20,7 @@ function Error({ statusCode }) {
             <a>
               <Image
                 src="https://res.cloudinary.com/next-bananaboom/image/upload/v1582125657/%E8%80%81%E5%A9%86%E7%9A%84%E7%88%B1_fxvtnv.gif"
-                // style={{ marginLeft: "10%" }}
+                style={{ marginLeft: "10%" }}
                 width="90%"
                 alt="404"
                 title="image credit to my girlfriend^"

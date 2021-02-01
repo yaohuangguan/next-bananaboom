@@ -4,7 +4,7 @@ import firebase from "../../firebase/firebase";
 import {signUp} from '../../service'
 import Loader from "../Loader/Loader";
 import Login from "./Login";
-import Image from 'next/image'
+import Image from '../../public/image'
 // tslint:disable
 
 const Signup = ({ linkColor }: { linkColor?: string }) => {

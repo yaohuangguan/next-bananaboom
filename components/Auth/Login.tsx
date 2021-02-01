@@ -1,7 +1,7 @@
 import { useState, useRef, useMemo } from "react";
 import { useRouter } from "next/router";
 import firebase from "../../firebase/firebase";
-import Image from 'next/image'
+import Image from '../../public/image'
 import {signIn} from '../../service'
 import Loader from "../Loader/Loader";
 // tslint:disable

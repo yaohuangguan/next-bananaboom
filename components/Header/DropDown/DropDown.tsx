@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 import Link from "next/link";
 import api from "../../../utils/Api";
 import firebase from "../../../firebase/firebase";
-import Image from "next/image";
+import Image from "../../../public/image";
 import "./DropDown.scss";
 
 // tslint:disable

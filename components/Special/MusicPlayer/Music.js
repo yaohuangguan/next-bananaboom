@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import "./music.css";
-import Image from "next/image";
+import Image from "../../../public/image"
 // tslint:disable
 
 const Music = () => {

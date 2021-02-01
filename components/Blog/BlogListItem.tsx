@@ -3,7 +3,7 @@ import "./BlogListItem.scss";
 import api from "../../utils/Api";
 import { useState } from "react";
 import { randomColor } from "../../utils/Utils";
-import Image from 'next/image'
+import Image from '../../public/image'
 const colors: string[] = [`blue`, `orange`, `cyan`, `indigo`, `green`];
 // tslint:disable
 export interface IBlogListItemProps {
