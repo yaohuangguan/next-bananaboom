@@ -1,56 +1,55 @@
-@import url('https://fonts.googleapis.com/css?family=Gotu&display=swap');
-@import url('https://fonts.googleapis.com/css?family=Sen&display=swap');
-html{
- body {
-  font-family: "Sen", "Helvetica", "Arial", sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-font-smoothing: antialiased;
-  font-display: swap;
-  font-weight: 600;
-  color: #333;
-  margin: 0;
-  min-height: 100vh;
-  transition: background-color 0.5s ease, color 0.5s ease;
-  overflow-x: hidden;
-  &::-webkit-scrollbar {
-    width: 0.5em;
-    background-color: #394041;
+@import url("https://fonts.googleapis.com/css?family=Gotu&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Sen&display=swap");
+html {
+  body {
+    font-family: "Sen", "Helvetica", "Arial", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-font-smoothing: antialiased;
+    font-display: swap;
+    font-weight: 600;
+    color: #333;
+    margin: 0;
+    min-height: 100vh;
+    transition: background-color 0.5s ease, color 0.5s ease;
+    overflow-x: hidden;
+    &::-webkit-scrollbar {
+      width: 0.5em;
+      background-color: #394041;
+    }
+    &::-webkit-scrollbar-thumb {
+      background-color: white;
+    }
+    &::-moz-scrollbar {
+      width: 0.5em;
+      background-color: #394041;
+    }
+    &::-moz-scrollbar-thumb {
+      background-color: white;
+    }
   }
-  &::-webkit-scrollbar-thumb {
-    background-color: white;
+  * {
+    box-sizing: border-box;
+    &::-moz-selection {
+      background-color: rgb(67, 120, 255);
+      color: white;
+    }
+    &::selection {
+      background-color: rgb(67, 120, 255);
+      color: white;
+    }
   }
-  &::-moz-scrollbar {
-    width: 0.5em;
-    background-color: #394041;
+  .linkTag {
+    background: -webkit-linear-gradient(#fc5c7d, #6a82fb);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
   }
-  &::-moz-scrollbar-thumb {
-    background-color: white;
-  }
-}
-* {
-  box-sizing: border-box;
-  &::-moz-selection {
-    background-color: rgb(67, 120, 255);
-    color: white;
-  }
-  &::selection {
-    background-color: rgb(67, 120, 255);
-    color: white;
-  }
-}
-.linkTag {
-  background: -webkit-linear-gradient(#fc5c7d, #6a82fb);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
 
-.article {
-  font-size: 1.2em;
+  .article {
+    font-size: 1.2em;
+  }
 }
-
-}
-.web-service-entrance{
+.web-service-entrance {
   text-align: center;
   background-color: rgb(67, 120, 255);
   color: white;
