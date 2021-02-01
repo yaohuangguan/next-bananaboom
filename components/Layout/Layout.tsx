@@ -10,7 +10,7 @@ const Layout = ({ children, head }) => {
   const [loading, setloading] = useState(false);
 
   if (typeof window !== "undefined") {
-    Router.beforePopState(({ url, as, option }) => {
+    Router.beforePopState(({ url, as }) => {
       // I only want to allow these two routes!
       if (typeof url == "undefined") {
         // Have SSR render bad routes as a 404.
@@ -23,19 +23,19 @@ const Layout = ({ children, head }) => {
     });
   }
   useEffect(() => {
-    const routeStart = url => {
+    const routeStart = (url) => {
       setloading(true);
       if (getEnvironment()) {
         console.log("App is changing to: ", url);
       }
     };
-    const routeEnd = url => {
+    const routeEnd = (url) => {
       if (getEnvironment()) {
         console.log("App is changed to: ", url);
       }
       const urlReloadList = [`/blogs/article/${Router.query.id}`];
       const ifReload = Promise.resolve(
-        urlReloadList.some(each => {
+        urlReloadList.some((each) => {
           return each == url;
         })
       );
@@ -59,7 +59,6 @@ const Layout = ({ children, head }) => {
         "routeChangeComplete",
         Router.pathname === "/blogs/article/[id]" ? null : routeEnd
       );
-
 
       Router.events.off("routeChangeError", routeError);
     };
@@ -100,7 +99,7 @@ Layout.getInitialProps = ({ pathname }) => {
     require("../../styles/animation.scss"),
     require("../../styles/buttons.scss"),
     require("../../styles/text.scss"),
-    require('../Darkmode/darkmode.scss'),
+    require("../Darkmode/darkmode.scss"),
     //layout
     require("./Layout.scss"),
     //Header
