@@ -19,7 +19,7 @@ class SamMainApp extends App {
     currentUser: "",
   };
   unsubscribeFromAuth = null;
-  getUserProfile = async (token:string) => {
+  getUserProfile = async (token: string) => {
     if (typeof window !== "undefined") {
       token = localStorage.getItem("token") || null;
     }
@@ -115,7 +115,7 @@ class SamMainApp extends App {
         darkTheme={this.darkTheme}
         handleTheme={this.handleTheme}
         getUserProfile={this.getUserProfile}
-      ></Component>
+      />
     );
   }
 }

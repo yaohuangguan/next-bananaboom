@@ -66,7 +66,7 @@ const Layout = ({ children, head }) => {
 
   return (
     <ErrorBoundary>
-      <HeadConfig head={head}></HeadConfig>
+      <HeadConfig head={head} />
 
       <noscript>
         <div className="javascript-detect text-center">
