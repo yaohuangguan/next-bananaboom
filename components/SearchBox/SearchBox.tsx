@@ -29,7 +29,7 @@ const SearchBox = ({
           suggest.filter(
             (each) =>
               each.length > 0 &&
-              each.toLowerCase().startsWith(searchField.toLowerCase())
+              each.toLowerCase().includes(searchField.toLowerCase())
           )
       )
       .join(",")

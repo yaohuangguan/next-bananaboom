@@ -3,6 +3,7 @@ import dynamic from "next/dynamic";
 const Meteor = dynamic(() => import("../Meteor/Meteor"));
 const Music = dynamic(() => import("../MusicPlayer/Music"));
 
+
 const Wrapper = ({ project }: any) => {
   console.log(project);
   function wrap() {
