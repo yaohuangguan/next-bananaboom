@@ -1,10 +1,10 @@
-import React, { useEffect } from "react";
+import React, { useLayoutEffect } from "react";
 import "./music.css";
 import Image from "../../../public/image"
 // tslint:disable
 
 const Music = () => {
-  useEffect(() => {
+  useLayoutEffect(() => {
     const musicContainer = document.getElementById("music-container");
     const playBtn = document.getElementById("play");
     const prevBtn = document.getElementById("prev");

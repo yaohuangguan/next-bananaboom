@@ -11,7 +11,7 @@ const SayHi = () => {
         <p>
         <i className="fas fa-envelope"></i>Email:
           <a href="mailto:moviegoer24@gmail.com" className='white-text' >
-            moviegoer24@gmail.com
+            719919153@qq.com
           </a>
         </p>
         <p>
