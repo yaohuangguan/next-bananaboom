@@ -2,7 +2,7 @@ const Github = ({fill,color}) => {
   return (
     <>
       <a
-        href="https://github.com/yaohuangguan/next-bananaboom"
+        href="https://github.com/yaohuangguan"
         className="github-corner"
         aria-label="View source on GitHub"
         target="_blank"

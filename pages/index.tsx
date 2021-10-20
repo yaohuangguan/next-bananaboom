@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import Layout from "../components/Layout/Layout";
 import Header from "../components/Header/Header";
 import Jumbo from "../components/Jumbo/Jumbo";
-
+import Intro from "../components/Contents/Intro/English";
 import Subscribe from "../components/Subscribe/Subscribe";
 import Footer from "../components/Footer/Footer";
 import Animation from "../utils/Animation";
@@ -105,6 +105,14 @@ const Index = ({
         homeRoute={"/"}
         backgroundURL={backgroundURL}
       />
+      <div className="mt-3 px-5">
+        <Intro
+          title={intro_title}
+          subtitle={intro_subtitle}
+          intro={intro_intro}
+          projects={projects}
+        ></Intro>
+      </div>
 
       <div
         className="white-text z-depth-1"

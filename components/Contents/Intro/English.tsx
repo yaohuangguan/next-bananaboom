@@ -1,5 +1,3 @@
-import { useRouter } from "next/router";
-import ProjectList from "../Projects/ProjectList";
 export interface IEnglishProjectProps {
   title: string;
   subtitle: string;
@@ -10,13 +8,7 @@ const EnglishIntro = ({
   title,
   subtitle,
   intro,
-  projects,
 }: IEnglishProjectProps) => {
-  const router = useRouter();
-  const projectTitle = () =>
-    router.pathname === "/"
-      ? "Currently Involved Open-Source Projects"
-      : "目前参与的开源项目";
   return (
     <>
       <div className="row" id="content">
@@ -29,13 +21,6 @@ const EnglishIntro = ({
             <br />
             <br />
             <br />
-
-            <p className="font-weight-bold">{projectTitle()}</p>
-            {projects ? (
-              <ProjectList items={projects} />
-            ) : (
-              "Error:Something went wrong while rendering contents. Please try again!"
-            )}
           </div>
         </div>
       </div>
