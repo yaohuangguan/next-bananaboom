@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import Layout from "../components/Layout/Layout";
 import Header from "../components/Header/Header";
 import Jumbo from "../components/Jumbo/Jumbo";
-import Intro from "../components/Contents/Intro/English";
+
 import Subscribe from "../components/Subscribe/Subscribe";
 import Footer from "../components/Footer/Footer";
 import Animation from "../utils/Animation";
@@ -79,13 +79,7 @@ const Index = ({
   //     >
   //       X
   //     </span>
-  //     <a
-  //       href="https://web.yaobaiyang.com"
-  //       style={{ color: "aliceblue", textDecoration: "underline" }}
-  //     >
-  //       https://web.yaobaiyang.com
-  //     </a>
-  //     现开通Atlas网站搭建服务,让任何人都能拥有自己的网站!
+  //    全新版本，即将上线
   //   </div>
   // );
   return (
@@ -111,14 +105,6 @@ const Index = ({
         homeRoute={"/"}
         backgroundURL={backgroundURL}
       />
-      <div className="mt-3 px-5">
-        <Intro
-          title={intro_title}
-          subtitle={intro_subtitle}
-          intro={intro_intro}
-          projects={projects}
-        ></Intro>
-      </div>
 
       <div
         className="white-text z-depth-1"
